@@ -1,0 +1,360 @@
+.md-toolbar {
+  min-height: 56px;
+  padding: 10px 15px;
+  justify-content: center;
+
+  &.md-transparent{
+    background-color: transparent !important;
+    box-shadow: none;
+    padding-top: 25px;
+
+    .md-title,
+    .md-list .md-list-item-content,
+    .md-list-item-container .md-icon,
+    &,
+    &:hover,
+    &:focus{
+      color: $white-color !important;
+    }
+  }
+
+  &.md-absolute {
+    position: fixed;
+    z-index: 1030;
+    left: 0;
+    right: 0;
+  }
+
+  .md-list-item-content {
+    .fab,
+    .fa {
+      font-size: 1.25rem;
+      max-width: 24px;
+    }
+  }
+
+  .notification{
+    position: absolute;
+    top: 5px;
+    border: 1px solid #FFF;
+    right: 10px;
+    font-size: 9px;
+    background: #f44336;
+    color: #FFFFFF;
+    min-width: 20px;
+    padding: 0px 5px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+    display: block;
+  }
+
+  .navbar-nav {
+    > li > .dropdown-menu{
+        margin-top: -20px;
+    }
+
+    > li.open > .dropdown-menu{
+        margin-top: 0;
+    }
+
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: inherit;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: inherit;
+        background-color: transparent;
+        opacity: 0.9;
+      }
+    }
+    .profile-photo{
+        padding: 0 5px 0;
+        .profile-photo-small{
+            height: 40px;
+            width: 40px;
+        }
+    }
+  }
+
+
+  // default color for dropdown
+  @include dropdown-colors($brand-primary);
+  @include toolbar-colors($gray-light, $white-color);
+  .md-toolbar-toggle .icon-bar{
+    color: inherit !important;
+  }
+
+  &.md-white {
+    @include toolbar-colors($white-color, $navbar-color);
+
+    .md-button,
+    .md-button:hover,
+    .md-button:focus,
+    .md-button:active,
+    .md-button.active,
+    .md-button:active:focus,
+    .md-button:active:hover,
+    .md-button.active:focus,
+    .md-button.active:hover,
+    .open > .md-button.dropdown-toggle,
+    .open > .md-button.dropdown-toggle:focus,
+    .open > .md-button.dropdown-toggle:hover {
+      i,
+      & {
+        color: $navbar-color !important;
+      }
+    }
+  }
+
+  &.md-primary{
+    @include dropdown-colors($brand-primary);
+    @include toolbar-colors($brand-primary, $white-color);
+  }
+  &.md-danger{
+    @include dropdown-colors($brand-danger);
+    @include toolbar-colors($brand-danger, $white-color);
+  }
+  &.md-warning{
+    @include dropdown-colors($brand-warning);
+    @include toolbar-colors($brand-warning, $white-color);
+  }
+  &.md-info{
+    @include dropdown-colors($brand-info);
+    @include toolbar-colors($brand-info, $white-color);
+  }
+  &.md-success{
+    @include dropdown-colors($brand-success);
+    @include toolbar-colors($brand-success, $white-color);
+  }
+
+  &.navbar-transparent{
+      background-color: transparent;
+      box-shadow: none;
+      border-bottom: 0;
+
+      .logo-container .brand{
+          color: $white-color;
+      }
+  }
+
+  .md-toolbar-row {
+    min-height: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .md-button{
+    margin: 0;
+  }
+
+  .md-toolbar-toggle .md-button-content{
+    display: block;
+    align-items: unset;
+  }
+
+  .notification{
+    position: absolute;
+    top: 0px;
+    border: 1px solid #FFF;
+    right: 7px;
+    font-size: 9px;
+    background: #f44336;
+    color: #FFFFFF;
+    min-width: 20px;
+    padding: 0px 5px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+    display: block;
+  }
+
+  &.md-theme-default.md-transparent,
+  &.md-theme-default,
+  &.md-theme-default .md-title,
+  &.md-theme-default.md-transparent .md-title {
+    color: $gray;
+  }
+
+  .md-title {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 0;
+    margin-right: 15px;
+    padding: 10px 0;
+    font-weight: 300;
+    letter-spacing: normal;
+  }
+
+  .md-toolbar-toggle {
+    width: 40px;
+
+    .icon-bar {
+      position: relative;
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: inherit;
+      border: 1px solid;
+      border-radius: 1px;
+
+      & + .icon-bar{
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .md-list{
+    flex-flow: row;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: inherit !important;
+    background-color: transparent !important;
+
+    &:hover .md-list-item > a,
+    &:focus .md-list-item > a,
+    & > a:hover {
+      background-color: transparent !important;
+    }
+
+    .md-list-item > a:not(:last-child){
+      margin-right: 5px;
+    }
+  }
+
+  .md-field{
+    padding: 0;
+    margin: 0;
+
+    &:after,
+    &:before{
+      bottom: 5px;
+    }
+
+    .md-input{
+      margin-top: 6px;
+    }
+
+    label{
+      top: 15px;
+    }
+
+    &.md-focused label,
+    &.md-has-value label{
+      top: -4px;
+    }
+  }
+
+  .md-collapse{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+.md-menu-content{
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: $border-radius-base !important;
+  overflow: hidden;
+
+  .md-list .md-list-item a{
+    font-size: 10px;
+  }
+}
+
+
+
+
+
+
+.md-list-item a{
+  color: inherit !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  font-weight: $font-weight-default;
+  font-size: $mdb-btn-font-size-base;
+  text-transform: uppercase;
+  overflow: visible;
+
+  border-radius: $border-radius-base;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .material-icons,
+  .fa{
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  &.btn:not(.btn-just-icon){
+      .fa,
+      .fab{
+        position: relative;
+        top: 2px;
+        margin-top: -4px;
+        margin-right: 4px;
+      }
+  }
+}
+
+.md-list-item{
+  list-style: none;
+
+  .md-list-item-content:not(.md-ripple) {
+    padding: 0;
+  }
+
+  .md-button:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle) .md-ripple{
+    padding: 12px 15px;
+    min-height: 48px;
+  }
+}
+
+.md-list-item{
+  .md-list-item-container{
+    .md-ripple{
+      padding: 10px 15px;
+      border-radius: $border-radius-base;
+
+      p {
+        font-weight: 400;
+        font-size: 12px;
+        margin: 0;
+      }
+
+      .md-icon {
+        transition: none;
+        margin-right: 5px;
+      }
+
+      > span{
+        border-radius: $border-radius-base;
+      }
+    }
+  }
+}
