@@ -11,51 +11,7 @@
       </div>
     </div>
     <div class="main main-raised">
-        ]<h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3><h1>Material Kit.</h1>
-        <h3>A Badass VueMaterial.io Kit based on Material Design.</h3>
+        a
     </div>
   </div>
 

@@ -1,12 +1,10 @@
-
-
 /*!
 
  =========================================================
- * Material Dashboard - v1.0.1
+ * Vue Material Kit - v1.0.0
  =========================================================
 
- * Product Page: http://www.creative-tim.com/product/material-dashboard
+ * Product Page: http://www.creative-tim.com/product/vue-material-kit
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
 
@@ -18,38 +16,38 @@
 
 
 //variables and mixins
-@import "md/variables";
-@import "md/mixins";
-@import "md/shadows";
+@import "material-kit/variables";
+@import "material-kit/mixins";
+@import "material-kit/shadows";
 
 //plugin css
-@import "md/plugins/_perfect-scrollbar";
+@import "material-kit/plugins/_perfect-scrollbar";
 
 // Core CSS
-@import "md/typography";
-@import "md/sidebar-and-main-panel";
-@import "md/buttons";
-@import "md/misc";
-@import "md/inputs";
-@import "md/forms";
-@import "md/alerts";
-@import "md/tables";
-@import "md/layout";
-@import "md/headers";
-@import "md/example-pages";
-@import "md/checkboxes";
-@import "md/togglebutton";
-@import "md/ripples";
-@import "md/pagination";
-@import "md/pills";
-@import "md/dialogs";
-@import "md/navbars";
-@import "md/popups";
-@import "md/footers";
+@import "material-kit/typography";
+@import "material-kit/sidebar-and-main-panel";
+@import "material-kit/buttons";
+@import "material-kit/misc";
+@import "material-kit/inputs";
+@import "material-kit/forms";
+@import "material-kit/alerts";
+@import "material-kit/tables";
+@import "material-kit/layout";
+@import "material-kit/headers";
+@import "material-kit/example-pages";
+@import "material-kit/checkboxes";
+@import "material-kit/togglebutton";
+@import "material-kit/ripples";
+@import "material-kit/pagination";
+@import "material-kit/pills";
+@import "material-kit/dialogs";
+@import "material-kit/navbars";
+@import "material-kit/popups";
+@import "material-kit/footers";
 
 // Fancy Stuff
-@import "md/dropdown";
-@import "md/cards";
-@import "md/tabs";
-@import "md/chartist";
-@import "md/responsive";
+@import "material-kit/dropdown";
+@import "material-kit/cards";
+@import "material-kit/tabs";
+@import "material-kit/chartist";
+@import "material-kit/responsive";
