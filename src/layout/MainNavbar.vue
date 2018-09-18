@@ -29,7 +29,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="https://demos.creative-tim.com/vue-material-kit/documentation/">
                           <i class="material-icons">content_paste</i>
                           <p>Documentation</p>
                         </a>
