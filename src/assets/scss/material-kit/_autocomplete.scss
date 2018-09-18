@@ -1,0 +1,34 @@
+.md-menu-content:not(.md-select-menu) .md-menu-content-container .md-list {
+  .md-list-item {
+    margin: 0 .3125rem;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    .md-list-item-button {
+      background-color: transparent;
+      color: $gray-dark !important;
+      border-radius: 3px;
+
+      &:hover {
+        background-color: $brand-primary !important;
+        @include shadow-big-color($brand-primary);
+        color: #FFF !important;
+      }
+
+      .md-list-item-content {
+        min-height: 38px;
+        font-size: 13px;
+
+        span {
+          top: auto;
+          left: auto;
+          right: 0;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}

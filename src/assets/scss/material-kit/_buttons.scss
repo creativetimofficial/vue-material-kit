@@ -2,7 +2,7 @@
     border: none;
     border-radius: $border-radius-base;
     position: relative;
-    margin: 10px 1px;
+    margin: .3125rem 1px;
     height: auto;
     line-height: 1.42857;
 
@@ -10,6 +10,8 @@
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0;
+
+    @include social-buttons();
 
     will-change: box-shadow, transform;
     transition: box-shadow 0.2s $mdb-animation-curve-fast-out-linear-in,
@@ -19,7 +21,7 @@
       padding: 12px 30px;
     }
 
-    &:not(.md-just-icon) .md-button-content i{
+    &:not(.md-just-icon) .md-button-content i:not(.md-tab-icon){
       font-size: 1.1rem !important;
       height: 17px;
     }
@@ -34,6 +36,16 @@
 
     &:before{
       display: none;
+    }
+
+    i{
+      width: 24px;
+      min-width: 24px;
+    }
+
+    &.md-white {
+      @include btn-styles($white-color);
+      box-shadow: none;
     }
 
     &,
@@ -56,8 +68,8 @@
     &.md-danger{
       @include btn-styles($brand-danger);
     }
-    &.md-white{
-      @include btn-styles($white-color);
+    &.md-rose{
+      @include btn-styles($brand-rose);
     }
 
     &:focus,
@@ -66,7 +78,9 @@
       outline: 0;
     }
 
-    &.md-round{
+    &.md-round,
+    &.md-round.md-fab,
+    &.md-round.md-just-icon{
       border-radius: $border-radius-extreme;
     }
 
@@ -75,7 +89,7 @@
           font-size: 18px;
           margin-top: -2px;
           position: relative;
-          top: 2px;
+          top: 0;
       }
     }
 
@@ -127,30 +141,17 @@
     // Size variations
     &.md-lg .md-ripple{
         font-size: $mdb-btn-font-size-lg;
-        padding: 18px 36px !important;
+        padding: 1.125rem 2.25rem !important;
+        line-height: 1.333333;
     }
     &.md-sm .md-ripple{
         padding: 0.40625rem 1.25rem !important;
         font-size: $mdb-btn-font-size-sm;
-    }
 
-    &.btn-just-icon{
-        font-size: 20px;
-        padding: 12px 12px;
-        line-height: 1em;
-
-        i{
-            width: 20px;
-        }
-        &.btn-lg{
-            font-size: 22px;
-            padding: 13px 18px;
-        }
     }
 
     &.md-fab,
     &.md-just-icon{
-      font-size: 24px;
       height: 41px;
       min-width: 41px;
       width: 41px;
@@ -158,15 +159,16 @@
       overflow: hidden;
       position: relative;
       line-height: 41px;
-      border-radius: 50%;
+
+      i,
+      & {
+        font-size: 20px !important;
+      }
     }
 
     .md-button-content{
       display: flex;
       align-items: center;
-      i{
-        font-size: 20px !important;
-      }
     }
 }
 
@@ -209,4 +211,32 @@
             color: $gray;
         }
     }
+}
+
+.button-container{
+  display: flex;
+  align-items: center;
+}
+
+.md-group>.md-group:not(:last-child)>.md-button, .md-group>.md-button:not(:last-child):not(.dropdown-toggle){
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.md-group>.md-group:not(:first-child)>.md-button,
+.md-group>.md-button:not(:first-child){
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.md-group{
+  display: inline-flex;
+  vertical-align: middle;
+
+  .md-button{
+    min-width: auto !important;
+    width: auto !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

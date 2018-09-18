@@ -2,11 +2,11 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    margin: 25px 0;
+    margin: 30px 0;
     overflow: unset;
 
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
-    border-radius: $border-radius-base;
+    @include box-shadow($bmd-shadow-2dp);
+    border-radius: $border-radius-base + 3;
     color: $mdb-card-body-text;
     background: $mdb-card-body-background;
 
@@ -54,7 +54,8 @@
         color: $gray-color;
     }
     .md-card-content{
-        padding: 15px 20px;
+        padding: .9375rem 1.875rem;
+        line-height: inherit;
 
         .category{
             margin: 0;
@@ -63,13 +64,14 @@
 
     .md-card-header{
         @include shadow-big();
-        margin: -20px $margin-base 0;
+        margin: -40px  20px $margin-base;
         border-radius: $border-radius-base;
-        padding: $padding-base;
+        padding: $padding-base + 5 0;
         background-color: $gray-color;
 
-        .title{
-            color: $white-color;
+        .title,
+        .card-title{
+          color: $white-color;
         }
         .category{
             margin: 0;
@@ -213,33 +215,45 @@
     }
 
     [data-background-color="purple"],
+    .md-card-header-primary,
     .md-tabs.md-primary .md-tabs-navigation{
-        background: linear-gradient(60deg, $purple-400, $purple-600);
+        background: linear-gradient(60deg, $purple-400, $purple-700);
         @include shadow-big-color($brand-primary);
     }
 
     [data-background-color="blue"],
+    .md-card-header-info,
     .md-tabs.md-info .md-tabs-navigation{
-        background: linear-gradient(60deg, $cyan-400, $cyan-600);
+        background: linear-gradient(60deg, $cyan-400, $cyan-700);
         @include shadow-big-color($brand-info);
     }
 
     [data-background-color="green"],
+    .md-card-header-green,
     .md-tabs.md-success .md-tabs-navigation{
-        background: linear-gradient(60deg, $green-400, $green-600);
+        background: linear-gradient(60deg, $green-400, $green-700);
         @include shadow-big-color($brand-success);
     }
 
     [data-background-color="orange"],
+    .md-card-header-orange,
     .md-tabs.md-warning .md-tabs-navigation{
-        background: linear-gradient(60deg, $orange-400, $orange-600);
+        background: linear-gradient(60deg, $orange-400, $orange-700);
         @include shadow-big-color($brand-warning);
     }
 
     [data-background-color="red"],
+    .md-card-header-red,
     .md-tabs.md-danger .md-tabs-navigation{
-        background: linear-gradient(60deg, $red-400, $red-600);
+        background: linear-gradient(60deg, $red-400, $red-700);
         @include shadow-big-color($brand-danger);
+    }
+
+    [data-background-color="rose"],
+    .md-card-header-rose,
+    .md-tabs.md-rose .md-tabs-navigation{
+        background: linear-gradient(60deg, $pink-400, $pink-700);
+        @include shadow-big-color($brand-rose);
     }
 
     [data-background-color]{
@@ -304,7 +318,7 @@
         margin-left: 0;
         margin-right: 0;
     }
-    .content{
+    .md-card-content{
         padding-left: 5px;
         padding-right: 5px;
     }
@@ -359,4 +373,177 @@
             margin-top: 0;
         }
     }
+}
+
+.md-card-tabs{
+  margin-top: 0;
+
+  .md-list{
+    flex-flow: initial;
+    padding: 0 15px;
+  }
+
+  &.page-subcategories > .md-card-header .title{
+    margin-top: 30px !important;
+    margin-bottom: 25px !important;
+    min-height: 32px;
+  }
+
+  .tab-content{
+    padding: 20px 0 9px;
+  }
+
+  .md-list-item + .md-list-item{
+    margin-left: 5px;
+  }
+
+  .md-list .md-list-item .md-list-item-button{
+    line-height: 24px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 100px;
+    color: $black-color !important;
+    transition: all .3s;
+    border-radius: 30px;
+    padding: 0;
+
+    .md-icon{
+      display: flex;
+      width: auto;
+      height: auto;
+      margin: 0;
+      font-size: 30px !important;
+      padding: 15px 0;
+      color: $navbar-color;
+    }
+
+    .md-list-item-content{
+      min-height: auto;
+      padding: 10px 15px;
+      justify-content: center;
+      display: flex;
+    }
+
+    &:hover,
+    &:focus{
+      background-color: rgba(199, 199, 199, .2) !important;
+    }
+  }
+
+  .md-list .md-list-item:not(.active) .md-list-item-button .md-list-item-content {
+    color: $navbar-color;
+  }
+
+  .active.md-list-item .md-list-item-button{
+    @include tabs-color($gray-color);
+    color: $white-color !important;
+
+    .md-list-item-content .md-icon,
+    &{
+      color: $white-color !important;
+    }
+  }
+
+  .active.md-list-item.md-rose .md-list-item-button{
+    @include tabs-color($brand-rose);
+  }
+  .active.md-list-item.md-primary .md-list-item-button{
+    @include tabs-color($brand-primary);
+  }
+  .active.md-list-item.md-warning .md-list-item-button{
+    @include tabs-color($brand-warning);
+  }
+  .active.md-list-item.md-info .md-list-item-button{
+    @include tabs-color($brand-info);
+  }
+  .active.md-list-item.md-success .md-list-item-button{
+    @include tabs-color($brand-success);
+  }
+  .active.md-list-item.md-danger .md-list-item-button{
+    @include tabs-color($brand-danger);
+  }
+
+  &.md-card-plain {
+
+    .md-card-header,
+    .md-list{
+      background-color: transparent !important;
+    }
+
+    .title{
+      justify-content: center;
+    }
+  }
+}
+
+.flex-column{
+  .md-card-content{
+    display: flex;
+    flex-flow: initial;
+  }
+
+  .md-list{
+    flex-direction: column;
+    min-width: 148px;
+
+    & .md-list-item + .md-list-item{
+      margin: 0;
+      margin-top: 5px;
+    }
+  }
+
+  .tab-content{
+    padding: 0;
+    padding-left: 30px;
+  }
+}
+
+.nav-pills-icons{
+  .md-list .md-list-item .md-list-item-button {
+    border-radius: 4px;
+
+    .md-list-item-content{
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.md-card-login{
+  margin: 0 auto;
+
+  .md-button{
+    margin: .3125rem 1px;
+  }
+
+  .social-line {
+    margin-top: 1rem;
+  }
+
+  .md-card-header,
+  .description{
+    text-align: center;
+  }
+
+  &.md-card-hidden{
+    opacity: 0;
+    transform: translate3d(0,-60px,0);
+  }
+
+  .md-card-content{
+    padding-top: 0;
+  }
+
+  .description{
+    margin-top: 0;
+  }
+
+  .md-card-actions{
+    border: 0;
+    justify-content: center;
+  }
+}
+
+.team-player .md-card-actions {
+  border: 0;
 }

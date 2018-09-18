@@ -37,7 +37,7 @@
 .profile-page{
     .page-header{
         height: 380px;
-        background-position: top center;
+        background-position: center center;
     }
     .profile{
         text-align: center;
@@ -162,5 +162,21 @@
             color: #FFFFFF;
         }
     }
+
+}
+
+.login-page {
+  .footer {
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    bottom: 0;
+    color: $white-color;
+    z-index: 1;
+
+    .copyright a{
+      color: $white-color;
+    }
+  }
 
 }

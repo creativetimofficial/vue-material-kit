@@ -12,6 +12,13 @@
       margin-bottom: 0;
     }
 
+    .container {
+      flex-direction: unset;
+      display: flow-root;
+      padding: 0 31px;
+      line-height: 1.7;
+    }
+
     b{
         font-weight: $font-weight-bold;
         text-transform: uppercase;
@@ -21,23 +28,23 @@
     @include alert-color($gray-color);
 
     &.alert-info{
-      @include alert-color(lighten($brand-info,5%));
+      @include alert-color(lighten($brand-info,3%));
     }
 
     &.alert-danger{
-      @include alert-color(lighten($brand-danger,5%));
+      @include alert-color(lighten($brand-danger,3%));
     }
 
     &.alert-primary{
-      @include alert-color(lighten($brand-primary,5%));
+      @include alert-color(lighten($brand-primary,3%));
     }
 
     &.alert-warning{
-      @include alert-color(lighten($brand-warning,5%));
+      @include alert-color(lighten($brand-warning, 3%));
     }
 
     &.alert-success{
-      @include alert-color(lighten($brand-success,5%));
+      @include alert-color(lighten($brand-success, 3%));
     }
 
 
@@ -52,7 +59,8 @@
     }
 
     .close{
-      float: right;
+      position: absolute;
+      right: 0;
       font-size: inherit;
       font-weight: 700;
       line-height: 1;
@@ -61,6 +69,14 @@
       background-color: transparent;
       border: 0;
       cursor: pointer;
+      top: 0;
+      bottom: 0;
+
+      i {
+        font-size: 20px !important;
+        color: $white-color !important;
+        font-weight: normal;
+      }
     }
 
     i[data-notify="icon"] {
@@ -72,21 +88,14 @@
         margin-top: -15px;
     }
 
-    span{
-        display: block;
-        max-width: 89%;
-    }
-
     .alert-icon{
-        display: block;
-        float: left;
-        margin-right: $margin-base;
+      display: inline-block;
+      margin-right: $margin-base;
 
-        i{
-            margin-top: -7px;
-            top: 5px;
-            position: relative;
-        }
+      i{
+        color: $white-color !important;
+        height: 22px;
+      }
     }
 }
 

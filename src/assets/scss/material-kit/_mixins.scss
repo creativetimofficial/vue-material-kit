@@ -25,6 +25,58 @@
   }
 }
 
+@mixin tabs-color($color) {
+  &,
+  &:hover,
+  &:focus{
+    background-color: $color !important;
+    @include shadow-big-color($color);
+  }
+}
+
+@mixin badge-color() {
+    &.badge-primary{
+        background-color: $brand-primary;
+    }
+    &.badge-info {
+        background-color: $brand-info;
+    }
+    &.badge-success{
+        background-color: $brand-success;
+    }
+    &.badge-warning{
+        background-color: $brand-warning;
+    }
+    &.badge-danger{
+        background-color: $brand-danger;
+    }
+    &.badge-rose{
+      background-color: $brand-rose;
+    }
+    &.badge-default{
+        background-color: $gray-light;
+    }
+}
+
+@mixin md-progress-bar($color) {
+  &:not(.md-buffer){
+    background: rgba($color,.2);
+  }
+
+  .md-progress-bar-fill{
+    background-color: $color !important;
+  }
+
+  &.md-buffer {
+    .md-progress-bar-fill{
+      background-color: $color;
+    }
+    .md-progress-bar-buffer {
+      border-color: rgba($color,.2);
+    }
+  }
+}
+
 
 @mixin dropdown-colors($variation-color) {
   .dropdown-menu {
@@ -217,10 +269,16 @@
     .open > &.dropdown-toggle:focus,
     .open > &.dropdown-toggle:hover {
       background-color: $btn-color !important;
-      color: $white-color !important;
-
-      i{
-        color: $white-color !important;
+      @if $btn-color == $white-color {
+        &,
+        i{
+          color: $gray-light !important;
+        }
+      } @else {
+        &,
+        i{
+          color: $white-color !important;
+        }
       }
     }
 
@@ -242,8 +300,9 @@
     &.focus,
     &:active,
     &.active {
-      opacity: .65;
-      pointer-events: none;
+        box-shadow: none;
+        opacity: .65;
+        pointer-events: none;
     }
   }
 
@@ -313,5 +372,11 @@
   }
   &.md-twitter {
     @include social-buttons-color($social-twitter);
+  }
+  &.md-google {
+    @include social-buttons-color($social-google);
+  }
+  &.md-github {
+    @include social-buttons-color($social-github);
   }
 }

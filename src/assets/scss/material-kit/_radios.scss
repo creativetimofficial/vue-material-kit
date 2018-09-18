@@ -1,0 +1,60 @@
+.md-radio{
+
+  .md-radio-label{
+    padding-left: 10px;
+    color: #aaa;
+    font-size: .875rem;
+    font-weight: 400;
+  }
+
+  .md-radio-container{
+    border: 1px solid rgba(0,0,0,.54) !important;
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    top: 2px;
+    transition: .2s !important;
+
+    &:after{
+      transform: scale3D(0,0,0);
+      transition: .2s !important;
+      right: 2px;
+      bottom: 2px;
+      top: 2px;
+      left: 2px;
+      border-radius: 100%;
+    }
+
+    .md-ripple{
+      overflow: hidden;
+
+      .md-ripple-wave{
+        background-color: $brand-primary;
+      }
+    }
+  }
+
+  &.md-checked .md-radio-container{
+    border-color: $brand-primary !important;
+
+    &:after{
+      background-color: $brand-primary !important;
+    }
+  }
+
+  &.md-disabled .md-radio-label,
+  &.md-disabled .md-radio-container{
+    opacity: .26;
+    border-color: rgba(0, 0, 0, .54) !important;
+  }
+
+  &.md-checked.md-disabled .md-radio-container{
+    background-color: transparent !important;
+    border-color: rgba(0, 0, 0, .54) !important;
+    opacity: .26;
+
+    &:after{
+      background-color: rgba(0, 0, 0, .54) !important;
+    }
+  }
+}

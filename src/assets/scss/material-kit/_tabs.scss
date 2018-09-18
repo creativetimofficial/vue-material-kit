@@ -1,9 +1,10 @@
 .md-tabs-navigation{
   @include shadow-big();
-  margin: -35px 0 0;
+  margin: -50px -15px 0 -15px;
   border-radius: $border-radius-base;
-  padding: $padding-base $padding-base $padding-base 75px;
+  padding: $padding-base + 1 $padding-base $padding-base + 1 75px;
   background-color: $gray-color;
+  overflow: auto;
 
   .md-icon-label .md-button-content{
     flex-direction: row;
@@ -14,7 +15,15 @@
       top: 0px;
       left: 5px;
     }
+    .md-tab {
+      text-align: center;
+    }
   }
+
+  .no-label & {
+    padding-left: 15px;
+  }
+
 
   .md-button,
   .md-button:hover,
@@ -31,9 +40,10 @@
     box-shadow: none;
   }
 
-  .md-icon-label{
+  .md-button{
     height: auto;
     border-radius: 3px;
+    font-weight: 500;
     line-height: 24px;
     text-transform: uppercase;
     font-size: 12px;
@@ -43,12 +53,12 @@
     }
 
     .md-tab-icon + .md-tab-label{
-      margin-top: 1px;
-      margin-left: 5px;
+      margin-top: 0px;
+      margin-left: 7px;
     }
 
     .md-ripple{
-      padding: 10px 15px;
+      padding: 10px 15px !important;
     }
   }
 }
@@ -68,4 +78,10 @@
 
 .md-tab{
   padding: 15px 0 0 0;
+}
+
+.md-card-nav-tabs.md-card-plain {
+  .md-content.md-theme-default {
+    background-color: transparent;
+  }
 }

@@ -1,0 +1,72 @@
+.VueCarousel-pagination {
+  position: absolute;
+  bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.VueCarousel-wrapper {
+  border-radius: $border-radius-large;
+}
+
+.VueCarousel-dot-button {
+  display: inline-block;
+  width: 10px !important;
+  height: 10px !important;
+  border: 1px solid #fff !important;
+  background: #FFF !important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+  border-radius: 2px !important;
+  transition: all .3s linear;
+
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
+.VueCarousel-dot--active .VueCarousel-dot-button {
+  margin-top: 10px;
+  transform: scale(1.5);
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 45px;
+
+  &,
+  .md-icon,
+  .fa,
+  .fab,
+  .fas {
+    color: $white-color !important;
+  }
+}
+
+.VueCarousel-navigation-prev {
+  left: 95px !important;
+
+}
+
+.VueCarousel-navigation-next {
+  right: 95px !important;
+}
+
+.VueCarousel-navigation-prev i,
+.VueCarousel-navigation-next i {
+  font-size: 50px;
+  color: $white-color !important;
+  opacity: .5;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.VueCarousel-slide {
+  position: relative;
+}

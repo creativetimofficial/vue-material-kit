@@ -6,7 +6,7 @@
 
  * Product Page: http://www.creative-tim.com/product/vue-material-kit
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
+ * Licensed under MIT (https://github.com/creativetimofficial/vue-material-kit/blob/master/LICENSE.md)
 
  =========================================================
 
@@ -22,13 +22,21 @@
 
 //plugin css
 @import "material-kit/plugins/_perfect-scrollbar";
+@import "material-kit/plugins/_plugin-nouislider";
 
 // Core CSS
 @import "material-kit/typography";
 @import "material-kit/sidebar-and-main-panel";
 @import "material-kit/buttons";
+@import "material-kit/carousel";
+@import "material-kit/autocomplete";
 @import "material-kit/misc";
+@import "material-kit/images";
+@import "material-kit/info-areas";
+@import "material-kit/datepicker";
 @import "material-kit/inputs";
+@import "material-kit/badges";
+@import "material-kit/progress";
 @import "material-kit/forms";
 @import "material-kit/alerts";
 @import "material-kit/tables";
@@ -37,8 +45,8 @@
 @import "material-kit/example-pages";
 @import "material-kit/checkboxes";
 @import "material-kit/togglebutton";
-@import "material-kit/ripples";
 @import "material-kit/pagination";
+@import "material-kit/radios";
 @import "material-kit/pills";
 @import "material-kit/dialogs";
 @import "material-kit/navbars";

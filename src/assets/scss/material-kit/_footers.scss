@@ -39,25 +39,12 @@ footer{
     .copyright{
         padding: 15px 0;
         margin: 0;
-        .material-icons{
-            font-size: 18px;
-            position: relative;
-            top: 3px;
+        .md-icon{
+            font-size: 18px !important;
+            color: inherit !important;
+            width: auto !important;
+            min-width: auto !important;
+
         }
     }
-
-    .btn{
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-}
-
-.container{
-  padding-right: 15px;
-  padding-left: 15px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }

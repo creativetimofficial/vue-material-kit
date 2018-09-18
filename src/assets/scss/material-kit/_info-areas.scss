@@ -1,0 +1,62 @@
+.info{
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 70px 0 30px;
+
+    .icon{
+        color: $gray-color;
+
+        > i{
+            font-size: 3.85rem !important;
+            min-width: auto;
+            width: auto;
+            height: auto;
+            vertical-align: unset;
+        }
+    }
+    .info-title{
+        color: $black-color;
+        margin: 0.875rem * 2 0 0.875rem;
+    }
+    p{
+        color: $gray-color;
+    }
+}
+
+.info-horizontal{
+    .icon{
+        float: left;
+        margin-top: 24px;
+        margin-right: 10px;
+
+        >i{
+            font-size: $font-size-h2;
+        }
+    }
+    .description{
+        overflow: hidden;
+    }
+
+}
+
+.icon {
+
+  &.icon-primary i{
+    color: $brand-primary !important;
+    }
+  &.icon-info i{
+    color: $brand-info !important;
+  }
+  &.icon-success i{
+    color: $brand-success !important;
+  }
+  &.icon-warning i{
+    color: $brand-warning !important;
+  }
+  &.icon-danger i{
+    color: $brand-danger !important;
+  }
+  &.icon-rose i{
+    color: $brand-rose !important;
+}
+}

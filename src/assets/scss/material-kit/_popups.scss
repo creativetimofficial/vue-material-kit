@@ -1,13 +1,14 @@
-.md-tooltip{
+.md-tooltip,
+.popover{
   padding: 10px 15px;
-  min-width: 130px;
+  min-width: 140px;
   max-width: 200px;
   height: auto;
   text-align: center;
   border-radius: $border-radius-base;
   background-color: $white-color !important;
   color: $gray !important;
-  font-size: 12px;
+  font-size: $tooltip-font-size;
   font-weight: 400;
   @include shadow-8dp();
 
@@ -17,40 +18,147 @@
     height: 0;
     left: 0;
     right: 0;
+    width: 5px;
     margin-left: auto;
     margin-right: auto;
-    width: 5px;
+
     vertical-align: .255em;
     content: "";
   }
 
-  &[x-placement="top"]:after{
-    border-top: 5px solid $white-color;
-    border-right: 5px solid transparent;
-    border-bottom: 0;
-    border-left: 5px solid transparent;
+  &.popover {
+    @include shadow-16dp();
+    max-width: 276px;
+    padding: 0;
+    opacity: 0;
+    z-index: 10;
+
+    &:after {
+      width: 8px;
+    }
   }
+
+  &.open {
+    opacity: 1;
+  }
+
+  &[x-placement="top"]:after{
+    border-top: 6px solid $white-color;
+    border-right: 6px solid transparent;
+    border-bottom: 0;
+    border-left: 6px solid transparent;
+    bottom: -6px;
+  }
+
+  &.popover[x-placement="top"]:after {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    transform: none;
+    top: unset;
+    border-top: 6px solid $white-color;
+    border-right: 6px solid transparent;
+    border-bottom: 0;
+    border-left: 6px solid transparent;
+  }
+
   &[x-placement="bottom"]:after{
-    top: -5px;
     border-top: 0;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid $white-color;
-    border-left: 5px solid transparent;
+    top: -6px;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid $white-color;
+    border-left: 6px solid transparent;
+  }
+  &.popover[x-placement="bottom"]:after{
+    border-top: 0;
+    top: -6px;
+    transform: none;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid $white-color;
+    border-left: 6px solid transparent;
   }
   &[x-placement="left"]:after{
-    margin-right: 0;
-    right: -5px;
-    top: 16px;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid $white-color;
+    right: -6px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid $white-color;
+    margin-left: unset;
+    margin-right: unset;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
   }
+
+  &.popover[x-placement="left"]:after {
+    right: -8px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid $white-color;
+  }
+
   &[x-placement="right"]:after{
-    margin-left: 0;
-    left: -5px;
-    top: 16px;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 5px solid $white-color;
+    top: 50%;
+    left: auto;
+    margin-left: unset;
+    margin-right: unset;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    left: -6px;
+    right: auto;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid $white-color;
   }
+
+  &.popover[x-placement="right"]:after {
+    left: -8px;
+    right: auto;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid $white-color;
+  }
+}
+
+.popover {
+  will-change: opacity, visibility;
+  transition: opacity .15s linear, visibility .15s linear;
+
+  &:after {
+    top: 50%;
+    left: auto;
+    margin-left: unset;
+    margin-right: unset;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+
+  }
+}
+
+.popover-header {
+  background-color: #fff;
+  border: none;
+  padding: 15px 15px 5px;
+  font-size: 1.125rem;
+  margin: 0;
+  color: #555;
+  text-align: left;
+}
+
+.popover-body {
+  padding: 10px 15px 15px;
+  line-height: 1.4;
+  color: #555;
+  text-align: left;
+}
+
+.v-popover {
+  display: inline-block;
+  margin-left: 5px;
 }

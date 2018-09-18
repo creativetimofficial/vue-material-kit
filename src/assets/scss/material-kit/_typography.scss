@@ -1,7 +1,6 @@
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   font-family: $font-family-sans-serif;
   font-weight: 300;
-  line-height: 1.5em;
 }
 
 h1,h2,h3,.h1,.h2,.h3{
@@ -50,6 +49,23 @@ h2.title{
     margin-bottom: $margin-base * 2;
 }
 
+.title,
+.card-title,
+.info-title,
+.footer-brand,
+.footer-big h5,
+.footer-big h4,
+.media .media-heading{
+    font-weight: $font-weight-extra-bold;
+    font-family: $font-family-serif;
+
+    &,
+    a{
+        color: $black-color;
+        text-decoration: none;
+    }
+}
+
 .description,
 .card-description,
 .footer-big p{
@@ -72,5 +88,8 @@ h2.title{
   color: $brand-info !important;
 }
 .text-gray{
-    color: $gray-color !important;
+  color: $gray-color !important;
+}
+.text-muted {
+  color: #6c757d!important;
 }

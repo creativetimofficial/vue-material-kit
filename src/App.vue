@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <router-view name="header"/>
-    <div>
-      <router-view/>
+  <div id="material-kit">
+    <div :class="{'nav-open': NavbarStore.showNavbar}">
+      <router-view name="header"/>
+      <div>
+        <router-view/>
+      </div>
+      <router-view name="footer"/>
     </div>
-    <router-view name="footer"/>
   </div>
 </template>

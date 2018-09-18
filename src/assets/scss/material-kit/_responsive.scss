@@ -60,10 +60,6 @@
 /*          Changes for small display      */
 
 @media (max-width: 991px){
-  .md-toolbar .md-collapse{
-    display: none !important;
-  }
-
   .main-panel > .content{
     padding-left: 0;
     padding-right: 0;
@@ -178,13 +174,27 @@
         display: block;
     }
 
-    .sidebar,
-    .off-canvas-sidebar{
+    .md-toolbar-row {
+      will-change: auto;
+      transition-property: none;
+
+    }
+
+    .md-toolbar-row:not(.md-collapse-lateral) .md-collapse {
+      display: none;
+    }
+
+    .md-toolbar.md-transparent .md-list .md-list-item-content {
+      color: $black-color !important;
+    }
+
+
+    .md-collapse-lateral .md-collapse{
         position: fixed;
         display: block;
         top: 0;
         height: 100vh;
-        width: 260px;
+        width: 230px !important;
         right: 0;
         left: auto;
         z-index: 1032;
@@ -196,7 +206,105 @@
         padding-right: 0px;
         padding-left: 0;
 
-        @include transform-translate-x(260px);
+        .md-list {
+          flex-flow: column;
+        }
+
+        .dropdown-toggle:not(.md-button):after,
+        .dropdown-toggle .md-ripple:after,
+        .md-list-item .md-button.md-button-link:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle) .md-ripple .md-button-content i,
+        .md-list-item a .md-ripple p,
+        .md-list-item-content i {
+          color: $black-color !important;
+        }
+
+        .dropdown-toggle:not(.md-button):after,
+        .dropdown-toggle .md-ripple:after {
+          position: absolute;
+          right: 16px;
+        }
+
+        .dropdown .dropdown-menu {
+          background-color: transparent;
+          position: static;
+          border: 0;
+          padding-bottom: 20px;
+          transition: none;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          transform: none!important;
+          width: 100%;
+          margin-bottom: 15px;
+          padding-top: 0;
+          animation: none;
+          opacity: 1;
+          overflow-y: scroll;
+          display: none;
+
+          li > a {
+            margin-left: 15px;
+            margin-right: 15px;
+          }
+        }
+
+        .dropdown-menu.dropdown-with-icons li > a:hover i,
+        .dropdown-menu.dropdown-with-icons li > a:focus i {
+          color: $white-color !important;
+        }
+
+        .dropdown.open .dropdown-menu {
+          display: block;
+        }
+
+        .md-list-item {
+          > a {
+            margin: 5px 15px;
+          }
+
+          .dropdown .dropdown,
+          .md-list-item-content,
+          .md-button {
+            width: 100%;
+          }
+
+          .md-list-item-content .md-button {
+            &,
+            &:focus,
+            &:hover {
+              color: $black-color !important;
+            }
+          }
+
+          .md-button .md-ripple {
+            justify-content: flex-start;
+          }
+
+          &:last-child:after {
+            display: none;
+          }
+
+          &:after {
+            width: calc(100% - 30px);
+            content: "";
+            display: block;
+            height: 1px;
+            margin-left: 15px;
+            background-color: #e5e5e5;
+          }
+
+        }
+
+        .md-list-item-container {
+          width: auto;
+        }
+
+
+        .md-list-item-content {
+          justify-content: flex-start;
+          color: $black-color !important;
+        }
+
+        @include transform-translate-x(230px);
         @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
         > ul {
             position: relative;
@@ -212,6 +320,7 @@
             width: 100%;
             position: absolute;
             display: block;
+            background-color: $white-color;
             content: "";
             z-index: 1;
         }
@@ -238,41 +347,17 @@
         }
     }
 
-    .form-group{
-        .form-control{
-            font-size: 16px;
-            height: 37px
-        }
+    .md-collapse-lateral .md-toolbar-toggle,
+    .md-collapse-lateral .md-title {
+      @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
+
+     .nav-open & {
+       @include transform-translate-x(-230px);
+     }
     }
 
-    .navbar-form{
-        .btn{
-            position: absolute;
-            top: 27px;
-            right: 15px;
-        }
-    }
-
-    .nav-open .navbar-collapse{
+    .nav-open .md-collapse-lateral .md-collapse{
         @include transform-translate-x(0px);
-    }
-    .nav-open .navbar .container{
-        left: -250px;
-    }
-    .nav-open .main-panel{
-        left: 0;
-        @include transform-translate-x(-260px);
-    }
-
-    .nav-open .sidebar{
-        @include shadow-big();
-    }
-
-    .nav-open{
-        .off-canvas-sidebar,
-        .sidebar{
-            @include transform-translate-x(0);
-        }
     }
 
     .close-layer{
@@ -501,28 +586,29 @@
             margin-right: 10px;
         }
     }
+
+    .footer {
+      text-align: center;
+
+      .container{
+        justify-content: unset;
+        display: block;
+    }
+    }
 }
 
 @media (max-width: 768px){
   .footer {
-    text-align: center;
-
-    .container{
-      justify-content: unset;
+    nav{
       display: block;
-
-      nav{
-        display: block;
-      }
+    }
   }
-}
 
   .hidden-sm{
     display: none !important;
   }
 }
 @media (min-width: 768px){
-  .hidden-lg,
   .hidden-md{
     display: none !important;
   }
@@ -559,6 +645,10 @@
         overflow: visible;
     }
 
+    .hidden-lg {
+      display: none !important;
+    }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -569,11 +659,16 @@
       bottom: -25px !important;
     }
   }
+
+  .modal-wrapper .modal-container {
+    max-width: 380px;
+  }
 }
 
 
 @media (min-width: 576px) {
   .md-toolbar-row,
+  .section .container,
   .footer .container {
       max-width: 540px;
   }
@@ -581,6 +676,7 @@
 
 @media (min-width: 768px) {
   .md-toolbar-row,
+  .section .container,
   .footer .container {
       max-width: 720px;
   }
@@ -588,6 +684,7 @@
 
 @media (min-width: 992px) {
   .md-toolbar-row,
+  .section .container,
   .footer .container {
       max-width: 960px;
   }
@@ -595,6 +692,7 @@
 
 @media (min-width: 1200px) {
   .md-toolbar-row,
+  .section .container,
   .footer .container {
       max-width: 1140px;
   }

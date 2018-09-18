@@ -2,6 +2,8 @@
   min-height: 56px;
   padding: 10px 15px;
   justify-content: center;
+  border-radius: 3px;
+  margin-bottom: 20px;
 
   &.md-transparent{
     background-color: transparent !important;
@@ -23,6 +25,7 @@
     z-index: 1030;
     left: 0;
     right: 0;
+    border-radius: 0;
   }
 
   .md-list-item-content {
@@ -30,6 +33,8 @@
     .fa {
       font-size: 1.25rem;
       max-width: 24px;
+      width: 24px;
+      text-align: center;
       margin-right: 4px;
     }
   }
@@ -91,28 +96,27 @@
   // default color for dropdown
   @include dropdown-colors($brand-primary);
   @include toolbar-colors($gray-light, $white-color);
-  .md-toolbar-toggle .icon-bar{
-    color: inherit !important;
-  }
 
   &.md-white {
     @include toolbar-colors($white-color, $navbar-color);
 
-    .md-button,
-    .md-button:hover,
-    .md-button:focus,
-    .md-button:active,
-    .md-button.active,
-    .md-button:active:focus,
-    .md-button:active:hover,
-    .md-button.active:focus,
-    .md-button.active:hover,
-    .open > .md-button.dropdown-toggle,
-    .open > .md-button.dropdown-toggle:focus,
-    .open > .md-button.dropdown-toggle:hover {
-      i,
-      & {
-        color: $navbar-color !important;
+    .md-list-item .md-button.md-simple {
+      &,
+      &:hover,
+      &:focus,
+      &:active,
+      &.active,
+      &:active:focus,
+      &:active:hover,
+      &.active:focus,
+      &.active:hover,
+      .open > &.dropdown-toggle,
+      .open > &.dropdown-toggle:focus,
+      .open > &.dropdown-toggle:hover {
+        i,
+        & {
+          color: $navbar-color !important;
+        }
       }
     }
   }
@@ -137,6 +141,14 @@
     @include dropdown-colors($brand-success);
     @include toolbar-colors($brand-success, $white-color);
   }
+  &.md-rose{
+    @include dropdown-colors($brand-rose);
+    @include toolbar-colors($brand-rose, $white-color);
+  }
+  &.md-dark{
+    @include dropdown-colors($grey-900);
+    @include toolbar-colors($grey-900, $white-color);
+  }
 
   &.navbar-transparent{
       background-color: transparent;
@@ -156,6 +168,23 @@
 
   .md-button{
     margin: 0;
+  }
+
+  .profile-photo {
+    padding: 0;
+    margin: 0 3px;
+  }
+
+  .profile-photo-small {
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .dropdown .md-button:not(.md-round).md-just-icon {
+    height: unset;
+    width: unset;
   }
 
   .md-toolbar-toggle .md-button-content{
@@ -220,8 +249,6 @@
 
   .md-list{
     flex-flow: row;
-    padding-right: 5px;
-    padding-left: 5px;
     padding-top: 0;
     padding-bottom: 0;
     color: inherit !important;
@@ -278,66 +305,52 @@
   }
 }
 
-
-
-
-
-
-.md-list-item a{
-  color: inherit !important;
-  padding-top: 15px;
-  padding-bottom: 15px;
-
-  font-weight: $font-weight-default;
-  font-size: $mdb-btn-font-size-base;
-  text-transform: uppercase;
-  overflow: visible;
-
-  border-radius: $border-radius-base;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: inherit;
-    background-color: transparent;
-  }
-
-  .material-icons,
-  .fa{
-    font-size: 20px;
-    margin-right: 5px;
-  }
-
-  &.btn:not(.btn-just-icon){
-      .fa,
-      .fab{
-        position: relative;
-        top: 2px;
-        margin-top: -4px;
-        margin-right: 4px;
-      }
-  }
-}
-
 .md-list-item{
   list-style: none;
 
-  .md-list-item-content:not(.md-ripple) {
+  .router-link-active .md-ripple{
+    background-color: rgba(255,255,255,.1);
+  }
+
+  a {
+    color: inherit !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    font-weight: $font-weight-default;
+    font-size: $mdb-btn-font-size-base;
+    text-transform: uppercase;
+    overflow: visible;
+
+    border-radius: $border-radius-base;
+    position: relative;
+    display: flex;
+    align-items: center;
     padding: 0;
-  }
+    text-decoration: none;
 
-  .md-button:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle) .md-ripple{
-    padding: 12px 15px;
-    min-height: 48px;
-  }
-}
+    &:hover,
+    &:focus {
+      color: inherit;
+      background-color: transparent;
+    }
 
-.md-list-item{
-  .md-list-item-container{
+    .material-icons,
+    .md-icon,
+    .fab,
+    .fa{
+      font-size: 20px !important;
+      margin: 0 !important;
+      width: 24px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    i + p {
+      margin: 0;
+      margin-left: 5px !important;
+    }
+
     .md-ripple{
       padding: 10px 15px;
       border-radius: $border-radius-base;
@@ -350,12 +363,34 @@
 
       .md-icon {
         transition: none;
-        margin-right: 5px;
+        color: inherit !important;
       }
 
       > span{
         border-radius: $border-radius-base;
       }
+    }
+  }
+
+  .md-list-item-content:not(.md-ripple) {
+    padding: 0;
+  }
+
+  & .md-list-item-container .md-just-icon .md-ripple .md-icon {
+    margin: 0
+  }
+
+  .md-button.md-button-link:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle) .md-ripple{
+    padding: 12px 15px;
+    min-height: 48px;
+
+    .md-button-content i {
+      font-size: 20px !important;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      width: 24px;
+      min-width: 24px;
     }
   }
 }
