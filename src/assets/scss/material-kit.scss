@@ -5,7 +5,7 @@
  =========================================================
 
  * Product Page: http://www.creative-tim.com/product/vue-material-kit
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
+ * Copyright 2018 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/vue-material-kit/blob/master/LICENSE.md)
 
  =========================================================
@@ -26,7 +26,6 @@
 
 // Core CSS
 @import "material-kit/typography";
-@import "material-kit/sidebar-and-main-panel";
 @import "material-kit/buttons";
 @import "material-kit/carousel";
 @import "material-kit/autocomplete";
@@ -37,7 +36,6 @@
 @import "material-kit/inputs";
 @import "material-kit/badges";
 @import "material-kit/progress";
-@import "material-kit/forms";
 @import "material-kit/alerts";
 @import "material-kit/tables";
 @import "material-kit/layout";
@@ -57,5 +55,4 @@
 @import "material-kit/dropdown";
 @import "material-kit/cards";
 @import "material-kit/tabs";
-@import "material-kit/chartist";
 @import "material-kit/responsive";
