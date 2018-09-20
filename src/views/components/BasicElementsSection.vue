@@ -19,7 +19,7 @@
         <h3><small>Pick your size</small></h3>
       </div>
       <div class="md-layout">
-        <div class="md-layout-item md-size-66 mx-auto">
+        <div class="md-layout-item md-size-66 mx-auto md-xsmall-size-100">
           <div class="vertical-center">
             <md-button class="md-primary md-sm">Small</md-button>
             <md-button class="md-primary">Regular</md-button>

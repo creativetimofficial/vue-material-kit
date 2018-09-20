@@ -5,6 +5,12 @@
   border-radius: 3px;
   margin-bottom: 20px;
 
+  .md-toolbar-section-start {
+    .md-list {
+      display: none;
+    }
+  }
+
   &.md-transparent{
     background-color: transparent !important;
     box-shadow: none;

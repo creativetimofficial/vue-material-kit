@@ -20,6 +20,11 @@
         background-color: rgba(0, 0, 0, 0.45);
     }
 
+    .footer .container {
+      flex-direction: column;
+      text-align: center;
+    }
+
     .md-toolbar-row {
       will-change: auto;
       transition-property: none;
@@ -339,6 +344,10 @@
     }
   }
 
+  .nav-tabs {
+    overflow: auto;
+  }
+
   .hidden-sm{
     display: none !important;
   }
@@ -362,6 +371,15 @@
     .tim-note{
       bottom: -25px !important;
     }
+  }
+
+  .main-raised {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .md-tabs-navigation {
+    flex-direction: column;
   }
 
   .modal-wrapper .modal-container {

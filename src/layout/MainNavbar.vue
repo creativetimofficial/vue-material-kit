@@ -13,7 +13,7 @@
 
         <div class="md-collapse">
           <md-list>
-            <li class="md-list-item">
+            <li class="md-list-item" v-if="!showDownload">
               <a href="javascript:void(0)" class="md-list-item-router md-list-item-container md-button-clean dropdown">
                 <div class="md-list-item-content">
                   <drop-down direction="down">
@@ -29,7 +29,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="https://demos.creative-tim.com/vue-material-kit/documentation/" target="_blank">
+                        <a href="https://demos.creative-tim.com/vue-material-kit/documentation/" >
                           <i class="material-icons">content_paste</i>
                           <p>Documentation</p>
                         </a>
@@ -39,6 +39,11 @@
                 </div>
               </a>
             </li>
+
+            <md-list-item href="https://demos.creative-tim.com/vue-material-kit/documentation/"  target="_blank" v-if="showDownload">
+              <i class="material-icons">content_paste</i>
+              <p>Documentation</p>
+            </md-list-item>
 
             <md-list-item href="javascript:void(0)" @click="scrollToElement()" v-if="showDownload">
               <i class="material-icons">cloud_download</i>
