@@ -5,12 +5,6 @@
   border-radius: 3px;
   margin-bottom: 20px;
 
-  .md-toolbar-section-start {
-    .md-list {
-      display: none;
-    }
-  }
-
   &.md-transparent{
     background-color: transparent !important;
     box-shadow: none;
@@ -24,6 +18,13 @@
     &:focus{
       color: $white-color !important;
     }
+  }
+
+  .md-toolbar-section-end .md-list {
+    justify-content: flex-end;
+  }
+  .md-toolbar-section-start .md-list {
+    justify-content: flex-start;
   }
 
   &.md-absolute {
@@ -225,6 +226,7 @@
 
   .md-title {
     height: 50px;
+    min-width: 50px;
     display: flex;
     align-items: center;
     font-size: 18px;

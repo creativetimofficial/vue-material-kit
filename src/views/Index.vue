@@ -5,7 +5,7 @@
         <div class="md-layout-item">
           <div class="brand">
             <h1>Vue Material Kit.</h1>
-            <h3>A Badass VueMaterial.io Kit based on Material Design.</h3>
+            <h3>Badass VueJs Kit based on Material Design.</h3>
           </div>
         </div>
       </div>
@@ -128,11 +128,11 @@
       <div class="section section-download" id="downloadSection">
         <div class="container">
           <div class="md-layout text-center">
-            <div class="md-layout-item md-size-66 mx-auto">
+            <div class="md-layout-item md-size-66 md-small-size-100 mx-auto">
               <h2>Do you love this UI Kit?</h2>
               <h4>Cause if you do, it can be yours for FREE. Hit the buttons below to navigate to our website where you can find the kit. Our friends from <a href="https://themeisle.com/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" target="_blank">ThemeIsle</a> created a Wordpress Theme which can be also downloaded for free. Start a new project or give an old Bootstrap project a new look!</h4>
             </div>
-            <div class="md-layout-item md-size-50 md-small-size-66 mx-auto">
+            <div class="md-layout-item md-size-50 md-small-size-100 mx-auto">
               <md-button href="https://www.creative-tim.com/product/material-kit" target="_blank" class="md-primary md-lg"><i class="fab fa-html5"></i> Free HTML Download</md-button>
               <md-button href="https://themeisle.com/themes/hestia/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" class="md-primary md-lg" target="_blank"><i class="fab fa-wordpress"></i> Wordpress Theme</md-button>
             </div>
@@ -140,12 +140,15 @@
     	    <br><br>
 
         	<div class="md-layout text-center">
-        		<div class="md-layout-item md-size-66 mx-auto">
+        		<div class="md-layout-item md-size-66 md-small-size-100 mx-auto">
               <h2>Want more?</h2>
-              <h4>We've just launched <a href="https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos" target="_blank">Material Kit PRO</a>. It has a huge number of components, sections and example pages. Start Your Development With A Badass Bootstrap UI Kit inspired by Material Design.</h4>
+              <h4>We've just launched <a href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-mk-demos" target="_blank">Vue Material Dashboard PRO</a>. It has a huge number of components, sections and example pages. Start Your Development With A Badass Bootstrap UI Kit inspired by Material Design.</h4>
             </div>
-        		<div class="md-layout-item md-size-40 md-small-size-66 mx-auto">
-              <md-button href="https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos" class="md-button md-rose md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon> Upgrade to PRO</md-button>
+        		<div class="md-layout-item md-size-50 md-small-size-100 mx-auto">
+              <div class="btn-container">
+                <md-button href="https://www.creative-tim.com/product/vue-material-kit-pro?ref=utp-vmk-demos" class="md-button md-rose md-lg md-upgrade disabled" target="_blank"><md-icon>unarchive</md-icon>Vue Material Kit PRO</md-button>
+                <md-button href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-vmk-demos" class="md-button md-rose md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon>Vue Material Dashboard PRO</md-button>
+              </div>
         		</div>
           </div>
 
@@ -237,6 +240,12 @@ export default {
 .section-download {
   .md-button + .md-button {
     margin-left: 5px;
+  }
+}
+
+@media all and (min-width: 991px) {
+  .btn-container {
+    display: flex;
   }
 }
 </style>

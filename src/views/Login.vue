@@ -3,7 +3,7 @@
     <div class="section page-header header-filter" :style="headerStyle">
       <div class="container">
         <div class="md-layout">
-          <div class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-80 md-medium-size-40 mx-auto">
+          <div class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto">
             <login-card header-color="green">
               <h4 slot="title" class="card-title">Login</h4>
               <md-button slot="buttons" to="#facebook" class="md-just-icon md-simple md-white">
