@@ -25,12 +25,9 @@
           margin: 10px auto 0;
           line-height: 0;
           font-weight: 400;
-          text-shadow: 0px 15px 102.86px rgba(0, 0, 0, 0.7), 0px 15px 40.02px rgba(0, 0, 0, 0.21);
+          text-shadow: 0px 15px 102.86px rgba(0, 0, 0, 0.9), 0px 15px 40.02px rgba(0, 0, 0, 0.51);
         }
     }
-
-    // 0px 15px 102.86px 36.14px rgba(0, 0, 0, 0.46);
-    // box-shadow: 0px 15px 40px 5.98px rgba(0, 0, 0, 0.21);
 
     h4.description{
         font-size: 1.5em;
@@ -43,6 +40,10 @@
     .page-header{
         height: 380px;
         background-position: center center;
+
+        &::before {
+          background: rgba(0,0,0, .5);
+        }
     }
     .profile{
         text-align: center;
@@ -130,44 +131,12 @@
     }
 }
 
-.signup-page{
-    .page-header{
-        min-height: 100vh;
-        height: auto;
-        display: inherit;
-
-        .container{
-            padding-top: 20vh;
-        }
+.landing-page {
+  .page-header {
+    &::before {
+      background: rgba(0,0,0, .5);
     }
-
-    .card-signup{
-        border-radius: $border-radius-base * 2;
-        @include shadow-16dp();
-        margin-bottom: 100px;
-        padding: 40px 0px;
-    }
-    .info-horizontal{
-        padding: 0px 0px 20px;
-    }
-    .social{
-        .btn{
-            margin: 5px;
-        }
-        h4{
-            margin-top: 20px;
-        }
-    }
-    .footer{
-        .container{
-            padding: 0;
-        }
-        .copyright,
-        a{
-            color: #FFFFFF;
-        }
-    }
-
+  }
 }
 
 .login-page {
@@ -187,6 +156,10 @@
   .page-header {
     height: 100%;
     min-height: -webkit-fill-available;
+
+    &::before {
+      background: rgba(0,0,0, .5);
+    }
 
     > .container {
       padding-top: 100px;

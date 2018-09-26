@@ -4,9 +4,10 @@
       <div class="md-layout">
         <div class="md-layout-item">
           <div class="image-wrapper">
-            <!-- <img :src="leaf5" alt="" class="leaf5"> -->
-            <img :src="leaf2" alt="" class="leaf2">
-            <img :src="leaf1" alt="" class="leaf1">
+            <img :src="leaf4" alt="leaf4" class="leaf4" v-show="leafShow">
+            <img :src="leaf3" alt="leaf3" class="leaf3" v-show="leafShow">
+            <img :src="leaf2" alt="leaf2" class="leaf2" v-show="leafShow">
+            <img :src="leaf1" alt="leaf1" class="leaf1" v-show="leafShow">
             <div class="brand">
               <h1>Vue Material Kit</h1>
               <h3>A Badass Vue.js UI Kit made with Material Design.</h3>
@@ -208,9 +209,13 @@ export default {
       type: String,
       default: require("@/assets/img/vue-mk-header.jpg")
     },
-    leaf5: {
+    leaf4: {
       type: String,
-      default: require("@/assets/img/leaf5.png")
+      default: require("@/assets/img/leaf4.png")
+    },
+    leaf3: {
+      type: String,
+      default: require("@/assets/img/leaf3.png")
     },
     leaf2: {
       type: String,
@@ -237,8 +242,18 @@ export default {
     return {
       firstname: null,
       email: null,
-      password: null
+      password: null,
+      leafShow: false
     };
+  },
+  methods: {
+    leafActive() {
+      if (window.innerWidth < 768) {
+        this.leafShow = false;
+      } else {
+        this.leafShow = true;
+      }
+    }
   },
   computed: {
     headerStyle() {
@@ -251,6 +266,13 @@ export default {
         backgroundImage: `url(${this.signup})`
       };
     }
+  },
+  mounted() {
+    this.leafActive();
+    window.addEventListener("resize", this.leafActive);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.leafActive);
   }
 };
 </script>
@@ -268,17 +290,27 @@ export default {
 }
 
 .leaf1,
-.leaf5,
+.leaf3,
+.leaf4,
 .leaf2 {
   position: absolute;
   z-index: 9;
 }
 
-.leaf5 {
-  top: -136px;
-  left: 71px;
-  width: 36%;
-  transform: rotate(-49deg);
+.leaf4 {
+  right: 172px;
+  top: -122px;
+  width: 17%;
+  width: 32%;
+  transform: rotate(-83deg);
+}
+
+.leaf3 {
+  top: 21px;
+  right: -69px;
+  left: auto;
+  width: 24%;
+  transform: rotate(-13deg);
 }
 
 .leaf2 {
@@ -294,5 +326,25 @@ export default {
   top: 25px;
   width: 15%;
   left: -11px;
+}
+
+@media all and (max-width: 768px) {
+  .index-page .image-wrapper /deep/ .brand {
+    h1 {
+      font-size: 4.3rem;
+    }
+
+    h3 {
+      max-width: 500px;
+      line-height: normal;
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media all and (max-width: 450px) {
+  .index-page .image-wrapper /deep/ .brand {
+    max-width: 300px;
+  }
 }
 </style>

@@ -51,10 +51,6 @@
         content: "";
     }
 
-    &::before{
-    background: rgba(0,0,0,.2);
-    }
-
     .md-layout{
         z-index: 2;
         position: relative;
