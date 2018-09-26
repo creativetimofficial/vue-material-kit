@@ -76,13 +76,13 @@
             <div class="md-layout-item md-size-33 md-medium-size-40 md-small-size-50 md-xsmall-size-70 mx-auto text-center">
               <login-card header-color="green">
                 <h4 slot="title" class="card-title">Login</h4>
-                <md-button slot="buttons" to="#facebook" class="md-just-icon md-simple md-white">
+                <md-button slot="buttons" href="javascript:void(0)" class="md-just-icon md-simple md-white">
                   <i class="fab fa-facebook-square"></i>
                 </md-button>
-                <md-button slot="buttons" to="#twitter" class="md-just-icon md-simple md-white">
+                <md-button slot="buttons" href="javascript:void(0)" class="md-just-icon md-simple md-white">
                   <i class="fab fa-twitter"></i>
                 </md-button>
-                <md-button slot="buttons" to="#google" class="md-just-icon md-simple md-white">
+                <md-button slot="buttons" href="javascript:void(0)" class="md-just-icon md-simple md-white">
                   <i class="fab fa-google-plus-g"></i>
                 </md-button>
                 <p slot="description" class="description">Or Be Classical</p>
@@ -111,7 +111,7 @@
       </div>
       <div class="md-layout">
         <div class="md-layout-item text-center">
-          <md-button href="#/login" class="md-simple md-primary md-lg">View Login Page</md-button>
+          <md-button href="#/login" class="md-simple md-success md-lg">View Login Page</md-button>
         </div>
       </div>
       <div class="section section-examples">
@@ -121,13 +121,13 @@
                     <a href="#/landing" target="_blank">
                         <img :src="landing" alt="Rounded Image" class="img-raised rounded img-fluid">
                     </a>
-                    <md-button href="#/landing" class="md-simple md-primary md-lg">View Landing Page</md-button>
+                    <md-button href="#/landing" class="md-simple md-success md-lg">View Landing Page</md-button>
                 </div>
                 <div class="md-layout-item">
                   <a href="#/profile" target="_blank">
                       <img :src="profile" alt="Rounded Image" class="img-raised rounded img-fluid">
                   </a>
-                  <md-button href="#/profile" class="md-simple md-primary md-lg">View Profile Page</md-button>
+                  <md-button href="#/profile" class="md-simple md-success md-lg">View Profile Page</md-button>
                 </div>
             </div>
         </div>
@@ -140,8 +140,8 @@
               <h4>Cause if you do, it can be yours for FREE. Hit the buttons below to navigate to our website where you can find the kit. Our friends from <a href="https://themeisle.com/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" target="_blank">ThemeIsle</a> created a Wordpress Theme which can be also downloaded for free. Start a new project or give an old Bootstrap project a new look!</h4>
             </div>
             <div class="md-layout-item md-size-50 md-small-size-100 mx-auto">
-              <md-button href="https://www.creative-tim.com/product/material-kit" target="_blank" class="md-primary md-lg"><i class="fab fa-html5"></i> Free HTML Download</md-button>
-              <md-button href="https://themeisle.com/themes/hestia/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" class="md-primary md-lg" target="_blank"><i class="fab fa-wordpress"></i> Wordpress Theme</md-button>
+              <md-button href="https://www.creative-tim.com/product/material-kit" target="_blank" class="md-success md-lg"><i class="fab fa-html5"></i> Free HTML Download</md-button>
+              <md-button href="https://themeisle.com/themes/hestia/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website" class="md-success md-lg" target="_blank"><i class="fab fa-wordpress"></i> Wordpress Theme</md-button>
             </div>
   	      </div>
     	    <br><br>
@@ -153,8 +153,8 @@
             </div>
         		<div class="md-layout-item md-size-50 md-small-size-100 mx-auto">
               <div class="btn-container">
-                <md-button href="https://www.creative-tim.com/product/vue-material-kit-pro?ref=utp-vmk-demos" class="md-button md-rose md-lg md-upgrade disabled" target="_blank"><md-icon>unarchive</md-icon>Vue Material Kit PRO</md-button>
-                <md-button href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-vmk-demos" class="md-button md-rose md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon>Vue Material Dashboard PRO</md-button>
+                <md-button href="https://www.creative-tim.com/product/vue-material-kit-pro?ref=utp-vmk-demos" class="md-button md-success md-lg md-upgrade disabled" target="_blank"><md-icon>unarchive</md-icon>Vue Material Kit PRO</md-button>
+                <md-button href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-vmk-demos" class="md-button md-success md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon>Vue Material Dashboard PRO</md-button>
               </div>
         		</div>
           </div>

@@ -11,7 +11,7 @@
                   <img :src="img" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                 </div>
                 <div class="name">
-                  <h3 class="title">Christian Louboutin</h3>
+                  <h3 class="title">Carla Hortensia</h3>
                   <h6>Designer</h6>
                   <md-button href="javascript:void(0)" class="md-just-icon md-simple md-dribbble"><i class="fab fa-dribbble"></i></md-button>
                   <md-button href="javascript:void(0)" class="md-just-icon md-simple md-twitter"><i class="fab fa-twitter"></i></md-button>
@@ -29,7 +29,7 @@
               :tab-icon="['camera', 'palette', 'favorite']"
               plain
               nav-pills-icons
-              color-button="primary">
+              color-button="success">
 
               <!-- here you can add your content for tab-content -->
               <template slot="tab-pane-1">

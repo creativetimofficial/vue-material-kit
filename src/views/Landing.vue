@@ -7,7 +7,7 @@
     				<h1 class="title">Your Story Starts With Us.</h1>
               <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
               <br>
-              <md-button href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="md-danger md-lg" target="_blank"><i class="fas fa-play"></i> Watch video</md-button>
+              <md-button href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="md-success md-lg" target="_blank"><i class="fas fa-play"></i> Watch video</md-button>
     			</div>
         </div>
       </div>
@@ -94,7 +94,7 @@
                         <div class="md-layout-item md-size-50 mx-auto">
                           <img :src="teamImg2" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                         </div>
-                        <h4 class="card-title">Christian Louboutin
+                        <h4 class="card-title">Carla Hortensia
                           <br>
                           <small class="card-description text-muted">Designer</small>
                         </h4>
@@ -174,7 +174,7 @@
                   </md-field>
                   <div class="md-layout">
                     <div class="md-layout-item md-size-33 mx-auto text-center">
-                      <md-button class="md-primary">Send Message</md-button>
+                      <md-button class="md-success">Send Message</md-button>
                     </div>
                   </div>
               </form>

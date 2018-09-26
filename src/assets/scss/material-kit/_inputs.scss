@@ -47,6 +47,13 @@
     }
   }
 
+  @include inputs-color('green', $brand-success);
+  @include inputs-color('danger', $brand-danger);
+  @include inputs-color('warning', $brand-warning);
+  @include inputs-color('rose', $brand-rose);
+  @include inputs-color('info', $brand-info);
+  @include inputs-color('primary', $brand-primary);
+
   &.md-has-textarea:not(.md-autogrow).md-focused .md-textarea, &.md-has-textarea:not(.md-autogrow).md-has-value .md-textarea{
     margin-top: 20px;
     padding-top: 0;
@@ -150,7 +157,7 @@
   }
 
   &:before{
-    background-color: $brand-primary !important;
+    background-color: $brand-success !important;
   }
 
   &.md-focused label,
@@ -169,7 +176,7 @@
 
   &.md-has-textarea:not(.md-autogrow):before{
     border-bottom: 2px solid transparent;
-    border-color: $brand-primary !important;
+    border-color: $brand-success !important;
     transform: scaleX(.12);
   }
 
@@ -212,10 +219,11 @@
   }
 
   &.md-focused > .fa,
+  &.md-focused > .md-icon,
   &.md-focused > .fas,
   &.md-focused > .fab {
 
-    color: $brand-primary;
+    color: $brand-success !important;
   }
 
   .success.md-icon,

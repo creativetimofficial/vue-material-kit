@@ -42,7 +42,7 @@
         background-position: center center;
 
         &::before {
-          background: rgba(0,0,0, .5);
+          background: rgba(0,0,0, .2);
         }
     }
     .profile{
@@ -134,7 +134,7 @@
 .landing-page {
   .page-header {
     &::before {
-      background: rgba(0,0,0, .5);
+      background: rgba(0,0,0, .2);
     }
   }
 }
@@ -158,7 +158,7 @@
     min-height: -webkit-fill-available;
 
     &::before {
-      background: rgba(0,0,0, .5);
+      background: rgba(0,0,0, .2);
     }
 
     > .container {

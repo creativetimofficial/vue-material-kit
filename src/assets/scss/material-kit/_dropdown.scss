@@ -54,20 +54,8 @@
         a:hover,
         a:focus,
         a:active {
-            background-color: $brand-primary !important;
-            color: #FFFFFF !important;
-        }
-    }
-    .navbar &,
-    .navbar.navbar-default &{
-        li{
-            a:hover,
-            a:focus,
-            a:active {
-                background-color: $brand-primary;
-                color: #FFFFFF;
-                @include shadow-big-color($brand-primary);
-            }
+            background-color: $brand-success !important;
+            color: $white-color !important;
         }
     }
 }

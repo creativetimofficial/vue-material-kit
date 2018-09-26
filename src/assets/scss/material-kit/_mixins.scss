@@ -24,6 +24,18 @@
   }
 }
 
+@mixin inputs-color($input-class, $color) {
+  &.has-#{$input-class} {
+    &:before {
+      background-color: $color !important;
+    }
+
+    &.md-focused .md-icon {
+      color: $color !important;
+    }
+  }
+}
+
 @mixin tabs-color($color) {
   &,
   &:hover,

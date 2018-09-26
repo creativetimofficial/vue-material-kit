@@ -15,6 +15,30 @@
   }
 }
 
+.md-dialog-actions .md-button {
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &:active:focus,
+  &:active:hover,
+  &.active:focus,
+  &.active:hover,
+  .open > &.dropdown-toggle,
+  .open > &.dropdown-toggle:focus,
+  .open > &.dropdown-toggle:hover {
+      background-color: $brand-success !important;
+  }
+
+  &:focus,
+  &:active,
+  &:hover{
+    // remove this line if you want black shadows
+    @include button-shadow-color($brand-success);
+  }
+}
+
 .md-datepicker-header .md-datepicker-date-select{
   font-size: 30px;
 }
@@ -48,13 +72,13 @@
 
 .md-datepicker-today,
 .md-datepicker-selected{
-  @include shadow-2dp-color($brand-primary);
+  @include shadow-2dp-color($brand-success);
   font-weight: lighter !important;
 
   &,
   &:hover,
   &:focus{
-    background-color: $brand-primary !important;
+    background-color: $brand-success !important;
     color: $white-color !important;
   }
 }
@@ -71,7 +95,7 @@
 }
 
 .md-datepicker-dialog .md-datepicker-header{
-  background: linear-gradient(60deg, $purple-400, $purple-600) !important;
+  background: linear-gradient(60deg, $green-400, $green-600) !important;
 }
 
 .md-datepicker-overlay,

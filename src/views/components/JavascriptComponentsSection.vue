@@ -11,7 +11,7 @@
           </div>
           <div class="md-layout">
             <div class="md-layout-item md-size-33">
-              <md-button class="md-primary md-block" @click="classicModal = true"><md-icon>library_books</md-icon> Classic</md-button>
+              <md-button class="md-success md-block" @click="classicModal = true"><md-icon>library_books</md-icon> Classic</md-button>
               <modal v-if="classicModal" @close="classicModalHide">
                 <template slot="header">
                   <h4 class="modal-title">Modal Title</h4>
@@ -185,9 +185,9 @@ export default {
     return {
       classicModal: false,
       selectedDate: new Date("2018/03/26"),
-      carousel1: require("@/assets/img/bg.jpg"),
-      carousel2: require("@/assets/img/bg3.jpg"),
-      carousel3: require("@/assets/img/city.jpg")
+      carousel1: require("@/assets/img/nature-2.jpg"),
+      carousel2: require("@/assets/img/nature.jpg"),
+      carousel3: require("@/assets/img/nature-3.jpg")
     };
   },
   methods: {
