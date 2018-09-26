@@ -13,19 +13,24 @@
         text-align: center;
 
         h1{
-            font-size: 4.2rem;
+            font-size: 6rem;
             font-weight: 600;
             display: inline-block;
             position: relative;
             line-height: 1.15em;
+            text-shadow: 0px 15px 102.86px rgba(0, 0, 0, 0.7), 0px 15px 40.02px rgba(0, 0, 0, 0.21);
         }
         h3{
-            font-size: 1.313rem;
-            max-width: 500px;
-            margin: 10px auto 0;
-            line-height: 1.4em;
+          font-size: 2.23rem;
+          margin: 10px auto 0;
+          line-height: 0;
+          font-weight: 400;
+          text-shadow: 0px 15px 102.86px rgba(0, 0, 0, 0.7), 0px 15px 40.02px rgba(0, 0, 0, 0.21);
         }
     }
+
+    // 0px 15px 102.86px 36.14px rgba(0, 0, 0, 0.46);
+    // box-shadow: 0px 15px 40px 5.98px rgba(0, 0, 0, 0.21);
 
     h4.description{
         font-size: 1.5em;
@@ -176,6 +181,16 @@
 
     .copyright a{
       color: $white-color;
+    }
+  }
+
+  .page-header {
+    height: 100%;
+    min-height: -webkit-fill-available;
+
+    > .container {
+      padding-top: 100px;
+      padding-bottom: 150px;
     }
   }
 

@@ -1,12 +1,18 @@
 <template>
   <div class="wrapper">
-    <parallax class="page-header header-filter clear-filter purple-filter" :style="headerStyle">
+    <parallax class="page-header header-filter" :style="headerStyle">
       <div class="md-layout">
         <div class="md-layout-item">
-          <div class="brand">
-            <h1>Vue Material Kit.</h1>
-            <h3>Badass VueJs Kit based on Material Design.</h3>
+          <div class="image-wrapper">
+            <!-- <img :src="leaf5" alt="" class="leaf5"> -->
+            <img :src="leaf2" alt="" class="leaf2">
+            <img :src="leaf1" alt="" class="leaf1">
+            <div class="brand">
+              <h1>Vue Material Kit</h1>
+              <h3>A Badass Vue.js UI Kit made with Material Design.</h3>
+            </div>
           </div>
+
         </div>
       </div>
     </parallax>
@@ -56,7 +62,7 @@
       <div class="section">
         <div class="container text-center">
           <div class="md-layout">
-              <div class="md-layout-item md-size-66 ml-auto mr-auto text-center">
+              <div class="md-layout-item md-size-66 md-xsmall-size-100 ml-auto mr-auto text-center">
                   <h2>Completed with examples</h2>
                   <h4>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.</h4>
               </div>
@@ -200,7 +206,19 @@ export default {
   props: {
     image: {
       type: String,
-      default: require("@/assets/img/bg2.jpg")
+      default: require("@/assets/img/vue-mk-header.jpg")
+    },
+    leaf5: {
+      type: String,
+      default: require("@/assets/img/leaf5.png")
+    },
+    leaf2: {
+      type: String,
+      default: require("@/assets/img/leaf2.png")
+    },
+    leaf1: {
+      type: String,
+      default: require("@/assets/img/leaf1.png")
     },
     signup: {
       type: String,
@@ -247,5 +265,34 @@ export default {
   .btn-container {
     display: flex;
   }
+}
+
+.leaf1,
+.leaf5,
+.leaf2 {
+  position: absolute;
+  z-index: 9;
+}
+
+.leaf5 {
+  top: -136px;
+  left: 71px;
+  width: 36%;
+  transform: rotate(-49deg);
+}
+
+.leaf2 {
+  width: 25%;
+  left: 170px;
+  top: -28px;
+  transform: rotate(90deg);
+}
+
+.leaf1 {
+  transform: rotate(0deg);
+  right: auto;
+  top: 25px;
+  width: 15%;
+  left: -11px;
 }
 </style>

@@ -163,9 +163,25 @@ export default {
     }
   },
   methods: {
+    bodyClick() {
+      let bodyClick = document.getElementById("bodyClick");
+
+      if (bodyClick === null) {
+        let body = document.querySelector("body");
+        let elem = document.createElement("div");
+        elem.setAttribute("id", "bodyClick");
+        body.appendChild(elem);
+
+        let bodyClick = document.getElementById("bodyClick");
+        bodyClick.addEventListener("click", this.toggleNavbarMobile);
+      } else {
+        bodyClick.remove();
+      }
+    },
     toggleNavbarMobile() {
       this.NavbarStore.showNavbar = !this.NavbarStore.showNavbar;
-      this.toggledClass = this.NavbarStore.showNavbar;
+      this.toggledClass = !this.toggledClass;
+      this.bodyClick();
     },
     handleScroll() {
       let scrollValue =

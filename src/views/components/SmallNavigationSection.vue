@@ -63,7 +63,7 @@
           <md-toolbar class="md-info">
           <div class="md-toolbar-row">
             <div class="md-toolbar-section-start">
-              <h3 class="md-title">icons</h3>
+              <h3 class="md-title">Icons</h3>
 
             </div>
             <div class="md-toolbar-section-end">
