@@ -354,6 +354,16 @@
     }
   }
 
+  .index-page .brand h1 {
+    font-size: 4.3rem;
+  }
+
+  .index-page .brand h3 {
+    max-width: 500px;
+    line-height: normal;
+    font-size: 1.7rem;
+  }
+
   .nav-tabs {
     overflow: auto;
   }
@@ -440,5 +450,11 @@
   .section .container,
   .footer .container {
       max-width: 1140px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .index-page .brand {
+    max-width: 300px;
   }
 }

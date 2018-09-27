@@ -164,3 +164,43 @@
 .section-examples h5{
     margin-top: 30px;
 }
+
+
+.leaf1,
+.leaf3,
+.leaf4,
+.leaf2 {
+  position: absolute;
+  z-index: 9;
+}
+
+.leaf4 {
+  right: 172px;
+  top: -122px;
+  width: 17%;
+  width: 32%;
+  transform: rotate(-83deg);
+}
+
+.leaf3 {
+  top: 21px;
+  right: -69px;
+  left: auto;
+  width: 24%;
+  transform: rotate(-13deg);
+}
+
+.leaf2 {
+  width: 25%;
+  left: 170px;
+  top: -28px;
+  transform: rotate(90deg);
+}
+
+.leaf1 {
+  transform: rotate(0deg);
+  right: auto;
+  top: 25px;
+  width: 15%;
+  left: -11px;
+}
