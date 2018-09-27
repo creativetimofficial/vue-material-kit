@@ -154,7 +154,7 @@
         		<div class="md-layout-item md-size-50 md-small-size-100 mx-auto">
               <div class="btn-container">
                 <md-button href="https://www.creative-tim.com/product/vue-material-kit-pro?ref=utp-vmk-demos" class="md-button md-success md-lg md-upgrade disabled" target="_blank"><md-icon>unarchive</md-icon>Vue Material Kit PRO</md-button>
-                <md-button href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-vmk-demos" class="md-button md-success md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon>Vue Material Dashboard PRO</md-button>
+                <md-button href="https://www.creative-tim.com/product/vue-material-dashboard-pro?ref=utp-vmd-demos" class="md-button md-success md-lg md-upgrade" target="_blank"><md-icon>unarchive</md-icon>Vue Material Dashboard PRO</md-button>
               </div>
         		</div>
           </div>
