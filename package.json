@@ -2,7 +2,7 @@
   "name": "vue-material-kit",
   "author": "Dragos Ct <dragos@creative-tim.com>",
   "description": "Vue Material Kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
