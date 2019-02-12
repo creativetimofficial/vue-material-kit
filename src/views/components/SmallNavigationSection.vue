@@ -11,7 +11,7 @@
               <div class="md-toolbar-section-start">
                 <h3 class="md-title">Menu</h3>
                 <md-list>
-                  <md-list-item to="/">
+                  <md-list-item href="#/">
                     <p>Link</p>
                   </md-list-item>
 

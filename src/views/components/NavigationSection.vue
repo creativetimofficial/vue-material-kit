@@ -9,7 +9,7 @@
                 <div class="md-toolbar-section-start">
                   <h3 class="md-title">Brand</h3>
                   <md-list>
-                    <md-list-item to="/">
+                    <md-list-item href="#/">
                       <p>Link</p>
                     </md-list-item>
 
@@ -58,7 +58,7 @@
 
                   <div class="md-collapse">
                     <md-list>
-                      <md-list-item to="/">
+                      <md-list-item href="#/">
                         <p>Discover</p>
                       </md-list-item>
 
@@ -90,7 +90,7 @@
 
                   <div class="md-collapse">
                     <md-list>
-                      <md-list-item to="/">
+                      <md-list-item href="#/">
                         <md-icon>explore</md-icon>
                         <p>Discover</p>
                       </md-list-item>
