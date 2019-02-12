@@ -2,7 +2,8 @@
   <div class="wrapper">
     <div id="buttons">
       <div class="title">
-        <h3>Buttons <br>
+        <h3>
+          Buttons <br />
           <small>Pick your style</small>
         </h3>
       </div>
@@ -10,8 +11,12 @@
         <div class="md-layout-item md-size-66 mx-auto">
           <md-button class="md-primary">Default</md-button>
           <md-button class="md-primary md-round">Round</md-button>
-          <md-button class="md-primary"><md-icon >favorite</md-icon> With Icon</md-button>
-          <md-button class="md-primary md-just-icon md-round"><md-icon >favorite</md-icon></md-button>
+          <md-button class="md-primary"
+            ><md-icon>favorite</md-icon> With Icon</md-button
+          >
+          <md-button class="md-primary md-just-icon md-round"
+            ><md-icon>favorite</md-icon></md-button
+          >
           <md-button class="md-primary md-simple">Simple</md-button>
         </div>
       </div>
@@ -51,41 +56,59 @@
         <h3>Inputs</h3>
       </div>
       <div class="md-layout">
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field>
             <md-input v-model="initial" placeholder="Regular"></md-input>
           </md-field>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field>
             <label>With Floating Label</label>
             <md-input v-model="floatingLabel" type="text"></md-input>
           </md-field>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field class="md-valid">
             <label>Success Input</label>
             <md-input v-model="success" type="text"></md-input>
             <md-icon>done</md-icon>
           </md-field>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field class="md-error">
             <label>Error Input</label>
             <md-input v-model="error" type="text"></md-input>
             <md-icon>clear</md-icon>
           </md-field>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field class="md-form-group">
             <md-icon>face</md-icon>
-            <md-input v-model="withMIcon" placeholder="With Material Icons"></md-input>
+            <md-input
+              v-model="withMIcon"
+              placeholder="With Material Icons"
+            ></md-input>
           </md-field>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <md-field class="md-form-group">
             <i class="fas fa-users"></i>
-            <md-input v-model="withFaIcon" placeholder="With Font Awesome Icons"></md-input>
+            <md-input
+              v-model="withFaIcon"
+              placeholder="With Font Awesome Icons"
+            ></md-input>
           </md-field>
         </div>
       </div>
@@ -97,29 +120,43 @@
     <!-- Checkboxes/Radios/Toggle -->
     <div id="checkRadios">
       <div class="md-layout">
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <div class="title">
             <h3>Checkboxes</h3>
           </div>
           <div class="flex-column">
             <md-checkbox v-model="checkbox1">Checked</md-checkbox>
             <md-checkbox v-model="checkbox2">Unchecked</md-checkbox>
-            <md-checkbox v-model="checkbox3" disabled>Disabled Checked</md-checkbox>
-            <md-checkbox v-model="checkbox4" disabled>Disabled Unchecked</md-checkbox>
+            <md-checkbox v-model="checkbox3" disabled
+              >Disabled Checked</md-checkbox
+            >
+            <md-checkbox v-model="checkbox4" disabled
+              >Disabled Unchecked</md-checkbox
+            >
           </div>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <div class="title">
             <h3>Radios</h3>
           </div>
           <div class="flex-column">
             <md-radio v-model="radio1" :value="true">Radio is on</md-radio>
             <md-radio v-model="radio1" :value="false">Radio is off</md-radio>
-            <md-radio v-model="radio2" :value="true" disabled>Disabled Radio is on</md-radio>
-            <md-radio v-model="radio2" :value="false" disabled>Disabled Radio is off</md-radio>
+            <md-radio v-model="radio2" :value="true" disabled
+              >Disabled Radio is on</md-radio
+            >
+            <md-radio v-model="radio2" :value="false" disabled
+              >Disabled Radio is off</md-radio
+            >
           </div>
         </div>
-        <div class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25">
+        <div
+          class="md-layout-item md-size-25 md-xsmall-size-100 md-small-size-50 md-medium-size-25"
+        >
           <div class="title">
             <h3>Toggle Buttons</h3>
           </div>
@@ -141,24 +178,33 @@
           <div class="title">
             <h3>Progress</h3>
           </div>
-          <md-progress-bar class="md-primary" :md-value="amount"></md-progress-bar>
-          <md-progress-bar class="md-info" :md-value="amount2"></md-progress-bar>
-          <md-progress-bar class="md-warning" md-mode="buffer" :md-value="buffer" :md-buffer="buffer"></md-progress-bar>
+          <md-progress-bar
+            class="md-primary"
+            :md-value="amount"
+          ></md-progress-bar>
+          <md-progress-bar
+            class="md-info"
+            :md-value="amount2"
+          ></md-progress-bar>
+          <md-progress-bar
+            class="md-warning"
+            md-mode="buffer"
+            :md-value="buffer"
+            :md-buffer="buffer"
+          ></md-progress-bar>
         </div>
         <div class="md-layout-item md-size-50 md-xsmall-size-100">
           <div class="title">
             <h3>Pagination</h3>
           </div>
-          <pagination
-            no-arrows
-            v-model="defaultPagination"
-            :page-count="5">
+          <pagination no-arrows v-model="defaultPagination" :page-count="5">
           </pagination>
           <pagination
             class="pagination-info"
             v-model="infoPagination"
             with-text
-            :page-count="5">
+            :page-count="5"
+          >
           </pagination>
         </div>
       </div>
@@ -174,12 +220,9 @@
           <div class="title">
             <h3>Sliders</h3>
           </div>
-          <slider v-model="sliders.simple">
-          </slider>
+          <slider v-model="sliders.simple"> </slider>
 
-          <slider v-model="sliders.rangeSlider"
-                  type="info"
-                  :connect="true">
+          <slider v-model="sliders.rangeSlider" type="info" :connect="true">
           </slider>
         </div>
         <div class="md-layout-item md-size-50 md-xsmall-size-100">

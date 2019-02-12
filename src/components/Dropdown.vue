@@ -1,17 +1,23 @@
 <template>
-  <div :class="[
-       {open:isOpen},
-       {'dropdown': direction === 'down'},
-       {'dropup': direction ==='up'}
-      ]"
+  <div
+    :class="[
+      { open: isOpen },
+      { dropdown: direction === 'down' },
+      { dropup: direction === 'up' }
+    ]"
     @click="toggleDropDown"
-    v-click-outside="closeDropDown">
-      <slot name="title">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-          <i :class="icon"></i>
-          <p>{{title}}</p>
-        </a>
-      </slot>
+    v-click-outside="closeDropDown"
+  >
+    <slot name="title">
+      <a
+        class="dropdown-toggle"
+        data-toggle="dropdown"
+        href="javascript:void(0)"
+      >
+        <i :class="icon"></i>
+        <p>{{ title }}</p>
+      </a>
+    </slot>
     <slot></slot>
   </div>
 </template>

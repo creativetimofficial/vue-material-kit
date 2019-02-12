@@ -1,20 +1,32 @@
 <template>
   <ul class="pagination" :class="paginationClass">
-    <li class="page-item prev-page" :class="{'disabled': value === 1, 'no-arrows': noArrows}">
+    <li
+      class="page-item prev-page"
+      :class="{ disabled: value === 1, 'no-arrows': noArrows }"
+    >
       <a class="page-link" aria-label="Previous" @click="prevPage">
-        <template v-if="withText">Prev</template>
+        <template v-if="withText"
+          >Prev</template
+        >
         <i class="fas fa-angle-double-left" v-else></i>
       </a>
     </li>
-    <li class="page-item"
-        v-for="item in range(minPage, maxPage)"
-        :key="item"
-        :class="{active: value === item}">
-      <a class="page-link" @click="changePage(item)">{{item}}</a>
+    <li
+      class="page-item"
+      v-for="item in range(minPage, maxPage)"
+      :key="item"
+      :class="{ active: value === item }"
+    >
+      <a class="page-link" @click="changePage(item)">{{ item }}</a>
     </li>
-    <li class="page-item page-pre next-page" :class="{ 'disabled': value === totalPages, 'no-arrows': noArrows}">
+    <li
+      class="page-item page-pre next-page"
+      :class="{ disabled: value === totalPages, 'no-arrows': noArrows }"
+    >
       <a class="page-link" aria-label="Next" @click="nextPage">
-        <template v-if="withText">Next</template>
+        <template v-if="withText"
+          >Next</template
+        >
         <i class="fas fa-angle-double-right" v-else></i>
       </a>
     </li>

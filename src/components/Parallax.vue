@@ -1,7 +1,7 @@
 <template>
-    <div :style="styles">
-        <slot></slot>
-    </div>
+  <div :style="styles">
+    <slot></slot>
+  </div>
 </template>
 <script>
 function debounce(func, wait, immediate) {

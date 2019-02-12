@@ -11,22 +11,45 @@
           </div>
           <div class="md-layout">
             <div class="md-layout-item md-size-33">
-              <md-button class="md-success md-block" @click="classicModal = true"><md-icon>library_books</md-icon> Classic</md-button>
+              <md-button
+                class="md-success md-block"
+                @click="classicModal = true"
+                ><md-icon>library_books</md-icon> Classic</md-button
+              >
               <modal v-if="classicModal" @close="classicModalHide">
                 <template slot="header">
                   <h4 class="modal-title">Modal Title</h4>
-                  <md-button class="md-simple md-just-icon md-round modal-default-button" @click="classicModalHide">
+                  <md-button
+                    class="md-simple md-just-icon md-round modal-default-button"
+                    @click="classicModalHide"
+                  >
                     <md-icon>clear</md-icon>
                   </md-button>
                 </template>
 
                 <template slot="body">
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  <p>
+                    Far far away, behind the word mountains, far from the
+                    countries Vokalia and Consonantia, there live the blind
+                    texts. Separated they live in Bookmarksgrove right at the
+                    coast of the Semantics, a large language ocean. A small
+                    river named Duden flows by their place and supplies it with
+                    the necessary regelialia. It is a paradisematic country, in
+                    which roasted parts of sentences fly into your mouth. Even
+                    the all-powerful Pointing has no control about the blind
+                    texts it is an almost unorthographic life One day however a
+                    small line of blind text by the name of Lorem Ipsum decided
+                    to leave for the far World of Grammar.
+                  </p>
                 </template>
 
                 <template slot="footer">
                   <md-button class="md-simple">Nice Button</md-button>
-                  <md-button class="md-danger md-simple" @click="classicModalHide">Close</md-button>
+                  <md-button
+                    class="md-danger md-simple"
+                    @click="classicModalHide"
+                    >Close</md-button
+                  >
                 </template>
               </modal>
             </div>
@@ -48,48 +71,45 @@
           </div>
           <div class="md-layout">
             <div class="md-layout-item">
-              <v-popover
-                offset="8"
-                placement="left"
-              >
+              <v-popover offset="8" placement="left">
                 <md-button>On left</md-button>
 
                 <template slot="popover">
                   <h3 class="popover-header">Popover on left</h3>
-                  <div class="popover-body">Here will be some very useful information about his popover. Here will be some very useful information about his popover.</div>
+                  <div class="popover-body">
+                    Here will be some very useful information about his popover.
+                    Here will be some very useful information about his popover.
+                  </div>
                 </template>
               </v-popover>
-              <v-popover
-                offset="4"
-                placement="top"
-              >
+              <v-popover offset="4" placement="top">
                 <md-button>On top</md-button>
 
                 <template slot="popover">
                   <h3 class="popover-header">Popover on top</h3>
-                  <div class="popover-body">Here will be some very useful information about his popover.</div>
+                  <div class="popover-body">
+                    Here will be some very useful information about his popover.
+                  </div>
                 </template>
               </v-popover>
-              <v-popover
-                offset="4"
-                placement="bottom"
-              >
+              <v-popover offset="4" placement="bottom">
                 <md-button>On bottom</md-button>
 
                 <template slot="popover">
                   <h3 class="popover-header">Popover on bottom</h3>
-                  <div class="popover-body">Here will be some very useful information about his popover.</div>
+                  <div class="popover-body">
+                    Here will be some very useful information about his popover.
+                  </div>
                 </template>
               </v-popover>
-              <v-popover
-                offset="8"
-                placement="right"
-              >
+              <v-popover offset="8" placement="right">
                 <md-button>On right</md-button>
 
                 <template slot="popover">
                   <h3 class="popover-header">Popover on right</h3>
-                  <div class="popover-body">Here will be some very useful information about his popover.</div>
+                  <div class="popover-body">
+                    Here will be some very useful information about his popover.
+                  </div>
                 </template>
               </v-popover>
             </div>
@@ -122,7 +142,7 @@
           </div>
         </div>
       </div>
-      <br>
+      <br />
       <div class="title">
         <h3>Carousel</h3>
       </div>
@@ -138,7 +158,8 @@
               :mouse-drag="false"
               navigationEnabled
               navigationNextLabel="<i class='material-icons'>keyboard_arrow_right</i>"
-              navigationPrevLabel="<i class='material-icons'>keyboard_arrow_left</i>">
+              navigationPrevLabel="<i class='material-icons'>keyboard_arrow_left</i>"
+            >
               <slide>
                 <div class="carousel-caption">
                   <h4>
@@ -146,7 +167,7 @@
                     Somewhere Beyond, United States
                   </h4>
                 </div>
-                <img :src="carousel1" alt="carousel1">
+                <img :src="carousel1" alt="carousel1" />
               </slide>
               <slide>
                 <div class="carousel-caption">
@@ -155,7 +176,7 @@
                     Yellowstone National Park, United States
                   </h4>
                 </div>
-                <img :src="carousel2" alt="carousel2">
+                <img :src="carousel2" alt="carousel2" />
               </slide>
               <slide>
                 <div class="carousel-caption">
@@ -164,11 +185,10 @@
                     Yellowstone National Park, United States
                   </h4>
                 </div>
-                <img :src="carousel3" alt="carousel3">
+                <img :src="carousel3" alt="carousel3" />
               </slide>
             </carousel>
           </md-card>
-
         </div>
       </div>
     </div>

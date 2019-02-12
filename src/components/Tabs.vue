@@ -1,13 +1,13 @@
 <template>
-  <md-card class="md-card-tabs"
+  <md-card
+    class="md-card-tabs"
     :class="[
-      {'flex-column': flexColumn},
-      {'nav-pills-icons': navPillsIcons},
-      {'md-card-plain': plain}
-    ]">
-    <md-card-header slot="header-title">
-
-    </md-card-header>
+      { 'flex-column': flexColumn },
+      { 'nav-pills-icons': navPillsIcons },
+      { 'md-card-plain': plain }
+    ]"
+  >
+    <md-card-header slot="header-title"> </md-card-header>
 
     <md-card-content>
       <md-list class="nav-tabs">
@@ -16,10 +16,12 @@
           @click="switchPanel(tabName[index])"
           :key="item"
           :class="[
-            {active: isActivePanel(tabName[index])},
-            {[getColorButton(colorButton)]: isActivePanel(tabName[index])}]">
-            {{tabName[index]}}
-            <md-icon v-if="navPillsIcons">{{tabIcon[index]}}</md-icon>
+            { active: isActivePanel(tabName[index]) },
+            { [getColorButton(colorButton)]: isActivePanel(tabName[index]) }
+          ]"
+        >
+          {{ tabName[index] }}
+          <md-icon v-if="navPillsIcons">{{ tabIcon[index] }}</md-icon>
         </md-list-item>
       </md-list>
 
@@ -29,7 +31,8 @@
             :class="getTabContent(index + 1)"
             v-for="(item, index) in tabName"
             :key="item"
-            v-if="isActivePanel(tabName[index])">
+            v-if="isActivePanel(tabName[index])"
+          >
             <slot :name="getTabContent(index + 1)">
               This is the default text!
             </slot>
@@ -75,5 +78,4 @@ export default {
 };
 </script>
 
-<style lang="css">
-</style>
+<style lang="css"></style>

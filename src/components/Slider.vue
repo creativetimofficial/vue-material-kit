@@ -1,9 +1,5 @@
 <template>
-  <div class="slider"
-       :class="[`slider-${type}`]"
-       :disabled="disabled">
-
-  </div>
+  <div class="slider" :class="[`slider-${type}`]" :disabled="disabled"></div>
 </template>
 <script>
 import noUiSlider from "nouislider";
@@ -86,5 +82,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>

@@ -14,23 +14,31 @@
             :tab-icon="['dashboard', 'schedule', 'list']"
             plain
             nav-pills-icons
-            color-button="primary">
-
+            color-button="primary"
+          >
             <!-- here you can add your content for tab-content -->
             <template slot="tab-pane-1">
-              Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-              <br><br>
-              Dramatically visualize customer directed convergence without revolutionary ROI.
+              Collaboratively administrate empowered markets via plug-and-play
+              networks. Dynamically procrastinate B2C users after installed base
+              benefits.
+              <br /><br />
+              Dramatically visualize customer directed convergence without
+              revolutionary ROI.
             </template>
             <template slot="tab-pane-2">
-              Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-              <br><br>
-              Dramatically maintain clicks-and-mortar solutions without functional solutions.
+              Efficiently unleash cross-media information without cross-media
+              value. Quickly maximize timely deliverables for real-time schemas.
+              <br /><br />
+              Dramatically maintain clicks-and-mortar solutions without
+              functional solutions.
             </template>
             <template slot="tab-pane-3">
-              Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-              <br><br>
-              Dynamically innovate resource-leveling customer service for state of the art customer service.
+              Completely synergize resource taxing relationships via premier
+              niche markets. Professionally cultivate one-to-one customer
+              service with robust ideas.
+              <br /><br />
+              Dynamically innovate resource-leveling customer service for state
+              of the art customer service.
             </template>
           </tabs>
         </div>
@@ -41,18 +49,23 @@
             plain
             flex-column
             nav-pills-icons
-            color-button="primary">
-
+            color-button="primary"
+          >
             <!-- here you can add your content for tab-content -->
             <template slot="tab-pane-1">
-              Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
-              <br><br>
-              Dramatically visualize customer directed convergence without revolutionary ROI.
+              Collaboratively administrate empowered markets via plug-and-play
+              networks. Dynamically procrastinate B2C users after installed base
+              benefits.
+              <br /><br />
+              Dramatically visualize customer directed convergence without
+              revolutionary ROI.
             </template>
             <template slot="tab-pane-2">
-              Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
-              <br><br>
-              Dramatically maintain clicks-and-mortar solutions without functional solutions.
+              Efficiently unleash cross-media information without cross-media
+              value. Quickly maximize timely deliverables for real-time schemas.
+              <br /><br />
+              Dramatically maintain clicks-and-mortar solutions without
+              functional solutions.
             </template>
           </tabs>
         </div>
@@ -71,5 +84,4 @@ export default {
 };
 </script>
 
-<style lang="css">
-</style>
+<style lang="css"></style>

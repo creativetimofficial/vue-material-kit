@@ -1,11 +1,21 @@
 <template>
-  <md-toolbar id="toolbar" md-elevation="0" class="md-transparent md-absolute" :class="extraNavClasses" :color-on-scroll="colorOnScroll">
+  <md-toolbar
+    id="toolbar"
+    md-elevation="0"
+    class="md-transparent md-absolute"
+    :class="extraNavClasses"
+    :color-on-scroll="colorOnScroll"
+  >
     <div class="md-toolbar-row md-collapse-lateral">
       <div class="md-toolbar-section-start">
         <h3 class="md-title">Vue Material Kit</h3>
       </div>
       <div class="md-toolbar-section-end">
-        <md-button class="md-just-icon md-simple md-toolbar-toggle" :class="{toggled: toggledClass}" @click="toggleNavbarMobile()">
+        <md-button
+          class="md-just-icon md-simple md-toolbar-toggle"
+          :class="{ toggled: toggledClass }"
+          @click="toggleNavbarMobile()"
+        >
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -18,10 +28,17 @@
             </mobile-menu>
             <md-list>
               <li class="md-list-item" v-if="!showDownload">
-                <a href="javascript:void(0)" class="md-list-item-router md-list-item-container md-button-clean dropdown">
+                <a
+                  href="javascript:void(0)"
+                  class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                >
                   <div class="md-list-item-content">
                     <drop-down direction="down">
-                      <md-button slot="title" class="md-button md-button-link md-white md-simple dropdown-toggle" data-toggle="dropdown">
+                      <md-button
+                        slot="title"
+                        class="md-button md-button-link md-white md-simple dropdown-toggle"
+                        data-toggle="dropdown"
+                      >
                         <i class="material-icons">apps</i>
                         <p>Components</p>
                       </md-button>
@@ -33,7 +50,9 @@
                           </a>
                         </li>
                         <li>
-                          <a href="https://demos.creative-tim.com/vue-material-kit/documentation/" >
+                          <a
+                            href="https://demos.creative-tim.com/vue-material-kit/documentation/"
+                          >
                             <i class="material-icons">content_paste</i>
                             <p>Documentation</p>
                           </a>
@@ -44,21 +63,36 @@
                 </a>
               </li>
 
-              <md-list-item href="https://demos.creative-tim.com/vue-material-kit/documentation/"  target="_blank" v-if="showDownload">
+              <md-list-item
+                href="https://demos.creative-tim.com/vue-material-kit/documentation/"
+                target="_blank"
+                v-if="showDownload"
+              >
                 <i class="material-icons">content_paste</i>
                 <p>Documentation</p>
               </md-list-item>
 
-              <md-list-item href="javascript:void(0)" @click="scrollToElement()" v-if="showDownload">
+              <md-list-item
+                href="javascript:void(0)"
+                @click="scrollToElement()"
+                v-if="showDownload"
+              >
                 <i class="material-icons">cloud_download</i>
                 <p>Download</p>
               </md-list-item>
 
               <li class="md-list-item" v-else>
-                <a href="javascript:void(0)" class="md-list-item-router md-list-item-container md-button-clean dropdown">
+                <a
+                  href="javascript:void(0)"
+                  class="md-list-item-router md-list-item-container md-button-clean dropdown"
+                >
                   <div class="md-list-item-content">
                     <drop-down direction="down">
-                      <md-button slot="title" class="md-button md-button-link md-white md-simple dropdown-toggle" data-toggle="dropdown">
+                      <md-button
+                        slot="title"
+                        class="md-button md-button-link md-white md-simple dropdown-toggle"
+                        data-toggle="dropdown"
+                      >
                         <i class="material-icons">view_carousel</i>
                         <p>Examples</p>
                       </md-button>
@@ -87,20 +121,35 @@
                 </a>
               </li>
 
-              <md-list-item href="https://twitter.com/CreativeTim" target="_blank">
+              <md-list-item
+                href="https://twitter.com/CreativeTim"
+                target="_blank"
+              >
                 <i class="fab fa-twitter"></i>
                 <p class="hidden-lg">Twitter</p>
-                <md-tooltip md-direction="bottom">Follow us on Twitter</md-tooltip>
+                <md-tooltip md-direction="bottom"
+                  >Follow us on Twitter</md-tooltip
+                >
               </md-list-item>
-              <md-list-item href="https://www.facebook.com/CreativeTim" target="_blank">
+              <md-list-item
+                href="https://www.facebook.com/CreativeTim"
+                target="_blank"
+              >
                 <i class="fab fa-facebook-square"></i>
                 <p class="hidden-lg">Facebook</p>
-                <md-tooltip md-direction="bottom">Like us on Facebook</md-tooltip>
+                <md-tooltip md-direction="bottom"
+                  >Like us on Facebook</md-tooltip
+                >
               </md-list-item>
-              <md-list-item href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+              <md-list-item
+                href="https://www.instagram.com/CreativeTimOfficial"
+                target="_blank"
+              >
                 <i class="fab fa-instagram"></i>
                 <p class="hidden-lg">Instagram</p>
-                <md-tooltip md-direction="bottom">Follow us on Instagram</md-tooltip>
+                <md-tooltip md-direction="bottom"
+                  >Follow us on Instagram</md-tooltip
+                >
               </md-list-item>
             </md-list>
           </div>
