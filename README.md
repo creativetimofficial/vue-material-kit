@@ -28,23 +28,28 @@ Let us know what you think and what we can improve below. And good luck with dev
 
 ## Versions
 
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/material-kit)
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/material-kit-react)
-[<img src="https://s3.amazonaws.com/creativetim_bucket/github/vuejs.png" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-kit)
+[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/html-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/material-kit)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/vue-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-kit)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/react-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/material-kit-react)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/react-native-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/material-kit-react-native)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/figma-logo.jpg?raw=true" width="60" height="60" />](https://demos.creative-tim.com/material-kit-figma/presentation.html)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/wordpress-logo.jpg?raw=true" width="60" height="60" />](https://themeisle.com/themes/hestia/?ref=creativetim)[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/photoshop-logo.jpg" width="60" height="60" />](https://github.com/creativetimofficial/material-kit/tree/photoshop)[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/sketch-logo.jpg" width="60" height="60" />](https://github.com/creativetimofficial/material-kit/tree/sketch)
 
 
-| Vue | React | HTML |
-| --- | --- | --- |
-| [![Vue Material Kit HTML](https://s3.amazonaws.com/creativetim_bucket/products/97/thumb/opt_mk_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-material-kit) | [![Material Kit React](https://s3.amazonaws.com/creativetim_bucket/products/83/thumb/opt_mk_react_thumbnail.jpg)](https://www.creative-tim.com/product/material-kit-react) | [![Material Kit HTML](https://s3.amazonaws.com/creativetim_bucket/products/38/thumb/opt_mk_thumbnail.jpg)](https://www.creative-tim.com/product/material-kit)
+| HTML | React | Vue  |
+| --- | --- | ---  |
+| [![Material Kit  HTML](https://github.com/creativetimofficial/public-assets/blob/master/material-kit/material-kit.jpeg?raw=true)](https://www.creative-tim.com/product/material-kit)  | [![Material Kit  React](https://github.com/creativetimofficial/public-assets/blob/master/material-kit-react/material-kit-react.jpeg?raw=true)](https://www.creative-tim.com/product/material-kit-react)  | [![Vue Material Kit](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/vue-material-kit.jpeg?raw=true)](https://www.creative-tim.com/product/vue-material-kit)
+
+| React Native | Figma | WordPress |
+| ---  | --- | --- |
+| [![Material Kit React Native](https://github.com/creativetimofficial/public-assets/blob/master/material-kit-react-native/opt_mkrn_thumbnail.jpg?raw=true)](https://www.creative-tim.com/product/material-kit-react-native) | [![Material Kit Figma](https://github.com/creativetimofficial/public-assets/blob/master/material-kit-figma/material-kit-figma.jpg?raw=true)](https://demos.creative-tim.com/material-kit-figma/presentation.html) | [![Material Kit WordPress](https://github.com/creativetimofficial/public-assets/blob/master/material-kit-wordpress/opt_smd_thumbnail.jpg?raw=true)](https://themeisle.com/themes/hestia/?ref=creativetim)
 
 ## Demo
 
-- [Start page](https://demos.creative-tim.com/vue-material-kit)
-- [Profile page](https://demos.creative-tim.com/vue-material-kit/#/profile)
-- [Login page ](https://demos.creative-tim.com/vue-material-kit/#/login)
-- [Landing Page](https://demos.creative-tim.com/vue-material-kit/#/landing)
+| Buttons | Inputs | Navbars  |
+| --- | --- | ---  |
+| [![Buttons](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/buttons.png?raw=true)](https://demos.creative-tim.com/vue-material-kit)  | [![Inputs](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/inputs.png?raw=true)](https://demos.creative-tim.com/vue-material-kit)  | [![Navbar](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/navbars.png?raw=true)](https://demos.creative-tim.com/vue-material-kit)
 
-[View More](https://demos.creative-tim.com/vue-material-kit).
+| Login Page | Landing Page | Profile Page  |
+| --- | --- | ---  |
+| [![Login Page](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/vue-material-kit/login.png)](https://demos.creative-tim.com/vue-material-kit/#/login)  | [![Landing Page](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/landing.png?raw=true)](https://demos.creative-tim.com/vue-material-kit/#/landing)  | [![Profile Page](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-kit/profile.png?raw=true)](https://demos.creative-tim.com/vue-material-kit/#/profile)
+
+[View More](https://demos.creative-tim.com/vue-material-kit)
 
 
 ## Quick start
@@ -55,7 +60,7 @@ Quick start options:
 
 
 ## Documentation
-The documentation for the Material Kit is hosted at our [website](https://demos.creative-tim.com/vue-material-kit/documentation).
+The documentation for the Vue Material Kit is hosted at our [website](https://demos.creative-tim.com/vue-material-kit/documentation).
 
 
 ## File Structure
@@ -123,7 +128,7 @@ vue-material-kit/
 
 At present, we officially aim to support the last two versions of the following browsers:
 
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
+<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/chrome-logo.png?raw=true" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/firefox-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/edge-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/safari-logo.png" width="64" height="64"> <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/opera-logo.png" width="64" height="64">
 
 
 ## Resources
@@ -134,6 +139,14 @@ At present, we officially aim to support the last two versions of the following 
 - Support: https://www.creative-tim.com/contact-us
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/vue-material-kit/issues)
 - For Front End Development - [Material Kit](https://www.creative-tim.com/product/material-kit)
+
+| HTML | React | Vue  | Angular |
+| --- | --- | ---  | ---  |
+| [![Material Dashboard  HTML](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-html/material-dashboard.jpeg?raw=true)](https://www.creative-tim.com/product/material-dashboard) | [![Material Dashboard  React](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-react/material-dashboard-react.jpeg?raw=true)](https://www.creative-tim.com/product/material-dashboard-react) | [![Vue Material Dashboard](https://github.com/creativetimofficial/public-assets/blob/master/vue-material-dashboard/vue-material-dashboard.jpeg?raw=true)](https://www.creative-tim.com/product/vue-material-dashboard)  | [![ Material Dashboard Angular](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-angular/material-dashboard-angular.jpg?raw=true)](https://www.creative-tim.com/product/material-dashboard-angular2)
+
+| HTML Dark | Vuetify  |
+| --- | --- |
+| [![Material Dashboard Dark](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-dark/material-dashboard-dark.jpg?raw=true)](https://www.creative-tim.com/product/material-dashboard-dark) | [![Material Dashboard Vuetify](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-vuetify/material-dashboard-vuetify.jpg?raw=true)](https://www.creative-tim.com/product/vuetify-material-dashboard)
 
 ## Reporting Issues
 We use GitHub Issues as the official bug tracker for the Vue Material Kit. Here are some advices for our users that want to report an issue:
@@ -148,20 +161,21 @@ If you have questions or need help integrating the product please [contact us](h
 
 ## Licensing
 
-- Copyright 2018 Creative Tim (https://www.creative-tim.com)
+- Copyright 2019 Creative Tim (https://www.creative-tim.com)
 - Creative Tim [license](https://www.creative-tim.com/license)
 
 ## Useful Links
 
-- [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
-
-- [Vue products](https://www.creative-tim.com/bootstrap-themes/vuejs-themes) from Creative Tim
-
 - [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
-
 - [Affiliate Program](https://www.creative-tim.com/affiliates/new) (earn money)
+- [Blog Creative Tim](http://blog.creative-tim.com/)
+- [Free Products](https://www.creative-tim.com/bootstrap-themes/free) from Creative Tim
+- [Premium Products](https://www.creative-tim.com/bootstrap-themes/premium) from Creative Tim
+- [React Products](https://www.creative-tim.com/bootstrap-themes/react-themes) from Creative Tim
+- [Angular Products](https://www.creative-tim.com/bootstrap-themes/angular-themes) from Creative Tim
+- [VueJS Products](https://www.creative-tim.com/bootstrap-themes/vuejs-themes) from Creative Tim
+- [More products](https://www.creative-tim.com/bootstrap-themes) from Creative Tim
+- Check our Bundles [here](https://www.creative-tim.com/bundles?ref="mk-github-readme")
 
 ##### Social Media
 
@@ -171,6 +185,4 @@ Facebook: <https://www.facebook.com/CreativeTim>
 
 Dribbble: <https://dribbble.com/creativetim>
 
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
+Instagram: <https://www.instagram.com/CreativeTimOfficial>
