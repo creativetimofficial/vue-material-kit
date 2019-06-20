@@ -36,7 +36,7 @@ before_script:
 
 
 script:
-  - npm run e2e
+  - npm run test:test:kit
   - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" # This line is necessary to disable --single-branch option to fetch all remote branches on TravisCI.
   - git fetch origin
   - git checkout $TRAVIS_BRANCH || git checkout -b $TRAVIS_BRANCH
