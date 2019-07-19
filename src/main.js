@@ -1,5 +1,5 @@
 // =========================================================
-// * Vue Material Kit - v1.1.0
+// * Vue Material Kit - v1.2.0
 // =========================================================
 //
 // * Product Page: https://www.creative-tim.com/product/vue-material-kit
