@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && gulp licenses",
     "lint": "vue-cli-service lint",
     "dev": "npm run serve",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run dev"
@@ -26,6 +26,8 @@
     "@vue/cli-plugin-eslint": "3.9.2",
     "@vue/cli-service": "3.9.3",
     "@vue/eslint-config-prettier": "4.0.1",
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.8",
     "node-sass": "4.12.0",
     "sass-loader": "7.1.0",
     "vue-template-compiler": "2.6.10"
