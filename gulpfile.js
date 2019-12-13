@@ -4,7 +4,7 @@ const
   gulp  = require('gulp'),
   gap = require('gulp-append-prepend'),
   product_name = "Vue Material Kit",
-  product_version = "1.2.0",
+  product_version = "1.2.2",
   year = "2019",
   github_MIT_link = "https://github.com/creativetimofficial/vue-material-kit/blob/master/LICENSE.md",
   product_link = "https://www.creative-tim.com/product/vue-material-kit",
