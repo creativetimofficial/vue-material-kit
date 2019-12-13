@@ -7,7 +7,7 @@
           <h3><small>Tabs with Icons on Card</small></h3>
           <nav-tabs-card no-label>
             <template slot="content">
-              <md-tabs md-sync-route class="md-primary" md-alignment="left">
+              <md-tabs class="md-primary" md-alignment="left">
                 <md-tab id="tab-home" md-label="Profile" md-icon="face">
                   <p>
                     I will be the leader of a company that ends up being worth
@@ -51,7 +51,7 @@
           <h3><small>Tabs on Plain Card</small></h3>
           <nav-tabs-card no-label tabs-plain>
             <template slot="content">
-              <md-tabs md-sync-route class="md-danger" md-alignment="left">
+              <md-tabs class="md-danger" md-alignment="left">
                 <md-tab id="tab-home" md-label="Home">
                   <p>
                     I think that’s a responsibility that I have, to push
