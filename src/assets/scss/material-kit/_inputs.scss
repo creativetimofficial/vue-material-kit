@@ -59,7 +59,8 @@
     padding-top: 0;
   }
 
-  &.md-valid{
+  &.md-valid,
+  &.md-valid.md-focused {
     label{
       color: $brand-success !important;
     }
@@ -73,7 +74,8 @@
     }
   }
 
-  &.md-error{
+  &.md-error,
+  &.md-error.md-focused {
     label{
       color: $brand-danger !important;
     }
