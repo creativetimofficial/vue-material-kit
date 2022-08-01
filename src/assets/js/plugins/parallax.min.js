@@ -1,0 +1,54 @@
+var windowHeight = window.innerHeight;
+
+document.addEventListener('resize', function() {
+	windowHeight = window.innerHeight;
+})
+
+function outerHeight(el) {
+	var height = el.offsetHeight;
+	var style = getComputedStyle(el);
+
+	height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+	return height;
+}
+
+function parallax (el, speedFactor, outerHeight) {
+	var foo = document.querySelectorAll(el);
+
+	var getHeight;
+	var firstTop;
+	var paddingTop = 0;
+
+	//get the starting position of each element to have parallax applied to it
+	foo.forEach(function(subEl){
+	    firstTop = subEl.getBoundingClientRect().top;
+	});
+
+	if (outerHeight) {
+		getHeight = function(el) {
+			return outerHeight(el);
+		};
+	} else {
+		getHeight = function(el) {
+			return el.clientHeight;
+		};
+	}
+
+	// function to be called whenever the window is scrolled or resized
+	function update(){
+		var pos = window.scrollY;
+
+		foo.forEach(function(subEl){
+			var element = subEl;
+			var top = element.getBoundingClientRect().top;
+			var height = getHeight(element);
+
+			element.style.top = -(Math.round((firstTop - pos) * speedFactor)) + "px";
+		});
+	}
+	document.addEventListener('scroll', update, true)
+	document.addEventListener('resize', update)
+	update()
+};
+
+parallax(".hero", -0.6);
