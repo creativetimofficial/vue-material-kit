@@ -5,6 +5,7 @@ import Slider from "./Slider.vue";
 import Badge from "./Badge.vue";
 import NavTabsCard from "./cards/NavTabsCard.vue";
 import LoginCard from "./cards/LoginCard.vue";
+import RegisterCard from "./cards/RegisterCard.vue";
 import Tabs from "./Tabs.vue";
 import Modal from "./Modal.vue";
 
@@ -16,6 +17,7 @@ export {
   Badge,
   NavTabsCard,
   LoginCard,
+  RegisterCard,
   Tabs,
   Modal
 };

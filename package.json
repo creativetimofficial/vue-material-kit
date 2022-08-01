@@ -1,7 +1,7 @@
 {
-  "name": "vue-material-kit",
-  "author": "Creative Tim https://www.creative-tim.com/",
-  "description": "Vue Material Kit",
+  "name": "Task Managers",
+  "author": "King of Development",
+  "description": "IT management task and control system",
   "version": "1.2.2",
   "private": true,
   "scripts": {

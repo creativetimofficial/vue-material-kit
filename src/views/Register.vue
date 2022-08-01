@@ -6,8 +6,8 @@
           <div
             class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto"
           >
-            <login-card header-color="green">
-              <h4 slot="title" class="card-title">Login</h4>
+            <register-card header-color="green">
+              <h4 slot="title" class="card-title">Cadastro</h4>
               <md-button
                 slot="buttons"
                 href="javascript:void(0)"
@@ -29,7 +29,17 @@
               >
                 <i class="fab fa-google-plus-g"></i>
               </md-button>
-              <p slot="description" class="description">Acesse sua conta</p>
+              <p slot="description" class="description">Cadastre com seus dados</p>
+              <md-field class="md-form-group" slot="inputs">
+                <md-icon>face</md-icon>
+                <label>Primeiro nome</label>
+                <md-input v-model="firstname"></md-input>
+              </md-field>
+              <md-field class="md-form-group" slot="inputs">
+                <md-icon>face</md-icon>
+                <label>Segundo nome</label>
+                <md-input v-model="firstname"></md-input>
+              </md-field>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>email</md-icon>
                 <label>Email</label>
@@ -43,7 +53,7 @@
               <md-button slot="footer" class="md-simple md-success md-lg">
                 Acessar
               </md-button>
-            </login-card>
+            </register-card>
           </div>
         </div>
       </div>
@@ -52,11 +62,11 @@
 </template>
 
 <script>
-import { LoginCard } from "@/components";
+import { RegisterCard } from "@/components";
 
 export default {
   components: {
-    LoginCard
+    RegisterCard
   },
   bodyClass: "login-page",
   data() {
