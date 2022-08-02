@@ -11,6 +11,7 @@ import MainFooter from "./layout/MainFooter.vue";
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: "/index",
@@ -31,7 +32,7 @@ export default new Router({
       }
     },
     {
-      path: "/login",
+      path: "/",
       name: "login",
       components: { default: Login, header: MainNavbar, footer: MainFooter },
       props: {
@@ -39,7 +40,7 @@ export default new Router({
       }
     },
     {
-      path: "/",
+      path: "/register",
       name: "register",
       components: {
         default: Register,

@@ -29,7 +29,9 @@
               >
                 <i class="fab fa-google-plus-g"></i>
               </md-button>
-              <p slot="description" class="description">Cadastre com seus dados</p>
+              <p slot="description" class="description">
+                Cadastre com seus dados
+              </p>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>
                 <label>Primeiro nome</label>
