@@ -8,7 +8,7 @@ import View from "../../components/View.vue";
 // Inputs page components
 import InputStatic from "./components/InputStatic.vue";
 import InputDynamic from "./components/InputDynamic.vue";
-import inputOutlined from "./components/inputOutlined.vue";
+import inputOutlined from "./components/InputOutlined.vue";
 import InputIcon from "./components/InputIcon.vue";
 import InputSuccess from "./components/InputSuccess.vue";
 import InputError from "./components/InputError.vue";
