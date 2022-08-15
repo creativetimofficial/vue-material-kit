@@ -1,5 +1,5 @@
 <script setup>
-import AboutUsOption from "@/views/LandingPages/Components/AboutUsOption.vue";
+import AboutUsOption from "@/views/LandingPages/components/AboutUsOption.vue";
 </script>
 <template>
   <section class="py-9">
