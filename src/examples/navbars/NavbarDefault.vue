@@ -320,7 +320,7 @@ watch(
                             >
                               Page Sections
                             </h6>
-                            <span class="text-sm">See all 109 sections</span>
+                            <span class="text-sm">See all sections</span>
                           </div>
                           <img
                             :src="downArrow"
@@ -362,7 +362,7 @@ watch(
                             >
                               Navigation
                             </h6>
-                            <span class="text-sm">See all 9 navigations</span>
+                            <span class="text-sm">See all navigations</span>
                           </div>
                           <img
                             :src="downArrow"
@@ -410,7 +410,7 @@ watch(
                             >
                               Input Areas
                             </h6>
-                            <span class="text-sm">See all 19 input areas</span>
+                            <span class="text-sm">See all input areas</span>
                           </div>
                           <img
                             :src="downArrow"
@@ -452,7 +452,7 @@ watch(
                             >
                               Attention Catchers
                             </h6>
-                            <span class="text-sm">See all 14 examples</span>
+                            <span class="text-sm">See all examples</span>
                           </div>
                           <img
                             :src="downArrow"
@@ -500,7 +500,7 @@ watch(
                             >
                               Elements
                             </h6>
-                            <span class="text-sm">See all 32 elements</span>
+                            <span class="text-sm">See all elements</span>
                           </div>
                           <img
                             :src="downArrow"
