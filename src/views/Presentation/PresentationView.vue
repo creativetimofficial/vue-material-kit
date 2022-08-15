@@ -9,7 +9,6 @@ import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 
 //Vue Material Kit 2 Pro components
 import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
-import MaterialBadge from "@/components/MaterialBadge.vue";
 
 // sections
 import PresentationCounter from "./Sections/PresentationCounter.vue";
@@ -56,7 +55,6 @@ onUnmounted(() => {
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
-      <span class="mask bg-gray-900 opacity-5"></span>
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
@@ -66,14 +64,7 @@ onUnmounted(() => {
             >
               Material Kit 2
             </h1>
-            <MaterialBadge
-              size="lg"
-              color="white"
-              class="text-dark position-absolute"
-              style="top: -20%"
-              >Pro</MaterialBadge
-            >
-            <p class="lead text-white px-5 mt-3">
+            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
               Start the Development With Bootstrap 5 Design System inspired by
               Material Design.
             </p>
