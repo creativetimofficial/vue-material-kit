@@ -2,16 +2,16 @@
 import { onMounted } from "vue";
 
 //example components
-import DefaultNavbar from "../../../examples/navbars/NavbarDefault.vue";
-import DefaultFooter from "../../../examples/footers/FooterDefault.vue";
+import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
+import DefaultFooter from "@/examples/footers/FooterDefault.vue";
 
 //image
 import image from "@/assets/img/illustrations/illustration-signin.jpg";
 
 //material components
-import MaterialInput from "../../../components/MaterialInput.vue";
-import MaterialTextArea from "../../../components/MaterialTextArea.vue";
-import MaterialButton from "../../../components/MaterialButton.vue";
+import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialTextArea from "@/components/MaterialTextArea.vue";
+import MaterialButton from "@/components/MaterialButton.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
@@ -27,7 +27,7 @@ onMounted(() => {
           :sticky="true"
           :action="{
             route: 'https://www.creative-tim.com/product/vue-material-kit-pro',
-            color: 'bg-gradient-primary',
+            color: 'bg-gradient-success',
             label: 'Buy Now',
           }"
         />
@@ -60,9 +60,9 @@ onMounted(() => {
                 class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
               >
                 <div
-                  class="bg-gradient-primary shadow-primary border-radius-lg p-3"
+                  class="bg-gradient-success shadow-success border-radius-lg p-3"
                 >
-                  <h3 class="text-white text-primary mb-0">Contact us</h3>
+                  <h3 class="text-white text-success mb-0">Contact us</h3>
                 </div>
               </div>
               <div class="card-body">
@@ -104,7 +104,7 @@ onMounted(() => {
                       <div class="col-md-12 text-center">
                         <MaterialButton
                           variant="gradient"
-                          color="primary"
+                          color="success"
                           class="mt-3 mb-0"
                           >Send Message</MaterialButton
                         >
