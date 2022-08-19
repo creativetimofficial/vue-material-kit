@@ -1,6 +1,87 @@
+<!--
+=========================================================
+* Vue Material Kit 2 - v2.0.0
+=========================================================
+* Product Page: https://creative-tim.com/product/vue-material-kit
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+Coded by www.creative-tim.com
+ =========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Anti-flicker snippet (recommended)  -->
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+    <script>
+      (function (a, s, y, n, c, h, i, d, e) {
+        s.className += " " + y;
+        h.start = 1 * new Date();
+        h.end = i = function () {
+          s.className = s.className.replace(RegExp(" ?" + y), "");
+        };
+        (a[n] = a[n] || []).hide = h;
+        setTimeout(function () {
+          i();
+          h.end = null;
+        }, c);
+        h.timeout = c;
+      })(window, document.documentElement, "async-hide", "dataLayer", 4000, {
+        "GTM-K9BGS8K": true
+      });
+    </script>
+
+    <!-- Analytics-Optimize Snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-46172202-22", "auto", { allowLinker: true });
+      ga("set", "anonymizeIp", true);
+      ga("require", "GTM-K9BGS8K");
+      ga("require", "displayfeatures");
+      ga("require", "linker");
+      ga("linker:autoLink", ["2checkout.com", "avangate.com"]);
+    </script>
+    <!-- end Analytics-Optimize Snippet -->
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKDMSK6");
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -29,9 +110,76 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
       rel="stylesheet"
     />
+    <!-- Meta tags -->
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Canonical SEO -->
+    <link
+      rel="canonical"
+      href="https://creative-tim.com/product/vue-material-kit"
+    />
+    <!--  Social tags  -->
+    <meta
+      name="keywords"
+      content="vue material kit, material vue UI Kit, material vue kit, material design UI Kit, material design, creative tim, vue UI Kit, vue css UI Kit, web dashboard, vue UI kit, vuejs, UI Kit, css3 UI Kit, vue, frontend, responsive vue UI Kit, vue3, bootstrap5"
+    />
+    <meta
+      name="description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Vue Material Kit 2 by Creative Tim" />
+    <meta
+      itemprop="description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta
+      itemprop="image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product" />
+    <meta name="twitter:site" content="@creativetim" />
+    <meta name="twitter:title" content="Vue Material Kit 2 by Creative Tim" />
+
+    <meta
+      name="twitter:description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta name="twitter:creator" content="@creativetim" />
+    <meta
+      name="twitter:image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <!-- Open Graph data -->
+    <meta property="fb:app_id" content="655968634437471" />
+    <meta property="og:title" content="Vue Material Kit 2 by Creative Tim" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="http://demos.creative-tim.com/vue-material-dashboard-2-pro/#/"
+    />
+    <meta
+      property="og:image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <meta
+      property="og:description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta property="og:site_name" content="Creative Tim" />
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

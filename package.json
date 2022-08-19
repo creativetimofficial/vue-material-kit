@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@popperjs/core": "2.11.5",
@@ -25,6 +26,7 @@
     "@vue/eslint-config-prettier": "7.0.0",
     "eslint": "8.19.0",
     "eslint-plugin-vue": "9.0.0",
+    "gh-pages": "4.0.0",
     "prettier": "2.5.1",
     "sass": "1.52.3",
     "sass-loader": "13.0.0",
