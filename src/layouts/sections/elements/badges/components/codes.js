@@ -1,5 +1,5 @@
 export const badgesGradientCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialBadge from "@/components/MaterialBadge.vue";
 </script>
 <template>
@@ -46,7 +46,7 @@ import MaterialBadge from "@/components/MaterialBadge.vue";
 `;
 
 export const badgesSimpleCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialBadge from "@/components/MaterialBadge.vue";
 </script>
 <template>
@@ -79,7 +79,7 @@ import MaterialBadge from "@/components/MaterialBadge.vue";
 `;
 
 export const badgesRoundedCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialBadge from "@/components/MaterialBadge.vue";
 </script>
 <template>

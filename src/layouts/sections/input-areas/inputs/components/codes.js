@@ -1,5 +1,5 @@
 export const inputStaticCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -21,7 +21,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputDynamicCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -42,7 +42,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputOutlinedCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -63,7 +63,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputIconCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -85,7 +85,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputSuccessCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -107,7 +107,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputErrorCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>
@@ -124,7 +124,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 `;
 
 export const inputDisabledCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
 </script>
 <template>

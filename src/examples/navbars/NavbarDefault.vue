@@ -120,7 +120,7 @@ watch(
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        Material Kit 2 PRO
+        Material Kit 2
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -789,7 +789,7 @@ watch(
                   <li class="nav-item list-group-item border-0 p-0">
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
-                      href=" https://www.creative-tim.com/learning-lab/bootstrap/overview/material-kit "
+                      href=" https://www.creative-tim.com/learning-lab/vue/overview/material-kit/"
                     >
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -805,7 +805,7 @@ watch(
                   <li class="nav-item list-group-item border-0 p-0">
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
-                      href=" https://www.creative-tim.com/learning-lab/bootstrap/colors/material-kit "
+                      href=" https://www.creative-tim.com/learning-lab/vue/colors/material-kit/"
                     >
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -820,7 +820,7 @@ watch(
                   <li class="nav-item list-group-item border-0 p-0">
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
-                      href=" https://www.creative-tim.com/learning-lab/bootstrap/alerts/material-kit "
+                      href=" https://www.creative-tim.com/learning-lab/vue/alerts/material-kit/"
                     >
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -830,37 +830,6 @@ watch(
                       <span class="text-sm"
                         >Explore our collection of fully designed
                         components</span
-                      >
-                    </a>
-                  </li>
-                  <li class="nav-item list-group-item border-0 p-0">
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href=" https://www.creative-tim.com/learning-lab/bootstrap/datepicker/material-kit "
-                    >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Plugins
-                      </h6>
-                      <span class="text-sm"
-                        >Check how you can integrate our plugins</span
-                      >
-                    </a>
-                  </li>
-                  <li class="nav-item list-group-item border-0 p-0">
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href=" https://www.creative-tim.com/learning-lab/bootstrap/utilities/material-kit "
-                    >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Utility Classes
-                      </h6>
-                      <span class="text-sm"
-                        >For those who want flexibility, use our utility
-                        classes</span
                       >
                     </a>
                   </li>

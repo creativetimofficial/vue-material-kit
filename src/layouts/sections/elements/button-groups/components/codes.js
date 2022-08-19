@@ -1,5 +1,5 @@
 export const buttonGroupsSimpleCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -20,7 +20,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 `;
 
 export const buttonGroupsOutlineCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -93,7 +93,7 @@ export const buttonGroupsRadioCode = `<script setup></script>
 `;
 
 export const buttonGroupsSizingCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>

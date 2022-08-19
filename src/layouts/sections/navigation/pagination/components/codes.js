@@ -1,5 +1,5 @@
 export const paginationSimpleCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialPagination from "@/components/MaterialPagination.vue";
 import MaterialPaginationItem from "@/components/MaterialPaginationItem.vue";
 </script>

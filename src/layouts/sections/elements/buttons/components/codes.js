@@ -1,5 +1,5 @@
 export const buttonsGradientCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -25,7 +25,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 `;
 
 export const buttonsContainedCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -87,7 +87,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 `;
 
 export const buttonsOutlinedCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -111,7 +111,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 </template>`;
 
 export const buttonsSizesCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -130,7 +130,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 `;
 
 export const buttonsIconLeftCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>
@@ -167,7 +167,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 `;
 
 export const buttonsIconRightCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
 </script>
 <template>

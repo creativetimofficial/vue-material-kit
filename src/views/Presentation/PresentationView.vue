@@ -7,7 +7,7 @@ import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
 import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
 
 // sections
@@ -92,8 +92,8 @@ onUnmounted(() => {
             description="Check the possible ways of working with our product and the necessary files for building your own project."
             :action="{
               route:
-                'https://www.creative-tim.com/learning-lab/bootstrap/overview/material-kit',
-              label: { text: 'Let\'s start', color: 'white' },
+                'https://www.creative-tim.com/learning-lab/vue/overview/material-kit/',
+              label: { text: 'Let\'s start', color: 'white' }
             }"
           />
         </div>
@@ -107,8 +107,8 @@ onUnmounted(() => {
                 used to create the Material Kit."
             :action="{
               route:
-                'https://www.creative-tim.com/learning-lab/bootstrap/datepicker/material-kit',
-              label: { text: 'Read more' },
+                'https://www.creative-tim.com/learning-lab/vue/input/material-kit/',
+              label: { text: 'Read more' }
             }"
           />
         </div>
@@ -121,8 +121,8 @@ onUnmounted(() => {
                 who want flexibility, we included many utility classes."
             :action="{
               route:
-                'https://www.creative-tim.com/learning-lab/bootstrap/utilities/material-kit',
-              label: { text: 'Read more' },
+                'https://www.creative-tim.com/learning-lab/vue/utilities/material-kit/',
+              label: { text: 'Read more' }
             }"
           />
         </div>
@@ -133,13 +133,13 @@ onUnmounted(() => {
     <div
       class="container-fluid mt-sm-5 border-radius-xl"
       :style="{
-        background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))',
+        background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))'
       }"
     >
       <div
         class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
         :style="{
-          backgroundImage: `url(${wavesWhite})`,
+          backgroundImage: `url(${wavesWhite})`
         }"
         loading="lazy"
       >

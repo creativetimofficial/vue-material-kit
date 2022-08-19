@@ -1,5 +1,5 @@
 export const simpleAlertsCode = `<script setup>
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import MaterialAlert from "@/components/MaterialAlert.vue";
 </script>
 <template>

@@ -5,7 +5,7 @@
       class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
       :style="{
         backgroundImage:
-          'url(https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg)',
+          'url(https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg)'
       }"
       loading="lazy"
     >
@@ -21,7 +21,7 @@
               create unlimited combinations for our components.
             </p>
             <a
-              href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-kit"
+              href="https://www.creative-tim.com/learning-lab/vue/overview/material-kit/"
               class="text-white icon-move-right"
             >
               Read docs

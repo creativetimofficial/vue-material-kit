@@ -3,7 +3,7 @@
 import TransparentBlogCard from "../../../../examples/cards/blogCards/TransparentBlogCard.vue";
 import BackgroundBlogCard from "../../../../examples/cards/blogCards/BackgroundBlogCard.vue";
 
-//Vue Material Kit 2 Pro components
+//Vue Material Kit 2 components
 import post1 from "@/assets/img/examples/testimonial-6-2.jpg";
 import post2 from "@/assets/img/examples/testimonial-6-3.jpg";
 import post3 from "@/assets/img/examples/blog-9-4.jpg";
