@@ -1,10 +1,10 @@
 <script setup>
 /*
 =========================================================
-* Vue Material Kit 2 Pro - v2.0.0
+* Vue Material Kit 2 - v2.0.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/vue-material-kit-pro
+* Product Page: https://www.creative-tim.com/product/vue-material-kit
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
 Coded by www.creative-tim.com

@@ -993,7 +993,7 @@ $input-background-image-invalid: linear-gradient(
   linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0);
 $input-background-image-disabled: linear-gradient(
     0deg,
-    $primary 2px,
+    $success 2px,
     rgba(156, 39, 176, 0) 0
   ),
   linear-gradient(0deg, $gray-200 1px, hsla(0, 0%, 82%, 0) 0);
