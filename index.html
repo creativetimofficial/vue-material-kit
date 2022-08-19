@@ -1,33 +1,188 @@
 <!--
 =========================================================
-* Vue Material Kit - v1.2.2
+* Vue Material Kit 2 - v2.0.0
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/vue-material-kit
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/vue-material-kit/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
+* Product Page: https://creative-tim.com/product/vue-material-kit
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+Coded by www.creative-tim.com
+ =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/vue-material-kit/favicon.png><title>Vue Material Kit by Creative Tim</title><link rel=canonical href=https://www.creative-tim.com/product/vue-material-kit><meta name=keywords content="creative tim, creativetim, vue material, vue material ui kit, vue material kit, material, material kit, material template, vue kit, vue css template, web template, vue css3 template, frontend, responsive vue template, vue ui kit, responsive vue ui kit"><meta name=description content="A Badass Vue.js UI Kit made with Material Design."><meta itemprop=name content="Vue Material Kit by Creative Tim"><meta itemprop=description content="A Badass Vue.js UI Kit made with Material Design."><meta itemprop=image content=https://s3.amazonaws.com/creativetim_bucket/products/97/original/opt_mk_vue_thumbnail.jpg><meta name=twitter:card content=product><meta name=twitter:site content=@creativetim><meta name=twitter:title content="Vue Material Kit by Creative Tim"><meta name=twitter:description content="A Badass Vue.js UI Kit made with Material Design."><meta name=twitter:creator content=@creativetim><meta name=twitter:image content=https://s3.amazonaws.com/creativetim_bucket/products/97/original/opt_mk_vue_thumbnail.jpg><meta property=fb:app_id content=655968634437471><meta property=og:title content="Vue Material Kit by Creative Tim"><meta property=og:type content=article><meta property=og:url content=https://demos.creative-tim.com/vue-material-kit><meta property=og:image content=https://s3.amazonaws.com/creativetim_bucket/products/97/original/opt_mk_vue_thumbnail.jpg><meta property=og:description content="A Badass Vue.js UI Kit made with Material Design."><meta property=og:site_name content="Creative Tim"><link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"><link rel=stylesheet href="//fonts.googleapis.com/icon?family=Material+Icons"><link href=https://use.fontawesome.com/releases/v5.0.8/css/all.css rel=stylesheet><link href=/vue-material-kit/css/app.52795ad3.css rel=preload as=style><link href=/vue-material-kit/css/chunk-vendors.80a9e6ca.css rel=preload as=style><link href=/vue-material-kit/js/app.dd764151.js rel=preload as=script><link href=/vue-material-kit/js/chunk-vendors.347e303c.js rel=preload as=script><link href=/vue-material-kit/css/chunk-vendors.80a9e6ca.css rel=stylesheet><link href=/vue-material-kit/css/app.52795ad3.css rel=stylesheet></head><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NKDMSK6');</script><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><noscript><strong>We're sorry but vue-material-kit doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script>// Facebook Pixel Code Don't Delete
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','//connect.facebook.net/en_US/fbevents.js');
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Anti-flicker snippet (recommended)  -->
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+    <script>
+      (function (a, s, y, n, c, h, i, d, e) {
+        s.className += " " + y;
+        h.start = 1 * new Date();
+        h.end = i = function () {
+          s.className = s.className.replace(RegExp(" ?" + y), "");
+        };
+        (a[n] = a[n] || []).hide = h;
+        setTimeout(function () {
+          i();
+          h.end = null;
+        }, c);
+        h.timeout = c;
+      })(window, document.documentElement, "async-hide", "dataLayer", 4000, {
+        "GTM-K9BGS8K": true
+      });
+    </script>
 
-      try{
-        fbq('init', '111649226022273');
-        fbq('track', "PageView");
+    <!-- Analytics-Optimize Snippet -->
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-46172202-22", "auto", { allowLinker: true });
+      ga("set", "anonymizeIp", true);
+      ga("require", "GTM-K9BGS8K");
+      ga("require", "displayfeatures");
+      ga("require", "linker");
+      ga("linker:autoLink", ["2checkout.com", "avangate.com"]);
+    </script>
+    <!-- end Analytics-Optimize Snippet -->
 
-      }catch(err) {
-        console.log('Facebook Track Error:', err);
-      }</script><noscript><img height=1 width=1 style=display:none src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1"></noscript><script src=/vue-material-kit/js/chunk-vendors.347e303c.js></script><script src=/vue-material-kit/js/app.dd764151.js></script></body></html>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKDMSK6");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./assets/img/apple-icon.png"
+    />
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAuNJREFUWAnFVztrKkEUPj4KBZuk8hIhhVUqG8HKMlVQQkTDLWIgKWLpo41duvgDtBMCEQuTQm2DYGUXG61SBG4SBCOJgkIe7p1vuCs7ru56N4keOM55zXzfzM7OuERMJElyMb1k+sj0pwUYwHIB2/TPaDJ7HYElSo9heUDgkhm/lwishCqAwCOL/FJGl2g/gYCkBDw9PaWLiwsaj8fK8Jdts9lMBwcHdHZ2JoylIrC5uUk7Ozvk8/mEwlkOiEIwsJ40Gg2qVqt0f38vlFoFjzmYOcAPDw+nUyr/5uaGxxapRWG5XFaNYVZFlhxYiECv16NSqYTzQpcealCLPouILoHn52cKh8MUj8cpmUxqkgB4KpXitejT7XZ1OWgSwACRSITPBuBXV1dzScjgmD1qsQL7+/u6JDQJYJdjoGKxSIlEgjKZDCdxe3urmlmz2eRLf35+zmvRB33lN0XVQQ4w5oK4XC4pn8/z2Gg0kobDoZBng078aDQqQWVhj0s2eTsYDKS3tzduY0yMPS2q11AmhtZmsyldbq+tralicmB9XbxOHA6HnJrbaj6Cub2+MaE6Cbe2tmhjY4OrHg6eO8Tj8eiV0sPDA9d2uy3UqghUKhW+mT4/PyeFnU6HWq0W+f1+slo1nxp9fHxQvV4nTMTpdE7GwF0QCoUoEAhMYtyY3hSz/Ovra76BXl9fZ6WFGGqw2dgrK8TnOSvfA4YIvLy8qE7Efr8vLu2CniECwWCQjo+P6f39nevR0RHt7u4uCCmWae8osXbipdNpisVidHJywmO1Wo1yudwk/z+GIQLb29uUzWY5Cba5ODhiRsQQAQABEOc9xOv18tbIj2ECXwWWyRrahHLn72gXWgGcYpBCoUB2u10Tl92gPG+xWDTr5KTqKJYTyhb3+t7eHt3d3SnDc223283/N0zfjrM6gMBKP0ywtrVZzJYUq2EF8JW6so9Ts8lk+sMI4EIvMH1i+tMCDGB5gP0XPM9l7Bh11EkAAAAASUVORK5CYII=" />
+    <title>Vue Material Kit 2 by Creative Tim</title>
+    <!--     Fonts and icons     -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/42d5adcbca.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <!-- Meta tags -->
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Canonical SEO -->
+    <link
+      rel="canonical"
+      href="https://creative-tim.com/product/vue-material-kit"
+    />
+    <!--  Social tags  -->
+    <meta
+      name="keywords"
+      content="vue material kit, material vue UI Kit, material vue kit, material design UI Kit, material design, creative tim, vue UI Kit, vue css UI Kit, web dashboard, vue UI kit, vuejs, UI Kit, css3 UI Kit, vue, frontend, responsive vue UI Kit, vue3, bootstrap5"
+    />
+    <meta
+      name="description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Vue Material Kit 2 by Creative Tim" />
+    <meta
+      itemprop="description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta
+      itemprop="image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product" />
+    <meta name="twitter:site" content="@creativetim" />
+    <meta name="twitter:title" content="Vue Material Kit 2 by Creative Tim" />
+
+    <meta
+      name="twitter:description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta name="twitter:creator" content="@creativetim" />
+    <meta
+      name="twitter:image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <!-- Open Graph data -->
+    <meta property="fb:app_id" content="655968634437471" />
+    <meta property="og:title" content="Vue Material Kit 2 by Creative Tim" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="http://demos.creative-tim.com/vue-material-dashboard-2-pro/#/"
+    />
+    <meta
+      property="og:image"
+      content="https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg"
+    />
+    <meta
+      property="og:description"
+      content="Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development."
+    />
+    <meta property="og:site_name" content="Creative Tim" />
+    <script type="module" crossorigin src="/vue-material-kit-pro/assets/index.f51ee6a5.js"></script>
+    <link rel="stylesheet" href="/vue-material-kit-pro/assets/index.85d39609.css">
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="app"></div>
+    
+  </body>
+</html>
