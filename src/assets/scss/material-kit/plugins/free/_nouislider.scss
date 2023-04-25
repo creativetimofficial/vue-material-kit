@@ -95,7 +95,7 @@
 .noUi-horizontal .noUi-handle {
   border-radius: 50%;
   background-color: $white;
-  box-shadow: 0 1px 13px 0 rgba(0,0,0,.2);
+  box-shadow: 0 1px 13px 0 rgba(0, 0, 0, 0.2);
   height: 14px;
   width: 14px;
   cursor: pointer;
@@ -121,14 +121,13 @@
  */
 .noUi-target {
   background: $light;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 .noUi-connects {
   border-radius: 3px;
 }
 .noUi-connect {
   background: $primary;
-
 }
 /* Handles and cursors;
  */
@@ -143,23 +142,22 @@
   border-radius: 3px;
   background: $white;
   cursor: default;
-  box-shadow: inset 0 0 1px $white, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
-  webkit-transition: .3s ease 0s;
-  -moz-transition: .3s ease 0s;
-  -ms-transition: .3s ease 0s;
-  -o-transform: .3s ease 0s;
-  transition: .3s ease 0s;
+  box-shadow: inset 0 0 1px $white, inset 0 1px 7px #ebebeb, 0 3px 6px -3px #bbb;
+  webkit-transition: 0.3s ease 0s;
+  -moz-transition: 0.3s ease 0s;
+  -ms-transition: 0.3s ease 0s;
+  -o-transform: 0.3s ease 0s;
+  transition: 0.3s ease 0s;
 }
 .noUi-active {
-  box-shadow: inset 0 0 1px $white, inset 0 1px 7px #DDD, 0 3px 6px -3px #BBB;
-  transform: scale3d(1.5,1.5,1);
+  box-shadow: inset 0 0 1px $white, inset 0 1px 7px #ddd, 0 3px 6px -3px #bbb;
+  transform: scale3d(1.5, 1.5, 1);
 }
-
 
 /* Disabled state;
  */
 [disabled] .noUi-connect {
-  background: #B8B8B8;
+  background: #b8b8b8;
 }
 [disabled].noUi-target,
 [disabled].noUi-handle,
@@ -195,13 +193,13 @@
  */
 .noUi-marker {
   position: absolute;
-  background: #CCC;
+  background: #ccc;
 }
 .noUi-marker-sub {
-  background: #AAA;
+  background: #aaa;
 }
 .noUi-marker-large {
-  background: #AAA;
+  background: #aaa;
 }
 /* Horizontal layout;
  *
@@ -264,7 +262,7 @@
 .noUi-tooltip {
   display: block;
   position: absolute;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 3px;
   background: $white;
   color: #000;

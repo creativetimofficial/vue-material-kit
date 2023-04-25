@@ -72,7 +72,6 @@ const copy = async (event) => {
     setTimeout(function () {
       el.parentElement.querySelector(".alert").remove();
     }, 2500);
-
   } catch (e) {
     console.error(e);
   }

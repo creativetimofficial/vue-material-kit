@@ -19,7 +19,7 @@
   --#{$prefix}btn-border-radius: #{$btn-border-radius};
   --#{$prefix}btn-box-shadow: #{$btn-box-shadow};
   --#{$prefix}btn-disabled-opacity: #{$btn-disabled-opacity};
-  --#{$prefix}btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--#{$prefix}btn-focus-shadow-rgb), .5);
+  --#{$prefix}btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--#{$prefix}btn-focus-shadow-rgb), 0.5);
   // scss-docs-end btn-css-vars
 
   display: inline-block;
@@ -35,7 +35,8 @@
   vertical-align: middle;
   cursor: if($enable-button-pointers, pointer, null);
   user-select: none;
-  border: var(--#{$prefix}btn-border-width) solid var(--#{$prefix}btn-border-color);
+  border: var(--#{$prefix}btn-border-width) solid
+    var(--#{$prefix}btn-border-color);
   @include border-radius(var(--#{$prefix}btn-border-radius));
   @include gradient-bg(var(--#{$prefix}btn-bg));
   @include box-shadow(var(--#{$prefix}btn-box-shadow));
@@ -56,7 +57,8 @@
     outline: 0;
     // Avoid using mixin so we can pass custom focus shadow properly
     @if $enable-shadows {
-      box-shadow: var(--#{$prefix}btn-box-shadow), var(--#{$prefix}btn-focus-box-shadow);
+      box-shadow: var(--#{$prefix}btn-box-shadow),
+        var(--#{$prefix}btn-focus-box-shadow);
     } @else {
       box-shadow: var(--#{$prefix}btn-focus-box-shadow);
     }
@@ -77,7 +79,8 @@
     &:focus {
       // Avoid using mixin so we can pass custom focus shadow properly
       @if $enable-shadows {
-        box-shadow: var(--#{$prefix}btn-active-shadow), var(--#{$prefix}btn-focus-box-shadow);
+        box-shadow: var(--#{$prefix}btn-active-shadow),
+          var(--#{$prefix}btn-focus-box-shadow);
       } @else {
         box-shadow: var(--#{$prefix}btn-focus-box-shadow);
       }
@@ -97,7 +100,6 @@
   }
 }
 
-
 //
 // Alternate buttons
 //
@@ -115,7 +117,6 @@
   }
 }
 // scss-docs-end btn-variant-loops
-
 
 //
 // Link buttons
@@ -144,15 +145,24 @@
   // No need for an active state here
 }
 
-
 //
 // Button Sizes
 //
 
 .btn-lg {
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  @include button-size(
+    $btn-padding-y-lg,
+    $btn-padding-x-lg,
+    $btn-font-size-lg,
+    $btn-border-radius-lg
+  );
 }
 
 .btn-sm {
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+  @include button-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $btn-border-radius-sm
+  );
 }

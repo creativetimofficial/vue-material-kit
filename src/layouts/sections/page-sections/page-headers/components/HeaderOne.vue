@@ -75,7 +75,7 @@ const bgImage =
     <div
       class="page-header min-vh-100"
       :style="{
-        backgroundImage: `url(${bgImage})`
+        backgroundImage: `url(${bgImage})`,
       }"
       loading="lazy"
     >

@@ -5,7 +5,6 @@
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and stuff
 
-
 // Container that the modal scrolls within
 .modal {
   // scss-docs-start modal-css-vars
@@ -102,7 +101,8 @@
   pointer-events: auto;
   background-color: var(--#{$prefix}modal-bg);
   background-clip: padding-box;
-  border: var(--#{$prefix}modal-border-width) solid var(--#{$prefix}modal-border-color);
+  border: var(--#{$prefix}modal-border-width) solid
+    var(--#{$prefix}modal-border-color);
   @include border-radius(var(--#{$prefix}modal-border-radius));
   @include box-shadow(var(--#{$prefix}modal-box-shadow));
   // Remove focus outline from opened modal
@@ -117,7 +117,11 @@
   --#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity};
   // scss-docs-end modal-backdrop-css-vars
 
-  @include overlay-backdrop(var(--#{$prefix}backdrop-zindex), var(--#{$prefix}backdrop-bg), var(--#{$prefix}backdrop-opacity));
+  @include overlay-backdrop(
+    var(--#{$prefix}backdrop-zindex),
+    var(--#{$prefix}backdrop-bg),
+    var(--#{$prefix}backdrop-opacity)
+  );
 }
 
 // Modal header
@@ -128,12 +132,16 @@
   align-items: center;
   justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
   padding: var(--#{$prefix}modal-header-padding);
-  border-bottom: var(--#{$prefix}modal-header-border-width) solid var(--#{$prefix}modal-header-border-color);
+  border-bottom: var(--#{$prefix}modal-header-border-width) solid
+    var(--#{$prefix}modal-header-border-color);
   @include border-top-radius(var(--#{$prefix}modal-inner-border-radius));
 
   .btn-close {
-    padding: calc(var(--#{$prefix}modal-header-padding-y) * .5) calc(var(--#{$prefix}modal-header-padding-x) * .5);
-    margin: calc(var(--#{$prefix}modal-header-padding-y) * -.5) calc(var(--#{$prefix}modal-header-padding-x) * -.5) calc(var(--#{$prefix}modal-header-padding-y) * -.5) auto;
+    padding: calc(var(--#{$prefix}modal-header-padding-y) * 0.5)
+      calc(var(--#{$prefix}modal-header-padding-x) * 0.5);
+    margin: calc(var(--#{$prefix}modal-header-padding-y) * -0.5)
+      calc(var(--#{$prefix}modal-header-padding-x) * -0.5)
+      calc(var(--#{$prefix}modal-header-padding-y) * -0.5) auto;
   }
 }
 
@@ -160,16 +168,21 @@
   flex-wrap: wrap;
   align-items: center; // vertically center
   justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
-  padding: calc(var(--#{$prefix}modal-padding) - var(--#{$prefix}modal-footer-gap) * .5);
+  padding: calc(
+    var(--#{$prefix}modal-padding) - var(--#{$prefix}modal-footer-gap) * 0.5
+  );
   background-color: var(--#{$prefix}modal-footer-bg);
-  border-top: var(--#{$prefix}modal-footer-border-width) solid var(--#{$prefix}modal-footer-border-color);
+  border-top: var(--#{$prefix}modal-footer-border-width) solid
+    var(--#{$prefix}modal-footer-border-color);
   @include border-bottom-radius(var(--#{$prefix}modal-inner-border-radius));
 
   // Place margin between footer elements
   // This solution is far from ideal because of the universal selector usage,
   // but is needed to fix https://github.com/twbs/bootstrap/issues/24800
   > * {
-    margin: calc(var(--#{$prefix}modal-footer-gap) * .5); // Todo in v6: replace with gap on parent class
+    margin: calc(
+      var(--#{$prefix}modal-footer-gap) * 0.5
+    ); // Todo in v6: replace with gap on parent class
   }
 }
 

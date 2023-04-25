@@ -27,7 +27,7 @@ if (document.querySelectorAll(".input-group").length != 0) {
   allInputs.forEach((el) =>
     setAttributes(el, {
       onfocus: "focused(this)",
-      onfocusout: "defocused(this)"
+      onfocusout: "defocused(this)",
     })
   );
 }

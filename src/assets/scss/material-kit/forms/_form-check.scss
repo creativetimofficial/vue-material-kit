@@ -26,11 +26,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: $font-size-sm - .205;
+      font-size: $font-size-sm - 0.205;
       opacity: 0;
     }
 
-    &:checked{
+    &:checked {
       background: $primary;
       &:after {
         opacity: 1;
@@ -49,7 +49,8 @@
       width: $form-check-radio-after-width;
       height: $form-check-radio-after-width;
       border-radius: 50%;
-      background-image: escape-svg($form-check-radio-checked-bg-image), var(--#{$variable-prefix}gradient);;
+      background-image: escape-svg($form-check-radio-checked-bg-image),
+        var(--#{$variable-prefix}gradient);
       opacity: 0;
       left: 0;
       right: 0;
@@ -66,7 +67,7 @@
       opacity: 1;
     }
 
-    &:active{
+    &:active {
       box-shadow: $form-check-radio-after-shadow;
       border-radius: $border-radius-pill;
       transition: $form-check-radio-transition;
@@ -79,12 +80,12 @@
   cursor: pointer;
 }
 
-.form-check-label{
-  font-size:$font-size-sm;
+.form-check-label {
+  font-size: $font-size-sm;
   font-weight: $font-weight-normal;
 }
 
-.form-check-input{
+.form-check-input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

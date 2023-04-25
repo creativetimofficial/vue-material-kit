@@ -30,7 +30,9 @@
   word-wrap: break-word;
   opacity: 0;
 
-  &.show { opacity: var(--#{$prefix}tooltip-opacity); }
+  &.show {
+    opacity: var(--#{$prefix}tooltip-opacity);
+  }
 
   .tooltip-arrow {
     display: block;
@@ -51,7 +53,8 @@
 
   &::before {
     top: -1px;
-    border-width: var(--#{$prefix}tooltip-arrow-height) calc(var(--#{$prefix}tooltip-arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-width: var(--#{$prefix}tooltip-arrow-height)
+      calc(var(--#{$prefix}tooltip-arrow-width) * 0.5) 0; // stylelint-disable-line function-disallowed-list
     border-top-color: var(--#{$prefix}tooltip-bg);
   }
 }
@@ -64,7 +67,9 @@
 
   &::before {
     right: -1px;
-    border-width: calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height) calc(var(--#{$prefix}tooltip-arrow-width) * .5) 0; // stylelint-disable-line function-disallowed-list
+    border-width: calc(var(--#{$prefix}tooltip-arrow-width) * 0.5)
+      var(--#{$prefix}tooltip-arrow-height)
+      calc(var(--#{$prefix}tooltip-arrow-width) * 0.5) 0; // stylelint-disable-line function-disallowed-list
     border-right-color: var(--#{$prefix}tooltip-bg);
   }
 }
@@ -76,7 +81,8 @@
 
   &::before {
     bottom: -1px;
-    border-width: 0 calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
+    border-width: 0 calc(var(--#{$prefix}tooltip-arrow-width) * 0.5)
+      var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
     border-bottom-color: var(--#{$prefix}tooltip-bg);
   }
 }
@@ -89,7 +95,9 @@
 
   &::before {
     left: -1px;
-    border-width: calc(var(--#{$prefix}tooltip-arrow-width) * .5) 0 calc(var(--#{$prefix}tooltip-arrow-width) * .5) var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
+    border-width: calc(var(--#{$prefix}tooltip-arrow-width) * 0.5) 0
+      calc(var(--#{$prefix}tooltip-arrow-width) * 0.5)
+      var(--#{$prefix}tooltip-arrow-height); // stylelint-disable-line function-disallowed-list
     border-left-color: var(--#{$prefix}tooltip-bg);
   }
 }
@@ -118,5 +126,8 @@
   color: var(--#{$prefix}tooltip-color);
   text-align: center;
   background-color: var(--#{$prefix}tooltip-bg);
-  border-radius: var(--#{$prefix}tooltip-border-radius, 0); // stylelint-disable-line property-disallowed-list
+  border-radius: var(
+    --#{$prefix}tooltip-border-radius,
+    0
+  ); // stylelint-disable-line property-disallowed-list
 }
