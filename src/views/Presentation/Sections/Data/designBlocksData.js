@@ -28,113 +28,158 @@ import imgAlert from "@/assets/img/alerts.jpg";
 import imgPopover from "@/assets/img/popovers.jpg";
 import imgModal from "@/assets/img/modals.jpg";
 import imgDropdowns from "@/assets/img/dropdowns.jpg";
+import axios from "axios";
 
+
+// async function getProjects() {
+//   try {
+//       const response = await axios.get('http://somebodyhire.me/api/projects/');
+
+//       // Map the response to your desired structure
+//       const items = response.data.map((project) => ({
+//           image: project.featured_image,
+//           title: project.title,
+//           subtitle: project.description,
+//           route: project.id,
+//           pro: false
+//       }));
+
+//       return items;
+//   } catch (error) {
+//       console.error(error);
+//   }
+// }
+
+// export default async function getProjectData() {
+//   const items = await getProjects();
+
+//   return [
+//       {
+//           heading: "Проекты",
+//           description: "Проекты наших пользователей",
+//           items: items,
+//       },
+//   ];
+// }
+
+
+// }
 export default [
   {
-    heading: "Design Blocks",
+    heading: "Проекты",
     description:
-      "A selection of 45 page sections that fit perfectly in any combination",
+      "Проекты наших пользователей",
     items: [
-      {
-        image: `${imagesPrefix}/headers.jpg`,
-        title: "Page Headers",
-        subtitle: "10 Examples",
-        route: "page-headers",
-        pro: false
-      },
-      {
-        image: imgFeatures,
-        title: "Features",
-        subtitle: "14 Examples",
-        route: "page-features",
-        pro: false
-      },
-      {
-        image: imgPricing,
-        title: "Pricing",
-        subtitle: "8 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/faq.jpg`,
-        title: "FAQ",
-        subtitle: "1 Example",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: imgBlogPosts,
-        title: "Blog Posts",
-        subtitle: "11 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: imgTestimonials,
-        title: "Testimonials",
-        subtitle: "11 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: imgTeam,
-        title: "Teams",
-        subtitle: "6 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: imgStat,
-        title: "Stats",
-        subtitle: "3 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/call-to-action.jpg`,
-        title: "Call to Actions",
-        subtitle: "8 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/projects.jpg`,
-        title: "Applications",
-        subtitle: "6 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/logo-area.jpg`,
-        title: "Logo Areas",
-        subtitle: "4 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/footers.jpg`,
-        title: "Footers",
-        subtitle: "10 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: `${imagesPrefix}/general-cards.jpg`,
-        title: "General Cards",
-        subtitle: "9 Examples",
-        route: "presentation",
-        pro: true
-      },
-      {
-        image: imgContent,
-        title: "Content Sections",
-        subtitle: "8 Examples",
-        route: "presentation",
-        pro: true
-      }
-    ]
+
+    ],
+    
+    
   },
+  // {
+  //   heading: "Design Blocks",
+  //   description:
+  //     "A selection of 45 page sections that fit perfectly in any combination",
+  //   items: [
+  //     {
+  //       image: `${imagesPrefix}/headers.jpg`,
+  //       title: "Page Headers",
+  //       subtitle: "10 Examples",
+  //       route: "page-headers",
+  //       pro: false
+  //     },
+  //     {
+  //       image: imgFeatures,
+  //       title: "Features",
+  //       subtitle: "14 Examples",
+  //       route: "page-features",
+  //       pro: false
+  //     },
+  //     {
+  //       image: imgPricing,
+  //       title: "Pricing",
+  //       subtitle: "8 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/faq.jpg`,
+  //       title: "FAQ",
+  //       subtitle: "1 Example",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: imgBlogPosts,
+  //       title: "Blog Posts",
+  //       subtitle: "11 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: imgTestimonials,
+  //       title: "Testimonials",
+  //       subtitle: "11 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: imgTeam,
+  //       title: "Teams",
+  //       subtitle: "6 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: imgStat,
+  //       title: "Stats",
+  //       subtitle: "3 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/call-to-action.jpg`,
+  //       title: "Call to Actions",
+  //       subtitle: "8 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/projects.jpg`,
+  //       title: "Applications",
+  //       subtitle: "6 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/logo-area.jpg`,
+  //       title: "Logo Areas",
+  //       subtitle: "4 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/footers.jpg`,
+  //       title: "Footers",
+  //       subtitle: "10 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: `${imagesPrefix}/general-cards.jpg`,
+  //       title: "General Cards",
+  //       subtitle: "9 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     },
+  //     {
+  //       image: imgContent,
+  //       title: "Content Sections",
+  //       subtitle: "8 Examples",
+  //       route: "presentation",
+  //       pro: true
+  //     }
+  //   ]
+  // },
   {
     heading: "Navigation",
     description: "30+ components that will help go through the pages",

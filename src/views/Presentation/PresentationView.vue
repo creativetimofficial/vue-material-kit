@@ -8,7 +8,6 @@ import Header from "../../examples/Header.vue";
 import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 
 //Vue Material Kit 2 components
-import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 
 // sections
@@ -22,13 +21,6 @@ import PresentationInformation from "./Sections/PresentationInformation.vue";
 
 //images
 import vueMkHeader from "@/assets/img/space-background.jpg";
-import wavesWhite from "@/assets/img/waves-white.svg";
-import logoBootstrap from "@/assets/img/logos/bootstrap5.jpg";
-import logoTailwind from "@/assets/img/logos/icon-tailwind.jpg";
-import logoVue from "@/assets/img/logos/vue.jpg";
-import logoAngular from "@/assets/img/logos/angular.jpg";
-import logoReact from "@/assets/img/logos/react.jpg";
-import logoSketch from "@/assets/img/logos/sketch.jpg";
 
 //hooks
 const body = document.getElementsByTagName("body")[0];
@@ -43,24 +35,7 @@ onUnmounted(() => {
 </script>
 
 <script>
-import axios from 'axios';
 
-export default {
-  data() {
-    return {
-      projects: [],
-      error: null
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://somebodyhire.me/api/projects/');
-      this.projects = response.data;
-    } catch (error) {
-      this.error = 'An error occurred: ' + error;
-    }
-  }
-};
 </script>
 
 
@@ -112,42 +87,16 @@ export default {
     </div>
   </Header>
 
-  <div class="container">
-    <div class="row" v-if="projects.length === 0 && !error">
-      <div class="col-lg-8 mx-auto text-center mb-5">
-        <h2>Loading...</h2>
-      </div>
-    </div>
 
-    <div class="row" v-else-if="error">
-      <div class="col-lg-8 mx-auto text-center mb-5">
-        <h2>Error loading data</h2>
-        <p class="lead">{{ error }}</p>
-      </div>
-    </div>
 
-    <div class="row" v-else>
-      <div class="col-lg-8 mx-auto text-center mb-5" v-for="project in projects" :key="project.id">
-        <h2 class="mb-3">{{ project.title }}</h2>
-        <img :src="project.featured_image" alt="Project Image" />
-        <p class="lead">
-          {{ project.description }}
-        </p>
-        <p>Total votes: {{ project.vote_total }}</p>
-        <p>Vote ratio: {{ project.vote_ratio }}</p>
-        <!-- Add more properties as needed -->
-      </div>
-    </div>
-  </div>
 
-<!-- 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationCounter />
-    <PresentationInformation />
     <PresentationExample :data="data" />
     <PresentationPages />
     <BuiltByDevelopers />
-
+  </div>
+<!-- 
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
