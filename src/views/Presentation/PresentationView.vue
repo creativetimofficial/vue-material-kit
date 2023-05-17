@@ -9,6 +9,7 @@ import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 
 //Vue Material Kit 2 components
 import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
+import MaterialInput from "@/components/MaterialInput.vue";
 
 // sections
 import PresentationCounter from "./Sections/PresentationCounter.vue";
@@ -20,7 +21,7 @@ import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
 
 //images
-import vueMkHeader from "@/assets/img/vue-mk-header.jpg";
+import vueMkHeader from "@/assets/img/space-background.jpg";
 import wavesWhite from "@/assets/img/waves-white.svg";
 import logoBootstrap from "@/assets/img/logos/bootstrap5.jpg";
 import logoTailwind from "@/assets/img/logos/icon-tailwind.jpg";
@@ -41,6 +42,29 @@ onUnmounted(() => {
 });
 </script>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      projects: [],
+      error: null
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://somebodyhire.me/api/projects/');
+      this.projects = response.data;
+    } catch (error) {
+      this.error = 'An error occurred: ' + error;
+    }
+  }
+};
+</script>
+
+
+
 <template>
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
@@ -55,7 +79,7 @@ onUnmounted(() => {
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
-      <div class="container">
+    <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
             <h1
@@ -64,16 +88,29 @@ onUnmounted(() => {
             >
               LinkedMin
             </h1>
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-            Показывай себя и свои проекты.     
+            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+            Показывай себя и свои проекты.  
              Находи вдохновение, коллег и новые знания.
             </p>
           </div>
         </div>
+
+        <div class="container">
+      <div class="row justify-space-between py-2">
+        <div class="col-lg-4 mx-auto">
+          <MaterialInput
+            class="input-group-dynamic mb-4"
+            icon="search"
+            type="text"
+            placeholder="Поиск по проектам или людям"
+          />
+        </div>
       </div>
     </div>
+      </div>
+        
+    </div>
   </Header>
-
 
   <div class="container">
     <div class="row" v-if="projects.length === 0 && !error">
@@ -331,23 +368,3 @@ onUnmounted(() => {
 
 
 
-<script>
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      projects: [],
-      error: null
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://somebodyhire.me/api/projects/');
-      this.projects = response.data;
-    } catch (error) {
-      this.error = 'An error occurred: ' + error;
-    }
-  }
-};
-</script>

@@ -15,9 +15,9 @@ const props = defineProps({
     color: String,
     label: String,
     default: () => ({
-      route: "https://www.creative-tim.com/product/vue-material-kit",
+      route: "/pages/landing-pages/basic",
       color: "bg-gradient-success",
-      label: "Free Download"
+      label: "Вход/Регистрация"
     })
   },
   transparent: {
@@ -117,10 +117,10 @@ watch(
         ]"
         :to="{ name: 'presentation' }"
         rel="tooltip"
-        title="Designed and Coded by Creative Tim"
+        title="Цифровое портфолио и деловые контакты"
         data-placement="bottom"
       >
-        Material Kit 2
+        LinkedMin
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -131,7 +131,7 @@ watch(
         "
         to="/"
         rel="tooltip"
-        title="Designed and Coded by Creative Tim"
+        title="Цифровое портфолио и деловые контакты"
         data-placement="bottom"
       >
         Material Design
@@ -175,7 +175,117 @@ watch(
                 :class="getTextColor()"
                 >dashboard</i
               >
-              Pages
+              Люди
+              <img
+                :src="getArrowColor()"
+                alt="down-arrow"
+                class="arrow ms-2 d-lg-block d-none"
+              />
+              <img
+                :src="getArrowColor()"
+                alt="down-arrow"
+                class="arrow ms-1 d-lg-none d-block ms-auto"
+              />
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
+              aria-labelledby="dropdownMenuPages"
+            >
+              <div class="row d-none d-lg-block">
+                <div class="col-12 px-4 py-2">
+                  <div class="row">
+                    <div class="position-relative">
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Landing Pages
+                      </div>
+                      <RouterLink
+                        :to="{ name: 'about' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>About Us</span>
+                      </RouterLink>
+                      <RouterLink
+                        :to="{ name: 'contactus' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Contact Us</span>
+                      </RouterLink>
+                      <RouterLink
+                        :to="{ name: 'author' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Author</span>
+                      </RouterLink>
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
+                      >
+                        Account
+                      </div>
+                      <RouterLink
+                        :to="{ name: 'signin-basic' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Sign In</span>
+                      </RouterLink>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-lg-none">
+                <div
+                  class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0"
+                >
+                  Landing Pages
+                </div>
+                <RouterLink
+                  :to="{ name: 'about' }"
+                  class="dropdown-item border-radius-md"
+                >
+                  <span>About Us</span>
+                </RouterLink>
+                <RouterLink
+                  :to="{ name: 'contactus' }"
+                  class="dropdown-item border-radius-md"
+                >
+                  <span>Contact Us</span>
+                </RouterLink>
+                <RouterLink
+                  :to="{ name: 'author' }"
+                  class="dropdown-item border-radius-md"
+                >
+                  <span>Author</span>
+                </RouterLink>
+                <div
+                  class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
+                >
+                  Account
+                </div>
+                <RouterLink
+                  :to="{ name: 'signin-basic' }"
+                  class="dropdown-item border-radius-md"
+                >
+                  <span>Sign In</span>
+                </RouterLink>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <a
+              role="button"
+              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+              :class="getTextColor()"
+              id="dropdownMenuPages"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i
+                class="material-icons opacity-6 me-2 text-md"
+                :class="getTextColor()"
+                >dashboard</i
+              >
+              Проекты
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -768,7 +878,7 @@ watch(
                 :class="getTextColor()"
                 >article</i
               >
-              Docs
+              Мой профиль
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -794,11 +904,10 @@ watch(
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                       >
-                        Getting Started
+                        Мой профиль
                       </h6>
                       <span class="text-sm"
-                        >All about overview, quick start, license and
-                        contents</span
+                        >Просмотр и редактирование профиля</span
                       >
                     </a>
                   </li>
@@ -810,10 +919,10 @@ watch(
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                       >
-                        Foundation
+                        Мои проекты
                       </h6>
                       <span class="text-sm"
-                        >See our colors, icons and typography</span
+                        >Просмотр и редактирование проектов, в которых я принимаю участие</span
                       >
                     </a>
                   </li>
@@ -825,11 +934,10 @@ watch(
                       <h6
                         class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                       >
-                        Components
+                        Мои сообщения
                       </h6>
                       <span class="text-sm"
-                        >Explore our collection of fully designed
-                        components</span
+                        >Просмотр и отправка личных сообщений</span
                       >
                     </a>
                   </li>
@@ -908,9 +1016,9 @@ watch(
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown dropdown-hover mx-2">
+          <!-- <li class="nav-item dropdown dropdown-hover mx-2">
             <a
-              href="https://www.github.com/creativetimofficial/vue-material-kit"
+              href="hhttps://github.com/VikingEngineers"
               class="nav-link d-flex cursor-pointer align-items-center"
             >
               <svg
@@ -928,7 +1036,7 @@ watch(
               </svg>
               Github
             </a>
-          </li>
+          </li> -->
         </ul>
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item">
