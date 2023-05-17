@@ -1,3 +1,18 @@
+<style scoped>
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.project-card {
+  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
+  margin: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  box-sizing: border-box;
+}
+</style>
+
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
@@ -5,7 +20,8 @@ import { onMounted, onUnmounted } from "vue";
 import NavbarDefault from "../..//examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
-import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
+
+
 
 //Vue Material Kit 2 components
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -35,7 +51,23 @@ onUnmounted(() => {
 </script>
 
 <script>
+import axios from 'axios';
 
+export default {
+  data() {
+    return {
+      projects: [],
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://somebodyhire.me/api/projects/');
+      this.projects = response.data;
+    } catch (error) {
+      console.error('There was an error fetching the projects', error);
+    }
+  },
+};
 </script>
 
 
@@ -92,9 +124,13 @@ onUnmounted(() => {
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationCounter />
-    <PresentationExample :data="data" />
-    <PresentationPages />
-    <BuiltByDevelopers />
+    <div class="project-container">
+    <div class="project-card" v-for="project in projects" :key="project.id">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+    </div>
+  </div>
+
   </div>
 <!-- 
     <div class="container">
