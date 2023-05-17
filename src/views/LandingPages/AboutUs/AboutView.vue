@@ -60,7 +60,7 @@ onUnmounted(() => {
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white">
-              Work with an amazing <span class="text-white" id="typed"></span>
+             We have no <span class="text-white" id="typed"></span>
             </h1>
             <div id="typed-strings">
               <h1>team</h1>

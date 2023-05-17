@@ -62,11 +62,11 @@ onUnmounted(() => {
               class="text-white pt-3 mt-n5 me-2"
               :style="{ display: 'inline-block ' }"
             >
-              Material Kit 2
+              LinkedMin
             </h1>
             <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-              Start the Development With Bootstrap 5 Design System inspired by
-              Material Design.
+            Показывай себя и свои проекты.     
+             Находи вдохновение, коллег и новые знания.
             </p>
           </div>
         </div>
@@ -74,6 +74,36 @@ onUnmounted(() => {
     </div>
   </Header>
 
+
+  <div class="container">
+    <div class="row" v-if="projects.length === 0 && !error">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <h2>Loading...</h2>
+      </div>
+    </div>
+
+    <div class="row" v-else-if="error">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <h2>Error loading data</h2>
+        <p class="lead">{{ error }}</p>
+      </div>
+    </div>
+
+    <div class="row" v-else>
+      <div class="col-lg-8 mx-auto text-center mb-5" v-for="project in projects" :key="project.id">
+        <h2 class="mb-3">{{ project.title }}</h2>
+        <img :src="project.featured_image" alt="Project Image" />
+        <p class="lead">
+          {{ project.description }}
+        </p>
+        <p>Total votes: {{ project.vote_total }}</p>
+        <p>Vote ratio: {{ project.vote_ratio }}</p>
+        <!-- Add more properties as needed -->
+      </div>
+    </div>
+  </div>
+
+<!-- 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationCounter />
     <PresentationInformation />
@@ -270,6 +300,7 @@ onUnmounted(() => {
             <p class="lead mb-0">We deliver the best web products</p>
           </div>
           <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-end mt-5">
+          
             <MaterialSocialButton
               route="https://twitter.com/intent/tweet?text=Check%20Material%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-design-system-pro"
               component="twitter"
@@ -282,16 +313,41 @@ onUnmounted(() => {
               color="facebook"
               label="Share"
             />
+            
             <MaterialSocialButton
               route=""
               component="pinterest"
               color="pinterest"
               label="Pin it"
             />
+           
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <DefaultFooter />
 </template>
+
+
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      projects: [],
+      error: null
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://somebodyhire.me/api/projects/');
+      this.projects = response.data;
+    } catch (error) {
+      this.error = 'An error occurred: ' + error;
+    }
+  }
+};
+</script>
