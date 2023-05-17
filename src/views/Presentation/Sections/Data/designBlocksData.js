@@ -70,116 +70,123 @@ export default [
     description:
       "Проекты наших пользователей",
     items: [
+        {
+          image: `${imagesPrefix}/headers.jpg`,
+          title: "Проект",
+          subtitle: "Nope",
+          route: "page-headers",
+          pro: false
+        },
 
     ],
     
     
   },
-  // {
-  //   heading: "Design Blocks",
-  //   description:
-  //     "A selection of 45 page sections that fit perfectly in any combination",
-  //   items: [
-  //     {
-  //       image: `${imagesPrefix}/headers.jpg`,
-  //       title: "Page Headers",
-  //       subtitle: "10 Examples",
-  //       route: "page-headers",
-  //       pro: false
-  //     },
-  //     {
-  //       image: imgFeatures,
-  //       title: "Features",
-  //       subtitle: "14 Examples",
-  //       route: "page-features",
-  //       pro: false
-  //     },
-  //     {
-  //       image: imgPricing,
-  //       title: "Pricing",
-  //       subtitle: "8 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/faq.jpg`,
-  //       title: "FAQ",
-  //       subtitle: "1 Example",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: imgBlogPosts,
-  //       title: "Blog Posts",
-  //       subtitle: "11 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: imgTestimonials,
-  //       title: "Testimonials",
-  //       subtitle: "11 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: imgTeam,
-  //       title: "Teams",
-  //       subtitle: "6 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: imgStat,
-  //       title: "Stats",
-  //       subtitle: "3 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/call-to-action.jpg`,
-  //       title: "Call to Actions",
-  //       subtitle: "8 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/projects.jpg`,
-  //       title: "Applications",
-  //       subtitle: "6 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/logo-area.jpg`,
-  //       title: "Logo Areas",
-  //       subtitle: "4 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/footers.jpg`,
-  //       title: "Footers",
-  //       subtitle: "10 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: `${imagesPrefix}/general-cards.jpg`,
-  //       title: "General Cards",
-  //       subtitle: "9 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     },
-  //     {
-  //       image: imgContent,
-  //       title: "Content Sections",
-  //       subtitle: "8 Examples",
-  //       route: "presentation",
-  //       pro: true
-  //     }
-  //   ]
-  // },
+  {
+    heading: "Design Blocks",
+    description:
+      "A selection of 45 page sections that fit perfectly in any combination",
+    items: [
+      {
+        image: `${imagesPrefix}/headers.jpg`,
+        title: "Page Headers",
+        subtitle: "10 Examples",
+        route: "page-headers",
+        pro: false
+      },
+      {
+        image: imgFeatures,
+        title: "Features",
+        subtitle: "14 Examples",
+        route: "page-features",
+        pro: false
+      },
+      {
+        image: imgPricing,
+        title: "Pricing",
+        subtitle: "8 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/faq.jpg`,
+        title: "FAQ",
+        subtitle: "1 Example",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: imgBlogPosts,
+        title: "Blog Posts",
+        subtitle: "11 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: imgTestimonials,
+        title: "Testimonials",
+        subtitle: "11 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: imgTeam,
+        title: "Teams",
+        subtitle: "6 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: imgStat,
+        title: "Stats",
+        subtitle: "3 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/call-to-action.jpg`,
+        title: "Call to Actions",
+        subtitle: "8 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/projects.jpg`,
+        title: "Applications",
+        subtitle: "6 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/logo-area.jpg`,
+        title: "Logo Areas",
+        subtitle: "4 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/footers.jpg`,
+        title: "Footers",
+        subtitle: "10 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: `${imagesPrefix}/general-cards.jpg`,
+        title: "General Cards",
+        subtitle: "9 Examples",
+        route: "presentation",
+        pro: true
+      },
+      {
+        image: imgContent,
+        title: "Content Sections",
+        subtitle: "8 Examples",
+        route: "presentation",
+        pro: true
+      }
+    ]
+  },
   {
     heading: "Navigation",
     description: "30+ components that will help go through the pages",
