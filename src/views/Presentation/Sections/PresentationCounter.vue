@@ -2,6 +2,36 @@
 import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCounterCard.vue";
 </script>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      projectsCount: 0,  // This data property will hold the count of projects
+      usersCount: 0,     // This data property will hold the count of users
+    };
+  },
+  async created() {
+    try {
+      // Fetch the projects data from the server
+      const projectsResponse = await axios.get('http://somebodyhire.me/api/projects/');
+      // Set the projectsCount to the number of projects received from the server
+      this.projectsCount = projectsResponse.data.length;
+
+      // Fetch the users data from the server
+      const usersResponse = await axios.get('http://somebodyhire.me/api/profiles/');
+      // Set the usersCount to the number of users received from the server
+      this.usersCount = usersResponse.data.length;
+
+    } catch (error) {
+      // Log any errors that occur during the fetch to the console
+      console.error(error);
+    }
+  },
+};
+</script>
+
 <template>
   <section class="pt-3 pb-4" id="count-stats">
     <div class="container">
@@ -11,11 +41,9 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
             <div class="col-md-4 position-relative">
               <DefaultCounterCard
                 color="success"
-                title="Coded Elements"
-                description="From buttons, to inputs, navbars, alerts or cards, you are
-                  covered"
-                :count="70"
-                suffix="+"
+                title="Проектов"
+                description="Представлено на нашем сайте"
+                :count="projectsCount"
                 :duration="3000"
                 divider="vertical"
               />
@@ -23,11 +51,9 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
             <div class="col-md-4 position-relative">
               <DefaultCounterCard
                 color="success"
-                title="Design Blocks"
-                description="Mix the sections, change the colors and unleash your
-                  creativity"
-                :count="15"
-                suffix="+"
+                title="Пользователей"
+                description="Зарегистрированно с момента запуска проекта"
+                :count="usersCount"
                 :duration="3000"
                 divider="vertical"
               />
@@ -35,10 +61,10 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
             <div class="col-md-4">
               <DefaultCounterCard
                 color="success"
-                title="Pages"
-                description="Save 3-4 weeks of work when you use our pre-made pages for
-                  your website"
-                :count="4"
+                title="Раз"
+                description="Мы прокляли день, когда сели за баранку этого пылесоса"
+                :count="9000"
+                suffix="+"
                 :duration="3000"
               />
             </div>

@@ -28,8 +28,60 @@ import imgAlert from "@/assets/img/alerts.jpg";
 import imgPopover from "@/assets/img/popovers.jpg";
 import imgModal from "@/assets/img/modals.jpg";
 import imgDropdowns from "@/assets/img/dropdowns.jpg";
+import axios from "axios";
 
+
+// async function getProjects() {
+//   try {
+//       const response = await axios.get('http://somebodyhire.me/api/projects/');
+
+//       // Map the response to your desired structure
+//       const items = response.data.map((project) => ({
+//           image: project.featured_image,
+//           title: project.title,
+//           subtitle: project.description,
+//           route: project.id,
+//           pro: false
+//       }));
+
+//       return items;
+//   } catch (error) {
+//       console.error(error);
+//   }
+// }
+
+// export default async function getProjectData() {
+//   const items = await getProjects();
+
+//   return [
+//       {
+//           heading: "Проекты",
+//           description: "Проекты наших пользователей",
+//           items: items,
+//       },
+//   ];
+// }
+
+
+// }
 export default [
+  {
+    heading: "Проекты",
+    description:
+      "Проекты наших пользователей",
+    items: [
+        {
+          image: `${imagesPrefix}/headers.jpg`,
+          title: "Проект",
+          subtitle: "Nope",
+          route: "page-headers",
+          pro: false
+        },
+
+    ],
+    
+    
+  },
   {
     heading: "Design Blocks",
     description:

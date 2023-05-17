@@ -1,3 +1,18 @@
+<style scoped>
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.project-card {
+  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
+  margin: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  box-sizing: border-box;
+}
+</style>
+
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
@@ -5,10 +20,11 @@ import { onMounted, onUnmounted } from "vue";
 import NavbarDefault from "../..//examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
-import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
+
+
 
 //Vue Material Kit 2 components
-import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
+import MaterialInput from "@/components/MaterialInput.vue";
 
 // sections
 import PresentationCounter from "./Sections/PresentationCounter.vue";
@@ -20,14 +36,7 @@ import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
 
 //images
-import vueMkHeader from "@/assets/img/vue-mk-header.jpg";
-import wavesWhite from "@/assets/img/waves-white.svg";
-import logoBootstrap from "@/assets/img/logos/bootstrap5.jpg";
-import logoTailwind from "@/assets/img/logos/icon-tailwind.jpg";
-import logoVue from "@/assets/img/logos/vue.jpg";
-import logoAngular from "@/assets/img/logos/angular.jpg";
-import logoReact from "@/assets/img/logos/react.jpg";
-import logoSketch from "@/assets/img/logos/sketch.jpg";
+import vueMkHeader from "@/assets/img/space-background.jpg";
 
 //hooks
 const body = document.getElementsByTagName("body")[0];
@@ -40,6 +49,28 @@ onUnmounted(() => {
   body.classList.remove("bg-gray-200");
 });
 </script>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      projects: [],
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://somebodyhire.me/api/projects/');
+      this.projects = response.data;
+    } catch (error) {
+      console.error('There was an error fetching the projects', error);
+    }
+  },
+};
+</script>
+
+
 
 <template>
   <div class="container position-sticky z-index-sticky top-0">
@@ -55,32 +86,53 @@ onUnmounted(() => {
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
-      <div class="container">
+    <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
             <h1
               class="text-white pt-3 mt-n5 me-2"
               :style="{ display: 'inline-block ' }"
             >
-              Material Kit 2
+              LinkedMin
             </h1>
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-              Start the Development With Bootstrap 5 Design System inspired by
-              Material Design.
+            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+            Показывай себя и свои проекты.  
+             Находи вдохновение, коллег и новые знания.
             </p>
           </div>
         </div>
+
+        <div class="container">
+      <div class="row justify-space-between py-2">
+        <div class="col-lg-4 mx-auto">
+          <MaterialInput
+            class="input-group-dynamic mb-4"
+            icon="search"
+            type="text"
+            placeholder="Поиск по проектам или людям"
+          />
+        </div>
       </div>
+    </div>
+      </div>
+        
     </div>
   </Header>
 
+
+
+
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationCounter />
-    <PresentationInformation />
-    <PresentationExample :data="data" />
-    <PresentationPages />
-    <BuiltByDevelopers />
+    <div class="project-container">
+    <div class="project-card" v-for="project in projects" :key="project.id">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+    </div>
+  </div>
 
+  </div>
+<!-- 
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -270,6 +322,7 @@ onUnmounted(() => {
             <p class="lead mb-0">We deliver the best web products</p>
           </div>
           <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-end mt-5">
+          
             <MaterialSocialButton
               route="https://twitter.com/intent/tweet?text=Check%20Material%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-design-system-pro"
               component="twitter"
@@ -282,16 +335,21 @@ onUnmounted(() => {
               color="facebook"
               label="Share"
             />
+            
             <MaterialSocialButton
               route=""
               component="pinterest"
               color="pinterest"
               label="Pin it"
             />
+           
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <DefaultFooter />
 </template>
+
+
+
