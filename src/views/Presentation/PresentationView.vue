@@ -59,6 +59,7 @@ export default {
       projects: [],
       searchQuery: '',
       searchResult: [],
+      searchResultUsers: [],
     };
   },
   async created() {
@@ -74,6 +75,8 @@ export default {
       try {
         const response = await axios.get(`http://somebodyhire.me/api/search/projects/?search_query=${this.searchQuery}`);
         this.searchResult = response.data;
+        const responseUsers = await axios.get(`http://somebodyhire.me/api/search/profiles/?search_query=${this.searchQuery}`);
+        this.searchResultUsers = responseUsers.data;
       } catch (error) {
         console.error('There was an error performing the search', error);
       }
@@ -118,17 +121,52 @@ export default {
     <input type="text" v-model="searchQuery" placeholder="Поиск по проектам и людям" />
     <button type="submit" @click="search">Go</button>
 
-    <!-- Результаты поиска по проектам-->
-    <div v-if="searchResult.length > 0">
+  
+    <!-- <div v-if="searchResult.length > 0">
     <h2>Найдено в проектах: {{ searchResult.length }}</h2>
     <div v-for="project in searchResult" :key="project.id">
       <h2>{{ project.title }}</h2>
       <p>{{ project.description }}</p>
     </div>
+    
   </div>
-  <div v-else>
-    <h1>No results found</h1>
-  </div>
+  <div v-if="searchResultUsers.length > 0">
+      <h2>Найдено пользователей: {{ searchResultUsers.length }}</h2>
+      <div v-for="user in searchResultUsers" :key="user.id">
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>  -->
+  
+    <div>
+      <h2>Найдено в проектах: {{ searchResult.length }}</h2>
+      <div v-if="searchResult.length > 0">
+        <div v-for="project in searchResult" :key="project.id">
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.description }}</p>
+        </div>
+      </div>
+      <div v-else>
+        <p>Не найдено проектов</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>Найдено пользователей: {{ searchResultUsers.length }}</h2>
+      <div v-if="searchResultUsers.length > 0">
+        <div v-for="user in searchResultUsers" :key="user.id">
+          <h2>{{ user.username }}</h2>
+          <p>{{ user.email }}</p>
+        </div>
+      </div>
+      <div v-else>
+        <p>Не найдено пользователей</p>
+      </div>
+    </div>
+
+
+  
+
   </div>
 
         <div class="container">
