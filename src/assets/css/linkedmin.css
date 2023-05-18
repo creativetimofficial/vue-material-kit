@@ -2,3 +2,8 @@
     font-family: 'PressStart2P' ;
     src: url('../fonts/PressStart2P-Regular.ttf') format('truetype') ;
 }
+@font-face{
+    font-family: SpaceMono;
+    src:url('./fonts/SpaceMono-Regular.ttf') format('truetype') ;
+  }
+  
