@@ -57,6 +57,8 @@ export default {
   data() {
     return {
       projects: [],
+      searchQuery: '',
+      searchResult: [],
     };
   },
   async created() {
@@ -65,6 +67,16 @@ export default {
       this.projects = response.data;
     } catch (error) {
       console.error('There was an error fetching the projects', error);
+    }
+  },
+  methods: {
+    async search() {
+      try {
+        const response = await axios.get(`http://somebodyhire.me/api/search/projects/?search_query=${this.searchQuery}`);
+        this.searchResult = response.data;
+      } catch (error) {
+        console.error('There was an error performing the search', error);
+      }
     }
   },
 };
@@ -101,22 +113,38 @@ export default {
             </p>
           </div>
         </div>
+        <div>
+          <!-- Тут надо будет заменить на красивую строчку  -->
+    <input type="text" v-model="searchQuery" placeholder="Поиск по проектам и людям" />
+    <button type="submit" @click="search">Go</button>
+
+    <!-- Результаты поиска по проектам-->
+    <div v-if="searchResult.length > 0">
+    <h2>Найдено в проектах: {{ searchResult.length }}</h2>
+    <div v-for="project in searchResult" :key="project.id">
+      <h2>{{ project.title }}</h2>
+      <p>{{ project.description }}</p>
+    </div>
+  </div>
+  <div v-else>
+    <h1>No results found</h1>
+  </div>
+  </div>
 
         <div class="container">
       <div class="row justify-space-between py-2">
-        <div class="col-lg-4 mx-auto">
-          <MaterialInput
-            class="input-group-dynamic mb-4"
-            icon="search"
-            type="text"
-            placeholder="Поиск по проектам или людям"
-          />
-        </div>
+        <div>
+    <div class="col-lg-4 mx-auto">
+      
+    </div>
+
+  </div>
       </div>
     </div>
       </div>
         
     </div>
+    
   </Header>
 
 
@@ -129,9 +157,9 @@ export default {
       <h3>{{ project.title }}</h3>
       <p>{{ project.description }}</p>
     </div>
+  </div>   
   </div>
 
-  </div>
 <!-- 
     <div class="container">
       <div class="row">
