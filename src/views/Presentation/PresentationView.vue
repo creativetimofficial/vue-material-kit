@@ -23,6 +23,7 @@ import Header from "../../examples/Header.vue";
 
 // sections
 import PresentationCounter from "./Sections/PresentationCounter.vue";
+import PresentationSearch from "./Sections/PresentationSearch.vue";
 
 
 //images
@@ -92,11 +93,8 @@ export default {
           </div>
         </div>
         <div>
-          <!-- Тут надо будет заменить на красивую строчку  -->
-    <input type="text" v-model="searchQuery" placeholder="Поиск по проектам и людям" />
-    <button type="submit" @click="search">Go</button>
- 
-
+          <PresentationSearch />
+          
   </div>
   </div>
 </div>
