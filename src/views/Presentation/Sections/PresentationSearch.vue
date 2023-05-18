@@ -9,10 +9,10 @@ const searchResultUsers = ref([]);
 
 const search = async () => {
   try {
-    const projectsResponse = await axios.get(`http://somebodyhire.me/api/projects/?search=${searchQuery.value}`);
+    const projectsResponse = await axios.get(`http://somebodyhire.me/api/search/projects/?search_query=${searchQuery.value}`);
     searchResultProjects.value = projectsResponse.data;
 
-    const usersResponse = await axios.get(`http://somebodyhire.me/api/profiles/?search=${searchQuery.value}`);
+    const usersResponse = await axios.get(`http://somebodyhire.me/api/search/profiles/?search_query=${searchQuery.value}`);
     searchResultUsers.value = usersResponse.data;
   } catch (error) {
     console.error('There was an error fetching the search results', error);
@@ -30,16 +30,10 @@ const search = async () => {
         <input type="text" v-model="searchQuery" placeholder="Поиск по проектам и людям" />
         <button type="submit" @click="search">Go</button>
     </div>
-    <div class="results" v-if="searchResultProjects.length || searchResultUsers.length">
-        <div v-if="searchResultProjects.value.length">
-            <h2>Projects Results</h2>
-            <p>Number of results: {{ searchResultProjects.value.length }}</p>
-        </div>
 
-        <div v-if="searchResultUsers.value.length">
-            <h2>User Profile Results</h2>
-            <p>Number of results: {{ searchResultUsers.value.length }}</p>
-        </div>
+    <div>
+        <h2>Найдено проектов: {{ searchResultProjects.length}} </h2>
+        <h2>Найдено людей: {{ searchResultUsers.length}} </h2>
     
     </div>
         
