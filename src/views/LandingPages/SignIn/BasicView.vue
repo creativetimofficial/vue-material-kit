@@ -122,8 +122,10 @@ export default {
 
                     <div v-else>
                         <!-- This will be displayed if the user is not authenticated -->
-                        <p>Я вас не знаю, идите нафиг</p>
-                    </div>
+                        <p>Ты с какого района?</p>
+                    
+
+
 
                       <div>
                         <input v-model="username" type="text" placeholder="Имя пользователя" />
@@ -142,6 +144,8 @@ export default {
                                       >
                           Войти
                       </button>
+
+                    </div>
                       <button @click="logout">Logout</button>
                     </div>
 
