@@ -34,13 +34,16 @@ const search = async () => {
     <div>
         <h2>Найдено проектов: {{ searchResultProjects.length}} </h2>
         <div v-for = "project in searchResultProjects" :key="project.id">
-            <h3>{{ project.title }}</h3>
+            <h3>{{ project.title }} with ID {{ project.id }}</h3>
             <p>{{ project.description }}</p>
+            <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
+
         </div>
         <h2>Найдено людей: {{ searchResultUsers.length}} </h2>
         <div v-for = "user in searchResultUsers" :key="user.id">
-            <h3>{{ user.username }}</h3>
+            <h3>{{ user.username }} with id {{ user.id }}</h3>
             <p>{{ user.email }}</p>
+            <a :href="`http://somebodyhire.me/profile/${user.id}`">Страница пользователя</a>
             
             
         </div>
