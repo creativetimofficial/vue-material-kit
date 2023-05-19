@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { ref } from "vue";
 import axios from 'axios';
+import { computed } from "vue";
 
 // example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
@@ -13,6 +14,8 @@ import setMaterialInput from "@/assets/js/material-input";
 const username = ref('');
 const password = ref('');
 const errorMessage = ref('');
+
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
 
 
 const login = async () => {
@@ -27,9 +30,11 @@ const login = async () => {
       username: username.value,
       password: password.value,
     };
+
     try {
       const response = await axios.post(url, body, { headers });
       errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${response.status}\nHeaders: ${JSON.stringify(response.headers)}\nBody: ${JSON.stringify(response.data)}`;
+      sessionStorage.setItem('access_token', response.data.access); // Save the access token in sessionStorage (new line)
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code that falls out of the range of 2xx
@@ -43,6 +48,10 @@ const login = async () => {
       }
     }
   }
+};
+
+const logout = () => { // Method to logout the user by clearing the session storage (new function)
+  sessionStorage.removeItem('access_token');
 };
 
 
@@ -106,6 +115,15 @@ export default {
               <div class="card-body">
                 <form role="form" class="text-start">
                   <div>
+                    <div v-if="isAuthenticated">
+                        <!-- This will only be displayed if the user is authenticated -->
+                        <p>Опять Ты!</p>
+                    </div>
+
+                    <div v-else>
+                        <!-- This will be displayed if the user is not authenticated -->
+                        <p>Я вас не знаю, идите нафиг</p>
+                    </div>
 
                       <div>
                         <input v-model="username" type="text" placeholder="Имя пользователя" />
@@ -124,6 +142,7 @@ export default {
                                       >
                           Войти
                       </button>
+                      <button @click="logout">Logout</button>
                     </div>
 
 
@@ -132,10 +151,7 @@ export default {
               </div>
   </div>
                   
-                  
-                  
 
-                  
                   <p class="mt-4 text-sm text-center">
                     Нет аккаунта?
                     <a
