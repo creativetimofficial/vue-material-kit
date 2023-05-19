@@ -25,6 +25,7 @@ import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 import Project from "../views/LandingPages/Project/Project.vue";
 import Profile from "../views/LandingPages/Profile/Profile.vue";
+import TopSecretProject from "../views/LandingPages/Project/TopSecretProject.vue";
 
 
 const router = createRouter({
@@ -40,6 +41,12 @@ const router = createRouter({
       path: '/project/:id',
       name: 'project',
       component: Project
+    },
+
+    {
+      path: '/TopSecret',
+      name: 'topsecretproject',
+      component: TopSecretProject
     },
 
     {

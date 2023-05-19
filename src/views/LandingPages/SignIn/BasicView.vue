@@ -118,6 +118,7 @@ export default {
                     <div v-if="isAuthenticated">
                         <!-- This will only be displayed if the user is authenticated -->
                         <p>Опять Ты!</p>
+                        <button @click="logout">Выход</button>
                     </div>
 
                     <div v-else>
@@ -146,7 +147,7 @@ export default {
                       </button>
 
                     </div>
-                      <button @click="logout">Logout</button>
+                      
                     </div>
 
 
