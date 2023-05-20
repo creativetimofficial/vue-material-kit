@@ -7,7 +7,7 @@ import { ref } from "vue";
 const searchQuery = ref('');
 const searchResultProjects = ref([]);
 const searchResultUsers = ref([]);
-
+const searchButtonIsPressed = ref(false);
 const search = async () => {
   try {
     const projectsResponse = await axios.get(`http://somebodyhire.me/api/search/projects/?search_query=${searchQuery.value}`);
@@ -15,6 +15,7 @@ const search = async () => {
 
     const usersResponse = await axios.get(`http://somebodyhire.me/api/search/profiles/?search_query=${searchQuery.value}`);
     searchResultUsers.value = usersResponse.data;
+    searchButtonIsPressed.value = true;
   } catch (error) {
     console.error('There was an error fetching the search results', error);
   }
@@ -54,7 +55,7 @@ const search = async () => {
     </div>
   </div>
   <div v-else>
-    <div v-if = "searchQuery.length > 0">
+    <div v-if = "searchQuery.length > 0 && searchButtonIsPressed === true" >
       <h2 class="result-header">Ничего не найдено</h2>
     </div>
   </div>
