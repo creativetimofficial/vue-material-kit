@@ -35,25 +35,24 @@ const search = async () => {
     <button class="searchButton" type="submit" @click="search">Go</button>
   </div>
 
-    <div>
-        <h2>Найдено проектов: {{ searchResultProjects.length}} </h2>
-        <div v-for = "project in searchResultProjects" :key="project.id">
-            <h3>{{ project.title }} with ID {{ project.id }}</h3>
-            <p>{{ project.description }}</p>
-            <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
-
-        </div>
-        <h2>Найдено людей: {{ searchResultUsers.length}} </h2>
-        <div v-for = "user in searchResultUsers" :key="user.id">
-            <h3>{{ user.username }} with id {{ user.id }}</h3>
-            <p>{{ user.email }}</p>
-            <a :href="`http://somebodyhire.me/profile/${user.id}`">Страница пользователя</a>
-            
-            
-        </div>
-
+  <div>
+    <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
+    <div class="result-grid">
+      <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
+        <h3>{{ project.title }} with ID {{ project.id }}</h3>
+        <p>{{ project.description }}</p>
+        <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
+      </div>
     </div>
-        
+    <h2 class="result-header">Найдено людей: {{ searchResultUsers.length}} </h2>
+    <div class="result-grid">
+      <div class="result-card" v-for="user in searchResultUsers" :key="user.id">
+        <h3>{{ user.username }} with id {{ user.id }}</h3>
+        <p>{{ user.email }}</p>
+        <a :href="`http://somebodyhire.me/profile/${user.id}`">Страница пользователя</a>
+      </div>
+    </div>
+  </div>
 
 
   </template>
@@ -97,5 +96,42 @@ const search = async () => {
   /* Changes the background color of the button when hovering over it */
   background-color: #25581e;
 }
+.result-header {
+  color: #fff;
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.result-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.result-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  width: calc(100% / 3 - 20px);
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 992px) {
+  .result-card {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .result-card {
+    width: 100%;
+  }
+}
+
 </style>
   
