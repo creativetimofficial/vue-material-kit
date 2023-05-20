@@ -13,6 +13,9 @@ import Projects from "../views/LandingPages/Project/AllProjects.vue";
 import Profiles from "../views/LandingPages/Profile/AllProfiles.vue";
 import ViewMyProfile from "../views/LandingPages/Profile/AdmireProfile.vue";
 import EditMyProfile from "../views/LandingPages/Profile/EditProfile.vue";
+import CreateProject from "../views/LandingPages/Project/AddProject.vue";
+import EditProject from "../views/LandingPages/Project/EditProject.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +36,18 @@ const router = createRouter({
       path: '/projects',
       name: 'projects',
       component: Projects
+    },
+
+    {
+      path: '/CreateProject',
+      name: 'createproject',
+      component: CreateProject
+    },
+    
+    {
+      path: '/EditProject/:id',
+      name: 'editproject',
+      component: EditProject
     },
 
     {
