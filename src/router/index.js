@@ -28,6 +28,9 @@ import Profile from "../views/LandingPages/Profile/Profile.vue";
 import TopSecretProject from "../views/LandingPages/Project/TopSecretProject.vue";
 import BasicRegister from "../views/LandingPages/SignIn/BasicRegister.vue";
 import ForgotPassword from "../views/LandingPages/SignIn/ForgotPassword.vue";
+import Projects from "../views/LandingPages/Project/AllProjects.vue";
+import Profiles from "../views/LandingPages/Profile/AllProfiles.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +48,12 @@ const router = createRouter({
     },
 
     {
+      path: '/projects',
+      name: 'projects',
+      component: Projects
+    },
+
+    {
       path: '/TopSecret',
       name: 'topsecretproject',
       component: TopSecretProject
@@ -54,6 +63,12 @@ const router = createRouter({
       path: '/profile/:id',
       name: 'profile',
       component: Profile
+    },
+
+    {
+      path: '/profiles',
+      name: 'profiles',
+      component: Profiles
     },
 
     {
