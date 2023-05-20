@@ -82,7 +82,7 @@ const search = async () => {
   /* Changes the font size */
   font-size: 16px;
   /* Changes the background color of the button */
-  background-color: #007BFF;
+  background-color: #3d9132;
   /* Changes the color of the text inside the button */
   color: white;
   /* Makes the border corners rounded */
@@ -95,7 +95,7 @@ const search = async () => {
 
 .searchButton:hover {
   /* Changes the background color of the button when hovering over it */
-  background-color: #0056b3;
+  background-color: #25581e;
 }
 </style>
   
