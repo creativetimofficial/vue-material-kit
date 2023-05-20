@@ -16,7 +16,8 @@ const password = ref('');
 const errorMessage = ref('');
 
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
-
+const userId = computed(() => sessionStorage.getItem('user_id'));
+const loggedUserName = computed(() => sessionStorage.getItem('username'));
 
 const login = async () => {
   if (!username.value || !password.value) {
@@ -33,27 +34,29 @@ const login = async () => {
 
     try {
       const response = await axios.post(url, body, { headers });
-      errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${response.status}\nHeaders: ${JSON.stringify(response.headers)}\nBody: ${JSON.stringify(response.data)}`;
-      sessionStorage.setItem('access_token', response.data.access); // Save the access token in sessionStorage (new line)
+      // Removed debug information from output
+      sessionStorage.setItem('access_token', response.data.access); 
+      sessionStorage.setItem('username', username.value); // Save username in sessionStorage
+      sessionStorage.setItem('user_id', response.data.id); // Save the user id in sessionStorage
+      location.reload(); // Refresh page
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code that falls out of the range of 2xx
-        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${error.response.status}\nHeaders: ${JSON.stringify(error.response.headers)}\nBody: ${JSON.stringify(error.response.data)}`;
+        errorMessage.value = "Incorrect login or password."; // Simplified error message
       } else if (error.request) {
-        // The request was made but no response was received
-        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: No response received from server. Please try again later.`;
+        errorMessage.value = "No response received from server. Please try again later.";
       } else {
-        // Something happened in setting up the request that triggered an error
-        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: ${error.message}`;
+        errorMessage.value = error.message;
       }
     }
   }
 };
 
-const logout = () => { // Method to logout the user by clearing the session storage (new function)
+const logout = () => { 
   sessionStorage.removeItem('access_token');
+  sessionStorage.removeItem('username'); // Also clear the username from sessionStorage
+  sessionStorage.removeItem('user_id');
+  location.reload(); // Refresh page after logout
 };
-
 
 onMounted(() => {
   setMaterialInput();
@@ -117,7 +120,7 @@ export default {
                   <div>
                     <div v-if="isAuthenticated">
                         <!-- This will only be displayed if the user is authenticated -->
-                        <p>Вы вошли в аккаунт </p>
+                        <p>Вы вошли в аккаунт {{ loggedUserName }}, ваш ID {{ userId }}</p>
                         <button @click="logout">Выход</button>
                     </div>
 
