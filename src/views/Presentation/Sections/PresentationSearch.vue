@@ -35,7 +35,7 @@ const search = async () => {
     <button class="searchButton" type="submit" @click="search">Go</button>
   </div>
 
-  <div>
+  <div v-if="searchResultProjects.length > 0 || searchResultUsers.length > 0">
     <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
     <div class="result-grid">
       <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
@@ -53,6 +53,12 @@ const search = async () => {
       </div>
     </div>
   </div>
+  <div v-else>
+    <div v-if = "searchQuery.length > 0">
+      <h2 class="result-header">Ничего не найдено</h2>
+    </div>
+  </div>
+
 
 
   </template>
