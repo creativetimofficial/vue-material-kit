@@ -22,7 +22,6 @@ import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
 
 // sections
-import PresentationCounter from "./Sections/PresentationCounter.vue";
 import PresentationSearch from "./Sections/PresentationSearch.vue";
 
 
@@ -46,21 +45,24 @@ onUnmounted(() => {
 
 <script>
 import axios from 'axios';
+import PresentationCounter from "./Sections/PresentationCounter.vue";
 
 export default {
-  data() {
-    return {
-      projects: [],
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://somebodyhire.me/api/projects/');
-      this.projects = response.data;
-    } catch (error) {
-      console.error('There was an error fetching the projects', error);
-    }
-  },
+    data() {
+        return {
+            projects: [],
+        };
+    },
+    async created() {
+        try {
+            const response = await axios.get("http://somebodyhire.me/api/projects/");
+            this.projects = response.data;
+        }
+        catch (error) {
+            console.error("There was an error fetching the projects", error);
+        }
+    },
+    components: { PresentationCounter }
 };
 </script>
 
@@ -114,19 +116,7 @@ export default {
   </div>
 </div>
 </Header>
-
-
-
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
-    <PresentationCounter />
-    <div class="project-container">
-    <div class="project-card" v-for="project in projects" :key="project.id">
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
-    </div>
-  </div>   
-  </div>
-
+<PresentationCounter />
   <DefaultFooter />
 </template>
 
