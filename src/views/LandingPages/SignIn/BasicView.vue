@@ -1,21 +1,88 @@
 <script setup>
 import { onMounted } from "vue";
+import { ref } from "vue";
+import axios from 'axios';
+import { computed } from "vue";
 
 // example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
 
-//Vue Material Kit 2 components
-import MaterialInput from "@/components/MaterialInput.vue";
-import MaterialSwitch from "@/components/MaterialSwitch.vue";
-import MaterialButton from "@/components/MaterialButton.vue";
-
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
+
+const username = ref('');
+const password = ref('');
+const errorMessage = ref('');
+
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
+
+
+const login = async () => {
+  if (!username.value || !password.value) {
+    errorMessage.value = "Please fill in both fields.";
+  } else {
+    const url = 'http://somebodyhire.me/api/token/';
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const body = {
+      username: username.value,
+      password: password.value,
+    };
+
+    try {
+      const response = await axios.post(url, body, { headers });
+      errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${response.status}\nHeaders: ${JSON.stringify(response.headers)}\nBody: ${JSON.stringify(response.data)}`;
+      sessionStorage.setItem('access_token', response.data.access); // Save the access token in sessionStorage (new line)
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code that falls out of the range of 2xx
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${error.response.status}\nHeaders: ${JSON.stringify(error.response.headers)}\nBody: ${JSON.stringify(error.response.data)}`;
+      } else if (error.request) {
+        // The request was made but no response was received
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: No response received from server. Please try again later.`;
+      } else {
+        // Something happened in setting up the request that triggered an error
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: ${error.message}`;
+      }
+    }
+  }
+};
+
+const logout = () => { // Method to logout the user by clearing the session storage (new function)
+  sessionStorage.removeItem('access_token');
+};
+
+
 onMounted(() => {
   setMaterialInput();
 });
 </script>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      errorMessage: '',
+    };
+  },
+  methods: {
+    login() {
+      if (!this.username || !this.password) {
+        this.errorMessage = "Please fill in both fields.";
+      } else {
+        // Implement login logic here
+        this.errorMessage = `Can't login now, you are trying to sign in with login: ${this.username} and password: ${this.password}`;
+      }
+    },
+  },
+};
+</script>
+
+
 <template>
   <DefaultNavbar transparent />
   <Header>
@@ -41,64 +108,61 @@ onMounted(() => {
                   <h4
                     class="text-white font-weight-bolder text-center mt-2 mb-0"
                   >
-                    Sign in
+                    Вход
                   </h4>
-                  <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="card-body">
                 <form role="form" class="text-start">
-                  <MaterialInput
-                    id="email"
-                    class="input-group-outline my-3"
-                    :label="{ text: 'Email', class: 'form-label' }"
-                    type="email"
-                  />
-                  <MaterialInput
-                    id="password"
-                    class="input-group-outline mb-3"
-                    :label="{ text: 'Password', class: 'form-label' }"
-                    type="password"
-                  />
-                  <MaterialSwitch
-                    class="d-flex align-items-center mb-3"
-                    id="rememberMe"
-                    labelClass="mb-0 ms-3"
-                    checked
-                    >Remember me</MaterialSwitch
-                  >
+                  <div>
+                    <div v-if="isAuthenticated">
+                        <!-- This will only be displayed if the user is authenticated -->
+                        <p>Опять Ты!</p>
+                        <button @click="logout">Выход</button>
+                    </div>
 
-                  <div class="text-center">
-                    <MaterialButton
-                      class="my-4 mb-2"
-                      variant="gradient"
-                      color="success"
-                      fullWidth
-                      >Sign in</MaterialButton
-                    >
-                  </div>
+                    <div v-else>
+                        <!-- This will be displayed if the user is not authenticated -->
+                        <p>Ты с какого района?</p>
+                    
+
+
+
+                      <div>
+                        <input v-model="username" type="text" placeholder="Имя пользователя" />
+                      </div>
+
+                      <div>
+                        <input v-model="password" type="password" placeholder="Пароль" />
+                      </div>
+
+
+                    <div class="text-center">
+                      <button
+                        type="button"
+                        class="btn bg-gradient-dark w-100 my-4 mb-2"
+                        @click="login"
+                                      >
+                          Войти
+                      </button>
+
+                    </div>
+                      
+                    </div>
+
+
+              <div v-if="errorMessage">
+                      <p>{{ errorMessage }}</p>
+              </div>
+  </div>
+                  
+
                   <p class="mt-4 text-sm text-center">
-                    Don't have an account?
+                    Нет аккаунта?
                     <a
                       href="#"
                       class="text-success text-gradient font-weight-bold"
-                      >Sign up</a
+                      >Пока что нахер идите</a
                     >
                   </p>
                 </form>
@@ -107,65 +171,6 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <footer class="footer position-absolute bottom-2 py-2 w-100">
-        <div class="container">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-12 col-md-6 my-auto">
-              <div
-                class="copyright text-center text-sm text-white text-lg-start"
-              >
-                © {{ new Date().getFullYear() }}, made with
-                <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a
-                  href="https://www.creative-tim.com"
-                  class="font-weight-bold text-white"
-                  target="_blank"
-                  >Creative Tim</a
-                >
-                for a better web.
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <ul
-                class="nav nav-footer justify-content-center justify-content-lg-end"
-              >
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Creative Tim</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/presentation"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >About Us</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/blog"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Blog</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/license"
-                    class="nav-link pe-0 text-white"
-                    target="_blank"
-                    >License</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   </Header>
 </template>

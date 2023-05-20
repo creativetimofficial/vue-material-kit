@@ -14,7 +14,7 @@
 </style>
 
 <script setup>
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, computed, } from "vue";
 
 //example components
 import NavbarDefault from "../..//examples/navbars/NavbarDefault.vue";
@@ -28,6 +28,9 @@ import PresentationSearch from "./Sections/PresentationSearch.vue";
 
 //images
 import vueMkHeader from "@/assets/img/space-background.jpg";
+
+//authentification
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
 
 //hooks
 const body = document.getElementsByTagName("body")[0];
@@ -86,6 +89,18 @@ export default {
             >
               LinkedMin
             </h1>
+            <div v-if="isAuthenticated">
+                <h1
+                class="text-white pt-3 mt-n5 me-2"
+                :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif' }"
+                > 
+                Тариф Премиум</h1>
+            </div>
+
+              <div v-else>
+                <p>Тариф Бесплатный</p>
+              </div>
+
             <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
             Показывай себя и свои проекты.  
              Находи вдохновение, коллег и новые знания.
