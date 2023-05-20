@@ -108,7 +108,7 @@ export default {
                   <h4
                     class="text-white font-weight-bolder text-center mt-2 mb-0"
                   >
-                    Вход
+                  Регистрация
                   </h4>
                 </div>
               </div>
@@ -117,13 +117,13 @@ export default {
                   <div>
                     <div v-if="isAuthenticated">
                         <!-- This will only be displayed if the user is authenticated -->
-                        <p>Вы вошли в аккаунт </p>
+                        <p>Опять Ты!</p>
                         <button @click="logout">Выход</button>
                     </div>
 
                     <div v-else>
                         <!-- This will be displayed if the user is not authenticated -->
-                        <p>Пожалуйста, введите логин и пароль</p>
+                        <p>Ты с какого района?</p>
                     
 
 
@@ -158,19 +158,11 @@ export default {
                   
 
                   <p class="mt-4 text-sm text-center">
-                    Нет аккаунта?
+                    Уже есть аккаунт?
                     <a
-                      href="/register"
+                      href="/pages/landing-pages/basic"
                       class="text-success text-gradient font-weight-bold"
-                      >Зарегистироваться</a
-                    >
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                   
-                    <a
-                      href="/forgot"
-                      class="text-success text-gradient font-weight-bold"
-                      >Забыли пароль</a
+                      >Войти</a
                     >
                   </p>
                 </form>

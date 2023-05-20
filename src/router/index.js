@@ -26,7 +26,8 @@ import ElTypography from "../layouts/sections/elements/typography/TypographyView
 import Project from "../views/LandingPages/Project/Project.vue";
 import Profile from "../views/LandingPages/Profile/Profile.vue";
 import TopSecretProject from "../views/LandingPages/Project/TopSecretProject.vue";
-
+import BasicRegister from "../views/LandingPages/SignIn/BasicRegister.vue";
+import ForgotPassword from "../views/LandingPages/SignIn/ForgotPassword.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,18 @@ const router = createRouter({
       path: '/profile/:id',
       name: 'profile',
       component: Profile
+    },
+
+    {
+      path: "/register",
+      name: "register",
+      component: BasicRegister,
+    },
+
+    {
+      path: "/forgot",
+      name: "forgot",
+      component: ForgotPassword,
     },
 
     {
