@@ -30,6 +30,8 @@ import vueMkHeader from "@/assets/img/space-background.jpg";
 
 //authentification
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
+const userId = computed(() => sessionStorage.getItem('user_id'));
+const loggedUserName = computed(() => sessionStorage.getItem('username'));
 
 //hooks
 const body = document.getElementsByTagName("body")[0];
@@ -87,16 +89,23 @@ export default {
           <div class="col-lg-7 text-center mx-auto position-relative">
             <h1
               class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ' }"
+              :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }"
             >
               LinkedMin
             </h1>
+            <p>
+
+
+
+
+              
+            </p>
             <div v-if="isAuthenticated">
-                <h1
+                <h2
                 class="text-white pt-3 mt-n5 me-2"
                 :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif' }"
                 > 
-                Тариф Премиум</h1>
+                Привет, {{ loggedUserName }}</h2>
             </div>
 
               <div v-else>
