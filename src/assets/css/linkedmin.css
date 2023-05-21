@@ -6,4 +6,6 @@
     font-family: SpaceMono;
     src:url('./fonts/SpaceMono-Regular.ttf') format('truetype') ;
   }
-  
+h1{
+    font-family: 'PressStart2P';
+}
