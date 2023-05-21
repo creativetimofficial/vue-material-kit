@@ -13,49 +13,48 @@ import setMaterialInput from "@/assets/js/material-input";
 
 const username = ref('');
 const password = ref('');
+const email = ref(''); // Add email
 const errorMessage = ref('');
 
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
-const userId = computed(() => sessionStorage.getItem('user_id'));
-const loggedUserName = computed(() => sessionStorage.getItem('username'));
 
-const login = async () => {
-  if (!username.value || !password.value) {
-    errorMessage.value = "Please fill in both fields.";
+
+
+
+// New register function
+const register = async () => {
+  if (!username.value || !password.value || !email.value) {
+    errorMessage.value = "Please fill in all fields.";
   } else {
-    const url = 'http://somebodyhire.me/api/token/';
+    const url = 'http://somebodyhire.me/api/register/';
     const headers = {
       'Content-Type': 'application/json',
     };
     const body = {
       username: username.value,
       password: password.value,
+      email: email.value, // include email in the request body
+      is_staff: false
     };
 
     try {
       const response = await axios.post(url, body, { headers });
-      // Removed debug information from output
-      sessionStorage.setItem('access_token', response.data.access); 
-      sessionStorage.setItem('username', username.value); // Save username in sessionStorage
-      sessionStorage.setItem('user_id', response.data.id); // Save the user id in sessionStorage
-      location.reload(); // Refresh page
+      errorMessage.value = `Registration successful. Welcome ${response.data.username}!`; // Display success message
+      sessionStorage.setItem('access_token', response.data.token); // Save the access token in sessionStorage
     } catch (error) {
       if (error.response) {
-        errorMessage.value = "Incorrect login or password."; // Simplified error message
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nResponse:\nStatus: ${error.response.status}\nHeaders: ${JSON.stringify(error.response.headers)}\nBody: ${JSON.stringify(error.response.data)}`;
       } else if (error.request) {
-        errorMessage.value = "No response received from server. Please try again later.";
+        // The request was made but no response was received
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: No response received from server. Please try again later.`;
       } else {
-        errorMessage.value = error.message;
+        // Something happened in setting up the request that triggered an error
+        errorMessage.value = `Request:\nPOST ${url}\nHeaders: ${JSON.stringify(headers)}\nBody: ${JSON.stringify(body)}\n\nError: ${error.message}`;
       }
     }
   }
-};
-
-const logout = () => { 
-  sessionStorage.removeItem('access_token');
-  sessionStorage.removeItem('username'); // Also clear the username from sessionStorage
-  sessionStorage.removeItem('user_id');
-  location.reload(); // Refresh page after logout
 };
 
 onMounted(() => {
@@ -69,17 +68,16 @@ export default {
     return {
       username: '',
       password: '',
+      email: '',
       errorMessage: '',
     };
   },
   methods: {
-    login() {
-      if (!this.username || !this.password) {
-        this.errorMessage = "Please fill in both fields.";
-      } else {
-        // Implement login logic here
-        this.errorMessage = `Can't login now, you are trying to sign in with login: ${this.username} and password: ${this.password}`;
-      }
+    register() {
+      this.username = username.value;
+      this.password = password.value;
+      this.email = email.value;
+      register(); // Call the register function
     },
   },
 };
@@ -111,22 +109,17 @@ export default {
                   <h4
                     class="text-white font-weight-bolder text-center mt-2 mb-0"
                   >
-                    Вход
+                  Регистрация
                   </h4>
                 </div>
               </div>
               <div class="card-body">
                 <form role="form" class="text-start">
                   <div>
-                    <div v-if="isAuthenticated">
-                        <!-- This will only be displayed if the user is authenticated -->
-                        <p>Вы вошли в аккаунт {{ loggedUserName }}, ваш ID {{ userId }}</p>
-                        <button @click="logout">Выход</button>
-                    </div>
-
-                    <div v-else>
+                    <div>
                         <!-- This will be displayed if the user is not authenticated -->
-                        <p>Пожалуйста, введите логин и пароль</p>
+                        <p>Пожалуйста, зарегистрируйтесь</p>
+                        <p>Пароль должен быть не менее 8 символов, и не быть похожим на имя пользователя или адрес почты</p>
                     
 
 
@@ -136,18 +129,23 @@ export default {
                       </div>
 
                       <div>
+                        <input v-model="email" type="email" placeholder="Email" />
+                      </div>
+
+
+                      <div>
                         <input v-model="password" type="password" placeholder="Пароль" />
                       </div>
 
 
                     <div class="text-center">
                       <button
-                        type="button"
-                        class="btn bg-gradient-dark w-100 my-4 mb-2"
-                        @click="login"
-                                      >
-                          Войти
-                      </button>
+  type="button"
+  class="btn bg-gradient-dark w-100 my-4 mb-2"
+  @click="register"
+>
+  Зарегистрироваться
+</button>
 
                     </div>
                       
@@ -161,19 +159,11 @@ export default {
                   
 
                   <p class="mt-4 text-sm text-center">
-                    Нет аккаунта?
+                    Уже есть аккаунт?
                     <a
-                      href="/register"
+                      href="/pages/landing-pages/basic"
                       class="text-success text-gradient font-weight-bold"
-                      >Зарегистироваться</a
-                    >
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                   
-                    <a
-                      href="/forgot"
-                      class="text-success text-gradient font-weight-bold"
-                      >Забыли пароль</a
+                      >Войти</a
                     >
                   </p>
                 </form>

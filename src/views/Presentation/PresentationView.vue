@@ -22,7 +22,6 @@ import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
 
 // sections
-import PresentationCounter from "./Sections/PresentationCounter.vue";
 import PresentationSearch from "./Sections/PresentationSearch.vue";
 
 
@@ -31,6 +30,8 @@ import vueMkHeader from "@/assets/img/space-background.jpg";
 
 //authentification
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
+const userId = computed(() => sessionStorage.getItem('user_id'));
+const loggedUserName = computed(() => sessionStorage.getItem('username'));
 
 //hooks
 const body = document.getElementsByTagName("body")[0];
@@ -46,21 +47,24 @@ onUnmounted(() => {
 
 <script>
 import axios from 'axios';
+import PresentationCounter from "./Sections/PresentationCounter.vue";
 
 export default {
-  data() {
-    return {
-      projects: [],
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://somebodyhire.me/api/projects/');
-      this.projects = response.data;
-    } catch (error) {
-      console.error('There was an error fetching the projects', error);
-    }
-  },
+    data() {
+        return {
+            projects: [],
+        };
+    },
+    async created() {
+        try {
+            const response = await axios.get("http://somebodyhire.me/api/projects/");
+            this.projects = response.data;
+        }
+        catch (error) {
+            console.error("There was an error fetching the projects", error);
+        }
+    },
+    components: { PresentationCounter }
 };
 </script>
 
@@ -85,16 +89,23 @@ export default {
           <div class="col-lg-7 text-center mx-auto position-relative">
             <h1
               class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ' }"
+              :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }"
             >
               LinkedMin
             </h1>
+            <p>
+
+
+
+
+              
+            </p>
             <div v-if="isAuthenticated">
-                <h1
+                <h2
                 class="text-white pt-3 mt-n5 me-2"
                 :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif' }"
                 > 
-                Тариф Премиум</h1>
+                Привет, {{ loggedUserName }}</h2>
             </div>
 
               <div v-else>
@@ -114,19 +125,7 @@ export default {
   </div>
 </div>
 </Header>
-
-
-
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
-    <PresentationCounter />
-    <div class="project-container">
-    <div class="project-card" v-for="project in projects" :key="project.id">
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
-    </div>
-  </div>   
-  </div>
-
+<PresentationCounter />
   <DefaultFooter />
 </template>
 

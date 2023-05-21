@@ -7,7 +7,7 @@ import { ref } from "vue";
 const searchQuery = ref('');
 const searchResultProjects = ref([]);
 const searchResultUsers = ref([]);
-const searchButtonIsPressed = ref(false);
+
 const search = async () => {
   try {
     const projectsResponse = await axios.get(`http://somebodyhire.me/api/search/projects/?search_query=${searchQuery.value}`);
@@ -15,36 +15,23 @@ const search = async () => {
 
     const usersResponse = await axios.get(`http://somebodyhire.me/api/search/profiles/?search_query=${searchQuery.value}`);
     searchResultUsers.value = usersResponse.data;
-    searchButtonIsPressed.value = true;
   } catch (error) {
     console.error('There was an error fetching the search results', error);
   }
 };
 
 
-
+onMounted(() => {
+  search();
+});
 
 </script>
 
 
 <template>
-    <div class="searchBar">
-    <!-- Added @keyup.enter="search" to enable searching by pressing Enter key -->
-    <!-- Added class searchInput for styling -->
-    <input class="searchInput" type="text" v-model="searchQuery" @keyup.enter="search" placeholder="Поиск по проектам и людям" />
-    <!-- Added class searchButton for styling -->
-    <button class="searchButton" type="submit" @click="search">Go</button>
-  </div>
 
-  <div v-if="searchResultProjects.length > 0 || searchResultUsers.length > 0">
-    <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
-    <div class="result-grid">
-      <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
-        <h3>{{ project.title }} with ID {{ project.id }}</h3>
-        <p>{{ project.description }}</p>
-        <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
-      </div>
-    </div>
+  <div>
+    
     <h2 class="result-header">Найдено людей: {{ searchResultUsers.length}} </h2>
     <div class="result-grid">
       <div class="result-card" v-for="user in searchResultUsers" :key="user.id">
@@ -54,12 +41,6 @@ const search = async () => {
       </div>
     </div>
   </div>
-  <div v-else>
-    <div v-if = "searchQuery.length > 0 && searchButtonIsPressed === true" >
-      <h2 class="result-header">Ничего не найдено</h2>
-    </div>
-  </div>
-
 
 
   </template>
@@ -141,4 +122,3 @@ const search = async () => {
 }
 
 </style>
-  
