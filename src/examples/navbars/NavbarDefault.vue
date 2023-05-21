@@ -346,6 +346,19 @@ watch(
                         >Рассказ о том, какой я классный</span
                       >
                     </a>
+                    <a
+                      class="dropdown-item py-2 ps-3 border-radius-md"
+                      href="/CreateProject"
+                    >
+                      <h6
+                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                      >
+                        Создать проект
+                      </h6>
+                      <span class="text-sm"
+                        >Чтобы стать ещё более классным</span
+                      >
+                    </a>
                   </li>
 
 

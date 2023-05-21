@@ -42,8 +42,17 @@ axios.interceptors.response.use((response) => {
 const createProject = async () => {
     try {
         const headers = { 'Authorization': `Bearer ${token.value}` };
-        await axios.post('http://somebodyhire.me/api/projects/create/', projectData.value, { headers });
-        router.push('/projects');
+        const data = {
+            title: projectData.value.title,
+            description: projectData.value.description,
+            demo_link: projectData.value.demo_link,
+            source_link: projectData.value.source_link,
+            vote_total: projectData.value.vote_total,
+            vote_ratio: projectData.value.vote_ratio,
+            owner: userId.value
+        };
+        const response = await axios.post('http://somebodyhire.me/api/projects/create/', data, { headers });
+        router.push(`/project/${response.data.id}`);
     } catch (error) {
         debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
         console.error(error);
