@@ -119,7 +119,6 @@ watch(
         ]"
         :to="{ name: 'presentation' }"
         rel="tooltip"
-        title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
         LinkedMin
@@ -133,7 +132,6 @@ watch(
         "
         to="/"
         rel="tooltip"
-        title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
       LinkedMin
@@ -172,13 +170,15 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i
+             <!-- <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >dashboard</i
-              >
-              Пользователи
-              <img
+              >-->
+
+              Пользователи          
+
+              <!--<img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -187,45 +187,32 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />
+              />-->
             </a>
             <div
               class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
-              aria-labelledby="dropdownMenuPages"
-            >
+              aria-labelledby="dropdownMenuPages">
+
               <div class="row d-none d-lg-block">
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все пользователи
-                      </div>
                       <RouterLink
                         :to="{ name: 'profiles' }"
-                        class="dropdown-item border-radius-md"
-                      >
+                        class="dropdown-item border-radius-md">
                         <span>Все пользователи</span>
                       </RouterLink>
-
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="d-lg-none">
-                <div
-                  class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0"
-                >
-                 Все пользователи
-                </div>
                 <RouterLink
                   :to="{ name: 'profiles' }"
-                  class="dropdown-item border-radius-md"
-                >
+                  class="dropdown-item border-radius-md">
                   <span>Все пользователи</span>
                 </RouterLink>
-              
               </div>
             </div>
           </li>
@@ -240,13 +227,13 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i
+              <!--<i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >dashboard</i
-              >
+              >-->
               Проекты
-              <img
+              <!--<img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -255,7 +242,7 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />
+              />-->
             </a>
             <div
               class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
@@ -265,11 +252,6 @@ watch(
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все проекты
-                      </div>
                       <RouterLink
                         :to="{ name: 'projects' }"
                         class="dropdown-item border-radius-md"
@@ -282,15 +264,9 @@ watch(
                 </div>
               </div>
               <div class="d-lg-none">
-                <div
-                  class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0"
-                >
-                 Все проекты
-                </div>
                 <RouterLink
                   :to="{ name: 'projects' }"
-                  class="dropdown-item border-radius-md"
-                >
+                  class="dropdown-item border-radius-md">
                   <span>Все проекты</span>
                 </RouterLink>
               
@@ -307,15 +283,14 @@ watch(
               :class="getTextColor()"
               id="dropdownMenuDocs"
               data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i
+              aria-expanded="false">
+             <!-- <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >article</i
-              >
+              >-->
               Профиль
-              <img
+              <!--<img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -324,7 +299,7 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />
+              />-->
             </a>
             <div
               class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg"
@@ -337,14 +312,8 @@ watch(
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/ViewMyProfile"
                     >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Мой Профиль
-                      </h6>
-                      <span class="text-sm"
-                        >Рассказ о том, какой я классный</span
-                      >
+                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"> Мой Профиль </h6>
+                      <span class="text-sm">Рассказ о том, какой я классный</span>
                     </a>
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
@@ -360,28 +329,21 @@ watch(
                       >
                     </a>
                   </li>
-
-
                 </ul>
               </div>
+
               <div class="row d-lg-none">
                 <div class="col-md-12 g-0">
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="/ViewMyProfile"
-                  >
-                    <h6
-                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                    >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md"
+                    href="/ViewMyProfile">
+                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
                       Мой профиль
                     </h6>
-                    <span class="text-sm"
-                      >Рассказ о том, какой я классный</span
-                    >
+                    <span class="text-sm">Рассказ о том, какой я классный</span>
                   </a>
-
                 </div>
               </div>
+              
             </div>
           </li>
           
