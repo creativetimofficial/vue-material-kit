@@ -46,6 +46,7 @@ onMounted(async() => {
         <h2>{{ profileData.username }}</h2>
         <p>{{ profileData.email }}</p>
         <P>Имя: {{ profileData.name }}</P>
+        <img :src="profileData.profile_image" alt="Profile Image">
         <p>Местоположение: {{ profileData.location }}</p>
         <p>Краткое описание: {{ profileData.short_intro }}</p>
         <p>Биография: {{ profileData.bio }}</p>
