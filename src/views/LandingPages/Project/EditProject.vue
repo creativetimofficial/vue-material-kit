@@ -91,6 +91,11 @@ onMounted(async() => {
     <NavbarDefault />
     <div class="profile-container">
         <H1> Страница Редактирования Проекта {{ projectId }}</H1>
+        <div v-if="!isAuthenticated">
+            <h1>Вы не авторизованы</h1>
+        </div>
+        <div v-else>
+            <div v-if = "userId == projectData.owner">
         <h1>User Profile: {{ loggedUserName }}</h1>
         <textarea readonly v-model="debugText"></textarea>
         <input type="text" v-model="projectData.title" placeholder="Title">
@@ -100,7 +105,11 @@ onMounted(async() => {
         <textarea v-model="projectData.tags" placeholder="Tags"></textarea>
         <button @click="updateProject" class="btn-submit">Update</button>
         <button @click="cancelUpdate" class="btn-cancel">Cancel</button>
-        
+            </div>
+            <div v-else>
+                <h1>Вы не являетесь владельцем проекта</h1>
+            </div>
+        </div>
     </div>
 </template>
 
