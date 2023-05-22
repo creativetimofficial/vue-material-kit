@@ -170,15 +170,15 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-             <!-- <i
+             <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >dashboard</i
-              >-->
+              >
 
               Пользователи          
 
-              <!--<img
+              <img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -187,7 +187,7 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />-->
+              />
             </a>
             <div
               class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
@@ -197,6 +197,11 @@ watch(
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Все пользователи
+                      </div>
                       <RouterLink
                         :to="{ name: 'profiles' }"
                         class="dropdown-item border-radius-md">
@@ -227,13 +232,13 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <!--<i
+              <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >dashboard</i
-              >-->
+              >
               Проекты
-              <!--<img
+              <img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -242,7 +247,7 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />-->
+              />
             </a>
             <div
               class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
@@ -252,6 +257,11 @@ watch(
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Все проекты
+                      </div>
                       <RouterLink
                         :to="{ name: 'projects' }"
                         class="dropdown-item border-radius-md"
@@ -300,13 +310,13 @@ watch(
               id="dropdownMenuDocs"
               data-bs-toggle="dropdown"
               aria-expanded="false">
-             <!-- <i
+             <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >article</i
-              >-->
+              >
               Профиль
-              <!--<img
+              <img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -315,7 +325,7 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />-->
+              />
             </a>
             <div
               class="dropdown-menu dropdown-menu-end dropdown-menu-animation dropdown-md mt-0 mt-lg-3 p-3 border-radius-lg"
@@ -328,7 +338,14 @@ watch(
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/ViewMyProfile"
                     >
-
+                    <h6
+                    class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                  >
+                    Мой профиль
+                  </h6>
+                  <span class="text-sm"
+                    >Перейти в мой профиль</span
+                  >
                     </a>
 
                     <a
