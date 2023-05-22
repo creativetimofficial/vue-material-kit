@@ -36,7 +36,18 @@ const processProfileData = (data) => {
 };
 
 axios.interceptors.request.use((request) => {
-  debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
+  if (request.data instanceof FormData) {
+    const formData = request.data;
+    for (let [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        debugText.value += `\nFile being sent: ${value.name}, size: ${value.size} bytes`;
+      } else {
+        debugText.value += `\n${key}: ${value}`;
+      }
+    }
+  } else {
+    debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
+  }
   return request;
 });
 
@@ -56,7 +67,10 @@ const onFileChange = (event) => {
 const updateProfile = async () => {
   try {
     const tokenValue = token.value;
-    const headers = { 'Authorization': `Bearer ${tokenValue}` };
+    const headers = { 
+      'Authorization': `Bearer ${tokenValue}`,
+      'Content-Type': 'multipart/form-data'
+    };
 
     // Create a new FormData object
     const formData = new FormData();
@@ -67,7 +81,7 @@ const updateProfile = async () => {
     });
 
     // Append the image file
-    formData.append('image', selectedImage.value);
+    formData.append('profile_image', selectedImage.value);
 
     await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, formData, { headers });
     // router.push('/ViewMyProfile');
