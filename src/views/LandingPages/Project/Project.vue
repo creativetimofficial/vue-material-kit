@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import NavbarDefault from '../../../examples/navbars/NavbarDefault.vue';
 
@@ -8,6 +8,11 @@ import NavbarDefault from '../../../examples/navbars/NavbarDefault.vue';
 const projectId = ref(null);
 const route = useRoute();
 const projectData = ref([]);
+
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
+const userId = computed(() => sessionStorage.getItem('user_id'));
+const loggedUserName = computed(() => sessionStorage.getItem('username'));
+const token = computed(() => sessionStorage.getItem('access_token'));
 
 onMounted(async() => {
     projectId.value = route.params.id;
@@ -32,27 +37,88 @@ const getProject = async () => {
 
 <template>
   <NavbarDefault />
-    <div v-if="projectData">
-      <h1>Проект номер: {{ projectData.id }}</h1>
-      <h2>{{ projectData.title }}</h2>
-      <p>{{ projectData.description }}</p>
-      <img :src="projectData.featured_image" alt="Featured image">
-      <p v-if="projectData.demo_link">Demo Link: <a :href="projectData.demo_link">{{ projectData.demo_link }}</a></p>
-      <p v-if="projectData.source_link">Source Link: <a :href="projectData.source_link">{{ projectData.source_link }}</a></p>
-      <p>Total Votes: {{ projectData.vote_total }}</p>
-      <p>Vote Ratio: {{ projectData.vote_ratio }}</p>
-      <p>Created On: {{ new Date(projectData.created).toLocaleDateString() }}</p>
-      <p>Owner ID: {{ projectData.owner }}</p>
-      <p>Tags: 
-        <span v-for="(tag, index) in projectData.tags" :key="index">
+    <div v-if="projectData" class="project-container">
+      <h1 class="project-title">Проект номер: {{ projectData.id }}</h1>
+      <h2 class="project-subtitle">{{ projectData.title }}</h2>
+      <div v-if = "projectData.owner == userId" class="project-owner-note">
+        <a :href="`/editproject/${projectData.id}`">Редактирование проекта</a>
+      </div>
+      <p class="project-description">{{ projectData.description }}</p>
+      <img class="project-image" :src="projectData.featured_image" alt="Featured image">
+      <p v-if="projectData.demo_link" class="project-demo-link">Demo Link: <a :href="projectData.demo_link">{{ projectData.demo_link }}</a></p>
+      <p v-if="projectData.source_link" class="project-source-link">Source Link: <a :href="projectData.source_link">{{ projectData.source_link }}</a></p>
+      <p class="project-votes">Total Votes: {{ projectData.vote_total }}</p>
+      <p class="project-vote-ratio">Vote Ratio: {{ projectData.vote_ratio }}</p>
+      <p class="project-created">Created On: {{ new Date(projectData.created).toLocaleDateString() }}</p>
+      <p class="project-owner-id">Owner ID: {{ projectData.owner }}</p>
+      <p class="project-tags">Tags: 
+        <span v-for="(tag, index) in projectData.tags" :key="index" class="project-tag">
           {{ tag }}<span v-if="index < projectData.tags.length - 1">, </span>
         </span>
       </p>
     </div>
-  </template> 
-
+</template> 
 
 
 <style scoped>
+.project-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.project-subtitle {
+  font-size: 18px;
+  color: #555;
+}
+
+.project-owner-note {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.project-description {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.project-demo-link, .project-source-link {
+  font-size: 16px;
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.project-votes, .project-vote-ratio, .project-created, .project-owner-id {
+  font-size: 14px;
+  color: #777;
+}
+
+.project-tags {
+  font-size: 14px;
+  color: #333;
+}
+
+.project-tag {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 2px 5px;
+  margin: 2px;
+}
 </style>
   

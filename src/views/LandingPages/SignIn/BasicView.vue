@@ -15,9 +15,11 @@ const username = ref('');
 const password = ref('');
 const errorMessage = ref('');
 
-const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
+//Это блок для работы с хранилищем сессии
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); 
 const userId = computed(() => sessionStorage.getItem('user_id'));
 const loggedUserName = computed(() => sessionStorage.getItem('username'));
+const isStaff = computed(() => sessionStorage.getItem('is_staff'));
 
 const login = async () => {
   if (!username.value || !password.value) {
@@ -36,8 +38,9 @@ const login = async () => {
       const response = await axios.post(url, body, { headers });
       // Removed debug information from output
       sessionStorage.setItem('access_token', response.data.access); 
-      sessionStorage.setItem('username', username.value); // Save username in sessionStorage
-      sessionStorage.setItem('user_id', response.data.id); // Save the user id in sessionStorage
+      sessionStorage.setItem('username', username.value); 
+      sessionStorage.setItem('user_id', response.data.id); 
+      sessionStorage.setItem('is_staff', response.data.is_staff); 
       location.reload(); // Refresh page
     } catch (error) {
       if (error.response) {
@@ -55,6 +58,7 @@ const logout = () => {
   sessionStorage.removeItem('access_token');
   sessionStorage.removeItem('username'); // Also clear the username from sessionStorage
   sessionStorage.removeItem('user_id');
+  sessionStorage.setItem('is_staff', false);
   location.reload(); // Refresh page after logout
 };
 
@@ -120,16 +124,22 @@ export default {
                   <div>
                     <div v-if="isAuthenticated">
                         <!-- This will only be displayed if the user is authenticated -->
-                        <p>Вы вошли в аккаунт {{ loggedUserName }}, ваш ID {{ userId }}</p>
+                        <p>Вы вошли в аккаунт {{ loggedUserName }}</p>
+                        <p>
+                          <a href="/ViewMyProfile">Перейти в профиль.</a>
+                        </p>
+                        <!-- Это должно быть видно только админам -->
+                        <div v-if="isStaff">
+                            <p>
+                            <a href="/admin">Перейти в панель администратора.</a>
+                            </p>
+                          </div>
                         <button @click="logout">Выход</button>
                     </div>
 
                     <div v-else>
                         <!-- This will be displayed if the user is not authenticated -->
                         <p>Пожалуйста, введите логин и пароль</p>
-                    
-
-
 
                       <div>
                         <input v-model="username" type="text" placeholder="Имя пользователя" />
@@ -150,6 +160,23 @@ export default {
                       </button>
 
                     </div>
+
+                    <p class="mt-4 text-sm text-center">
+                    Нет аккаунта?
+                    <a
+                      href="/register"
+                      class="text-success text-gradient font-weight-bold"
+                      >Зарегистироваться</a
+                    >
+                  </p>
+                  <p class="mt-4 text-sm text-center">
+                   
+                   <a
+                     href="/forgot"
+                     class="text-success text-gradient font-weight-bold"
+                     >Забыли пароль</a
+                   >
+                 </p>
                       
                     </div>
 
@@ -160,22 +187,8 @@ export default {
   </div>
                   
 
-                  <p class="mt-4 text-sm text-center">
-                    Нет аккаунта?
-                    <a
-                      href="/register"
-                      class="text-success text-gradient font-weight-bold"
-                      >Зарегистироваться</a
-                    >
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                   
-                    <a
-                      href="/forgot"
-                      class="text-success text-gradient font-weight-bold"
-                      >Забыли пароль</a
-                    >
-                  </p>
+
+
                 </form>
               </div>
             </div>
