@@ -33,11 +33,11 @@ const search = async () => {
     <!-- Added class searchInput for styling -->
     <input class="searchInput" type="text" v-model="searchQuery" @keyup.enter="search" placeholder="Поиск по проектам и людям" />
     <!-- Added class searchButton for styling -->
-    <button class="searchButton" type="submit" @click="search">Go</button>
+    <button class="searchButton" type="submit" @click="search">Погнали!</button>
   </div>
 
   <div v-if="searchResultProjects.length > 0 || searchResultUsers.length > 0">
-    <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
+    <!--<h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>-->
     <div class="result-grid">
       <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
         <h3>{{ project.title }} with ID {{ project.id }}</h3>
@@ -45,7 +45,7 @@ const search = async () => {
         <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
       </div>
     </div>
-    <h2 class="result-header">Найдено людей: {{ searchResultUsers.length}} </h2>
+    <!--<h2 class="result-header">Найдено людей: {{ searchResultUsers.length}} </h2>-->
     <div class="result-grid">
       <div class="result-card" v-for="user in searchResultUsers" :key="user.id">
         <h3>{{ user.username }} with id {{ user.id }}</h3>
@@ -56,7 +56,7 @@ const search = async () => {
   </div>
   <div v-else>
     <div v-if = "searchQuery.length > 0 && searchButtonIsPressed === true" >
-      <h2 class="result-header">Ничего не найдено</h2>
+      <h2 class="result-header">Увы и ах! Такого нет (</h2>
     </div>
   </div>
 
@@ -78,30 +78,42 @@ const search = async () => {
   padding: 10px;
   /* Adds some margin to the right side of the input field */
   margin-right: 10px;
+  margin-top: 20px;
   /* Increased the font size a bit */
   font-size: 16px;
+  border-radius: 1%;
+
+  border: 2px solid #66FCF1;
+  border-radius: 5px;
+  outline: none;
+  background: #FAFAFA;
+  color: #9E9C9C;
 }
 
 .searchButton {
   /* Adds some padding inside the button */
-  padding: 10px 20px;
+  padding: 12px 20px;
   /* Changes the font size */
   font-size: 16px;
   /* Changes the background color of the button */
-  background-color: #3d9132;
+  background-color: #66FCF1;
   /* Changes the color of the text inside the button */
-  color: white;
+  color: rgb(90, 90, 90);
   /* Makes the border corners rounded */
   border-radius: 4px;
   /* Removes the default button border */
   border: none;
   /* Changes the cursor to a hand pointer when hovering over the button */
   cursor: pointer;
+  width: 10%;
+  margin-top: 20px;
+  
 }
 
 .searchButton:hover {
   /* Changes the background color of the button when hovering over it */
-  background-color: #25581e;
+  background-color: #E01EB2;
+  color: rgb(228, 228, 228);
 }
 .result-header {
   color: #fff;
@@ -109,6 +121,11 @@ const search = async () => {
   padding: 10px;
   text-align: center;
   margin-top: 20px;
+
+  border: 2px solid #66FCF1;
+  border-radius: 5px;
+  outline: none;
+  color: #9E9C9C;
 }
 
 .result-grid {

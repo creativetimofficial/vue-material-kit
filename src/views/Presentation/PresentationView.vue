@@ -72,35 +72,29 @@ export default {
     <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1
-              class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }"
-            >
-              LinkedMin
-            </h1>
-            <p>
 
-
-
-
-              
-            </p>
             <div v-if="isAuthenticated">
                 <h2
                 class="text-white pt-3 mt-n5 me-2"
                 :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif' }"
                 > 
-                Привет, {{ loggedUserName }}</h2>
+                Привет, {{ loggedUserName }}!</h2>
+                <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+                  В поисках чего-то интересного?
+                  </p>
             </div>
 
               <div v-else>
-                <p>Тариф Бесплатный</p>
+                <h1
+                class="text-white pt-3 mt-n5 me-2"
+                :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }">LinkedMin</h1>
+                <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+                  Показывай себя и свои проекты.  
+                   Находи вдохновение, коллег и новые знания.
+                  </p>
               </div>
 
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
-            Показывай себя и свои проекты.  
-             Находи вдохновение, коллег и новые знания.
-            </p>
+            
           </div>
         </div>
         <div>
