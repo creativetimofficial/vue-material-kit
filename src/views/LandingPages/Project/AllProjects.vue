@@ -34,7 +34,7 @@ onMounted(() => {
     <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
     <div class="result-grid">
       <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
-        <h3>{{ project.title }} with ID {{ project.id }}</h3>
+       <div class="project-title"> <h3>{{ project.title }} with ID {{ project.id }}</h3></div>
         <p>{{ project.description }}</p>
         <a :href="`/project/${project.id}`">Страница проекта</a>
       </div>
@@ -86,10 +86,13 @@ onMounted(() => {
 }
 .result-header {
   color: #fff;
-  background-color: #333;
+  background-color:#3d9132;
   padding: 10px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
+  margin-left: 10%;
+  width: 80%;
+border-radius: 15px;
 }
 
 .result-grid {
@@ -101,12 +104,37 @@ onMounted(() => {
 .result-card {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #3d913248;
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
   width: calc(100% / 3 - 20px);
   box-sizing: border-box;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  align-items: center;
+}
+.project-title{
+  padding-bottom: 25px;
+}
+
+h3{
+  color:rgb(87, 87, 87);
+}
+a{
+  background-color: #3d9132;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  width: 50%;
+  margin-bottom: 10px;
+}
+a:hover{
+  background-color: #6ac55e;
+  color: rgb(61, 61, 61);
+}
+p{
+  font-weight: 500;
 }
 
 @media screen and (max-width: 992px) {
