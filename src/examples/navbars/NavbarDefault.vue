@@ -343,9 +343,23 @@ watch(
                         Мой Профиль
                       </h6>
                       <span class="text-sm"
-                        >Рассказ о том, какой я классный</span
+                        >Просмотр</span
                       >
                     </a>
+                    <a
+                      class="dropdown-item py-2 ps-3 border-radius-md"
+                      href="/EditMyProfile"
+                    >
+                      <h6
+                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                      >
+                        Мой Профиль
+                      </h6>
+                      <span class="text-sm"
+                        >Редактирование</span
+                      >
+                    </a>
+
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/CreateProject"
@@ -356,7 +370,7 @@ watch(
                         Создать проект
                       </h6>
                       <span class="text-sm"
-                        >Чтобы стать ещё более классным</span
+                        >Страница добавления проекта</span
                       >
                     </a>
                   </li>
@@ -376,11 +390,39 @@ watch(
                       Мой профиль
                     </h6>
                     <span class="text-sm"
-                      >Рассказ о том, какой я классный</span
+                      >Просмотр</span
+                    >
+                  </a>
+                  <a
+                    class="dropdown-item py-2 ps-3 border-radius-md"
+                    href="/ViewMyProfile"
+                  >
+                    <h6
+                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                    >
+                      Мой профиль
+                    </h6>
+                    <span class="text-sm"
+                      >Редактирование</span
+                    >
+                  </a>
+
+                  <a
+                    class="dropdown-item py-2 ps-3 border-radius-md"
+                    href="/CreateProject"
+                  >
+                    <h6
+                      class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
+                    >
+                    Создать проект
+                    </h6>
+                    <span class="text-sm"
+                      >Страница добавления проекта</span
                     >
                   </a>
 
                 </div>
+                
               </div>
             </div>
           </li>
