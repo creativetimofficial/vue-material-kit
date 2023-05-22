@@ -38,17 +38,11 @@ onMounted(async() => {
 
 </script>
 
-<script>
-
-
-
-</script>
-
 
 <template>
     <NavbarDefault />
     <div class="profile-container">
-      <h1>Профиль пользователя {{ loggedUserName }}</h1>
+      <h2>Профиль пользователя {{ loggedUserName }}</h2>
         <h2>{{ profileData.username }}</h2>
         <p>{{ profileData.email }}</p>
         <P>Имя: {{ profileData.name }}</P>
@@ -71,13 +65,12 @@ onMounted(async() => {
 
 <style scoped>
 .profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin: auto;
+  width: 50%;
   padding: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  margin: 5% auto;
+  background-color: #3d913257;
+  border-radius: 10px;
 }
 
 .profile-container img {
@@ -86,5 +79,26 @@ onMounted(async() => {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
+}
+
+h1,h2{
+  /*font-family: 'PressStart2P';*/
+  color:rgb(70, 104, 105);
+}
+p{
+  font-family: 'SpaceMono' monospace;
+}
+button{
+  background-color: #3d9132;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  width: 50%;
+  margin-bottom: 10px;
+}
+button:hover{
+  background-color: #6ac55e;
+  color: rgb(61, 61, 61);
 }
 </style>

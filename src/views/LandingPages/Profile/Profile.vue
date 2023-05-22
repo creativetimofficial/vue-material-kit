@@ -16,11 +16,24 @@ onMounted(async() => {
 
 const getProfile = async () => {
     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${profileId.value}/`);
-    profileData.value = profileDataRecieved.data;
+    profileData.value = processProfileData(profileDataRecieved.data);
 
 };
-
-
+const processProfileData = (data) => {
+    return {
+        ...data,
+        name: data.name || '🤷 No Name Provided',
+        location: data.location || '🌍 No Location Provided',
+        short_intro: data.short_intro || '📝 No Short Intro Provided',
+        bio: data.bio || '📘 No Bio Provided',
+        profile_image: data.profile_image || '📷 No Image Provided',
+        social_github: data.social_github || '👨‍💻 No Github Provided',
+        social_twitter: data.social_twitter || '🐦 No Twitter Provided',
+        social_vk: data.social_vk || '🔵 No VK Provided',
+        social_youtube: data.social_youtube || '▶️ No YouTube Provided',
+        social_website: data.social_website || '🌐 No Website Provided',
+    };
+};
 
 
 </script>
@@ -29,7 +42,7 @@ const getProfile = async () => {
 <template>
   <NavbarDefault />
   <div class="profile-container">
-    <h1>Профиль пользователя {{ loggedUserName }}</h1>
+    <h1>Профиль пользователя</h1>
       <h2>{{ profileData.username }}</h2>
       <p>{{ profileData.email }}</p>
       <P>Имя: {{ profileData.name }}</P>
@@ -42,23 +55,20 @@ const getProfile = async () => {
       <p>Ссылка на VK: {{ profileData.social_vk }}</p>
       <p>Ссылка на YouTube: {{ profileData.social_youtube }}</p>
       <p>Ссылка на сайт: {{ profileData.social_website }}</p>
-      
-
-    
+      <button>Message</button>
   </div>
 </template> 
-
-
 
 <style scoped>
 .profile-container {
 display: flex;
 flex-direction: column;
-align-items: center;
 width: 80%;
-margin: auto;
+margin: 10% auto;
 padding: 20px;
 box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+background-color: #3d913257;
+border-radius: 10px;
 }
 
 .profile-container img {
@@ -67,5 +77,27 @@ height: 100px;
 border-radius: 50%;
 object-fit: cover;
 margin-bottom: 20px;
+
+}
+
+h1,h2{
+  /*font-family: 'PressStart2P';*/
+  color:rgb(70, 104, 105);
+}
+p{
+  font-family: 'SpaceMono' monospace;
+}
+button{
+  background-color: #3d9132;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  width: 50%;
+  margin-bottom: 10px;
+}
+button:hover{
+  background-color: #6ac55e;
+  color: rgb(61, 61, 61);
 }
 </style>

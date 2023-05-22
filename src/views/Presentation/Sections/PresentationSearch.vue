@@ -149,11 +149,17 @@ const search = async () => {
   .result-card {
     width: calc(100% / 2 - 20px);
   }
+  .searchButton{
+    width: 20%;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .result-card {
     width: 100%;
+  }
+  .searchButton{
+    width: 20%;
   }
 }
 
