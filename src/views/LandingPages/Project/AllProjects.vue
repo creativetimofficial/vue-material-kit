@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted } from "vue";
 import axios from 'axios';
 import { ref } from "vue";
-
+import NavbarDefault from "../../../examples/navbars/NavbarDefault.vue";
 
 const searchQuery = ref('');
 const searchResultProjects = ref([]);
@@ -29,14 +29,14 @@ onMounted(() => {
 
 
 <template>
-
+<NavbarDefault  />
   <div>
     <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
     <div class="result-grid">
       <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
         <h3>{{ project.title }} with ID {{ project.id }}</h3>
         <p>{{ project.description }}</p>
-        <a :href="`http://somebodyhire.me/project/${project.id}`">Страница проекта</a>
+        <a :href="`/project/${project.id}`">Страница проекта</a>
       </div>
     </div>
     

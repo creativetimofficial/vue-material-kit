@@ -5,7 +5,7 @@ import { useWindowsWidth } from "../../assets/js/useWindowsWidth";
 
 // images
 import ArrDark from "@/assets/img/down-arrow-dark.svg";
-import downArrow from "@/assets/img/down-arrow.svg";
+
 import DownArrWhite from "@/assets/img/down-arrow-white.svg";
 
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); // Computed property to check if the user is authenticated
@@ -260,6 +260,22 @@ watch(
                       </RouterLink>
 
                     </div>
+
+                    <div v-if="isAuthenticated" class="position-relative">
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Мои проекты
+                      </div>
+                      <RouterLink
+                        :to="{ name: 'myprojects' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Мои проекты</span>
+                      </RouterLink>
+
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -312,9 +328,9 @@ watch(
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/ViewMyProfile"
                     >
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"> Мой Профиль </h6>
-                      <span class="text-sm">Рассказ о том, какой я классный</span>
+
                     </a>
+
                     <a
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/CreateProject"
@@ -325,7 +341,7 @@ watch(
                         Создать проект
                       </h6>
                       <span class="text-sm"
-                        >Чтобы стать ещё более классным</span
+                        >Страница добавления проекта</span
                       >
                     </a>
                   </li>
@@ -339,9 +355,10 @@ watch(
                     <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">
                       Мой профиль
                     </h6>
-                    <span class="text-sm">Рассказ о том, какой я классный</span>
+
                   </a>
                 </div>
+                
               </div>
               
             </div>

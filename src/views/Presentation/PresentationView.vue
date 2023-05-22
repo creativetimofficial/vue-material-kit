@@ -1,18 +1,3 @@
-<style scoped>
-.project-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.project-card {
-  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
-  margin: 0.5em;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  padding: 1em;
-  box-sizing: border-box;
-}
-</style>
-
 <script setup>
 import { onMounted, onUnmounted, computed, } from "vue";
 
@@ -124,4 +109,17 @@ export default {
 </template>
 
 
-
+<style scoped>
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.project-card {
+  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
+  margin: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  box-sizing: border-box;
+}
+</style>
