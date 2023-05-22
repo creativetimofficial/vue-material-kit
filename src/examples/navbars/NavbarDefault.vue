@@ -246,14 +246,11 @@ watch(
               aria-expanded="false"
             >
               <i
-              <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >dashboard</i
               >
-              >
               Проекты
-              <img
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -263,7 +260,6 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />
               />
             </a>
             <div
@@ -346,7 +342,6 @@ watch(
               >
               Профиль
               <img
-              <img
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-2 d-lg-block d-none"
@@ -355,7 +350,6 @@ watch(
                 :src="getArrowColor()"
                 alt="down-arrow"
                 class="arrow ms-1 d-lg-none d-block ms-auto"
-              />
               />
             </a>
             <div
