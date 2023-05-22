@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import NavbarDefault from '../../../examples/navbars/NavbarDefault.vue';
 
 
 const projectId = ref(null);
@@ -30,6 +31,7 @@ const getProject = async () => {
 
 
 <template>
+  <NavbarDefault />
     <div v-if="projectData">
       <h1>Проект номер: {{ projectData.id }}</h1>
       <h2>{{ projectData.title }}</h2>
