@@ -1,18 +1,3 @@
-<style scoped>
-.project-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.project-card {
-  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
-  margin: 0.5em;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  padding: 1em;
-  box-sizing: border-box;
-}
-</style>
-
 <script setup>
 import { onMounted, onUnmounted, computed, } from "vue";
 
@@ -87,35 +72,29 @@ export default {
     <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1
-              class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }"
-            >
-              LinkedMin
-            </h1>
-            <p>
 
-
-
-
-              
-            </p>
             <div v-if="isAuthenticated">
                 <h2
                 class="text-white pt-3 mt-n5 me-2"
                 :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif' }"
                 > 
-                Привет, {{ loggedUserName }}</h2>
+                Привет, {{ loggedUserName }}!</h2>
+                <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+                  В поисках чего-то интересного?
+                  </p>
             </div>
 
               <div v-else>
-                <p>Тариф Бесплатный</p>
+                <h1
+                class="text-white pt-3 mt-n5 me-2"
+                :style="{ display: 'inline-block ', fontFamily: 'PressStart2P, sans-serif'  }">LinkedMin</h1>
+                <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
+                  Показывай себя и свои проекты.  
+                   Находи вдохновение, коллег и новые знания.
+                  </p>
               </div>
 
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500',  fontFamily: 'PressStart2P, sans-serif' }">
-            Показывай себя и свои проекты.  
-             Находи вдохновение, коллег и новые знания.
-            </p>
+            
           </div>
         </div>
         <div>
@@ -130,4 +109,17 @@ export default {
 </template>
 
 
-
+<style scoped>
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.project-card {
+  flex-basis: calc(33.33% - 1em); /* 1em is for margin */
+  margin: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 1em;
+  box-sizing: border-box;
+}
+</style>

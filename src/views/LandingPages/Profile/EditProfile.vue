@@ -4,9 +4,6 @@ import { onMounted, ref, computed } from "vue";
 import NavbarDefault from "../../../examples/navbars/NavbarDefault.vue";
 import { useRouter } from "vue-router";
 
-
-
-
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
 const userId = computed(() => sessionStorage.getItem('user_id'));
 const loggedUserName = computed(() => sessionStorage.getItem('username'));
@@ -14,9 +11,8 @@ const token = computed(() => sessionStorage.getItem('access_token'));
 
 const profileData = ref([]);
 const router = useRouter();
-
 const debugText = ref('');
-
+const selectedImage = ref(null);
 
 const getProfile = async () => {
     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
@@ -25,23 +21,33 @@ const getProfile = async () => {
 
 const processProfileData = (data) => {
     return {
-        ...data,
-        name: data.name || '🤷 No Name Provided',
-        location: data.location || '🌍 No Location Provided',
-        short_intro: data.short_intro || '📝 No Short Intro Provided',
-        bio: data.bio || '📘 No Bio Provided',
-        profile_image: data.profile_image || '📷 No Image Provided',
-        social_github: data.social_github || '👨‍💻 No Github Provided',
-        social_twitter: data.social_twitter || '🐦 No Twitter Provided',
-        social_vk: data.social_vk || '🔵 No VK Provided',
-        social_youtube: data.social_youtube || '▶️ No YouTube Provided',
-        social_website: data.social_website || '🌐 No Website Provided',
+        name: data.name || '',
+        email: data.email || '',
+        username: data.username || '',
+        location: data.location || '',
+        short_intro: data.short_intro || '',
+        bio: data.bio || '',
+        social_github: data.social_github || '',
+        social_twitter: data.social_twitter || '',
+        social_vk: data.social_vk || '',
+        social_youtube: data.social_youtube || '',
+        social_website: data.social_website || '',
     };
 };
 
-// Axios request and response interceptors
 axios.interceptors.request.use((request) => {
-  debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
+  if (request.data instanceof FormData) {
+    const formData = request.data;
+    for (let [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        debugText.value += `\nFile being sent: ${value.name}, size: ${value.size} bytes`;
+      } else {
+        debugText.value += `\n${key}: ${value}`;
+      }
+    }
+  } else {
+    debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
+  }
   return request;
 });
 
@@ -53,19 +59,37 @@ axios.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
-const updateProfile = async () => {
-    try {
-        const token = computed(() => sessionStorage.getItem('access_token'));
-        debugText.value = `Type of token: ${typeof token.value}, Value of token: ${token.value}`;
-        const headers = { 'Authorization': `Bearer ${token.value}` };
-        await axios.put(`http://somebodyhire.me/api/profile/${userId.value}/`, profileData.value, { headers });
-        router.push('/ViewMyProfile');
-    } catch (error) {
-        debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
-        console.error(error);
-    }
+const onFileChange = (event) => {
+    selectedImage.value = event.target.files[0];
+    debugText.value = `Selected image: ${selectedImage.value.name}`;
 };
 
+const updateProfile = async () => {
+  try {
+    const tokenValue = token.value;
+    const headers = { 
+      'Authorization': `Bearer ${tokenValue}`,
+      'Content-Type': 'multipart/form-data'
+    };
+
+    // Create a new FormData object
+    const formData = new FormData();
+
+    // Append the profile data
+    Object.entries(profileData.value).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    // Append the image file
+    formData.append('profile_image', selectedImage.value);
+
+    await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, formData, { headers });
+    // router.push('/ViewMyProfile');
+  } catch (error) {
+    debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
+    console.error(error);
+  }
+};
 
 const cancelUpdate = () => {
     router.push('/ViewMyProfile');
@@ -74,40 +98,28 @@ const cancelUpdate = () => {
 onMounted(async() => {
     await getProfile();
 });
-
-
 </script>
-
-<script>
-
-
-
-</script>
-
 
 <template>
     <NavbarDefault />
     <div class="profile-container">
-      <h1>Профиль пользователя {{ loggedUserName }}</h1>
+        <h1>User Profile: {{ loggedUserName }}</h1>
         <textarea readonly v-model="debugText"></textarea>
+        <input type="file" accept="image/*" @change="onFileChange">
         <input type="text" v-model="profileData.username" placeholder="Username">
         <input type="email" v-model="profileData.email" placeholder="Email">
-        <input type="text" v-model="profileData.name" placeholder="Имя">
-        <input type="text" v-model="profileData.short_intro" placeholder="Краткое описание">
-        <textarea v-model="profileData.bio" placeholder="Биография"></textarea>
-        <textarea v-model="profileData.profile_image" placeholder="Ссылка на изображение"></textarea>
-        <textarea v-model="profileData.social_github" placeholder="Ссылка на GitHub"></textarea>
-        <textarea v-model="profileData.social_twitter" placeholder="Ссылка на Twitter"></textarea>
-        <textarea v-model="profileData.social_vk" placeholder="Ссылка на VK"></textarea>
-        <textarea v-model="profileData.social_youtube" placeholder="Ссылка на YouTube"></textarea>
-        <textarea v-model="profileData.social_website" placeholder="Ссылка на сайт"></textarea>
+        <input type="text" v-model="profileData.name" placeholder="Name">
+        <input type="text" v-model="profileData.short_intro" placeholder="Short Introduction">
+        <textarea v-model="profileData.bio" placeholder="Biography"></textarea>
+        <textarea v-model="profileData.social_github" placeholder="GitHub Link"></textarea>
+        <textarea v-model="profileData.social_twitter" placeholder="Twitter Link"></textarea>
+        <textarea v-model="profileData.social_vk" placeholder="VK Link"></textarea>
+        <textarea v-model="profileData.social_youtube" placeholder="YouTube Link"></textarea>
+        <textarea v-model="profileData.social_website" placeholder="Website Link"></textarea>
         <button @click="updateProfile" class="btn-submit">Submit</button>
         <button @click="cancelUpdate" class="btn-cancel">Cancel</button>
     </div>
-
-
 </template>
-
 
 
 <style scoped>

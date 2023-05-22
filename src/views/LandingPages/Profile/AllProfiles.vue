@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted } from "vue";
 import axios from 'axios';
 import { ref } from "vue";
+import NavbarDefault from "../../../examples/navbars/NavbarDefault.vue";
 
 
 const searchQuery = ref('');
@@ -29,7 +30,7 @@ onMounted(() => {
 
 
 <template>
-
+<NavbarDefault />
   <div>
     
     <h2 class="result-header">Найдено людей: {{ searchResultUsers.length}} </h2>
@@ -37,7 +38,7 @@ onMounted(() => {
       <div class="result-card" v-for="user in searchResultUsers" :key="user.id">
         <h3>{{ user.username }} with id {{ user.id }}</h3>
         <p>{{ user.email }}</p>
-        <a :href="`http://somebodyhire.me/profile/${user.id}`">Страница пользователя</a>
+        <a :href="`/profile/${user.id}`">Страница пользователя</a>
       </div>
     </div>
   </div>
