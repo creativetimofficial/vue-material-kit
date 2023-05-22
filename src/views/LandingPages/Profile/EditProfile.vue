@@ -12,6 +12,7 @@ const token = computed(() => sessionStorage.getItem('access_token'));
 const profileData = ref([]);
 const router = useRouter();
 const debugText = ref('');
+const selectedImage = ref(null);
 
 const getProfile = async () => {
     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
@@ -47,17 +48,33 @@ axios.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
+const onFileChange = (event) => {
+    selectedImage.value = event.target.files[0];
+    debugText.value = `Selected image: ${selectedImage.value.name}`;
+};
+
 const updateProfile = async () => {
-    try {
-        const token = computed(() => sessionStorage.getItem('access_token'));
-        debugText.value = `Type of token: ${typeof token.value}, Value of token: ${token.value}`;
-        const headers = { 'Authorization': `Bearer ${token.value}` };
-        await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, profileData.value, { headers });
-        router.push('/ViewMyProfile');
-    } catch (error) {
-        debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
-        console.error(error);
-    }
+  try {
+    const tokenValue = token.value;
+    const headers = { 'Authorization': `Bearer ${tokenValue}` };
+
+    // Create a new FormData object
+    const formData = new FormData();
+
+    // Append the profile data
+    Object.entries(profileData.value).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    // Append the image file
+    formData.append('image', selectedImage.value);
+
+    await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, formData, { headers });
+    // router.push('/ViewMyProfile');
+  } catch (error) {
+    debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
+    console.error(error);
+  }
 };
 
 const cancelUpdate = () => {
@@ -74,6 +91,7 @@ onMounted(async() => {
     <div class="profile-container">
         <h1>User Profile: {{ loggedUserName }}</h1>
         <textarea readonly v-model="debugText"></textarea>
+        <input type="file" accept="image/*" @change="onFileChange">
         <input type="text" v-model="profileData.username" placeholder="Username">
         <input type="email" v-model="profileData.email" placeholder="Email">
         <input type="text" v-model="profileData.name" placeholder="Name">

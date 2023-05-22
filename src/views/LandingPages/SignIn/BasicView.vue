@@ -20,6 +20,7 @@ const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'))
 const userId = computed(() => sessionStorage.getItem('user_id'));
 const loggedUserName = computed(() => sessionStorage.getItem('username'));
 const isStaff = computed(() => sessionStorage.getItem('is_staff'));
+const token = computed(() => sessionStorage.getItem('token'));
 
 const login = async () => {
   if (!username.value || !password.value) {
@@ -36,11 +37,11 @@ const login = async () => {
 
     try {
       const response = await axios.post(url, body, { headers });
-      // Removed debug information from output
       sessionStorage.setItem('access_token', response.data.access); 
       sessionStorage.setItem('username', username.value); 
       sessionStorage.setItem('user_id', response.data.id); 
       sessionStorage.setItem('is_staff', response.data.is_staff); 
+      sessionStorage.setItem('token', response.data.token);
       location.reload(); // Refresh page
     } catch (error) {
       if (error.response) {
@@ -59,6 +60,7 @@ const logout = () => {
   sessionStorage.removeItem('username'); // Also clear the username from sessionStorage
   sessionStorage.removeItem('user_id');
   sessionStorage.setItem('is_staff', false);
+  sessionStorage.removeItem('token');
   location.reload(); // Refresh page after logout
 };
 

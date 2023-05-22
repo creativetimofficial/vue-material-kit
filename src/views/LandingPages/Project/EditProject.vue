@@ -3,36 +3,25 @@ import axios from 'axios';
 import { onMounted, ref, computed } from "vue";
 import NavbarDefault from "../../../examples/navbars/NavbarDefault.vue";
 import { useRouter } from "vue-router";
+import { useRoute } from 'vue-router';
 
 const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token'));
 const userId = computed(() => sessionStorage.getItem('user_id'));
 const loggedUserName = computed(() => sessionStorage.getItem('username'));
 const token = computed(() => sessionStorage.getItem('access_token'));
 
-const profileData = ref([]);
+const projectData = ref([]);
 const router = useRouter();
 const debugText = ref('');
+const projectId = ref(null);
+const route = useRoute();
 
-const getProfile = async () => {
-    const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
-    profileData.value = processProfileData(profileDataRecieved.data);
-};
 
-const processProfileData = (data) => {
-    return {
-        name: data.name || '',
-        email: data.email || '',
-        username: data.username || '',
-        location: data.location || '',
-        short_intro: data.short_intro || '',
-        bio: data.bio || '',
-        social_github: data.social_github || '',
-        social_twitter: data.social_twitter || '',
-        social_vk: data.social_vk || '',
-        social_youtube: data.social_youtube || '',
-        social_website: data.social_website || '',
-    };
-};
+// const getProfile = async () => {
+//     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
+//     profileData.value = processProfileData(profileDataRecieved.data);
+// };
+
 
 axios.interceptors.request.use((request) => {
   debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
@@ -47,13 +36,41 @@ axios.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
-const updateProfile = async () => {
+const getProject = async () => {
     try {
-        const token = computed(() => sessionStorage.getItem('access_token'));
-        debugText.value = `Type of token: ${typeof token.value}, Value of token: ${token.value}`;
+        const projectDataRecieved = await axios.get(`http://somebodyhire.me/api/projects/${projectId.value}/`);
+        projectData.value = projectDataRecieved.data;
+    } catch (error) {
+        console.error('There was an error fetching the project data', error);
+    }
+};
+
+// const updateProfile = async () => {
+//     try {
+//         const token = computed(() => sessionStorage.getItem('access_token'));
+//         debugText.value = `Type of token: ${typeof token.value}, Value of token: ${token.value}`;
+//         const headers = { 'Authorization': `Bearer ${token.value}` };
+//         await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, profileData.value, { headers });
+//         router.push('/ViewMyProfile');
+//     } catch (error) {
+//         debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
+//         console.error(error);
+//     }
+// };
+
+const updateProject = async () => {
+    try {
         const headers = { 'Authorization': `Bearer ${token.value}` };
-        await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, profileData.value, { headers });
-        router.push('/ViewMyProfile');
+        const data = {
+            title: projectData.value.title,
+            description: projectData.value.description,
+            demo_link: projectData.value.demo_link,
+            source_link: projectData.value.source_link,
+            tags: projectData.value.tags,
+
+        };
+        const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, data, { headers });
+        router.push(`/project/${response.data.id}`);
     } catch (error) {
         debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
         console.error(error);
@@ -61,31 +78,29 @@ const updateProfile = async () => {
 };
 
 const cancelUpdate = () => {
-    router.push('/ViewMyProfile');
+    router.push('/myprojects');
 };
 
 onMounted(async() => {
-    await getProfile();
+    projectId.value = route.params.id;
+    await getProject();
 });
 </script>
 
 <template>
     <NavbarDefault />
     <div class="profile-container">
+        <H1> Страница Редактирования Проекта {{ projectId }}</H1>
         <h1>User Profile: {{ loggedUserName }}</h1>
         <textarea readonly v-model="debugText"></textarea>
-        <input type="text" v-model="profileData.username" placeholder="Username">
-        <input type="email" v-model="profileData.email" placeholder="Email">
-        <input type="text" v-model="profileData.name" placeholder="Name">
-        <input type="text" v-model="profileData.short_intro" placeholder="Short Introduction">
-        <textarea v-model="profileData.bio" placeholder="Biography"></textarea>
-        <textarea v-model="profileData.social_github" placeholder="GitHub Link"></textarea>
-        <textarea v-model="profileData.social_twitter" placeholder="Twitter Link"></textarea>
-        <textarea v-model="profileData.social_vk" placeholder="VK Link"></textarea>
-        <textarea v-model="profileData.social_youtube" placeholder="YouTube Link"></textarea>
-        <textarea v-model="profileData.social_website" placeholder="Website Link"></textarea>
-        <button @click="updateProfile" class="btn-submit">Submit</button>
+        <input type="text" v-model="projectData.title" placeholder="Title">
+        <input type="text" v-model="projectData.description" placeholder="Description">
+        <textarea v-model="projectData.demo_link" placeholder="Demo link"></textarea>
+        <textarea v-model="projectData.source_link" placeholder="Source code link"></textarea>
+        <textarea v-model="projectData.tags" placeholder="Tags"></textarea>
+        <button @click="updateProject" class="btn-submit">Update</button>
         <button @click="cancelUpdate" class="btn-cancel">Cancel</button>
+        
     </div>
 </template>
 
