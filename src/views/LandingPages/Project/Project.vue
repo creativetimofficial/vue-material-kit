@@ -56,7 +56,17 @@ const getProject = async () => {
           {{ tag }}<span v-if="index < projectData.tags.length - 1">, </span>
         </span>
       </p>
-    </div>
+      <h3>Feedback</h3>
+      <div class="feedback">
+      <input name="username" readonly placeholder="Надо вставить username"/>
+      <select id="selectvalue">
+        <option>Vote Up</option>
+        <option>Vote Down</option>
+        </select>
+      <textarea name="comment" v-model="message" placeholder="Напишите комментарий"></textarea>
+      <button>Отправить</button>
+      </div>
+  </div>
 </template> 
 
 
@@ -66,7 +76,22 @@ const getProject = async () => {
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #3d913257;
+  border-radius: 10px;
+}
+.feedback {
+  margin: 10px 0;
+  padding: 10px 0;
+  flex-direction: column
+}
+input, textarea, select, option{
+  border: 1px solid #3d913257;
+  border-radius: 5px;
+  border-radius: 10px;
+  width: 60%;
+  margin-bottom: 1%;
+  padding: 1%;
+  background-color: #3d91322d;
 }
 
 .project-title {
@@ -119,6 +144,28 @@ const getProject = async () => {
   border-radius: 5px;
   padding: 2px 5px;
   margin: 2px;
+}
+
+h1,h2{
+  /*font-family: 'PressStart2P';*/
+  color:rgb(70, 104, 105);
+}
+p{
+  font-family: 'SpaceMono' monospace;
+}
+button{
+  background-color: #3d9132;
+  border-radius: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  width: 60%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+button:hover{
+  background-color: #6ac55e;
+  color: rgb(61, 61, 61);
 }
 </style>
   
