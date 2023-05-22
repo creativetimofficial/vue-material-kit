@@ -15,6 +15,7 @@ import ViewMyProfile from "../views/LandingPages/Profile/AdmireProfile.vue";
 import EditMyProfile from "../views/LandingPages/Profile/EditProfile.vue";
 import CreateProject from "../views/LandingPages/Project/AddProject.vue";
 import EditProject from "../views/LandingPages/Project/EditProject.vue";
+import MyProjects from "../views/LandingPages/Project/MyProjects.vue";
 
 
 const router = createRouter({
@@ -36,6 +37,12 @@ const router = createRouter({
       path: '/projects',
       name: 'projects',
       component: Projects
+    },
+
+    {
+      path: '/myprojects',
+      name: 'myprojects',
+      component: MyProjects
     },
 
     {

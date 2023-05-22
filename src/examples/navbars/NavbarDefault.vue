@@ -278,6 +278,22 @@ watch(
                       </RouterLink>
 
                     </div>
+
+                    <div v-if="isAuthenticated" class="position-relative">
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Мои проекты
+                      </div>
+                      <RouterLink
+                        :to="{ name: 'myprojects' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Мои проекты</span>
+                      </RouterLink>
+
+                    </div>
+
                   </div>
                 </div>
               </div>
