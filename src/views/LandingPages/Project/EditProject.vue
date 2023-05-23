@@ -17,12 +17,6 @@ const projectId = ref(null);
 const route = useRoute();
 
 
-// const getProfile = async () => {
-//     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
-//     profileData.value = processProfileData(profileDataRecieved.data);
-// };
-
-
 axios.interceptors.request.use((request) => {
   debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
   return request;
