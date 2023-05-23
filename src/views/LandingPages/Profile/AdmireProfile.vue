@@ -50,7 +50,7 @@ onMounted(async() => {
         <p>Местоположение: {{ profileData.location }}</p>
         <p>Краткое описание: {{ profileData.short_intro }}</p>
         <p>Биография: {{ profileData.bio }}</p>
-        <p>Ссылка на изображение: {{ profileData.profile_image }}</p>
+        <!--<p>Ссылка на изображение: {{ profileData.profile_image }}</p>-->
         <p>Ссылка на GitHub: {{ profileData.social_github }}</p>
         <p>Ссылка на Twitter: {{ profileData.social_twitter }}</p>
         <p>Ссылка на VK: {{ profileData.social_vk }}</p>
