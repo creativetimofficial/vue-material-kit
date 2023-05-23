@@ -42,20 +42,35 @@ onMounted(async() => {
 <template>
     <NavbarDefault />
     <div class="profile-container">
-      <h2>Профиль пользователя {{ loggedUserName }}</h2>
-        <h2>{{ profileData.username }}</h2>
-        <p>{{ profileData.email }}</p>
-        <P>Имя: {{ profileData.name }}</P>
+      <h2>{{ profileData.name }}</h2>
+        
+        
         <img :src="profileData.profile_image" alt="Profile Image">
+        <p>{{ profileData.email }}</p>
         <p>Местоположение: {{ profileData.location }}</p>
         <p>Краткое описание: {{ profileData.short_intro }}</p>
         <p>Биография: {{ profileData.bio }}</p>
-        <!--<p>Ссылка на изображение: {{ profileData.profile_image }}</p>-->
-        <p>Ссылка на GitHub: {{ profileData.social_github }}</p>
-        <p>Ссылка на Twitter: {{ profileData.social_twitter }}</p>
-        <p>Ссылка на VK: {{ profileData.social_vk }}</p>
-        <p>Ссылка на YouTube: {{ profileData.social_youtube }}</p>
-        <p>Ссылка на сайт: {{ profileData.social_website }}</p>
+        <p>
+        <a :href="`${profileData.social_github}`" target="_blank">Ссылка на GitHub</a>
+        </p>
+        <p>
+        <a :href="`${profileData.social_twitter}`" target="_blank">Ссылка на Twitter</a>
+        </p>
+        
+        <p>
+          <a :href="`${profileData.social_vk}`" target="_blank">Ссылка на VK</a>
+        </p>
+
+        <p> 
+          <a :href="`${profileData.social_youtube}`" target="_blank">Ссылка на YouTube</a>
+        </p>
+        
+       
+        <p>
+          <a :href="`${profileData.social_website}`" target="_blank">Ссылка на сайт</a>
+        </p>
+        <a :href="`/editmyprofile`">Редактирование профиля</a>
+        
         
 
       
@@ -80,6 +95,10 @@ onMounted(async() => {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  display: flex;
 }
 
 h1,h2{
@@ -105,4 +124,6 @@ button:hover{
   background-color: #6ac55e;
   color: rgb(61, 61, 61);
 }
+
+
 </style>

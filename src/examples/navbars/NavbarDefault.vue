@@ -197,16 +197,7 @@ watch(
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все пользователи
-                      </div>
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все пользователи
-                      </div>
+
                       <RouterLink
                         :to="{ name: 'profiles' }"
                         class="dropdown-item border-radius-md"
@@ -270,16 +261,7 @@ watch(
                 <div class="col-12 px-4 py-2">
                   <div class="row">
                     <div class="position-relative">
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все проекты
-                      </div>
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Все проекты
-                      </div>
+ 
                       <RouterLink
                         :to="{ name: 'projects' }"
                         class="dropdown-item border-radius-md"
@@ -290,16 +272,19 @@ watch(
                     </div>
 
                     <div v-if="isAuthenticated" class="position-relative">
-                      <div
-                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
-                      >
-                        Мои проекты
-                      </div>
+
                       <RouterLink
                         :to="{ name: 'myprojects' }"
                         class="dropdown-item border-radius-md"
                       >
                         <span>Мои проекты</span>
+                      </RouterLink>
+
+                      <RouterLink
+                        :to="{ name: 'createproject' }"
+                        class="dropdown-item border-radius-md"
+                      >
+                        <span>Добавить проект</span>
                       </RouterLink>
 
                     </div>
@@ -339,8 +324,8 @@ watch(
                 :class="getTextColor()"
                 >article</i
               >
-              >
-              Профиль
+              
+              Мой Профиль
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -363,11 +348,7 @@ watch(
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/ViewMyProfile"
                     >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Мой Профиль
-                      </h6>
+
                       <span class="text-sm"
                         >Просмотр</span
                       >
@@ -376,29 +357,13 @@ watch(
                       class="dropdown-item py-2 ps-3 border-radius-md"
                       href="/EditMyProfile"
                     >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Мой Профиль
-                      </h6>
+
                       <span class="text-sm"
                         >Редактирование</span
                       >
                     </a>
 
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="/CreateProject"
-                    >
-                      <h6
-                        class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
-                      >
-                        Создать проект
-                      </h6>
-                      <span class="text-sm"
-                        >Страница добавления проекта</span
-                      >
-                    </a>
+                    
                   </li>
 
 

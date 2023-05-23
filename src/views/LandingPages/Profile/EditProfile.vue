@@ -32,6 +32,7 @@ const processProfileData = (data) => {
         social_vk: data.social_vk || '',
         social_youtube: data.social_youtube || '',
         social_website: data.social_website || '',
+        profile_image: data.profile_image || '',
     };
 };
 
@@ -113,6 +114,7 @@ onMounted(async() => {
           <textarea readonly v-model="debugText"></textarea> -->
 
         <!-- Событие происходит в момент загрузки файла. В этот момент в переменную selectedImage записывается файл, который был выбран. -->
+        <img class="project-image" :src="profileData.profile_image" alt="Profile image">
         <input type="file" accept="image/*" @change="onFileChange">
         
         <input type="text" v-model="profileData.username" placeholder="Имя пользователя">
