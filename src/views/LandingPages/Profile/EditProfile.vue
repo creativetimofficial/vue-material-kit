@@ -35,6 +35,7 @@ const processProfileData = (data) => {
     };
 };
 
+// Эти функции нужны для отображения отладочных сообщений
 axios.interceptors.request.use((request) => {
   if (request.data instanceof FormData) {
     const formData = request.data;

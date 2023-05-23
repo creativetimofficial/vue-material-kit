@@ -45,6 +45,7 @@ const getProject = async () => {
       </div>
       <p class="project-description">{{ projectData.description }}</p>
       <img class="project-image" :src="projectData.featured_image" alt="Featured image">
+      <p> {{ projectData.featured_image }}</p>
       <p v-if="projectData.demo_link" class="project-demo-link">Demo Link: <a :href="projectData.demo_link">{{ projectData.demo_link }}</a></p>
       <p v-if="projectData.source_link" class="project-source-link">Source Link: <a :href="projectData.source_link">{{ projectData.source_link }}</a></p>
       <p class="project-votes">Total Votes: {{ projectData.vote_total }}</p>
