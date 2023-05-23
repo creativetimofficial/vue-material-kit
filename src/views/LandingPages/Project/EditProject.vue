@@ -17,12 +17,6 @@ const projectId = ref(null);
 const route = useRoute();
 
 
-// const getProfile = async () => {
-//     const profileDataRecieved = await axios.get(`http://somebodyhire.me/api/profile/${userId.value}/`);
-//     profileData.value = processProfileData(profileDataRecieved.data);
-// };
-
-
 axios.interceptors.request.use((request) => {
   debugText.value += '\n\nRequest:\n' + JSON.stringify(request, null, 2);
   return request;
@@ -45,18 +39,7 @@ const getProject = async () => {
     }
 };
 
-// const updateProfile = async () => {
-//     try {
-//         const token = computed(() => sessionStorage.getItem('access_token'));
-//         debugText.value = `Type of token: ${typeof token.value}, Value of token: ${token.value}`;
-//         const headers = { 'Authorization': `Bearer ${token.value}` };
-//         await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, profileData.value, { headers });
-//         router.push('/ViewMyProfile');
-//     } catch (error) {
-//         debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
-//         console.error(error);
-//     }
-// };
+
 
 const updateProject = async () => {
     try {

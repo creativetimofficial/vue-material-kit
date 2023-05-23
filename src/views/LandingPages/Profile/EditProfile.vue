@@ -80,11 +80,14 @@ const updateProfile = async () => {
       formData.append(key, value);
     });
 
-    // Append the image file
-    formData.append('profile_image', selectedImage.value);
+   
+    if (selectedImage.value) {
+      formData.append('profile_image', selectedImage.value);
+    };
+
 
     await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, formData, { headers });
-    // router.push('/ViewMyProfile');
+    router.push('/ViewMyProfile');
   } catch (error) {
     debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
     console.error(error);
@@ -104,20 +107,28 @@ onMounted(async() => {
     <NavbarDefault />
     <div class="profile-container">
         <h1>User Profile: {{ loggedUserName }}</h1>
-        <textarea readonly v-model="debugText"></textarea>
+        <!-- 
+          Это поле, в которое выводится весь обмен, происходящий между клиентом и сервером. Нужно для отладки.
+          <textarea readonly v-model="debugText"></textarea> -->
+
+        <!-- Событие происходит в момент загрузки файла. В этот момент в переменную selectedImage записывается файл, который был выбран. -->
         <input type="file" accept="image/*" @change="onFileChange">
-        <input type="text" v-model="profileData.username" placeholder="Username">
+        
+        <input type="text" v-model="profileData.username" placeholder="Имя пользователя">
         <input type="email" v-model="profileData.email" placeholder="Email">
-        <input type="text" v-model="profileData.name" placeholder="Name">
-        <input type="text" v-model="profileData.short_intro" placeholder="Short Introduction">
-        <textarea v-model="profileData.bio" placeholder="Biography"></textarea>
-        <textarea v-model="profileData.social_github" placeholder="GitHub Link"></textarea>
-        <textarea v-model="profileData.social_twitter" placeholder="Twitter Link"></textarea>
-        <textarea v-model="profileData.social_vk" placeholder="VK Link"></textarea>
-        <textarea v-model="profileData.social_youtube" placeholder="YouTube Link"></textarea>
-        <textarea v-model="profileData.social_website" placeholder="Website Link"></textarea>
-        <button @click="updateProfile" class="btn-submit">Submit</button>
-        <button @click="cancelUpdate" class="btn-cancel">Cancel</button>
+        <input type="text" v-model="profileData.name" placeholder="Полное имя">
+        <input type="text" v-model="profileData.short_intro" placeholder="Краткое описание">
+        <input type="text" v-model="profileData.location" placeholder="Местоположение">
+        <textarea v-model="profileData.bio" placeholder="Подробное описание"></textarea>
+        <textarea v-model="profileData.social_github" placeholder="GitHub"></textarea>
+        <textarea v-model="profileData.social_twitter" placeholder="Twitter"></textarea>
+        <textarea v-model="profileData.social_vk" placeholder="ВКонтакте"></textarea>
+        <textarea v-model="profileData.social_youtube" placeholder="YouTube"></textarea>
+        <textarea v-model="profileData.social_website" placeholder="Сайт"></textarea>
+        <div>
+        <button @click="updateProfile" class="btn-submit">Сохранить</button>
+        <button @click="cancelUpdate" class="btn-cancel">Отменить</button>
+        </div>
     </div>
 </template>
 
