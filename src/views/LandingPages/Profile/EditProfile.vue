@@ -139,9 +139,9 @@ onMounted(async() => {
   flex-direction: column;
   align-items: center;
   width: 80%;
-  margin: auto;
+  margin: 5% 10%;
   padding: 20px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px 0px rgba(6, 104, 14, 0.281);
 }
 
 .profile-container img {
@@ -158,7 +158,7 @@ onMounted(async() => {
   padding: 10px; /* Add some padding */
   margin-bottom: 15px; /* Add some margin */
   box-sizing: border-box; /* Ensure padding doesn't affect final dimensions */
-  border: 1px solid #ccc; /* Add a border */
+  border: 1px solid #2ca33c; /* Add a border */
   border-radius: 5px; /* Add rounded corners */
 }
 

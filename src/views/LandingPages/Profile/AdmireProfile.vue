@@ -68,9 +68,9 @@ onMounted(async() => {
 .profile-container {
   width: 50%;
   padding: 20px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px 0px rgba(6, 104, 14, 0.281);
   margin: 5% auto;
-  background-color: #3d913257;
+  background-color: #ffffff57;
   border-radius: 10px;
 }
 
@@ -85,9 +85,12 @@ onMounted(async() => {
 h1,h2{
   /*font-family: 'PressStart2P';*/
   color:rgb(70, 104, 105);
+  font-weight: 800;
+  text-align: center;
 }
 p{
   font-family: 'SpaceMono' monospace;
+  font-weight: 500;
 }
 button{
   background-color: #3d9132;
