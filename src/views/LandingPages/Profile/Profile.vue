@@ -49,7 +49,7 @@ const processProfileData = (data) => {
       <p>Местоположение: {{ profileData.location }}</p>
       <p>Краткое описание: {{ profileData.short_intro }}</p>
       <p>Биография: {{ profileData.bio }}</p>
-      <p>Ссылка на изображение: {{ profileData.profile_image }}</p>
+      <!--<p>Ссылка на изображение: {{ profileData.profile_image }}</p>-->
       <p>Ссылка на GitHub: {{ profileData.social_github }}</p>
       <p>Ссылка на Twitter: {{ profileData.social_twitter }}</p>
       <p>Ссылка на VK: {{ profileData.social_vk }}</p>
@@ -61,13 +61,11 @@ const processProfileData = (data) => {
 
 <style scoped>
 .profile-container {
-display: flex;
-flex-direction: column;
-width: 80%;
-margin: 10% auto;
+width: 50%;
+margin: 5% 25%;
 padding: 20px;
-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-background-color: #3d913257;
+box-shadow: 0px 0px 10px 0px rgba(6, 104, 14, 0.281);
+background-color: #ffffff57;
 border-radius: 10px;
 }
 
@@ -83,9 +81,12 @@ margin-bottom: 20px;
 h1,h2{
   /*font-family: 'PressStart2P';*/
   color:rgb(70, 104, 105);
+  font-weight: 800;
+  text-align: center;
 }
 p{
   font-family: 'SpaceMono' monospace;
+  font-weight: 500;
 }
 button{
   background-color: #3d9132;
@@ -95,6 +96,7 @@ button{
   font-weight: 500;
   width: 50%;
   margin-bottom: 10px;
+  margin-left: 25%;
 }
 button:hover{
   background-color: #6ac55e;
