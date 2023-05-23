@@ -34,7 +34,8 @@ onMounted(() => {
     <h2 class="result-header">Найдено проектов: {{ searchResultProjects.length}} </h2>
     <div class="result-grid">
       <div class="result-card" v-for="project in searchResultProjects" :key="project.id">
-       <div class="project-title"> <h3>{{ project.title }} with ID {{ project.id }}</h3></div>
+       <div class="project-title"> <h3>{{ project.title }}</h3></div>
+       <img class="project-image" :src="project.featured_image" alt="Featured image">
         <p>{{ project.description }}</p>
         <a :href="`/project/${project.id}`">Страница проекта</a>
       </div>
@@ -147,6 +148,12 @@ p{
   .result-card {
     width: 100%;
   }
+}
+
+.project-image {
+  width: 20%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 </style>
