@@ -22,6 +22,13 @@ const loggedUserName = computed(() => sessionStorage.getItem('username'));
 const isStaff = computed(() => sessionStorage.getItem('is_staff'));
 const token = computed(() => sessionStorage.getItem('token'));
 
+//Тут мы попробуем использовать local storage потому что оно должно работать между вкладками
+const isAuthenticatedLocal = computed(() => !!localStorage.getItem('access_token')); 
+const userIdLocal = computed(() => localStorage.getItem('user_id'));
+const loggedUserNameLocal = computed(() => localStorage.getItem('username'));
+const isStaffLocal = computed(() => localStorage.getItem('is_staff'));
+const tokenLocal = computed(() => localStorage.getItem('token'));
+
 const login = async () => {
   if (!username.value || !password.value) {
     errorMessage.value = "Please fill in both fields.";
@@ -42,6 +49,13 @@ const login = async () => {
       sessionStorage.setItem('user_id', response.data.id); 
       sessionStorage.setItem('is_staff', response.data.is_staff); 
       sessionStorage.setItem('token', response.data.token);
+      //Дублируем всё, потому что страницы будут переползать постепенно 
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('username', username.value);
+      localStorage.setItem('user_id', response.data.id);
+      localStorage.setItem('is_staff', response.data.is_staff);
+      localStorage.setItem('token', response.data.token);
+
       location.reload(); // Refresh page
     } catch (error) {
       if (error.response) {
@@ -61,6 +75,13 @@ const logout = () => {
   sessionStorage.removeItem('user_id');
   sessionStorage.setItem('is_staff', false);
   sessionStorage.removeItem('token');
+  //и тут тоже не забываем продублировать
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('username'); // Also clear the username from sessionStorage
+  localStorage.removeItem('user_id');
+  localStorage.setItem('is_staff', false);
+  localStorage.removeItem('token');
+  
   location.reload(); // Refresh page after logout
 };
 

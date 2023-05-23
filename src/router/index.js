@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PresentationView from "../views/Presentation/PresentationView.vue";
-import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
-import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
-import AuthorView from "../views/LandingPages/Author/AuthorView.vue";
 import SignInBasicView from "../views/LandingPages/SignIn/BasicView.vue";
 import Project from "../views/LandingPages/Project/Project.vue";
 import Profile from "../views/LandingPages/Profile/Profile.vue";
@@ -99,21 +96,6 @@ const router = createRouter({
       component: ForgotPassword,
     },
 
-    {
-      path: "/pages/landing-pages/about-us",
-      name: "about",
-      component: AboutView,
-    },
-    {
-      path: "/pages/landing-pages/contact-us",
-      name: "contactus",
-      component: ContactView,
-    },
-    {
-      path: "/pages/landing-pages/author",
-      name: "author",
-      component: AuthorView,
-    },
     {
       path: "/pages/landing-pages/basic",
       name: "signin-basic",
