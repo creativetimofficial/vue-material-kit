@@ -99,7 +99,7 @@ border-radius: 15px;
 .result-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 .result-card {

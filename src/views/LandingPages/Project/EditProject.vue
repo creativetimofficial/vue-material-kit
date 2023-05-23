@@ -48,19 +48,6 @@ const onFileChange = (event) => {
 
 
 const updateProject = async () => {
-    // try {
-    //     const headers = { 'Authorization': `Bearer ${token.value}` };
-    //     const data = {
-    //         title: projectData.value.title,
-    //         description: projectData.value.description,
-    //         demo_link: projectData.value.demo_link,
-    //         source_link: projectData.value.source_link,
-    //         tags: projectData.value.tags,
-
-    //     };
-    //     const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, data, { headers });
-    //     router.push(`/project/${response.data.id}`);
-    // } 
     try {
         const tokenValue = token.value;
         const headers = { 
@@ -94,6 +81,29 @@ const updateProject = async () => {
     }
 };
 
+const deleteProject = async () => {
+    try {
+        const tokenValue = token.value;
+        const headers = { 
+            'Authorization': `Bearer ${tokenValue}`,
+            'Content-Type': 'multipart/form-data',
+            "X-CSRFToken": "{{ csrf_token }}"
+        };
+
+
+        const response = await axios.delete(`http://somebodyhire.me/api/projects/${projectId.value}/`, { headers });
+        router.push('/myprojects');
+
+
+    }
+
+    
+    catch (error) {
+        debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
+        console.error(error);
+    }
+};
+
 const cancelUpdate = () => {
     router.push('/myprojects');
 };
@@ -107,13 +117,13 @@ onMounted(async() => {
 <template>
     <NavbarDefault />
     <div class="profile-container">
-        <H1> Страница Редактирования Проекта {{ projectId }}</H1>
+
         <div v-if="!isAuthenticated">
             <h1>Вы не авторизованы</h1>
         </div>
         <div v-else>
             <div v-if = "userId == projectData.owner">
-        <h1>User Profile: {{ loggedUserName }}</h1>
+        <h2>Редактирование проекта</h2>
 
         <!-- Окно с результатами обмена для отладки 
         <textarea readonly v-model="debugText"></textarea>
@@ -133,11 +143,10 @@ onMounted(async() => {
         <div>
         <button @click="updateProject" class="btn-submit">Сохранить</button>
         <button @click="cancelUpdate" class="btn-cancel">Отмена</button>
+        <button @click="deleteProject" class="btn-cancel">Удалить</button>
         </div> 
     </div>
-            <div v-else>
-                <h1>Вы не являетесь владельцем проекта</h1>
-            </div>
+
         </div>
     </div>
 </template>

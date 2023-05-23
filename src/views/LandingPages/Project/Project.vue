@@ -38,20 +38,17 @@ const getProject = async () => {
 <template>
   <NavbarDefault />
     <div v-if="projectData" class="project-container">
-      <h1 class="project-title">Проект номер: {{ projectData.id }}</h1>
-      <h2 class="project-subtitle">{{ projectData.title }}</h2>
+      <h1 class="subtitle">{{ projectData.title }}</h1>
       <div v-if = "projectData.owner == userId" class="project-owner-note">
         <a :href="`/editproject/${projectData.id}`">Редактирование проекта</a>
       </div>
-      <p class="project-description">{{ projectData.description }}</p>
       <img class="project-image" :src="projectData.featured_image" alt="Featured image">
-      <p> {{ projectData.featured_image }}</p>
-      <p v-if="projectData.demo_link" class="project-demo-link">Demo Link: <a :href="projectData.demo_link">{{ projectData.demo_link }}</a></p>
-      <p v-if="projectData.source_link" class="project-source-link">Source Link: <a :href="projectData.source_link">{{ projectData.source_link }}</a></p>
-      <p class="project-votes">Total Votes: {{ projectData.vote_total }}</p>
+      <p class="project-description">{{ projectData.description }}</p>
+      <p v-if="projectData.demo_link" class="project-demo-link">Demo Link: <a target="_blank" :href="projectData.demo_link">{{ projectData.demo_link }}</a></p>
+      <p v-if="projectData.source_link" class="project-source-link">Source Link: <a target="_blank" :href="projectData.source_link">{{ projectData.source_link }}</a></p>
+      <!-- <p class="project-votes">Total Votes: {{ projectData.vote_total }}</p>
       <p class="project-vote-ratio">Vote Ratio: {{ projectData.vote_ratio }}</p>
       <p class="project-created">Created On: {{ new Date(projectData.created).toLocaleDateString() }}</p>
-      <p class="project-owner-id">Owner ID: {{ projectData.owner }}</p>
       <p class="project-tags">Tags: 
         <span v-for="(tag, index) in projectData.tags" :key="index" class="project-tag">
           {{ tag }}<span v-if="index < projectData.tags.length - 1">, </span>
@@ -66,7 +63,7 @@ const getProject = async () => {
         </select>
       <textarea name="comment" v-model="message" placeholder="Напишите комментарий"></textarea>
       <button>Отправить</button>
-      </div>
+      </div> -->
   </div>
 </template> 
 
