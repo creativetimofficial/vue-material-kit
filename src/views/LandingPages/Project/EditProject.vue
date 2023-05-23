@@ -15,6 +15,7 @@ const router = useRouter();
 const debugText = ref('');
 const projectId = ref(null);
 const route = useRoute();
+const selectedImage = ref(null);
 
 
 axios.interceptors.request.use((request) => {
@@ -39,13 +40,17 @@ const getProject = async () => {
     }
 };
 
-const onFileChange = (event) => {
-    if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        projectData.value.featured_image = file;
-    }
-};
+// const onFileChange = (event) => {
+//     if (event.target.files.length > 0) {
+//         const file = event.target.files[0];
+//         projectData.value.featured_image = file;
+//     }
+// };
 
+const onFileChange = (event) => {
+    selectedImage.value = event.target.files[0];
+    debugText.value = `Selected image: ${selectedImage.value.name}`;
+};
 
 const updateProject = async () => {
     try {
@@ -63,9 +68,15 @@ const updateProject = async () => {
         formData.append('demo_link', projectData.value.demo_link);
         formData.append('source_link', projectData.value.source_link);
 
-        if (projectData.value.featured_image) {
-            formData.append('featured_image', projectData.value.featured_image);
+        // if (projectData.value.featured_image) {
+        //     formData.append('featured_image', projectData.value.featured_image);
+        // };
+
+
+        if (selectedImage.value) {
+                formData.append('featured_image', selectedImage.value);
         };
+
         // formData.append('tags', projectData.value.tags);
 
         const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, formData, { headers });
