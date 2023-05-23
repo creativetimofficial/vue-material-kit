@@ -39,22 +39,56 @@ const getProject = async () => {
     }
 };
 
+const onFileChange = (event) => {
+    if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        projectData.value.featured_image = file;
+    }
+};
 
 
 const updateProject = async () => {
-    try {
-        const headers = { 'Authorization': `Bearer ${token.value}` };
-        const data = {
-            title: projectData.value.title,
-            description: projectData.value.description,
-            demo_link: projectData.value.demo_link,
-            source_link: projectData.value.source_link,
-            tags: projectData.value.tags,
+    // try {
+    //     const headers = { 'Authorization': `Bearer ${token.value}` };
+    //     const data = {
+    //         title: projectData.value.title,
+    //         description: projectData.value.description,
+    //         demo_link: projectData.value.demo_link,
+    //         source_link: projectData.value.source_link,
+    //         tags: projectData.value.tags,
 
+    //     };
+    //     const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, data, { headers });
+    //     router.push(`/project/${response.data.id}`);
+    // } 
+    try {
+        const tokenValue = token.value;
+        const headers = { 
+            'Authorization': `Bearer ${tokenValue}`,
+            'Content-Type': 'multipart/form-data',
+            "X-CSRFToken": "{{ csrf_token }}"
         };
-        const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, data, { headers });
+
+        const formData = new FormData();
+
+        formData.append('title', projectData.value.title);
+        formData.append('description', projectData.value.description);
+        formData.append('demo_link', projectData.value.demo_link);
+        formData.append('source_link', projectData.value.source_link);
+
+        if (projectData.value.featured_image) {
+            formData.append('featured_image', projectData.value.featured_image);
+        };
+        // formData.append('tags', projectData.value.tags);
+
+        const response = await axios.patch(`http://somebodyhire.me/api/projects/${projectId.value}/`, formData, { headers });
         router.push(`/project/${response.data.id}`);
-    } catch (error) {
+
+
+    }
+
+    
+    catch (error) {
         debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
         console.error(error);
     }
@@ -81,18 +115,26 @@ onMounted(async() => {
             <div v-if = "userId == projectData.owner">
         <h1>User Profile: {{ loggedUserName }}</h1>
 
-        <!-- Окно с результатами обмена для отладки -->
+        <!-- Окно с результатами обмена для отладки 
         <textarea readonly v-model="debugText"></textarea>
+        -->
 
+
+        <img class="project-image" :src="projectData.featured_image" alt="Featured image">
         <input type="file" accept="image/*" @change="onFileChange">
+
+
         <input type="text" v-model="projectData.title" placeholder="Title">
         <input type="text" v-model="projectData.description" placeholder="Description">
         <textarea v-model="projectData.demo_link" placeholder="Demo link"></textarea>
         <textarea v-model="projectData.source_link" placeholder="Source code link"></textarea>
-        <textarea v-model="projectData.tags" placeholder="Tags"></textarea>
-        <button @click="updateProject" class="btn-submit">Update</button>
-        <button @click="cancelUpdate" class="btn-cancel">Cancel</button>
-            </div>
+        <!-- <textarea v-model="projectData.tags" placeholder="Tags"></textarea> -->
+
+        <div>
+        <button @click="updateProject" class="btn-submit">Сохранить</button>
+        <button @click="cancelUpdate" class="btn-cancel">Отмена</button>
+        </div> 
+    </div>
             <div v-else>
                 <h1>Вы не являетесь владельцем проекта</h1>
             </div>

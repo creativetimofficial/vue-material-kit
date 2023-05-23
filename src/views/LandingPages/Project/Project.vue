@@ -59,7 +59,7 @@ const getProject = async () => {
       </p>
       <h3>Feedback</h3>
       <div class="feedback">
-      <input name="username" readonly placeholder="Надо вставить username"/>
+      <input name="username" readonly placeholder="Username"/>
       <select id="selectvalue">
         <option>Vote Up</option>
         <option>Vote Down</option>
@@ -119,7 +119,7 @@ input, textarea, select, option{
 }
 
 .project-image {
-  width: 100%;
+  width: 20%;
   height: auto;
   margin-bottom: 20px;
 }
