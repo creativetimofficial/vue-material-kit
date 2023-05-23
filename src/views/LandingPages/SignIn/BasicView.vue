@@ -1,21 +1,118 @@
 <script setup>
 import { onMounted } from "vue";
+import { ref } from "vue";
+import axios from 'axios';
+import { computed } from "vue";
 
 // example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
 
-//Vue Material Kit 2 components
-import MaterialInput from "@/components/MaterialInput.vue";
-import MaterialSwitch from "@/components/MaterialSwitch.vue";
-import MaterialButton from "@/components/MaterialButton.vue";
-
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
+
+const username = ref('');
+const password = ref('');
+const errorMessage = ref('');
+
+//Это блок для работы с хранилищем сессии
+const isAuthenticated = computed(() => !!sessionStorage.getItem('access_token')); 
+const userId = computed(() => sessionStorage.getItem('user_id'));
+const loggedUserName = computed(() => sessionStorage.getItem('username'));
+const isStaff = computed(() => sessionStorage.getItem('is_staff'));
+const token = computed(() => sessionStorage.getItem('token'));
+
+//Тут мы попробуем использовать local storage потому что оно должно работать между вкладками
+const isAuthenticatedLocal = computed(() => !!localStorage.getItem('access_token')); 
+const userIdLocal = computed(() => localStorage.getItem('user_id'));
+const loggedUserNameLocal = computed(() => localStorage.getItem('username'));
+const isStaffLocal = computed(() => localStorage.getItem('is_staff'));
+const tokenLocal = computed(() => localStorage.getItem('token'));
+
+const login = async () => {
+  if (!username.value || !password.value) {
+    errorMessage.value = "Please fill in both fields.";
+  } else {
+    const url = 'http://somebodyhire.me/api/token/';
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const body = {
+      username: username.value,
+      password: password.value,
+    };
+
+    try {
+      const response = await axios.post(url, body, { headers });
+      sessionStorage.setItem('access_token', response.data.access); 
+      sessionStorage.setItem('username', username.value); 
+      sessionStorage.setItem('user_id', response.data.id); 
+      sessionStorage.setItem('is_staff', response.data.is_staff); 
+      sessionStorage.setItem('token', response.data.token);
+      //Дублируем всё, потому что страницы будут переползать постепенно 
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('username', username.value);
+      localStorage.setItem('user_id', response.data.id);
+      localStorage.setItem('is_staff', response.data.is_staff);
+      localStorage.setItem('token', response.data.token);
+
+      location.reload(); // Refresh page
+    } catch (error) {
+      if (error.response) {
+        errorMessage.value = "Incorrect login or password."; // Simplified error message
+      } else if (error.request) {
+        errorMessage.value = "No response received from server. Please try again later.";
+      } else {
+        errorMessage.value = error.message;
+      }
+    }
+  }
+};
+
+const logout = () => { 
+  sessionStorage.removeItem('access_token');
+  sessionStorage.removeItem('username'); // Also clear the username from sessionStorage
+  sessionStorage.removeItem('user_id');
+  sessionStorage.setItem('is_staff', false);
+  sessionStorage.removeItem('token');
+  //и тут тоже не забываем продублировать
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('username'); // Also clear the username from sessionStorage
+  localStorage.removeItem('user_id');
+  localStorage.setItem('is_staff', false);
+  localStorage.removeItem('token');
+  
+  location.reload(); // Refresh page after logout
+};
+
 onMounted(() => {
   setMaterialInput();
 });
 </script>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      errorMessage: '',
+    };
+  },
+  methods: {
+    login() {
+      if (!this.username || !this.password) {
+        this.errorMessage = "Please fill in both fields.";
+      } else {
+        // Implement login logic here
+        this.errorMessage = `Can't login now, you are trying to sign in with login: ${this.username} and password: ${this.password}`;
+      }
+    },
+  },
+};
+</script>
+
+
 <template>
   <DefaultNavbar transparent />
   <Header>
@@ -41,131 +138,86 @@ onMounted(() => {
                   <h4
                     class="text-white font-weight-bolder text-center mt-2 mb-0"
                   >
-                    Sign in
+                    Вход
                   </h4>
-                  <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="card-body">
                 <form role="form" class="text-start">
-                  <MaterialInput
-                    id="email"
-                    class="input-group-outline my-3"
-                    :label="{ text: 'Email', class: 'form-label' }"
-                    type="email"
-                  />
-                  <MaterialInput
-                    id="password"
-                    class="input-group-outline mb-3"
-                    :label="{ text: 'Password', class: 'form-label' }"
-                    type="password"
-                  />
-                  <MaterialSwitch
-                    class="d-flex align-items-center mb-3"
-                    id="rememberMe"
-                    labelClass="mb-0 ms-3"
-                    checked
-                    >Remember me</MaterialSwitch
-                  >
+                  <div>
+                    <div v-if="isAuthenticated">
+                        <!-- This will only be displayed if the user is authenticated -->
+                        <p>Вы вошли в аккаунт {{ loggedUserName }}</p>
+                        <p>
+                          <a href="/ViewMyProfile">Перейти в профиль.</a>
+                        </p>
+                        <!-- Это должно быть видно только админам -->
+                        <div v-if="isStaff">
+                            <p>
+                            <a href="/admin">Перейти в панель администратора.</a>
+                            </p>
+                          </div>
+                        <button @click="logout">Выход</button>
+                    </div>
 
-                  <div class="text-center">
-                    <MaterialButton
-                      class="my-4 mb-2"
-                      variant="gradient"
-                      color="success"
-                      fullWidth
-                      >Sign in</MaterialButton
-                    >
-                  </div>
-                  <p class="mt-4 text-sm text-center">
-                    Don't have an account?
+                    <div v-else>
+                        <!-- This will be displayed if the user is not authenticated -->
+                        <p>Пожалуйста, введите логин и пароль</p>
+
+                      <div>
+                        <input v-model="username" type="text" placeholder="Имя пользователя" />
+                      </div>
+
+                      <div>
+                        <input v-model="password" type="password" placeholder="Пароль" />
+                      </div>
+
+
+                    <div class="text-center">
+                      <button
+                        type="button"
+                        class="btn bg-gradient-dark w-100 my-4 mb-2"
+                        @click="login"
+                                      >
+                          Войти
+                      </button>
+
+                    </div>
+
+                    <p class="mt-4 text-sm text-center">
+                    Нет аккаунта?
                     <a
-                      href="#"
+                      href="/register"
                       class="text-success text-gradient font-weight-bold"
-                      >Sign up</a
+                      >Зарегистироваться</a
                     >
                   </p>
+                  <p class="mt-4 text-sm text-center">
+                   
+                   <a
+                     href="/forgot"
+                     class="text-success text-gradient font-weight-bold"
+                     >Забыли пароль</a
+                   >
+                 </p>
+                      
+                    </div>
+
+
+              <div v-if="errorMessage">
+                      <p>{{ errorMessage }}</p>
+              </div>
+  </div>
+                  
+
+
+
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer position-absolute bottom-2 py-2 w-100">
-        <div class="container">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-12 col-md-6 my-auto">
-              <div
-                class="copyright text-center text-sm text-white text-lg-start"
-              >
-                © {{ new Date().getFullYear() }}, made with
-                <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a
-                  href="https://www.creative-tim.com"
-                  class="font-weight-bold text-white"
-                  target="_blank"
-                  >Creative Tim</a
-                >
-                for a better web.
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <ul
-                class="nav nav-footer justify-content-center justify-content-lg-end"
-              >
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Creative Tim</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/presentation"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >About Us</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/blog"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Blog</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/license"
-                    class="nav-link pe-0 text-white"
-                    target="_blank"
-                    >License</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   </Header>
 </template>
