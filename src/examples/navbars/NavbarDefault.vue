@@ -202,6 +202,11 @@ watch(
                       >
                         Все пользователи
                       </div>
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Все пользователи
+                      </div>
                       <RouterLink
                         :to="{ name: 'profiles' }"
                         class="dropdown-item border-radius-md"
@@ -270,6 +275,11 @@ watch(
                       >
                         Все проекты
                       </div>
+                      <div
+                        class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
+                      >
+                        Все проекты
+                      </div>
                       <RouterLink
                         :to="{ name: 'projects' }"
                         class="dropdown-item border-radius-md"
@@ -323,12 +333,12 @@ watch(
               :class="getTextColor()"
               id="dropdownMenuDocs"
               data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i
+              aria-expanded="false">
+             <i
                 class="material-icons opacity-6 me-2 text-md"
                 :class="getTextColor()"
                 >article</i
+              >
               >
               Профиль
               <img
