@@ -80,7 +80,11 @@ onMounted(async() => {
         <div v-else>
             <div v-if = "userId == projectData.owner">
         <h1>User Profile: {{ loggedUserName }}</h1>
+
+        <!-- Окно с результатами обмена для отладки -->
         <textarea readonly v-model="debugText"></textarea>
+
+        <input type="file" accept="image/*" @change="onFileChange">
         <input type="text" v-model="projectData.title" placeholder="Title">
         <input type="text" v-model="projectData.description" placeholder="Description">
         <textarea v-model="projectData.demo_link" placeholder="Demo link"></textarea>
