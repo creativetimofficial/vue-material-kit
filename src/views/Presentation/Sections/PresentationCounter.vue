@@ -61,9 +61,9 @@ export default {
             <div class="col-md-4">
               <DefaultCounterCard
                 color="success"
-                title="Раз"
-                description="Мы прокляли день, когда сели за баранку этого пылесоса"
-                :count="9000"
+                title="Часов"
+                description="Потрачено на разработку сайта"
+                :count="288"
                 suffix="+"
                 :duration="3000"
               />
