@@ -84,7 +84,7 @@ const updateProfile = async () => {
     formData.append('profile_image', selectedImage.value);
 
     await axios.patch(`http://somebodyhire.me/api/profile/${userId.value}/`, formData, { headers });
-    // router.push('/ViewMyProfile');
+    router.push('/ViewMyProfile');
   } catch (error) {
     debugText.value = `Error: ${JSON.stringify(error, null, 2)}`;
     console.error(error);
