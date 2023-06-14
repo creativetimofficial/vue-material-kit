@@ -5,7 +5,7 @@
       class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
       :style="{
         backgroundImage:
-          'url(https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg)'
+          'url(https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg)',
       }"
       loading="lazy"
     >

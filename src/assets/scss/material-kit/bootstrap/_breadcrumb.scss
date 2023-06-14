@@ -15,7 +15,8 @@
 
   display: flex;
   flex-wrap: wrap;
-  padding: var(--#{$prefix}breadcrumb-padding-y) var(--#{$prefix}breadcrumb-padding-x);
+  padding: var(--#{$prefix}breadcrumb-padding-y)
+    var(--#{$prefix}breadcrumb-padding-x);
   margin-bottom: var(--#{$prefix}breadcrumb-margin-bottom);
   @include font-size(var(--#{$prefix}breadcrumb-font-size));
   list-style: none;
@@ -32,7 +33,14 @@
       float: left; // Suppress inline spacings and underlining of the separator
       padding-right: var(--#{$prefix}breadcrumb-item-padding-x);
       color: var(--#{$prefix}breadcrumb-divider-color);
-      content: var(--#{$prefix}breadcrumb-divider, escape-svg($breadcrumb-divider)) #{"/* rtl:"} var(--#{$prefix}breadcrumb-divider, escape-svg($breadcrumb-divider-flipped)) #{"*/"};
+      content: var(
+          --#{$prefix}breadcrumb-divider,
+          escape-svg($breadcrumb-divider)
+        )
+        #{"/* rtl:"} var(
+          --#{$prefix}breadcrumb-divider,
+          escape-svg($breadcrumb-divider-flipped)
+        ) #{"*/"};
     }
   }
 

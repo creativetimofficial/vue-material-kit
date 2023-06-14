@@ -20,7 +20,10 @@
   color: var(--#{$prefix}alert-color);
   background-color: var(--#{$prefix}alert-bg);
   border: var(--#{$prefix}alert-border);
-  border-radius: var(--#{$prefix}alert-border-radius, 0); // stylelint-disable-line property-disallowed-list
+  border-radius: var(
+    --#{$prefix}alert-border-radius,
+    0
+  ); // stylelint-disable-line property-disallowed-list
 }
 
 // Headings for larger alerts
@@ -33,7 +36,6 @@
 .alert-link {
   font-weight: $alert-link-font-weight;
 }
-
 
 // Dismissible alerts
 //
@@ -52,7 +54,6 @@
   }
 }
 
-
 // scss-docs-start alert-modifiers
 // Generate contextual modifier classes for colorizing the alert.
 
@@ -62,7 +63,11 @@
   $alert-color: shift-color($value, $alert-color-scale);
 
   @if (contrast-ratio($alert-background, $alert-color) < $min-contrast-ratio) {
-    $alert-color: mix($value, color-contrast($alert-background), abs($alert-color-scale));
+    $alert-color: mix(
+      $value,
+      color-contrast($alert-background),
+      abs($alert-color-scale)
+    );
   }
   .alert-#{$state} {
     @include alert-variant($alert-background, $alert-border, $alert-color);

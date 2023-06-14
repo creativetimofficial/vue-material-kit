@@ -13,9 +13,9 @@
     transform: $dropup-transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    will-change: transform,box-shadow;
+    will-change: transform, box-shadow;
 
-    &.show{
+    &.show {
       pointer-events: auto;
       transform: $dropup-transform-show;
       opacity: 1;

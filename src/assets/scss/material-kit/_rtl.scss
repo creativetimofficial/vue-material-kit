@@ -110,14 +110,18 @@
       border-bottom-left-radius: 0;
     }
 
-    & > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    &
+      > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+        .valid-feedback
+      ):not(.invalid-tooltip):not(.invalid-feedback) {
       margin-right: -1px;
       border-top-left-radius: $input-border-radius;
       border-bottom-left-radius: $input-border-radius;
     }
 
     &:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3),
-    &:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+    &:not(.has-validation)
+      > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
       border-top-right-radius: $input-border-radius;
       border-bottom-right-radius: $input-border-radius;
     }

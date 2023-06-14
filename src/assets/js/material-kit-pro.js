@@ -38,7 +38,7 @@ function debounce(func, wait, immediate) {
 function smoothToPricing(id) {
   if (document.getElementById(id)) {
     document.getElementById(id).scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }
 }
@@ -239,7 +239,7 @@ if (document.querySelector(".blur-shadow-avatar")) {
         "avatar-sm",
         "avatar-lg",
         "avatar-xl",
-        "avatar-xxl"
+        "avatar-xxl",
       ];
 
       for (var k = 0; k < avatarClasses.length; k++) {
@@ -269,7 +269,7 @@ if (document.querySelector(".blur-shadow-avatar")) {
         "avatar-sm",
         "avatar-lg",
         "avatar-xl",
-        "avatar-xxl"
+        "avatar-xxl",
       ];
 
       for (var k = 0; k < avatarClasses.length; k++) {
@@ -301,80 +301,80 @@ if (document.querySelector("#google-maps")) {
         elementType: "labels.text.fill",
         stylers: [
           {
-            color: "#444444"
-          }
-        ]
+            color: "#444444",
+          },
+        ],
       },
       {
         featureType: "landscape",
         elementType: "all",
         stylers: [
           {
-            color: "#f2f2f2"
-          }
-        ]
+            color: "#f2f2f2",
+          },
+        ],
       },
       {
         featureType: "poi",
         elementType: "all",
         stylers: [
           {
-            visibility: "off"
-          }
-        ]
+            visibility: "off",
+          },
+        ],
       },
       {
         featureType: "road",
         elementType: "all",
         stylers: [
           {
-            saturation: -100
+            saturation: -100,
           },
           {
-            lightness: 45
-          }
-        ]
+            lightness: 45,
+          },
+        ],
       },
       {
         featureType: "road.highway",
         elementType: "all",
         stylers: [
           {
-            visibility: "simplified"
-          }
-        ]
+            visibility: "simplified",
+          },
+        ],
       },
       {
         featureType: "road.arterial",
         elementType: "labels.icon",
         stylers: [
           {
-            visibility: "off"
-          }
-        ]
+            visibility: "off",
+          },
+        ],
       },
       {
         featureType: "transit",
         elementType: "all",
         stylers: [
           {
-            visibility: "off"
-          }
-        ]
+            visibility: "off",
+          },
+        ],
       },
       {
         featureType: "water",
         elementType: "all",
         stylers: [
           {
-            color: "#C5CBF5"
+            color: "#C5CBF5",
           },
           {
-            visibility: "on"
-          }
-        ]
-      }
-    ]
+            visibility: "on",
+          },
+        ],
+      },
+    ],
   };
 
   var map = new google.maps.Map(
@@ -384,7 +384,7 @@ if (document.querySelector("#google-maps")) {
 
   var marker = new google.maps.Marker({
     position: myLatlng,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 
   // To add the marker to the map, call setMap();

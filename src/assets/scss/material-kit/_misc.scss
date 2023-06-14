@@ -38,7 +38,7 @@ html {
 .navbar-blur {
   -webkit-backdrop-filter: $blur-backdrop-filter;
   backdrop-filter: $blur-backdrop-filter;
-  background-color: rgba($white, .58) !important;
+  background-color: rgba($white, 0.58) !important;
 }
 
 .blur-section {
@@ -46,7 +46,11 @@ html {
   backdrop-filter: $blur-backdrop-filter;
 
   &.blur-gradient-primary {
-    @include gradient-directional(rgba($primary-gradient, .95) 0%, rgba($primary-gradient-state, .95) 100%, $deg: 195deg);
+    @include gradient-directional(
+      rgba($primary-gradient, 0.95) 0%,
+      rgba($primary-gradient-state, 0.95) 100%,
+      $deg: 195deg
+    );
   }
 }
 
@@ -171,14 +175,13 @@ hr.horizontal {
   border-top-left-radius: 0;
 }
 
-.border-dashed{
+.border-dashed {
   border-style: dashed;
 }
 
 .z-index-sticky {
   z-index: $zindex-sticky;
 }
-
 
 // moving waves animation
 .waves {
@@ -283,9 +286,8 @@ hr.horizontal {
   }
 }
 
-
 // Background Sizes
-.bg-cover{
+.bg-cover {
   background-size: cover;
 }
 
@@ -301,15 +303,14 @@ hr.horizontal {
   opacity: $mask-opacity;
 }
 
-
 // Cursor Pointer Class
 .cursor-pointer {
   cursor: pointer;
 }
 
 // Translate 50% Class
-.transform-translate-50{
-  transform: translate(0,-50%)
+.transform-translate-50 {
+  transform: translate(0, -50%);
 }
 
 // VR Pages
@@ -344,8 +345,6 @@ hr.horizontal {
       &:focus {
         background-image: $input-background-image;
       }
-
-
     }
 
     &.choices__list--dropdown {

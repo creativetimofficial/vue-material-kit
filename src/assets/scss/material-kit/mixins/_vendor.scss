@@ -26,7 +26,7 @@
   -ms-transition: $property $time $type;
   transition: $property $time $type;
 }
-@mixin transform-style($type){
+@mixin transform-style($type) {
   -webkit-transform-style: $type;
   -moz-transform-style: $type;
   -o-transform-style: $type;
@@ -34,18 +34,18 @@
   transform-style: $type;
 }
 
-@mixin backface-visibility($type){
-    -webkit-backface-visibility: $type;
-    -moz-backface-visibility: $type;
-    -o-backface-visibility: $type;
-    -ms-backface-visibility: $type;
-        backface-visibility: $type;
+@mixin backface-visibility($type) {
+  -webkit-backface-visibility: $type;
+  -moz-backface-visibility: $type;
+  -o-backface-visibility: $type;
+  -ms-backface-visibility: $type;
+  backface-visibility: $type;
 }
 
 @mixin rotateY-180() {
-    -webkit-transform: rotateY( 180deg );
-    -moz-transform: rotateY( 180deg );
-    -o-transform: rotateY( 180deg );
-    -ms-transform: rotateY(180deg);
-    transform: rotateY( 180deg );
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }

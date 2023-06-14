@@ -49,7 +49,8 @@
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   min-width: var(--#{$prefix}dropdown-min-width);
-  padding: var(--#{$prefix}dropdown-padding-y) var(--#{$prefix}dropdown-padding-x);
+  padding: var(--#{$prefix}dropdown-padding-y)
+    var(--#{$prefix}dropdown-padding-x);
   margin: 0; // Override default margin of ul
   @include font-size(var(--#{$prefix}dropdown-font-size));
   color: var(--#{$prefix}dropdown-color);
@@ -57,7 +58,8 @@
   list-style: none;
   background-color: var(--#{$prefix}dropdown-bg);
   background-clip: padding-box;
-  border: var(--#{$prefix}dropdown-border-width) solid var(--#{$prefix}dropdown-border-color);
+  border: var(--#{$prefix}dropdown-border-width) solid
+    var(--#{$prefix}dropdown-border-color);
   @include border-radius(var(--#{$prefix}dropdown-border-radius));
   @include box-shadow(var(--#{$prefix}dropdown-box-shadow));
 
@@ -146,7 +148,6 @@
   }
 }
 
-
 // Dividers (basically an `<hr>`) within the dropdown
 .dropdown-divider {
   height: 0;
@@ -162,7 +163,8 @@
 .dropdown-item {
   display: block;
   width: 100%; // For `<button>`s
-  padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+  padding: var(--#{$prefix}dropdown-item-padding-y)
+    var(--#{$prefix}dropdown-item-padding-x);
   clear: both;
   font-weight: $font-weight-normal;
   color: var(--#{$prefix}dropdown-link-color);
@@ -180,7 +182,9 @@
     }
 
     &:last-child {
-      @include border-bottom-radius(var(--#{$prefix}dropdown-inner-border-radius));
+      @include border-bottom-radius(
+        var(--#{$prefix}dropdown-inner-border-radius)
+      );
     }
   }
 
@@ -215,7 +219,8 @@
 // Dropdown section headers
 .dropdown-header {
   display: block;
-  padding: var(--#{$prefix}dropdown-header-padding-y) var(--#{$prefix}dropdown-header-padding-x);
+  padding: var(--#{$prefix}dropdown-header-padding-y)
+    var(--#{$prefix}dropdown-header-padding-x);
   margin-bottom: 0; // for use with heading elements
   @include font-size($font-size-sm);
   color: var(--#{$prefix}dropdown-header-color);
@@ -225,7 +230,8 @@
 // Dropdown text
 .dropdown-item-text {
   display: block;
-  padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x);
+  padding: var(--#{$prefix}dropdown-item-padding-y)
+    var(--#{$prefix}dropdown-item-padding-x);
   color: var(--#{$prefix}dropdown-link-color);
 }
 

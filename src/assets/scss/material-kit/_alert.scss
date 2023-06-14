@@ -1,6 +1,10 @@
 @each $state, $value in $theme-gradient-colors {
   .alert-#{$state} {
-    @include gradient-directional(nth($value, 1) 0%, nth($value, -1) 100%, $deg: 195deg);
+    @include gradient-directional(
+      nth($value, 1) 0%,
+      nth($value, -1) 100%,
+      $deg: 195deg
+    );
   }
 }
 

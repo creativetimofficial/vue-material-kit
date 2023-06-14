@@ -5,6 +5,9 @@
   $color-rgb: to-rgb($value);
   .text-bg-#{$color} {
     color: color-contrast($value) !important;
-    background-color: RGBA($color-rgb, var(--#{$prefix}bg-opacity, 1)) !important;
+    background-color: RGBA(
+      $color-rgb,
+      var(--#{$prefix}bg-opacity, 1)
+    ) !important;
   }
 }
