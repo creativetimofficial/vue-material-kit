@@ -1,19 +1,3 @@
-# [Vue Material Kit 2](http://demos.creative-tim.com/vue-material-kit/#/?ref=readme-vmk) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/vue-material-kit&text=Check%20Vue%20Material%20kit%20Pro%20made%20by%20@CreativeTim%20#webdesign%20#kit%20#materialdesign%20#vue%20https://www.creative-tim.com/product/vue-material-kit)
-
-![version](https://img.shields.io/badge/version-2.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/vue-material-kit.svg)](https://github.com/creativetimofficial/vue-material-kit/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/vue-material-kit.svg)](https://github.com/creativetimofficial/vue-material-kit/issues?q=is%3Aissue+is%3Aclosed)
-
-![Image](https://s3.amazonaws.com/creativetim_bucket/products/97/original/vue-material-kit-2.jpg)
-
-Vue Material Kit 2 is our newest free VueJS Design System. Its amazing design is inspired by Material Design and contains all the components you need for your development. If you’re a developer looking to create good-looking websites, rich with features, and highly customisable, here is your match.
-
-**Fully Coded Elements**
-
-Vue Material Kit 2 is built with over 70 frontend individual elements, like buttons, inputs, navbars, alerts or cards, giving you the freedom of choosing and combining. All components can take variations in color, which you can easily modify using sass files. You will save a lot of time going from prototyping to full-functional code because all elements are implemented.
-
-This free VueJS 3 & Bootstrap 5 template is coming with pre-built design blocks, so the development process is seamless,
-switching from our pages to the real website is very easy to be done.
-View [all components here.](https://www.creative-tim.com/learning-lab/vue/alerts/material-kit/)
-
 **Documentation built by Developers**
 
 Each element is well presented in very complex documentation.
@@ -25,10 +9,6 @@ If you want to get inspiration or just show something directly to your clients, 
 
 View [example pages here.](https://demos.creative-tim.com/vue-material-kit/)
 
-**HELPFUL LINKS**
-
-- View [Github Repository](https://github.com/creativetimofficial/vue-material-kit)
-- Check [FAQ Page](https://www.creative-tim.com/faq)
 
 #### Special thanks
 
@@ -42,8 +22,6 @@ During the development of this dashboard, we have used many existing resources f
 - [TypedJS](https://mattboldt.com/demos/typed-js/) - A JavaScript Typing Animation Library.
 - [Vue Clipboard 3](https://github.com/JamieCurnow/vue-clipboard3) - Easily copy to clipboard in Vue 3.
 - [Vue Count To](http://panjiachen.github.io/countTo/demo/) - A dependency-free, lightweight vue component for count up.
-
-Let us know your thoughts below. And good luck with development!
 
 ## Table of Contents
 
@@ -76,12 +54,6 @@ Let us know your thoughts below. And good luck with development!
 
 [View More](https://demos.creative-tim.com/vue-material-kit/#/?ref=readme-mkp).
 
-## Quick start
-
-Quick start options:
-
-- Buy from [Creative Tim](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk).
-
 ## Terminal Commands
 
 1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
@@ -96,7 +68,7 @@ The documentation for the Material Kit is hosted at our [website](https://www.cr
 Within the download you'll find the following directories and files:
 
 ```
-vue-material-kit-2
+dsl-Coordest
     ├── public
     ├── src
     │   ├── assets
@@ -143,8 +115,6 @@ vue-material-kit-2
     │   └── material-kit.js
     ├── .eslintrc.json
     ├── .gitignore
-    ├── CHANGELOG.md
-    ├── ISSUE_TEMPLATE.md
     ├── LICENSE.md
     ├── index.html
     ├── package.json
@@ -167,18 +137,6 @@ At present, we officially aim to support the last two versions of the following 
 - [Support](https://www.creative-tim.com/contact-us?ref=readme-vmk)
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/vue-material-kit/issues)
 
-## Reporting Issues
-
-We use GitHub Issues as the official bug tracker for the Vue Material Kit 2. Here are some advices for our users that want to report an issue:
-
-1. Make sure that you are using the latest version of the Vue Material Kit 2. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/vue-material-kit?ref=readme-vmk).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
-
-## Technical Support or Questions
-
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-vmk) instead of opening an issue.
-
 ## Licensing
 
 - Copyright 2022 [Creative Tim](https://www.creative-tim.com?ref=readme-vmk)
@@ -194,14 +152,3 @@ If you have questions or need help integrating the product please [contact us](h
 
 - [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-vmk) (earn money)
 
-##### Social Media
-
-Twitter: <https://twitter.com/CreativeTim>
-
-Facebook: <https://www.facebook.com/CreativeTim>
-
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
