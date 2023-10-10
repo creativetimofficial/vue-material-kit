@@ -20,7 +20,7 @@ import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
 
 //images
-import vueMkHeader from "@/assets/img/vue-mk-header.jpg";
+import vueMkHeader from "@/assets/img/bg.jpg";
 import wavesWhite from "@/assets/img/waves-white.svg";
 import logoBootstrap from "@/assets/img/logos/bootstrap5.jpg";
 import logoTailwind from "@/assets/img/logos/icon-tailwind.jpg";
@@ -42,32 +42,21 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container position-sticky z-index-sticky top-0">
+  <!-- <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
         <NavbarDefault :sticky="true" />
       </div>
     </div>
-  </div>
+  </div> -->
   <Header>
-    <div
-      class="page-header min-vh-75"
-      :style="`background-image: url(${vueMkHeader})`"
-      loading="lazy"
-    >
+    <div class="page-header min-vh-45" :style="`background-image: url(${vueMkHeader})`" loading="lazy">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1
-              class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ' }"
-            >
-              Material Kit 2
+            <h1 class=" pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
             </h1>
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-              Start the Development With Bootstrap 5 Design System inspired by
-              Material Design.
-            </p>
           </div>
         </div>
       </div>
@@ -75,13 +64,13 @@ onUnmounted(() => {
   </Header>
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
-    <PresentationCounter />
+    <!-- <PresentationCounter /> -->
     <PresentationInformation />
-    <PresentationExample :data="data" />
+    <!-- <PresentationExample :data="data" />
     <PresentationPages />
-    <BuiltByDevelopers />
+    <BuiltByDevelopers /> -->
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <div class="col-lg-4">
           <FilledInfoCard
@@ -291,7 +280,18 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-  <DefaultFooter />
+  <!-- <DefaultFooter /> -->
 </template>
+<style>
+.head-text {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+  padding: 1rem 3rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+}
+</style>

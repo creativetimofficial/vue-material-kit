@@ -1,11 +1,55 @@
 <script setup>
-import RotatingCard from "../../../examples/cards/rotatingCards/RotatingCard.vue";
-import RotatingCardFront from "../../../examples/cards/rotatingCards/RotatingCardFront.vue";
-import RotatingCardBack from "../../../examples/cards/rotatingCards/RotatingCardBack.vue";
-import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.vue";
 </script>
 <template>
-  <section class="my-5 py-5">
+  <section class="my-4 py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">ทะเบียน</h5>
+                        <img src="../../../assets/img/register.png"  alt="title" loading="lazy" class="w-70" />
+                        <!-- <RouterLink  class="dropdown-item border-radius-md"> -->
+                            <a href="#" class="btn btn-primary mt-4">ทะเบียน</a>
+                        <!-- </RouterLink> -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">สถานะห้องพัก</h5>
+                        <img src="../../../assets/img/status.png" alt="title" loading="lazy" class="w-70" />
+                        <!-- :to="{ name: 'room' }" -->
+                        <RouterLink :to="{ name: 'room' }" class="dropdown-item border-radius-md">
+                            <a href="#" class="btn btn-primary mt-4">สถานะห้องพัก</a>
+                        </RouterLink>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">ผังห้องพัก</h5>
+                        <img src="../../../assets/img/layout.png" alt="title" loading="lazy" class="w-70" />
+                        <a href="#" class="btn btn-primary mt-4">ผังห้องพัก</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">ค่าสาธารณุปโภค</h5>
+                        <img src="../../../assets/img/utilities.png" alt="title" loading="lazy" class="w-70" />
+                        <a href="#" class="btn btn-primary mt-4">ค่าสาธารณุปโภค</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  <!-- <section class="my-5 py-5">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">
@@ -66,5 +110,5 @@ import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.v
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
