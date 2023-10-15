@@ -1,7 +1,17 @@
-<script>
-import MaterialInput from "@/components/MaterialInput.vue";
-import MaterialButton from "@/components/MaterialButton.vue";
+<script setup>
+import { onMounted } from "vue";
 
+//image
+import image from "@/assets/img/illustrations/illustration-signin.jpg";
+
+//material components
+import MaterialInput from "@/components/MaterialInput.vue";
+
+// material-input
+import setMaterialInput from "@/assets/js/material-input";
+onMounted(() => {
+  setMaterialInput();
+});
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -89,52 +99,13 @@ const landingColumns = [
     status: false,
   },
 ];
-
-export default {
-  components: {
-    MaterialInput,
-    MaterialButton,
-  },
-  setup() {
-    return {
-      listRoom,
-      NoRoom,
-      landingColumns,
-    };
-  },
-
-  data() {
-    return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
-      selectedColor: '',
-    };
-  },
-  watch: {
-                selectedColor: function (newValue) {
-                    // this.updateColor(newValue)
-                    console.log(newValue);
-                },
-            },
-  methods: {
-    changedLabel(event) {
-      console.log(event);
-      // this.selected = event;
-    }
-  },
-};
 </script>
 <template>
   <section>
     <div class="page-header min-vh-45">
       <div class="container">
         <!-- d-flex justify-content-between -->
+        <h4>แก้รายละเอียดห้อง</h4>
         <div class="row pt-4">
           <div class="col-8">
             <div class="nav-item dropdown dropdown-hover mx-2">
@@ -185,15 +156,16 @@ export default {
         <div class="text-center pt-4">
           <div v-for="(item, index) in NoRoom" :key="index">
             <p class="text-start mt-4">
-              <MaterialButton
-                variant="outline"
-                color="success"
+              <a
+                class="btn btn-primary"
                 data-bs-toggle="collapse"
                 href="#collapseExample"
+                role="button"
                 aria-expanded="false"
                 aria-controls="collapseExample"
-                >{{ item?.title }}</MaterialButton
               >
+                {{ item?.title }}
+              </a>
             </p>
             <div class="collapse show" id="collapseExample" aria-expanded="true">
               <div>
@@ -212,88 +184,19 @@ export default {
                             margin-right: -10px;
                           "
                         >
-                          <a
-                            v-if="item?.status"
-                            :href="`/room/update/${item?.dataIndex}`"
-                            class="card-link"
-                            ><span
-                              v-if="item?.status"
-                              class="material-icons"
-                              style="color: #fff"
-                            >
+                          <a href="#" class="card-link"
+                            ><span class="material-icons" style="color: #fff">
                               edit
-                            </span>
-                            <span
-                              v-if="!item?.status"
-                              class="material-icons"
-                              style="color: #fff"
-                            >
-                              add
-                            </span>
-                          </a>
-                          <a
-                            style="cursor: pointer"
-                            data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"
-                            v-if="!item?.status"
-                            class="card-link"
+                            </span></a
                           >
-                            <span
-                              v-if="!item?.status"
-                              class="material-icons"
-                              style="color: #fff"
-                            >
-                              add
-                            </span>
-                          </a>
                         </div>
-                        <p class="card-title">
-                          <a
-                            :href="`/room/detail/${item?.dataIndex}`"
-                            class="text-white"
-                            >{{ item?.title }}</a
-                          >
-                        </p>
+                        <p class="card-title">{{ item?.title }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="staticBackdrop"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เลือกผู้เช่าห้องพัก</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <v-select :options="options" v-model="selectedColor"></v-select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              ปิดหน้าต่าง
-            </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
           </div>
         </div>
       </div>

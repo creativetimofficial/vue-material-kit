@@ -24,6 +24,8 @@ import ElProgressBars from "../layouts/sections/elements/progress-bars/ProgressB
 import ElToggles from "../layouts/sections/elements/toggles/TogglesView.vue";
 import ElTypography from "../layouts/sections/elements/typography/TypographyView.vue";
 import RoomView from "../views/Restroom/RoomView.vue"
+import DetailRoom from "../views/Restroom/DetailRoomPage.vue"
+import UpdateRoom from "../views/Restroom/UpdateRoom.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -36,6 +38,21 @@ const router = createRouter({
       path: "/room",
       name: "room",
       component: RoomView,
+    },
+    {
+      path: "/room",
+      name: "room", 
+      component: RoomView,
+    },
+    {
+      path: '/room/detail/:id',
+      name: 'DetailRoom',
+      component: DetailRoom,
+    },
+    {
+      path: '/room/update/:id',
+      name: 'updateRoom',
+      component: UpdateRoom,
     },
     {
       path: "/pages/landing-pages/about-us",
