@@ -1,17 +1,7 @@
-<script setup>
-import { onMounted } from "vue";
-
-//image
-import image from "@/assets/img/illustrations/illustration-signin.jpg";
-
-//material components
+<script>
 import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialButton from "@/components/MaterialButton.vue";
 
-// material-input
-import setMaterialInput from "@/assets/js/material-input";
-onMounted(() => {
-  setMaterialInput();
-});
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -99,35 +89,80 @@ const landingColumns = [
     status: false,
   },
 ];
+
+export default {
+  components: {
+    MaterialInput,
+    MaterialButton,
+  },
+  setup() {
+    return {
+      listRoom,
+      NoRoom,
+      landingColumns,
+    };
+  },
+
+  data() {
+    return {
+      value: { name: "Vue.js", language: "JavaScript" },
+      options: [
+        { label: "Vue.js", value: "JavaScript" },
+        { label: "Rails", value: "Ruby" },
+        { label: "Sinatra", value: "Ruby" },
+        { label: "Laravel", value: "PHP" },
+        { label: "Phoenix", value: "Elixir" },
+      ],
+      selectedColor: "",
+    };
+  },
+  watch: {
+    selectedColor: function (newValue) {
+      // this.updateColor(newValue)
+      console.log(newValue);
+    },
+  },
+  methods: {
+    changedLabel(event) {
+      console.log(event);
+      // this.selected = event;
+    },
+  },
+};
 </script>
 <template>
   <section>
     <div class="page-header min-vh-45">
       <div class="container">
-        <!-- d-flex justify-content-between -->
-        <h4>รายละเอียดห้อง</h4>
-        <div class="row pt-4">
-          <div class="card mb-3" style="max-width: 540px">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../assets/img/team-4.jpg" class="img-fluid rounded-start" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">รายละเอียดเจ้าของห้อง</h5>
-                  <p class="card-text">
-                    ชือ : มานะ
-                  </p>
-                  <p class="card-text">
-                    นามสกุล : ถือดี
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="text-end">
+          <MaterialButton variant="gradient" color="success">เพิ่มสมาชิก</MaterialButton>
+        </div>
+        <div class="text-center pt-4">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">ชื่อ</th>
+                <th scope="col">สกุล</th>
+                <th scope="col">เพศ</th>
+                <th scope="col">ยศ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

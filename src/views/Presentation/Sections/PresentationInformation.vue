@@ -9,9 +9,9 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">ทะเบียน</h5>
                         <img src="../../../assets/img/register.png"  alt="title" loading="lazy" class="w-70" />
-                        <!-- <RouterLink  class="dropdown-item border-radius-md"> -->
+                        <RouterLink :to="{ name: 'users' }" class="dropdown-item border-radius-md">
                             <a href="#" class="btn btn-primary mt-4">ทะเบียน</a>
-                        <!-- </RouterLink> -->
+                        </RouterLink>
 
                     </div>
                 </div>
@@ -21,7 +21,6 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">สถานะห้องพัก</h5>
                         <img src="../../../assets/img/status.png" alt="title" loading="lazy" class="w-70" />
-                        <!-- :to="{ name: 'room' }" -->
                         <RouterLink :to="{ name: 'room' }" class="dropdown-item border-radius-md">
                             <a href="#" class="btn btn-primary mt-4">สถานะห้องพัก</a>
                         </RouterLink>
@@ -33,7 +32,9 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">ผังห้องพัก</h5>
                         <img src="../../../assets/img/layout.png" alt="title" loading="lazy" class="w-70" />
-                        <a href="#" class="btn btn-primary mt-4">ผังห้องพัก</a>
+                        <RouterLink :to="{ name: 'layout' }" class="dropdown-item border-radius-md">
+                          <a href="#" class="btn btn-primary mt-4">ผังห้องพัก</a>
+                        </RouterLink>
                     </div>
                 </div>
             </div>
@@ -42,7 +43,9 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">ค่าสาธารณุปโภค</h5>
                         <img src="../../../assets/img/utilities.png" alt="title" loading="lazy" class="w-70" />
-                        <a href="#" class="btn btn-primary mt-4">ค่าสาธารณุปโภค</a>
+                        <RouterLink :to="{ name: 'utilities' }" class="dropdown-item border-radius-md">
+                          <a href="#" class="btn btn-primary mt-4">ค่าสาธารณุปโภค</a>
+                        </RouterLink>
                     </div>
                 </div>
             </div>
