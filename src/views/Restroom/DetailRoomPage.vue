@@ -3,10 +3,11 @@ import { onMounted } from "vue";
 
 //image
 import image from "@/assets/img/illustrations/illustration-signin.jpg";
-
+import vueMkHeader from "@/assets/img/bg.jpg";
 //material components
 import MaterialInput from "@/components/MaterialInput.vue";
-
+import MaterialButton from "@/components/MaterialButton.vue";
+import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
 onMounted(() => {
@@ -101,29 +102,73 @@ const landingColumns = [
 ];
 </script>
 <template>
-  <section>
-    <div class="page-header min-vh-45">
+  <Header>
+    <div
+      class="page-header min-vh-45"
+      :style="`background-image: url(${vueMkHeader})`"
+      loading="lazy"
+    >
       <div class="container">
-        <!-- d-flex justify-content-between -->
-        <h4>รายละเอียดห้อง</h4>
-        <div class="row pt-4">
-          <div class="card mb-3" style="max-width: 540px">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../assets/img/team-4.jpg" class="img-fluid rounded-start" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">รายละเอียดเจ้าของห้อง</h5>
-                  <p class="card-text">
-                    ชือ : มานะ
-                  </p>
-                  <p class="card-text">
-                    นามสกุล : ถือดี
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                  </p>
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">สถานะห้องพัก</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Header>
+  <section>
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+      <div class="page-header min-vh-45">
+        <div class="container">
+          <div>
+            <Breadcrumbs
+              :routes="[
+                { label: 'หน้าหลัก', route: '/' },
+                { label: 'สถานะห้องพัก', route: '/room' },
+                { label: 'รายละเอียดห้องพัก' },
+              ]"
+            />
+          </div>
+          <!-- d-flex justify-content-between -->
+          <h4>รายละเอียดห้องพัก</h4>
+          <div class="row pt-4">
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    width="300"
+                    src="../../assets/img/team-4.jpg"
+                    class="img-fluid rounded-start"
+                    alt="..."
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">รายละเอียดเจ้าของห้อง</h5>
+                  
+                    <div class="row">
+                      <div class="col-4">
+                        <p class="card-text">ชือ : มานะ</p>
+                        <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
+                        <p class="card-text">ยศ : ร้อยตรี</p>
+                        <p class="card-text">วันเกิด : 12/02/2514</p>
+                        <p class="card-text">วันทำสัญญา : 12/02/2564</p>
+                        <p class="card-text">อายุ : 33 ปี</p>
+                        <p class="card-text">ระยะเวลาที่เข้าพัก : 3 เดือน</p>
+                      </div>
+                      <div class="col-4">
+                        <p class="card-text">นามสกุล : ถือดี</p>
+                        <p class="card-text">สังกัด : กก</p>
+                        <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
+                        <p class="card-text">เบอร์โทร : 0972534887</p>
+                        <p class="card-text">เงินค่าประกัน : 12,000</p>
+                      </div>
+                    </div>
+                    <!-- <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p> -->
+                  </div>
                 </div>
               </div>
             </div>

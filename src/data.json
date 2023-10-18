@@ -1,0 +1,19 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Brothers Karamazov",
+      "author": "Fyodor Dostoevsky"
+    },
+    {
+      "id": 2,
+      "title": "Infinite Jest",
+      "author": "David Foster Wallace"
+    },
+    {
+      "id": 3,
+      "title": "Suttree",
+      "author": "Cormac McCarthy"
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 <script>
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
-
+import vueMkHeader from "@/assets/img/bg.jpg";
+import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -94,12 +95,14 @@ export default {
   components: {
     MaterialInput,
     MaterialButton,
+    Breadcrumbs
   },
   setup() {
     return {
       listRoom,
       NoRoom,
       landingColumns,
+      vueMkHeader
     };
   },
 
@@ -131,11 +134,34 @@ export default {
 };
 </script>
 <template>
-  <section>
-    <div class="page-header min-vh-45">
+    <Header>
+    <div class="page-header min-vh-45" :style="`background-image: url(${vueMkHeader})`" loading="lazy">
       <div class="container">
-        <div class="text-end">
-          <MaterialButton variant="gradient" color="success">เพิ่มสมาชิก</MaterialButton>
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto position-relative">
+            <h1 class=" pt-3 mt-n5 me-2 head-text">
+              ค่าสาธารณุปโภค
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Header>
+  <section>
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+      <div class="page-header min-vh-45">
+      <div class="container">
+        <div class="d-flex justify-content-between">
+          <div>
+            <Breadcrumbs
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ค่าสาธารณุปโภค' }]"
+            />
+          </div>
+          <div class="text-end">
+            <MaterialButton variant="gradient" color="success"
+              >เพิ่มสมาชิก</MaterialButton
+            >
+          </div>
         </div>
         <div class="text-center pt-4">
           <table class="table table-striped table-bordered table-hover">
@@ -166,6 +192,8 @@ export default {
         </div>
       </div>
     </div>
+    </div>
+    
   </section>
 </template>
 <style>
