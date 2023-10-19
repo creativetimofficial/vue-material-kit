@@ -1,4 +1,4 @@
-<script setup>
+<script>
 import { onMounted } from "vue";
 
 //image
@@ -11,9 +11,9 @@ import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
-onMounted(() => {
-  setMaterialInput();
-});
+// onMounted(() => {
+//   setMaterialInput();
+// });
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -101,6 +101,70 @@ const landingColumns = [
     status: false,
   },
 ];
+export default {
+  components: {
+    MaterialInput,
+    MaterialButton,
+    Breadcrumbs,
+  },
+  setup() {
+    return {
+      listRoom,
+      NoRoom,
+      vueMkHeader,
+    };
+  },
+
+  data() {
+    return {
+      value: { name: "Vue.js", language: "JavaScript" },
+      options: [
+        { label: "Vue.js", value: "JavaScript" },
+        { label: "Rails", value: "Ruby" },
+        { label: "Sinatra", value: "Ruby" },
+        { label: "Laravel", value: "PHP" },
+        { label: "Phoenix", value: "Elixir" },
+      ],
+      selectedColor: "",
+      firstName: "สมชาย",
+      lastName: "มาดี",
+      Affiliation: "กก", //สังกัด
+      rank: "ร้อยโท", //ยศ
+      idcard: "1234",
+      phone: "2023654888",
+      old: "30",
+      birthday: "12/11/2536",
+    };
+  },
+  watch: {
+    selectedColor: function (newValue) {
+      // this.updateColor(newValue)
+      console.log(newValue);
+    },
+  },
+  methods: {
+    changedLabel(event) {
+      console.log(event);
+      // this.selected = event;
+    },
+
+    submitForm() {
+      let body = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        Affiliation: this.Affiliation,
+        rank: this.rank,
+        idcard: this.idcard,
+        phone: this.phone
+      }
+      // let b = []
+      // b.push(body)
+      // this.userlist.push(body)
+      // console.log(this.userlist);
+      
+    },
+  },
+};
 </script>
 <template>
   <Header>
@@ -133,105 +197,118 @@ const landingColumns = [
           </div>
           <!-- d-flex justify-content-between -->
           <h4>แก้ไขรายละเอียดห้อง</h4>
-          <div class="text-end">
-            <MaterialButton
-              variant="gradient"
-              color="success"
-              data-bs-toggle="modal"
-              data-bs-target="#userBackdrop"
-              >เพิ่มรายละเอียดสัญญา</MaterialButton
-            >
-          </div>
           <div class="row pt-4">
-            <div class="col-8">
-              <div class="nav-item dropdown dropdown-hover mx-2">
-                <a
-                  role="button"
-                  class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-                  id="dropdownMenuPages"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="material-icons opacity-6 me-2 text-md">home</i>
-                  ตึก
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
-                  aria-labelledby="dropdownMenuPages"
-                >
-                  <div class="row">
-                    <div class="col-12 px-4 py-2">
-                      <div class="row">
-                        <div class="position-relative">
-                          <p
-                            class="dropdown-item border-radius-md"
-                            v-for="(item, index) in listRoom"
-                            :key="index"
-                          >
-                            <span>{{ item?.title }}</span>
-                          </p>
+            <div class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    width="300"
+                    src="../../assets/img/team-4.jpg"
+                    class="img-fluid rounded-start"
+                    alt="..."
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">รายละเอียดเจ้าของห้อง</h5>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <div>
+                          <div class="mb-3">
+                            <MaterialInput
+                              name="firstName"
+                              :value="firstName"
+                              @input="(event) => (firstName = event.target.value)"
+                              class="input-group-static"
+                              label="ชื่อ"
+                              type="text"
+                              placeholder="ชื่อ"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <MaterialInput
+                              :value="lastName"
+                              @input="(event) => (lastName = event.target.value)"
+                              class="input-group-static"
+                              label="สกุล"
+                              type="text"
+                              placeholder="สกุล"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <MaterialInput
+                              :value="Affiliation"
+                              @input="(event) => (Affiliation = event.target.value)"
+                              class="input-group-static"
+                              label="สังกัด"
+                              type="text"
+                              placeholder="สังกัด"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <MaterialInput
+                              :value="rank"
+                              @input="(event) => (rank = event.target.value)"
+                              class="input-group-static"
+                              label="ยศ"
+                              type="text"
+                              placeholder="ยศ"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="idcard"
+                            @input="(event) => (idcard = event.target.value)"
+                            class="input-group-static"
+                            label="เลขบัตรประชาชน"
+                            type="number"
+                            placeholder="เลขบัตรประชาชน"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="phone"
+                            @input="(event) => (phone = event.target.value)"
+                            class="input-group-static"
+                            label="เบอร์ติดต่อ"
+                            type="number"
+                            placeholder="เบอร์ติดต่อ"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="birthday"
+                            @input="(event) => (birthday = event.target.value)"
+                            class="input-group-static"
+                            label="วันเกิด"
+                            type="text"
+                            placeholder="วันเกิด"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="old"
+                            @input="(event) => (old = event.target.value)"
+                            class="input-group-static"
+                            label="อายุ"
+                            type="number"
+                            placeholder="อายุ"
+                          />
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4">
-              <div>
-                <MaterialInput
-                  class="input-group-dynamic w-100"
-                  icon="search"
-                  type="text"
-                  placeholder="Search"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center pt-4">
-            <div v-for="(item, index) in NoRoom" :key="index">
-              <p class="text-start mt-4">
-                <a
-                  class="btn btn-primary"
-                  data-bs-toggle="collapse"
-                  href="#collapseExample"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  {{ item?.title }}
-                </a>
-              </p>
-              <div class="collapse show" id="collapseExample" aria-expanded="true">
-                <div>
-                  <div class="row row-cols-auto" :style="{ '--bs-gutter-x': '0.5rem' }">
-                    <div class="col" v-for="(item, index) in landingColumns" :key="index">
-                      <div
-                        class="card mb-2"
-                        v-bind:class="{
-                          'bg-red': item?.status,
-                          'bg-green': !item?.status,
-                        }"
-                        :style="{ width: `110px` }"
-                      >
-                        <div class="card-body">
-                          <div
-                            style="
-                              text-align: right;
-                              margin-top: -10px;
-                              margin-right: -10px;
-                            "
-                          >
-                            <a href="#" class="card-link"
-                              ><span class="material-icons" style="color: #fff">
-                                edit
-                              </span></a
-                            >
-                          </div>
-                          <p class="card-title">{{ item?.title }}</p>
-                        </div>
-                      </div>
+                    <!-- <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p> -->
+                    <div class="text-center">
+                      <MaterialButton
+                          variant="gradient"
+                          color="success"
+                          >บันทึก</MaterialButton>
                     </div>
                   </div>
                 </div>

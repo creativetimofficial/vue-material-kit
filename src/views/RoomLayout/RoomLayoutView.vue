@@ -117,6 +117,9 @@ export default {
         { label: "Phoenix", value: "Elixir" },
       ],
       selectedColor: "",
+      Edifice: "",
+      Building: "",
+      Floors: "",
     };
   },
   watch: {
@@ -160,38 +163,101 @@ export default {
               />
             </div>
             <div class="text-end">
-              <MaterialButton variant="gradient" color="success"
+              <MaterialButton
+                variant="gradient"
+                color="success"
+                data-bs-toggle="modal"
+                data-bs-target="#Addroomplan"
                 >สร้างผังห้อง</MaterialButton
               >
             </div>
           </div>
 
           <div class="text-center pt-4">
-            <table class="table table-striped table-bordered table-hover">
-              <thead>
+            <table class="table table-hover border border-2 border-success">
+              <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <th scope="col">ชื่อ</th>
-                  <th scope="col">สกุล</th>
-                  <th scope="col">เพศ</th>
-                  <th scope="col">ยศ</th>
+                  <th scope="col">อาคาร</th>
+                  <th scope="col">ตึก</th>
+                  <th scope="col">จำนวนชั้น</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
+                  <td>อาคาร1</td>
+                  <td>ตึก1</td>
+                  <td>3</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="Addroomplan"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มผังห้อง</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <MaterialInput
+                  name="Edifice"
+                  :value="Edifice"
+                  @input="(event) => (Edifice = event.target.value)"
+                  class="input-group-static"
+                  label="อาคาร"
+                  type="text"
+                  placeholder="อาคาร"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Building"
+                  @input="(event) => (Building = event.target.value)"
+                  class="input-group-static"
+                  label="ตึก"
+                  type="text"
+                  placeholder="ตึก"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Floors"
+                  @input="(event) => (Floors = event.target.value)"
+                  class="input-group-static"
+                  label="จำนวนชั้น"
+                  type="number"
+                  placeholder="จำนวนชั้น"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <button type="button" class="btn btn-primary">บันทึก</button>
           </div>
         </div>
       </div>
@@ -210,5 +276,14 @@ export default {
 .bg-waring {
   background: #d1d3d5 !important;
   color: #fff;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>

@@ -29,6 +29,7 @@ import UpdateRoom from "../views/Restroom/UpdateRoom.vue"
 import UserlistView from "../views/Users/UserlistView.vue"
 import RoomLayoutView from "../views/RoomLayout/RoomLayoutView.vue"
 import UtilitiesRoom from "../views/UtilitiesRoom/UtilitieView.vue"
+import addUserRoom from "../views/Restroom/AddRoom.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -51,6 +52,11 @@ const router = createRouter({
       path: "/layout",
       name: "layout", 
       component: RoomLayoutView,
+    },
+    {
+      path: "/addUserRoom",
+      name: "addUserRoom", 
+      component: addUserRoom,
     },
     {
       path: "/utilities",

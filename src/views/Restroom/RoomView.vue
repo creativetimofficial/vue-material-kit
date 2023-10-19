@@ -211,7 +211,8 @@ export default {
           </div>
 
           <div class="text-center pt-4">
-            <div v-for="(item, index) in NoRoom" :key="index">
+            <!-- v-for="(item, index) in NoRoom" :key="index" -->
+            <div >
               <p class="text-start mt-4">
                 <MaterialButton
                   variant="outline"
@@ -220,8 +221,9 @@ export default {
                   href="#collapseExample"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                  >{{ item?.title }}</MaterialButton
+                  >ตึก1</MaterialButton
                 >
+                <!-- item?.title -->
               </p>
               <div class="collapse show" id="collapseExample" aria-expanded="true">
                 <div>
@@ -262,10 +264,11 @@ export default {
                                 add
                               </span>
                             </a>
+                            <!-- data-bs-toggle="modal"
+                              data-bs-target="#staticBackdrop" -->
                             <a
+                              :href="`/addUserRoom`"
                               style="cursor: pointer"
-                              data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop"
                               v-if="!item?.status"
                               class="card-link"
                             >
@@ -280,7 +283,13 @@ export default {
                           </div>
                           <p class="card-title">
                             <a
+                               v-if="item?.status"
                               :href="`/room/detail/${item?.dataIndex}`"
+                              class="text-white"
+                              >{{ item?.title }}</a
+                            >
+                            <a
+                            v-if="!item?.status"
                               class="text-white"
                               >{{ item?.title }}</a
                             >
