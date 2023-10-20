@@ -122,7 +122,7 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ทะเบียน</h1>
+            <h1 class="pt-3 mt-n5 me-2 head-text">ระบบค้นหา</h1>
           </div>
         </div>
       </div>
@@ -135,20 +135,18 @@ export default {
           <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
+                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบค้นหา' }]"
               />
             </div>
-            <div class="text-end">
-              <MaterialButton
-                variant="gradient"
-                color="success"
-                data-bs-toggle="modal"
-                data-bs-target="#userBackdrop"
-                >เพิ่มสมาชิก</MaterialButton
-              >
-            </div>
           </div>
-
+          <div class="d-flex justify-content-end">
+                <MaterialInput
+                  class="input-group-dynamic w-30"
+                  icon="search"
+                  type="text"
+                  placeholder="Search"
+                />
+              </div>
           <div class="text-center pt-4">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
@@ -162,7 +160,6 @@ export default {
                   <th scope="col">ยศ</th>
                   <th scope="col">เลขบัตรประชาชน</th>
                   <th scope="col">เบอร์ติดต่อ</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -176,16 +173,7 @@ export default {
                   <td>{{ item.rank }}</td>
                   <td>{{ item.idcard }}</td>
                   <td>{{ item.phone }}</td>
-                  <td>
-                    <a data-bs-toggle="modal" data-bs-target="#EdituserBackdrop"
-                      ><i
-                        class="material-icons me-2"
-                        style="cursor: pointer"
-                        aria-hidden="true"
-                        >edit</i
-                      ></a
-                    >
-                  </td>
+
                 </tr>
               </tbody>
             </table>

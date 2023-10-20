@@ -30,6 +30,8 @@ import UserlistView from "../views/Users/UserlistView.vue"
 import RoomLayoutView from "../views/RoomLayout/RoomLayoutView.vue"
 import UtilitiesRoom from "../views/UtilitiesRoom/UtilitieView.vue"
 import addUserRoom from "../views/Restroom/AddRoom.vue"
+import Reports from "../views/Reports/ReportlistView.vue"
+import searchFilter from "../views/SearchAll/SearchView.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -62,6 +64,16 @@ const router = createRouter({
       path: "/utilities",
       name: "utilities", 
       component: UtilitiesRoom,
+    },
+    {
+      path: "/reports",
+      name: "reports", 
+      component: Reports,
+    },
+    {
+      path: "/searchfilter",
+      name: "searchfilter", 
+      component: searchFilter,
     },
     {
       path: '/room/detail/:id',

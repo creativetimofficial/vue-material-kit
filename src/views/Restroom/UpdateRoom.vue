@@ -119,21 +119,28 @@ export default {
     return {
       value: { name: "Vue.js", language: "JavaScript" },
       options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
+        { label: "มกราคม", value: "01" },
+        { label: "กุมภาพันธ์", value: "02" },
+        { label: "มีนาคม", value: "03" },
+        { label: "เมษายน", value: "04" },
+        { label: "พฤษภาคม", value: "05" },
+        { label: "มิถุนายน", value: "06" },
+        { label: "กรกฎาคม ", value: "07" },
+        { label: "สิงหาคม", value: "08" },
+        { label: "กันยายน", value: "09" },
+        { label: "ตุลาคม", value: "10" },
+        { label: "พฤศจิกายน", value: "11" },
+        { label: "ธันวาคม", value: "12" },
       ],
-      selectedColor: "",
+      selectedMonth: "ตุลาคม",
       firstName: "สมชาย",
-      lastName: "มาดี",
-      Affiliation: "กก", //สังกัด
-      rank: "ร้อยโท", //ยศ
-      idcard: "1234",
-      phone: "2023654888",
-      old: "30",
-      birthday: "12/11/2536",
+      lastName: "0237",
+      Affiliation: "0426 ", //สังกัด
+      rank: "ปกติ", //ยศ
+      idcard: "120",
+      phone: "1200",
+      old: "100",
+      birthday: "200",
     };
   },
   watch: {
@@ -155,13 +162,12 @@ export default {
         Affiliation: this.Affiliation,
         rank: this.rank,
         idcard: this.idcard,
-        phone: this.phone
-      }
+        phone: this.phone,
+      };
       // let b = []
       // b.push(body)
       // this.userlist.push(body)
       // console.log(this.userlist);
-      
     },
   },
 };
@@ -191,12 +197,12 @@ export default {
               :routes="[
                 { label: 'หน้าหลัก', route: '/' },
                 { label: 'สถานะห้องพัก', route: '/room' },
-                { label: 'แก้ไขรายละเอียดห้อง' },
+                { label: 'แก้ไขค่าใช้จ่ายประจำเดือน' },
               ]"
             />
           </div>
           <!-- d-flex justify-content-between -->
-          <h4>แก้ไขรายละเอียดห้อง</h4>
+          <h4>แก้ไขค่าใช้จ่ายประจำเดือน</h4>
           <div class="row pt-4">
             <div class="card mb-3">
               <div class="row g-0">
@@ -210,30 +216,19 @@ export default {
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">รายละเอียดเจ้าของห้อง</h5>
+                    <h5 class="card-title">ค่าใช้จ่ายประจำเดือน ตุลาคม</h5>
 
                     <div class="row">
                       <div class="col-4">
                         <div>
                           <div class="mb-3">
                             <MaterialInput
-                              name="firstName"
-                              :value="firstName"
-                              @input="(event) => (firstName = event.target.value)"
-                              class="input-group-static"
-                              label="ชื่อ"
-                              type="text"
-                              placeholder="ชื่อ"
-                            />
-                          </div>
-                          <div class="mb-3">
-                            <MaterialInput
                               :value="lastName"
                               @input="(event) => (lastName = event.target.value)"
                               class="input-group-static"
-                              label="สกุล"
+                              label="มิเตอร์น้ำ"
                               type="text"
-                              placeholder="สกุล"
+                              placeholder="มิเตอร์น้ำ"
                             />
                           </div>
                           <div class="mb-3">
@@ -241,19 +236,29 @@ export default {
                               :value="Affiliation"
                               @input="(event) => (Affiliation = event.target.value)"
                               class="input-group-static"
-                              label="สังกัด"
+                              label="มิเตอร์ไฟ"
                               type="text"
-                              placeholder="สังกัด"
+                              placeholder="มิเตอร์ไฟ"
                             />
                           </div>
                           <div class="mb-3">
                             <MaterialInput
-                              :value="rank"
-                              @input="(event) => (rank = event.target.value)"
+                              :value="idcard"
+                              @input="(event) => (idcard = event.target.value)"
                               class="input-group-static"
-                              label="ยศ"
-                              type="text"
-                              placeholder="ยศ"
+                              label="ค่าน้ำประปา"
+                              type="number"
+                              placeholder="ค่าน้ำประปา"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <MaterialInput
+                              :value="phone"
+                              @input="(event) => (phone = event.target.value)"
+                              class="input-group-static"
+                              label="ค่าไฟฟ้า"
+                              type="number"
+                              placeholder="ค่าไฟฟ้า"
                             />
                           </div>
                         </div>
@@ -261,32 +266,12 @@ export default {
                       <div class="col-4">
                         <div class="mb-3">
                           <MaterialInput
-                            :value="idcard"
-                            @input="(event) => (idcard = event.target.value)"
-                            class="input-group-static"
-                            label="เลขบัตรประชาชน"
-                            type="number"
-                            placeholder="เลขบัตรประชาชน"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <MaterialInput
-                            :value="phone"
-                            @input="(event) => (phone = event.target.value)"
-                            class="input-group-static"
-                            label="เบอร์ติดต่อ"
-                            type="number"
-                            placeholder="เบอร์ติดต่อ"
-                          />
-                        </div>
-                        <div class="mb-3">
-                          <MaterialInput
                             :value="birthday"
                             @input="(event) => (birthday = event.target.value)"
                             class="input-group-static"
-                            label="วันเกิด"
+                            label="ค่าไฟฟ้าส่วนกลาง"
                             type="text"
-                            placeholder="วันเกิด"
+                            placeholder="ค่าไฟฟ้าส่วนกลาง"
                           />
                         </div>
                         <div class="mb-3">
@@ -294,9 +279,19 @@ export default {
                             :value="old"
                             @input="(event) => (old = event.target.value)"
                             class="input-group-static"
-                            label="อายุ"
+                            label="ค่าบำรุงลิฟท์"
                             type="number"
-                            placeholder="อายุ"
+                            placeholder="ค่าบำรุงลิฟท์"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="rank"
+                            @input="(event) => (rank = event.target.value)"
+                            class="input-group-static"
+                            label="สภาพห้อง"
+                            type="text"
+                            placeholder="สภาพห้อง"
                           />
                         </div>
                       </div>
@@ -305,10 +300,9 @@ export default {
                       <small class="text-muted">Last updated 3 mins ago</small>
                     </p> -->
                     <div class="text-center">
-                      <MaterialButton
-                          variant="gradient"
-                          color="success"
-                          >บันทึก</MaterialButton>
+                      <MaterialButton variant="gradient" color="success"
+                        >บันทึก</MaterialButton
+                      >
                     </div>
                   </div>
                 </div>

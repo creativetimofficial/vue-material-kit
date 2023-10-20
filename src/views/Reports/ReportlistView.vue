@@ -122,7 +122,7 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ทะเบียน</h1>
+            <h1 class="pt-3 mt-n5 me-2 head-text">ระบบเรียกรายงาน</h1>
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default {
           <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
+                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบเรียกรายงาน' }]"
               />
             </div>
             <div class="text-end">
@@ -144,7 +144,7 @@ export default {
                 color="success"
                 data-bs-toggle="modal"
                 data-bs-target="#userBackdrop"
-                >เพิ่มสมาชิก</MaterialButton
+                >เพิ่มรายงาน</MaterialButton
               >
             </div>
           </div>

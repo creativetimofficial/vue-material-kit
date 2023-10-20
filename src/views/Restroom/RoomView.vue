@@ -125,15 +125,15 @@ export default {
       selectedColor: "",
     };
   },
-  created() {
- 
+  created(){
+    // this.$route.query
   },
   methods: {
-    changedLabel(event) {
-      console.log(event);
-    
-      // this.selected = event;
-    },
+    gotodetail(id,index){
+      let action 
+      index == true ? action = 'edit' : action = 'add'
+      this.$router.push({ path: `/room/detail/${id}`, query: { mode: action } });
+    }
   },
 };
 </script>
@@ -165,7 +165,7 @@ export default {
           </div>
           <div class="row pt-4">
             <div class="col-8">
-              <div class="nav-item dropdown dropdown-hover mx-2">
+              <div class="nav-item dropdown dropdown-hover mx-2 w-45">
                 <a
                   role="button"
                   class="nav-link ps-2 d-flex cursor-pointer align-items-center"
@@ -174,7 +174,7 @@ export default {
                   aria-expanded="false"
                 >
                   <i class="material-icons opacity-6 me-2 text-md">home</i>
-                  ตึก
+                  เลือกตึก
                 </a>
                 <div
                   class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
@@ -200,6 +200,7 @@ export default {
             </div>
             <div class="col-4">
               <div>
+                <label>ค้นหาผู้เช่า</label>
                 <MaterialInput
                   class="input-group-dynamic w-100"
                   icon="search"
@@ -212,7 +213,7 @@ export default {
 
           <div class="text-center pt-4">
             <!-- v-for="(item, index) in NoRoom" :key="index" -->
-            <div >
+            <div>
               <p class="text-start mt-4">
                 <MaterialButton
                   variant="outline"
@@ -283,13 +284,8 @@ export default {
                           </div>
                           <p class="card-title">
                             <a
-                               v-if="item?.status"
-                              :href="`/room/detail/${item?.dataIndex}`"
-                              class="text-white"
-                              >{{ item?.title }}</a
-                            >
-                            <a
-                            v-if="!item?.status"
+                              style="cursor: pointer"
+                              @click="gotodetail(item?.dataIndex,item?.status)"
                               class="text-white"
                               >{{ item?.title }}</a
                             >
@@ -333,7 +329,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>

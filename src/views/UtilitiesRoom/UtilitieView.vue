@@ -109,14 +109,30 @@ export default {
   data() {
     return {
       value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
+      optionsBuilding: [
+        { label: "ตึก 1", value: "1" },
+        { label: "ตึก 2", value: "2" },
+        { label: "ตึก 3", value: "3" },
+        { label: "ตึก 4", value: "4" },
+        { label: "ตึก 5", value: "5" },
       ],
-      selectedColor: "",
+      optionsFloor: [
+        { label: "ชั้น 1", value: "1" },
+        { label: "ชั้น 2", value: "2" },
+        { label: "ชั้น 3", value: "3" },
+        { label: "ชั้น 4", value: "4" },
+        { label: "ชั้น 5", value: "5" },
+      ],
+      optionsRoom: [
+        { label: "ห้อง 1", value: "1" },
+        { label: "ห้อง 2", value: "2" },
+        { label: "ห้อง 3", value: "3" },
+        { label: "ห้อง 4", value: "4" },
+        { label: "ห้อง 5", value: "5" },
+      ],
+      selectedBuilding: "ตึก 1",
+      selectedFloor: "ชั้น 1",
+      selectedRoom: "ห้อง 1",
       fee: "",
       Waterbill: "",
       Electricitybill: "",
@@ -168,166 +184,178 @@ export default {
             </div>
           </div>
           <div>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                  <button
-                    style="text-decoration-line: underline"
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseOne"
-                    aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapseOne"
-                  >
-                    บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseOne"
-                  class="accordion-collapse collapse show"
-                  aria-labelledby="panelsStayOpen-headingOne"
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  style="color: #57b05b"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
                 >
-                  <div class="accordion-body">
-                    <div class="text-end">
-                      <MaterialButton
-                        variant="gradient"
-                        color="success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop11"
-                        >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง ตร.</MaterialButton
-                      >
-                    </div>
-                    <div class="text-center pt-4">
-                      <table class="table table-hover border border-2 border-success">
-                        <thead class="border border-2 border-success border-bottom">
-                          <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">ค่าธรรมเนียม</th>
-                            <th scope="col">ค่าน้ำประปา</th>
-                            <th scope="col">ค่าไฟฟ้า</th>
-                            <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
-                            <th scope="col">ค่าบำรุงลิฟท์</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>20,000</td>
-                            <td>8,000</td>
-                            <td>20,000</td>
-                            <td>8,000</td>
-                            <td>20,000</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  style="color: #57b05b"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                >
+                  บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  style="color: #57b05b"
+                  id="contact-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#contact"
+                  type="button"
+                  role="tab"
+                  aria-controls="contact"
+                  aria-selected="false"
+                >
+                  สรุปรายงานค่าใช้จ่าย
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                <div class="text-end pt-4">
+                  <MaterialButton
+                    variant="gradient"
+                    color="success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop11"
+                    >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง ตร.</MaterialButton
+                  >
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">ตึก</th>
+                        <th scope="col">ชั้น</th>
+                        <th scope="col">ห้อง</th>
+                        <th scope="col">ค่าธรรมเนียม</th>
+                        <th scope="col">ค่าน้ำประปา</th>
+                        <th scope="col">ค่าไฟฟ้า</th>
+                        <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
+                        <th scope="col">ค่าบำรุงลิฟท์</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                        <td>20,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                  <button
-                    class="accordion-button collapsed"
-                    style="text-decoration-line: underline"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseTwo"
+              <div
+                class="tab-pane fade"
+                id="profile"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+              >
+                <div class="text-end pt-4">
+                  <MaterialButton
+                    variant="gradient"
+                    color="success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop12"
+                    >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.</MaterialButton
                   >
-                    บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseTwo"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingTwo"
-                >
-                  <div class="accordion-body">
-                    <div class="text-end">
-                      <MaterialButton
-                        variant="gradient"
-                        color="success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop12"
-                        >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.</MaterialButton
-                      >
-                    </div>
-                    <div class="text-center pt-4">
-                      <table class="table table-hover border border-2 border-success">
-                        <thead class="border border-2 border-success border-bottom">
-                          <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">ค่าบำรุงฯ</th>
-                            <th scope="col">ค่าประกัน</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>20,000</td>
-                            <td>8,000</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">ตึก</th>
+                        <th scope="col">ชั้น</th>
+                        <th scope="col">ห้อง</th>
+                        <th scope="col">ค่าบำรุงฯ</th>
+                        <th scope="col">ค่าประกัน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                  <button
-                    class="accordion-button collapsed"
-                    style="text-decoration-line: underline"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseThree"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseThree"
+              <div
+                class="tab-pane fade"
+                id="contact"
+                role="tabpanel"
+                aria-labelledby="contact-tab"
+              >
+                <div class="text-end pt-4">
+                  <MaterialButton
+                    variant="gradient"
+                    color="success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop13"
+                    >เพิ่มรายงาน</MaterialButton
                   >
-                    สรุปรายงานค่าใช้จ่าย
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseThree"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingThree"
-                >
-                  <div class="accordion-body">
-                    <div class="text-end">
-                      <MaterialButton
-                        variant="gradient"
-                        color="success"
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop13"
-                        >เพิ่มรายงาน</MaterialButton
-                      >
-                    </div>
-                    <div class="text-center pt-4">
-                      <table class="table table-hover border border-2 border-success">
-                        <thead class="border border-2 border-success border-bottom">
-                          <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">กก.</th>
-                            <th scope="col">บก.</th>
-                            <th scope="col">ข้อมูลระดับ บช.</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">กก.</th>
+                        <th scope="col">บก.</th>
+                        <th scope="col">ข้อมูลระดับ บช.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+          
           </div>
         </div>
       </div>
@@ -346,7 +374,9 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">
+              บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -356,6 +386,18 @@ export default {
           </div>
           <div class="modal-body">
             <div>
+              <div class="mb-3">
+                <label>ตึก</label>
+                <v-select :options="optionsBuilding" v-model="selectedBuilding"></v-select>
+              </div>
+              <div class="mb-3">
+                <label>ชั้น</label>
+                <v-select :options="optionsFloor" v-model="selectedFloor"></v-select>
+              </div>
+              <div class="mb-3">
+                <label>ห้อง</label>
+                <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
+              </div>
               <div class="mb-3">
                 <MaterialInput
                   name="fee"
@@ -413,7 +455,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>
@@ -432,7 +474,9 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">
+              เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -442,6 +486,18 @@ export default {
           </div>
           <div class="modal-body">
             <div>
+              <div class="mb-3">
+                <label>ตึก</label>
+                <v-select :options="optionsBuilding" v-model="selectedBuilding"></v-select>
+              </div>
+              <div class="mb-3">
+                <label>ชั้น</label>
+                <v-select :options="optionsFloor" v-model="selectedFloor"></v-select>
+              </div>
+              <div class="mb-3">
+                <label>ห้อง</label>
+                <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
+              </div>
               <div class="mb-3">
                 <MaterialInput
                   name="Maintenance"
@@ -469,7 +525,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>
@@ -525,7 +581,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>

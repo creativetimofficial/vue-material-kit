@@ -39,6 +39,10 @@ const userlist = [
     rank: "ร้อยตรี", //ยศ
     idcard: "134044411441122",
     phone: "0325647846",
+    ContractDate: "12/11/2566", //สังกัด
+    Lengthofstay: "3 เดือน", //ยศ
+    InsuranceMoney: "10,000",
+    Status: "รอคิว",
   },
   {
     dataIndex: "2",
@@ -48,6 +52,10 @@ const userlist = [
     rank: "ร้อยตรี", //ยศ
     idcard: "134044411441178",
     phone: "0325647845",
+    ContractDate: "12/11/2566", //สังกัด
+    Lengthofstay: "3 เดือน", //ยศ
+    InsuranceMoney: "10,000",
+    Status: "รอคิว",
   },
 ];
 
@@ -70,11 +78,10 @@ export default {
     return {
       value: { name: "Vue.js", language: "JavaScript" },
       options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
+        { label: "มานพ", value: "มานพ" },
+        { label: "วิชัย", value: "วิชัย" },
+        { label: "ธนาพร", value: "ธนาพร" },
+        { label: "มนตรี", value: "มนตรี" },
       ],
       selectedColor: "",
       firstName: "",
@@ -141,18 +148,26 @@ export default {
               :routes="[
                 { label: 'หน้าหลัก', route: '/' },
                 { label: 'สถานะห้องพัก', route: '/room' },
-                { label: 'แก้ไขรายละเอียดห้อง' },
+                { label: 'เพิ่มผู้เช่าห้องพัก' },
               ]"
             />
           </div>
-          <!-- d-flex justify-content-between -->
           <h4>เพิ่มผู้เช่าห้องพัก</h4>
 
           <div class="row pt-4">
             <div class="card mb-3">
               <h5>ลำดับคิว</h5>
-              <div class="text-center pt-4">
-                <table class="table  border border-2 border-success">
+              <div class="text-end">
+                <MaterialButton
+                  variant="gradient"
+                  color="success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contractBackdrop"
+                  >เพิ่มผู้เช่าลงคิว</MaterialButton
+                >
+              </div>
+              <div class="text-center pt-4 table-responsive">
+                <table class="table border border-2 border-success">
                   <thead class="border border-2 border-success border-bottom">
                     <tr>
                       <th scope="col">ลำดับ</th>
@@ -162,6 +177,10 @@ export default {
                       <th scope="col">ยศ</th>
                       <th scope="col">เลขบัตรประชาชน</th>
                       <th scope="col">เบอร์ติดต่อ</th>
+                      <th scope="col">วันทำสัญญา</th>
+                      <th scope="col">ระยะเวลาที่เข้าพัก</th>
+                      <th scope="col">เงินค่าประกัน</th>
+                      <th scope="col">สถานะ</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -174,13 +193,13 @@ export default {
                       <td>{{ item.rank }}</td>
                       <td>{{ item.idcard }}</td>
                       <td>{{ item.phone }}</td>
+                      <td>{{ item.ContractDate }}</td>
+                      <td>{{ item.Lengthofstay }}</td>
+                      <td>{{ item.InsuranceMoney }}</td>
+                      <td>{{ item.Status }}</td>
                       <td>
-                        <MaterialButton
-                          variant="gradient"
-                          color="success"
-                          data-bs-toggle="modal"
-                          data-bs-target="#contractBackdrop"
-                          >เพิ่มรายละเอียดสัญญา</MaterialButton
+                        <MaterialButton variant="gradient" color="success"
+                          >เพิ่มผู้เช่าห้องพัก</MaterialButton
                         >
                       </td>
                     </tr>
@@ -192,8 +211,8 @@ export default {
         </div>
       </div>
     </div>
-      <!-- modal -->
-      <div
+    <!-- modal -->
+    <div
       class="modal fade"
       id="contractBackdrop"
       data-bs-backdrop="static"
@@ -215,6 +234,11 @@ export default {
           </div>
           <div class="modal-body">
             <div>
+              <div class="mb-3">
+                <label>ชื่อผู้เช่า</label>
+                <v-select :options="options" v-model="selectedColor"></v-select>
+              </div>
+
               <div class="mb-3">
                 <MaterialInput
                   name="contract"
@@ -252,14 +276,13 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button
-              type="submit"
-              class="btn btn-primary"
+            <MaterialButton
+              variant="gradient"
+              color="success"
               @click="submitForm"
               html-type="submit"
+              >บันทึก</MaterialButton
             >
-              บันทึก
-            </button>
           </div>
         </div>
       </div>

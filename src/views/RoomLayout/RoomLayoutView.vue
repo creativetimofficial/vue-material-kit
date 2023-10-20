@@ -257,7 +257,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <button type="button" class="btn btn-primary">บันทึก</button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>
