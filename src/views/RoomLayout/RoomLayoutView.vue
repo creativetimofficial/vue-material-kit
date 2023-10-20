@@ -162,33 +162,39 @@ export default {
                 :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ผังห้องพัก' }]"
               />
             </div>
-            <div class="text-end">
-              <MaterialButton
+          </div>
+          <div class="d-flex justify-content-end align-items-center">
+                <MaterialInput
+                  class="input-group-dynamic w-30 "
+                  icon="search"
+                  type="text"
+                  placeholder="Search"
+                />
+                <MaterialButton
+                style="margin-left: 20px;"
                 variant="gradient"
                 color="success"
                 data-bs-toggle="modal"
                 data-bs-target="#Addroomplan"
                 >สร้างผังห้อง</MaterialButton
               >
-            </div>
-          </div>
-
+              </div>
           <div class="text-center pt-4">
             <table class="table table-hover border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <th scope="col">อาคาร</th>
                   <th scope="col">ตึก</th>
                   <th scope="col">จำนวนชั้น</th>
+                  <th scope="col">จำนวนห้อง</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>อาคาร1</td>
                   <td>ตึก1</td>
                   <td>3</td>
+                  <td>20</td>
                 </tr>
               </tbody>
             </table>
@@ -220,17 +226,7 @@ export default {
           </div>
           <div class="modal-body">
             <div>
-              <div class="mb-3">
-                <MaterialInput
-                  name="Edifice"
-                  :value="Edifice"
-                  @input="(event) => (Edifice = event.target.value)"
-                  class="input-group-static"
-                  label="อาคาร"
-                  type="text"
-                  placeholder="อาคาร"
-                />
-              </div>
+
               <div class="mb-3">
                 <MaterialInput
                   :value="Building"
@@ -249,6 +245,17 @@ export default {
                   label="จำนวนชั้น"
                   type="number"
                   placeholder="จำนวนชั้น"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  name="Edifice"
+                  :value="Edifice"
+                  @input="(event) => (Edifice = event.target.value)"
+                  class="input-group-static"
+                  label="จำนวนห้อง"
+                  type="text"
+                  placeholder="จำนวนห้อง"
                 />
               </div>
             </div>

@@ -1,6 +1,7 @@
 <script>
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
+import MaterialCheckbox from "@/components/MaterialCheckbox.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import roomData from "@/assets/dataJson/rooms.json";
@@ -28,85 +29,17 @@ const NoRoom = [
   { title: "ชั้น 7" },
 ];
 
-const landingColumns = [
-  {
-    title: "ห้อง 1",
-    dataIndex: "1",
-    status: true,
-  },
-  {
-    title: "ห้อง 2",
-    dataIndex: "2",
-    status: false,
-  },
-  {
-    title: "ห้อง 3",
-    dataIndex: "3",
-    status: true,
-  },
-  {
-    title: "ห้อง 4",
-    dataIndex: "4",
-    status: true,
-  },
-  {
-    title: "ห้อง 5",
-    dataIndex: "5",
-    status: false,
-  },
-  {
-    title: "ห้อง 6",
-    dataIndex: "6",
-    status: false,
-  },
-  {
-    title: "ห้อง 7",
-    dataIndex: "7",
-    status: true,
-  },
-  {
-    title: "ห้อง 8",
-    dataIndex: "8",
-    status: false,
-  },
-  {
-    title: "ห้อง 9",
-    dataIndex: "9",
-    status: false,
-  },
-  {
-    title: "ห้อง 10",
-    dataIndex: "10",
-    status: false,
-  },
-  {
-    title: "ห้อง 11",
-    dataIndex: "11",
-    status: true,
-  },
-  {
-    title: "ห้อง 12",
-    dataIndex: "12",
-    status: false,
-  },
-  {
-    title: "ห้อง 13",
-    dataIndex: "13",
-    status: false,
-  },
-];
-
 export default {
   components: {
     MaterialInput,
     MaterialButton,
     Breadcrumbs,
+    MaterialCheckbox,
   },
   setup() {
     return {
       listRoom,
       NoRoom,
-      landingColumns,
       vueMkHeader,
       roomData,
     };
@@ -125,15 +58,18 @@ export default {
       selectedColor: "",
     };
   },
-  created(){
+  created() {
     // this.$route.query
   },
   methods: {
-    gotodetail(id,index){
-      let action 
-      index == true ? action = 'edit' : action = 'add'
+    gotodetail(id, index) {
+      console.log(index);
+      let action;
+      if (index == "unavailable") action = "edit";
+      if (index == "waiting") action = "add";
+      if (index == "free") action = "add";
       this.$router.push({ path: `/room/detail/${id}`, query: { mode: action } });
-    }
+    },
   },
 };
 </script>
@@ -228,64 +164,45 @@ export default {
               </p>
               <div class="collapse show" id="collapseExample" aria-expanded="true">
                 <div>
+                  <div class="d-flex justify-content-end">
+                    <MaterialCheckbox id="terms" checked>
+                      <a href="javascript:;" class="text-success font-weight-bolder">
+                        ว่าง</a
+                      >
+                    </MaterialCheckbox>
+                    <MaterialCheckbox id="terms" >
+                      <a href="javascript:;" class="text-danger font-weight-bolder">
+                        ไม่ว่าง</a
+                      >
+                    </MaterialCheckbox>
+                    <MaterialCheckbox id="terms" >
+                      <a href="javascript:;" class=" font-weight-bolder" style="color: #fb8c00">
+                        รอซ่อม</a
+                      >
+                    </MaterialCheckbox>
+                    <MaterialCheckbox id="terms" >
+                      <a href="javascript:;" class="font-weight-bolder" style="color: #ffca28">
+                        รอคืนห้อง</a
+                      >
+                    </MaterialCheckbox>
+                  </div>
                   <div class="row row-cols-auto" :style="{ '--bs-gutter-x': '0.5rem' }">
                     <div class="col" v-for="(item, index) in roomData" :key="index">
                       <div
                         class="card mb-2"
-                        v-bind:class="{
-                          'bg-red': item?.status,
-                          'bg-green': !item?.status,
+                        :class="{
+                          'bg-red': item?.status == 'unavailable',
+                          'bg-green': item?.status == 'free',
+                          'bg-warning': item?.status == 'waiting',
+                          'bg-return': item?.status == 'return',
                         }"
                         :style="{ width: `110px` }"
                       >
                         <div class="card-body">
-                          <div
-                            style="
-                              text-align: right;
-                              margin-top: -10px;
-                              margin-right: -10px;
-                            "
-                          >
-                            <a
-                              v-if="item?.status"
-                              :href="`/room/update/${item?.dataIndex}`"
-                              class="card-link"
-                              ><span
-                                v-if="item?.status"
-                                class="material-icons"
-                                style="color: #fff"
-                              >
-                                edit
-                              </span>
-                              <span
-                                v-if="!item?.status"
-                                class="material-icons"
-                                style="color: #fff"
-                              >
-                                add
-                              </span>
-                            </a>
-                            <!-- data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop" -->
-                            <a
-                              :href="`/addUserRoom`"
-                              style="cursor: pointer"
-                              v-if="!item?.status"
-                              class="card-link"
-                            >
-                              <span
-                                v-if="!item?.status"
-                                class="material-icons"
-                                style="color: #fff"
-                              >
-                                add
-                              </span>
-                            </a>
-                          </div>
                           <p class="card-title">
                             <a
                               style="cursor: pointer"
-                              @click="gotodetail(item?.dataIndex,item?.status)"
+                              @click="gotodetail(item?.dataIndex, item?.status)"
                               class="text-white"
                               >{{ item?.title }}</a
                             >
@@ -345,8 +262,12 @@ export default {
   background: #d24c4a !important;
   color: #fff;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
+.bg-warning {
+  background: #fb8c00 !important;
+  color: #fff;
+}
+.bg-return {
+  background: #ffca28 !important;
   color: #fff;
 }
 </style>

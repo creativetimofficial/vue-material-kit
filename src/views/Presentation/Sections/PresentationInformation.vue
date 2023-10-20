@@ -4,7 +4,7 @@
   <section class="my-4 py-4">
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ทะเบียน</p>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2 mb-3 mb-sm-0">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">สถานะห้องพัก</p>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ผังห้องพัก</p>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ค่าสาธารณุปโภค</p>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-2">
+            <!-- <div class="col-sm-2">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ระบบค้นหา</p>
@@ -59,8 +59,8 @@
                         </RouterLink>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-2">
+            </div> -->
+            <div class="col-sm-3 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ระบบเรียกรายงาน</p>

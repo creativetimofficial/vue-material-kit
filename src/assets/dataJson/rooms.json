@@ -2,66 +2,66 @@
     {
         "title": "ห้อง 1",
         "dataIndex": "1",
-        "status": true
+        "status": "free"
       },
       {
         "title": "ห้อง 2",
         "dataIndex": "2",
-        "status": false
+        "status": "unavailable"
       },
       {
         "title": "ห้อง 3",
         "dataIndex": "3",
-        "status": true
+        "status": "free"
       },
       {
         "title": "ห้อง 4",
         "dataIndex": "4",
-        "status": true
+        "status": "return"
       },
       {
         "title": "ห้อง 5",
         "dataIndex": "5",
-        "status": false
+        "status": "unavailable"
       },
       {
         "title": "ห้อง 6",
         "dataIndex": "6",
-        "status": false
+        "status": "waiting"
       },
       {
         "title": "ห้อง 7",
         "dataIndex": "7",
-        "status": true
+        "status": "return"
       },
       {
         "title": "ห้อง 8",
         "dataIndex": "8",
-        "status": false
+        "status": "unavailable"
       },
       {
         "title": "ห้อง 9",
         "dataIndex": "9",
-        "status": false
+        "status": "unavailable"
       },
       {
         "title": "ห้อง 10",
         "dataIndex": "10",
-        "status": false
+        "status": "waiting"
       },
       {
         "title": "ห้อง 11",
         "dataIndex": "11",
-        "status": true
+        "status": "free"
       },
       {
         "title": "ห้อง 12",
         "dataIndex": "12",
-        "status": false
+        "status": "free"
       },
       {
         "title": "ห้อง 13",
         "dataIndex": "13",
-        "status": false
+        "status": "waiting"
       }
 ]

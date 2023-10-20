@@ -135,60 +135,230 @@ export default {
           <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบเรียกรายงาน' }]"
+                :routes="[
+                  { label: 'หน้าหลัก', route: '/' },
+                  { label: 'ระบบเรียกรายงาน' },
+                ]"
               />
             </div>
-            <div class="text-end">
-              <MaterialButton
-                variant="gradient"
-                color="success"
-                data-bs-toggle="modal"
-                data-bs-target="#userBackdrop"
-                >เพิ่มรายงาน</MaterialButton
-              >
-            </div>
           </div>
-
-          <div class="text-center pt-4">
-            <table class="table border border-2 border-success">
-              <thead class="border border-2 border-success border-bottom">
-                <tr>
-                  <th scope="col">ลำดับ</th>
-                  <th scope="col">ชื่อ</th>
-                  <th scope="col">สกุล</th>
-                  <th scope="col">วันเกิด</th>
-                  <th scope="col">อายุ</th>
-                  <th scope="col">สังกัด</th>
-                  <th scope="col">ยศ</th>
-                  <th scope="col">เลขบัตรประชาชน</th>
-                  <th scope="col">เบอร์ติดต่อ</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, index) in userlist" :key="index">
-                  <th scope="row">{{ index + 1 }}</th>
-                  <td>{{ item.firstName }}</td>
-                  <td>{{ item.lastName }}</td>
-                  <td>{{ item.old }}</td>
-                  <td>{{ item.birthday }}</td>
-                  <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.rank }}</td>
-                  <td>{{ item.idcard }}</td>
-                  <td>{{ item.phone }}</td>
-                  <td>
-                    <a data-bs-toggle="modal" data-bs-target="#EdituserBackdrop"
-                      ><i
-                        class="material-icons me-2"
-                        style="cursor: pointer"
-                        aria-hidden="true"
-                        >edit</i
-                      ></a
-                    >
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link active"
+                  style="color: #57b05b"
+                  id="home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#home"
+                  type="button"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                >
+                  บันทึกค่าใช้จ่ายบ้านพัก ตร.
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  style="color: #57b05b"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                >
+                  บันทึกค่าใช้จ่ายบ้านพัก บช.ตชด.
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link"
+                  style="color: #57b05b"
+                  id="contact-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#contact"
+                  type="button"
+                  role="tab"
+                  aria-controls="contact"
+                  aria-selected="false"
+                >
+                  สรุปรายงานค่าใช้จ่าย
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                <div class="d-flex justify-content-end pt-4">
+                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/pdf.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                  <MaterialButton size="lg" class="btn-icon">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/excel.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">ตึก</th>
+                        <th scope="col">ชั้น</th>
+                        <th scope="col">ห้อง</th>
+                        <th scope="col">ค่าธรรมเนียม</th>
+                        <th scope="col">ค่าน้ำประปา</th>
+                        <th scope="col">ค่าไฟฟ้า</th>
+                        <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
+                        <th scope="col">ค่าบำรุงลิฟท์</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                        <td>20,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="profile"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+              >
+              <div class="d-flex justify-content-end pt-4">
+                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/pdf.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                  <MaterialButton size="lg" class="btn-icon">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/excel.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">ตึก</th>
+                        <th scope="col">ชั้น</th>
+                        <th scope="col">ห้อง</th>
+                        <th scope="col">ค่าบำรุงฯ</th>
+                        <th scope="col">ค่าประกัน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>20,000</td>
+                        <td>8,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="contact"
+                role="tabpanel"
+                aria-labelledby="contact-tab"
+              >
+              <div class="d-flex justify-content-end pt-4">
+                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/pdf.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                  <MaterialButton size="lg" class="btn-icon">
+                    <div class="d-flex align-items-center">
+                      <span style="margin-right: 5px">บันทึก</span>
+                      <img
+                        src="../../assets/img/excel.png"
+                        alt="title"
+                        loading="lazy"
+                        width="40"
+                      />
+                    </div>
+                  </MaterialButton>
+                </div>
+                <div class="text-center pt-4">
+                  <table class="table table-hover border border-2 border-success">
+                    <thead class="border border-2 border-success border-bottom">
+                      <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">กก.</th>
+                        <th scope="col">บก.</th>
+                        <th scope="col">ข้อมูลระดับ บช.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

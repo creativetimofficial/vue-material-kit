@@ -1,40 +1,92 @@
 <script>
-
 //image
 import vueMkHeader from "@/assets/img/bg.jpg";
 //material components
-// import MaterialInput from "@/components/MaterialInput.vue";
-// import MaterialButton from "@/components/MaterialButton.vue";
+import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
-
+const userlist = [
+  {
+    dataIndex: "1",
+    firstName: "สมชาย",
+    lastName: "แสงทอง",
+    Affiliation: "บก", //สังกัด
+    rank: "ร้อยตรี", //ยศ
+    idcard: "134044411441122",
+    phone: "0325647846",
+    ContractDate: "12/11/2566", //สังกัด
+    Lengthofstay: "3 เดือน", //ยศ
+    InsuranceMoney: "10,000",
+    Status: "รอคิว",
+  },
+  {
+    dataIndex: "2",
+    firstName: "สมชัย",
+    lastName: "แสงสุข",
+    Affiliation: "กก", //สังกัด
+    rank: "ร้อยตรี", //ยศ
+    idcard: "134044411441178",
+    phone: "0325647845",
+    ContractDate: "12/11/2566", //สังกัด
+    Lengthofstay: "3 เดือน", //ยศ
+    InsuranceMoney: "10,000",
+    Status: "รอคิว",
+  },
+];
 export default {
   components: {
-    // MaterialInput,
-    // MaterialButton,
+    MaterialInput,
+    MaterialButton,
     Breadcrumbs,
   },
   setup() {
     return {
       vueMkHeader,
+      userlist,
     };
   },
 
   data() {
     return {
       selectedColor: "",
-      statusedit: false
+      statusedit: false,
+      mode: "",
+      id: "",
+      options: [
+        { label: "มานพ", value: "มานพ" },
+        { label: "วิชัย", value: "วิชัย" },
+        { label: "ธนาพร", value: "ธนาพร" },
+        { label: "มนตรี", value: "มนตรี" },
+      ],
+      selectedColor: "",
+      firstName: "",
+      lastName: "",
+      Affiliation: "", //สังกัด
+      rank: "", //ยศ
+      idcard: "",
+      phone: "",
+      old: "",
+      birthday: "",
     };
   },
-  created(){
-    console.log(this.$route.query.mode);
-    let mode = this.$route.query.mode
-    mode == "add" ? this.statusedit = false : this.statusedit = true 
+  created() {
+    this.mode = this.$route.query.mode;
+    if (this.$route.params.id) {
+      this.id = this.$route.params.id;
+    }
+    this.mode == "add" ? (this.statusedit = false) : (this.statusedit = true);
     // this.$route.query
   },
- 
-
+  methods: {
+    gotoAction() {
+      if (this.mode == "edit") {
+        this.$router.push({ path: `/room/update/${this.id}` });
+      } else {
+        this.$router.push({ path: `/addUserRoom` });
+      }
+    },
+  },
 };
-
 </script>
 <template>
   <Header>
@@ -66,7 +118,22 @@ export default {
             />
           </div>
           <!-- d-flex justify-content-between -->
-          <h4>รายละเอียดห้องพัก</h4>
+          <div class="d-flex justify-content-between align-items-center">
+            <h4>รายละเอียดห้องพัก</h4>
+            <div v-if="mode == 'edit'">
+              <MaterialButton variant="gradient" color="success" @click="gotoAction()"
+                >แก้ไขค่าใช้จ่ายประจำเดือน</MaterialButton
+              >
+            </div>
+            <!-- <div v-if="mode == 'add'">
+              <MaterialButton
+                variant="gradient"
+                color="success"
+                @click="gotoAction()"
+                >เพิ่มผู้เช่าห้องพัก</MaterialButton
+              >
+            </div> -->
+          </div>
           <div class="row pt-4">
             <div class="card mb-3">
               <div class="row g-0">
@@ -81,7 +148,7 @@ export default {
                 <div class="col-md-8">
                   <div class="card-body">
                     <div class="row" v-if="statusedit == true">
-                      <h5  class="card-title">รายละเอียดผู้เช่า</h5>
+                      <h5 class="card-title">รายละเอียดผู้เช่า</h5>
                       <div class="col-5">
                         <p class="card-text">ชือ : มานะ</p>
                         <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
@@ -100,7 +167,7 @@ export default {
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-5" >
+                      <div class="col-5">
                         <h5 class="card-title pt-2">รายละเอียดห้องพัก</h5>
                         <p class="card-text">ประเภทห้องพัก : ช๓</p>
                         <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p>
@@ -120,7 +187,172 @@ export default {
                   </div>
                 </div>
               </div>
+              <div class="row pt-4">
+                <div class="card mb-3" v-if="mode == 'add'">
+                  <h5>ลำดับคิว</h5>
+                  <div class="text-end">
+                    <MaterialButton
+                      variant="gradient"
+                      color="success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#seleteUserBackdrop"
+                      >เพิ่มผู้เช่าลงคิว</MaterialButton
+                    >
+                  </div>
+                  <div class="text-center pt-4 table-responsive">
+                    <table class="table border border-2 border-success">
+                      <thead class="border border-2 border-success border-bottom">
+                        <tr>
+                          <th scope="col">ลำดับ</th>
+                          <th scope="col">ชื่อ</th>
+                          <th scope="col">สกุล</th>
+                          <th scope="col">สังกัด</th>
+                          <th scope="col">ยศ</th>
+                          <th scope="col">เลขบัตรประชาชน</th>
+                          <th scope="col">เบอร์ติดต่อ</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in userlist" :key="index">
+                          <th scope="row">{{ index + 1 }}</th>
+                          <td>{{ item.firstName }}</td>
+                          <td>{{ item.lastName }}</td>
+                          <td>{{ item.Affiliation }}</td>
+                          <td>{{ item.rank }}</td>
+                          <td>{{ item.idcard }}</td>
+                          <td>{{ item.phone }}</td>
+                          <td>
+                            <MaterialButton
+                              variant="gradient"
+                              color="success"
+                              data-bs-toggle="modal"
+                              data-bs-target="#contractBackdrop"
+                              >เพิ่มผู้เช่าห้องพัก</MaterialButton
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="seleteUserBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มผู้เช่าลงคิว</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <label>ชื่อผู้เช่า</label>
+                <v-select :options="options" v-model="selectedColor"></v-select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm"
+              html-type="submit"
+              >บันทึก</MaterialButton
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="contractBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มรายละเอียดสัญญา</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <MaterialInput
+                  name="contract"
+                  :value="contract"
+                  @input="(event) => (contract = event.target.value)"
+                  class="input-group-static"
+                  label="วันทำสัญญา"
+                  type="text"
+                  placeholder="วันทำสัญญา"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Checkintime"
+                  @input="(event) => (Checkintime = event.target.value)"
+                  class="input-group-static"
+                  label="ระยะเวลาที่เข้าพัก"
+                  type="text"
+                  placeholder="ระยะเวลาที่เข้าพัก"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="insurance"
+                  @input="(event) => (Affiliation = event.target.value)"
+                  class="input-group-static"
+                  label="เงินค่าประกัน"
+                  type="text"
+                  placeholder="เงินค่าประกัน"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm"
+              html-type="submit"
+              >บันทึก</MaterialButton
+            >
           </div>
         </div>
       </div>
@@ -141,4 +373,3 @@ export default {
   color: #fff;
 }
 </style>
- 

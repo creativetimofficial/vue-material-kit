@@ -197,7 +197,7 @@ export default {
                   aria-controls="home"
                   aria-selected="true"
                 >
-                  บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.
+                  บันทึกค่าใช้จ่ายบ้านพัก ตร.
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -212,7 +212,7 @@ export default {
                   aria-controls="profile"
                   aria-selected="false"
                 >
-                  บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.
+                  บันทึกค่าใช้จ่ายบ้านพัก บช.ตชด.
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -238,13 +238,20 @@ export default {
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <div class="text-end pt-4">
+                <div class="d-flex justify-content-end align-items-center pt-4">
+                  <MaterialInput
+                    class="input-group-dynamic w-30"
+                    icon="search"
+                    type="text"
+                    placeholder="Search"
+                  />
                   <MaterialButton
+                    style="margin-left: 20px"
                     variant="gradient"
                     color="success"
                     data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop11"
-                    >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง ตร.</MaterialButton
+                    >เพิ่มค่าใช้จ่ายบ้านพัก ตร.</MaterialButton
                   >
                 </div>
                 <div class="text-center pt-4">
@@ -284,13 +291,20 @@ export default {
                 role="tabpanel"
                 aria-labelledby="profile-tab"
               >
-                <div class="text-end pt-4">
+                <div class="d-flex justify-content-end align-items-center pt-4">
+                  <MaterialInput
+                    class="input-group-dynamic w-30"
+                    icon="search"
+                    type="text"
+                    placeholder="Search"
+                  />
                   <MaterialButton
+                    style="margin-left: 20px"
                     variant="gradient"
                     color="success"
                     data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop12"
-                    >เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.</MaterialButton
+                    >เพิ่มค่าใช้จ่ายบ้านพัก บช.ตชด.</MaterialButton
                   >
                 </div>
                 <div class="text-center pt-4">
@@ -324,8 +338,15 @@ export default {
                 role="tabpanel"
                 aria-labelledby="contact-tab"
               >
-                <div class="text-end pt-4">
+                <div class="d-flex justify-content-end align-items-center pt-4">
+                  <MaterialInput
+                    class="input-group-dynamic w-30"
+                    icon="search"
+                    type="text"
+                    placeholder="Search"
+                  />
                   <MaterialButton
+                    style="margin-left: 20px"
                     variant="gradient"
                     color="success"
                     data-bs-toggle="modal"
@@ -355,7 +376,6 @@ export default {
                 </div>
               </div>
             </div>
-          
           </div>
         </div>
       </div>
@@ -375,7 +395,7 @@ export default {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">
-              บันทึกค่าใช้จ่ายบ้านพักส่วนกลาง ตร.
+              บันทึกค่าใช้จ่ายบ้านพัก ตร. ประจำเดือนตุลาคม
             </h5>
             <button
               type="button"
@@ -388,7 +408,10 @@ export default {
             <div>
               <div class="mb-3">
                 <label>ตึก</label>
-                <v-select :options="optionsBuilding" v-model="selectedBuilding"></v-select>
+                <v-select
+                  :options="optionsBuilding"
+                  v-model="selectedBuilding"
+                ></v-select>
               </div>
               <div class="mb-3">
                 <label>ชั้น</label>
@@ -474,9 +497,9 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
-              เพิ่มค่าใช้จ่ายบ้านพักส่วนกลาง บช.ตชด.
-            </h5>
+            <h6 class="modal-title" id="staticBackdropLabel">
+              เพิ่มค่าใช้จ่ายบ้านพัก บช.ตชด. ประจำเดือนตุลาคม
+            </h6>
             <button
               type="button"
               class="btn-close"
@@ -488,7 +511,10 @@ export default {
             <div>
               <div class="mb-3">
                 <label>ตึก</label>
-                <v-select :options="optionsBuilding" v-model="selectedBuilding"></v-select>
+                <v-select
+                  :options="optionsBuilding"
+                  v-model="selectedBuilding"
+                ></v-select>
               </div>
               <div class="mb-3">
                 <label>ชั้น</label>
@@ -544,7 +570,7 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มรายงาน</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มรายงาน ประจำเดือนตุลาคม</h5>
             <button
               type="button"
               class="btn-close"

@@ -138,17 +138,23 @@ export default {
                 :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
               />
             </div>
-            <div class="text-end">
-              <MaterialButton
+          </div>
+          <div class="d-flex justify-content-end align-items-center">
+                <MaterialInput
+                  class="input-group-dynamic w-30 "
+                  icon="search"
+                  type="text"
+                  placeholder="Search"
+                />
+                <MaterialButton
+                style="margin-left: 20px;"
                 variant="gradient"
                 color="success"
                 data-bs-toggle="modal"
                 data-bs-target="#userBackdrop"
                 >เพิ่มสมาชิก</MaterialButton
               >
-            </div>
-          </div>
-
+              </div>
           <div class="text-center pt-4">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
@@ -170,8 +176,8 @@ export default {
                   <th scope="row">{{ index + 1 }}</th>
                   <td>{{ item.firstName }}</td>
                   <td>{{ item.lastName }}</td>
-                  <td>{{ item.old }}</td>
                   <td>{{ item.birthday }}</td>
+                  <td>{{ item.old }}</td>
                   <td>{{ item.Affiliation }}</td>
                   <td>{{ item.rank }}</td>
                   <td>{{ item.idcard }}</td>
