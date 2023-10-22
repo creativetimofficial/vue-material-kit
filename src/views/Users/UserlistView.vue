@@ -132,29 +132,28 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-          <div class="d-flex justify-content-between">
-            <div>
-              <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
-              />
-            </div>
+          <div>
+            <Breadcrumbs
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
+            />
           </div>
-          <div class="d-flex justify-content-end align-items-center">
-                <MaterialInput
-                  class="input-group-dynamic w-30 "
-                  icon="search"
-                  type="text"
-                  placeholder="Search"
-                />
-                <MaterialButton
-                style="margin-left: 20px;"
-                variant="gradient"
-                color="success"
-                data-bs-toggle="modal"
-                data-bs-target="#userBackdrop"
-                >เพิ่มสมาชิก</MaterialButton
-              >
-              </div>
+          <div class="d-flex justify-content-end align-items-baseline">
+            <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
+            <MaterialInput
+              class="input-group-dynamic w-30"
+              icon="search"
+              type="text"
+              placeholder="Search"
+            />
+            <MaterialButton
+              style="margin-left: 20px"
+              variant="gradient"
+              color="success"
+              data-bs-toggle="modal"
+              data-bs-target="#userBackdrop"
+              >เพิ่มสมาชิก</MaterialButton
+            >
+          </div>
           <div class="text-center pt-4">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
@@ -446,5 +445,8 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+.breadcrumb-item a:hover {
+  color: #4caf50 !important;
 }
 </style>

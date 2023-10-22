@@ -132,7 +132,6 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-          <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
                 :routes="[
@@ -141,7 +140,6 @@ export default {
                 ]"
               />
             </div>
-          </div>
           <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">

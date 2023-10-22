@@ -9638,7 +9638,7 @@ textarea.form-control-lg {
 }
 
 .text-return {
-  color: #ffca28 !important;
+  color: #deb70d !important;
 }
 
 
@@ -9730,9 +9730,18 @@ textarea.form-control-lg {
   background-color: #344767 !important;
 }
 
-.bg-white {
+.bg-white {   
   background-color: #fff !important;
 }
+
+.bg-return{
+  background-color: #deb70d !important;
+}
+
+.bg-red{
+  background-color: #d24c4a  !important;
+}
+
 
 .bg-body {
   background-color: #fff !important;

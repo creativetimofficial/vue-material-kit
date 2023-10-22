@@ -10,7 +10,7 @@
                         <p class="card-title" style="font-weight: bold; color: #000">ทะเบียน</p>
                         <img src="../../../assets/img/register.png"  alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'users' }" class="dropdown-item border-radius-md">
-                            <a href="#" class="btn btn-primary mt-4">ทะเบียน</a>
+                            <a href="#" class="btn btn-success mt-4">ทะเบียน</a>
                         </RouterLink>
 
                     </div>
@@ -22,7 +22,7 @@
                         <p class="card-title" style="font-weight: bold; color: #000">สถานะห้องพัก</p>
                         <img src="../../../assets/img/status.png" alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'room' }" class="dropdown-item border-radius-md">
-                            <a href="#" class="btn btn-primary mt-4">สถานะห้องพัก</a>
+                            <a href="#" class="btn btn-success mt-4">สถานะห้องพัก</a>
                         </RouterLink>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <p class="card-title" style="font-weight: bold; color: #000">ผังห้องพัก</p>
                         <img src="../../../assets/img/layout.png" alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'layout' }" class="dropdown-item border-radius-md">
-                          <a href="#" class="btn btn-primary mt-4">ผังห้องพัก</a>
+                          <a href="#" class="btn btn-success mt-4">ผังห้องพัก</a>
                         </RouterLink>
                     </div>
                 </div>
@@ -44,29 +44,29 @@
                         <p class="card-title" style="font-weight: bold; color: #000">ค่าสาธารณุปโภค</p>
                         <img src="../../../assets/img/utilities.png" alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'utilities' }" class="dropdown-item border-radius-md">
-                          <a href="#" class="btn btn-primary mt-4">ค่าสาธารณุปโภค</a>
+                          <a href="#" class="btn btn-success mt-4">ค่าสาธารณุปโภค</a>
                         </RouterLink>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-2">
+            <div class="col-sm-3 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <p class="card-title" style="font-weight: bold; color: #000">ระบบค้นหา</p>
-                        <img src="../../../assets/img/seo.png" alt="title" loading="lazy" class="w-50" />
-                        <RouterLink :to="{ name: 'searchfilter' }" class="dropdown-item border-radius-md">
-                          <a href="#" class="btn btn-primary mt-4">ระบบค้นหา</a>
+                        <p class="card-title" style="font-weight: bold; color: #000">ระบบคิว</p>
+                        <img src="../../../assets/img/queue.png" alt="title" loading="lazy" class="w-50" />
+                        <RouterLink :to="{ name: 'queue' }" class="dropdown-item border-radius-md">
+                          <a href="#" class="btn btn-success mt-4">ระบบคิว</a>
                         </RouterLink>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="col-sm-3 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ระบบเรียกรายงาน</p>
                         <img src="../../../assets/img/result.png" alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'reports' }" class="dropdown-item border-radius-md">
-                          <a href="#" class="btn btn-primary mt-4">ระบบเรียกรายงาน</a>
+                          <a href="#" class="btn btn-success mt-4">ระบบเรียกรายงาน</a>
                         </RouterLink>
                     </div>
                 </div>

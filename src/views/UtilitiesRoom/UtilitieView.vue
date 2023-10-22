@@ -140,6 +140,7 @@ export default {
       Costs: "",
       Maintenance: "",
       Insurance: "",
+      Insurancecost: "",
     };
   },
   watch: {
@@ -176,13 +177,11 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-          <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
                 :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ค่าสาธารณุปโภค' }]"
               />
             </div>
-          </div>
           <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -238,7 +237,8 @@ export default {
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <div class="d-flex justify-content-end align-items-center pt-4">
+                <div class="d-flex justify-content-end align-items-baseline pt-4">
+                  <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
                   <MaterialInput
                     class="input-group-dynamic w-30"
                     icon="search"
@@ -267,6 +267,8 @@ export default {
                         <th scope="col">ค่าไฟฟ้า</th>
                         <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
                         <th scope="col">ค่าบำรุงลิฟท์</th>
+                        <th scope="col">ค่าประกัน</th>
+                        <th scope="col">จำนวนงวดประกัน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -280,6 +282,8 @@ export default {
                         <td>20,000</td>
                         <td>8,000</td>
                         <td>20,000</td>
+                        <td>10,000</td>
+                        <td>5</td>
                       </tr>
                     </tbody>
                   </table>
@@ -291,7 +295,8 @@ export default {
                 role="tabpanel"
                 aria-labelledby="profile-tab"
               >
-                <div class="d-flex justify-content-end align-items-center pt-4">
+                <div class="d-flex justify-content-end align-items-baseline pt-4">
+                  <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
                   <MaterialInput
                     class="input-group-dynamic w-30"
                     icon="search"
@@ -317,6 +322,7 @@ export default {
                         <th scope="col">ห้อง</th>
                         <th scope="col">ค่าบำรุงฯ</th>
                         <th scope="col">ค่าประกัน</th>
+                        <th scope="col">จำนวนงวดประกัน</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -327,6 +333,7 @@ export default {
                         <td>3</td>
                         <td>20,000</td>
                         <td>8,000</td>
+                        <td>8</td>
                       </tr>
                     </tbody>
                   </table>
@@ -338,7 +345,8 @@ export default {
                 role="tabpanel"
                 aria-labelledby="contact-tab"
               >
-                <div class="d-flex justify-content-end align-items-center pt-4">
+                <div class="d-flex justify-content-end align-items-baseline pt-4">
+                  <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
                   <MaterialInput
                     class="input-group-dynamic w-30"
                     icon="search"
@@ -472,6 +480,26 @@ export default {
                   placeholder="ค่าบำรุงลิฟท์"
                 />
               </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Insurancecost"
+                  @input="(event) => (Insurancecost = event.target.value)"
+                  class="input-group-static"
+                  label="เงินค่าประกัน"
+                  type="text"
+                  placeholder="เงินค่าประกัน"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="งวดเงินค่าประกัน"
+                  type="text"
+                  placeholder="งวดเงินค่าประกัน"
+                />
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -545,6 +573,26 @@ export default {
                   placeholder="ค่าน้ำประปา"
                 />
               </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Insurancecost"
+                  @input="(event) => (Insurancecost = event.target.value)"
+                  class="input-group-static"
+                  label="เงินค่าประกัน"
+                  type="text"
+                  placeholder="เงินค่าประกัน"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="งวดเงินค่าประกัน"
+                  type="text"
+                  placeholder="งวดเงินค่าประกัน"
+                />
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -570,7 +618,9 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มรายงาน ประจำเดือนตุลาคม</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">
+              เพิ่มรายงาน ประจำเดือนตุลาคม
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -599,6 +649,26 @@ export default {
                   label="ค่าน้ำประปา"
                   type="text"
                   placeholder="ค่าน้ำประปา"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Insurancecost"
+                  @input="(event) => (Insurancecost = event.target.value)"
+                  class="input-group-static"
+                  label="เงินค่าประกัน"
+                  type="text"
+                  placeholder="เงินค่าประกัน"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="งวดเงินค่าประกัน"
+                  type="text"
+                  placeholder="งวดเงินค่าประกัน"
                 />
               </div>
             </div>

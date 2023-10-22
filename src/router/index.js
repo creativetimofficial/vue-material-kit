@@ -32,6 +32,7 @@ import UtilitiesRoom from "../views/UtilitiesRoom/UtilitieView.vue"
 import addUserRoom from "../views/Restroom/AddRoom.vue"
 import Reports from "../views/Reports/ReportlistView.vue"
 import searchFilter from "../views/SearchAll/SearchView.vue"
+import Queue from "../views/Queue/QueueView.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -74,6 +75,11 @@ const router = createRouter({
       path: "/searchfilter",
       name: "searchfilter", 
       component: searchFilter,
+    },
+    {
+      path: "/queue",
+      name: "queue", 
+      component: Queue,
     },
     {
       path: '/room/detail/:id',

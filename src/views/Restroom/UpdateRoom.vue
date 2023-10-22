@@ -132,6 +132,11 @@ export default {
         { label: "พฤศจิกายน", value: "11" },
         { label: "ธันวาคม", value: "12" },
       ],
+      optionsRoomtype: [
+        { label: "ช๑", value: "ช๑" },
+        { label: "ช๒", value: "ช๒" },
+        { label: "ช๓", value: "ช๓" },
+      ],
       selectedMonth: "ตุลาคม",
       firstName: "สมชาย",
       lastName: "0237",
@@ -141,6 +146,9 @@ export default {
       phone: "1200",
       old: "100",
       birthday: "200",
+      Roomtype: "ช๑",
+      Roomconditions: "ปกติ",
+      selectedRoomtype: "ช๑",
     };
   },
   watch: {
@@ -189,7 +197,7 @@ export default {
     </div>
   </Header>
   <section>
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 pt-6">
       <div class="page-header min-vh-45">
         <div class="container">
           <div>
@@ -197,12 +205,12 @@ export default {
               :routes="[
                 { label: 'หน้าหลัก', route: '/' },
                 { label: 'สถานะห้องพัก', route: '/room' },
-                { label: 'แก้ไขค่าใช้จ่ายประจำเดือน' },
+                { label: 'แก้ไขรายละเอียดห้อง' },
               ]"
             />
           </div>
           <!-- d-flex justify-content-between -->
-          <h4>แก้ไขค่าใช้จ่ายประจำเดือน</h4>
+          <h4>แก้ไขรายละเอียดห้อง</h4>
           <div class="row pt-4">
             <div class="card mb-3">
               <div class="row g-0">
@@ -216,10 +224,10 @@ export default {
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">ค่าใช้จ่ายประจำเดือน ตุลาคม</h5>
+                    <h5 class="card-title">แก้ไขรายละเอียดห้อง</h5>
 
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-6">
                         <div>
                           <div class="mb-3">
                             <MaterialInput
@@ -242,28 +250,26 @@ export default {
                             />
                           </div>
                           <div class="mb-3">
-                            <MaterialInput
-                              :value="idcard"
-                              @input="(event) => (idcard = event.target.value)"
-                              class="input-group-static"
-                              label="ค่าน้ำประปา"
-                              type="number"
-                              placeholder="ค่าน้ำประปา"
-                            />
+                            <label>ประเภทห้องพัก</label>
+                            <v-select
+                              :options="optionsRoomtype"
+                              v-model="selectedRoomtype"
+                            ></v-select>
                           </div>
+
                           <div class="mb-3">
                             <MaterialInput
-                              :value="phone"
-                              @input="(event) => (phone = event.target.value)"
+                              :value="Roomconditions"
+                              @input="(event) => (Roomconditions = event.target.value)"
                               class="input-group-static"
-                              label="ค่าไฟฟ้า"
-                              type="number"
-                              placeholder="ค่าไฟฟ้า"
+                              label="สภาพห้อง"
+                              type="text"
+                              placeholder="สภาพห้อง"
                             />
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
+                      <!-- <div class="col-4">
                         <div class="mb-3">
                           <MaterialInput
                             :value="birthday"
@@ -286,6 +292,26 @@ export default {
                         </div>
                         <div class="mb-3">
                           <MaterialInput
+                            :value="insurance"
+                            @input="(event) => (insurance = event.target.value)"
+                            class="input-group-static"
+                            label="เงินค่าประกัน"
+                            type="text"
+                            placeholder="เงินค่าประกัน"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
+                            :value="installments"
+                            @input="(event) => (installments = event.target.value)"
+                            class="input-group-static"
+                            label="งวดเงินค่าประกัน"
+                            type="text"
+                            placeholder="งวดเงินค่าประกัน"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <MaterialInput
                             :value="rank"
                             @input="(event) => (rank = event.target.value)"
                             class="input-group-static"
@@ -294,12 +320,10 @@ export default {
                             placeholder="สภาพห้อง"
                           />
                         </div>
-                      </div>
+                      </div> -->
                     </div>
-                    <!-- <p class="card-text">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </p> -->
-                    <div class="text-center">
+
+                    <div class="text-center" style="margin-right: 100px">
                       <MaterialButton variant="gradient" color="success"
                         >บันทึก</MaterialButton
                       >
@@ -326,5 +350,8 @@ export default {
 .bg-waring {
   background: #d1d3d5 !important;
   color: #fff;
+}
+.vs__actions {
+  cursor: pointer;
 }
 </style>

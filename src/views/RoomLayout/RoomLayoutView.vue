@@ -116,10 +116,16 @@ export default {
         { label: "Laravel", value: "PHP" },
         { label: "Phoenix", value: "Elixir" },
       ],
+      optionsRoomtype: [
+        { label: "ช๑", value: "ช๑" },
+        { label: "ช๒", value: "ช๒" },
+        { label: "ช๓", value: "ช๓" },
+      ],
       selectedColor: "",
       Edifice: "",
       Building: "",
       Floors: "",
+      selectedRoomtype: "ช๑",
     };
   },
   watch: {
@@ -156,45 +162,49 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-          <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
+                style="padding"
                 :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ผังห้องพัก' }]"
               />
-            </div>
           </div>
-          <div class="d-flex justify-content-end align-items-center">
-                <MaterialInput
-                  class="input-group-dynamic w-30 "
-                  icon="search"
-                  type="text"
-                  placeholder="Search"
-                />
-                <MaterialButton
-                style="margin-left: 20px;"
-                variant="gradient"
-                color="success"
-                data-bs-toggle="modal"
-                data-bs-target="#Addroomplan"
-                >สร้างผังห้อง</MaterialButton
-              >
-              </div>
+          <div class="d-flex justify-content-end align-items-baseline">
+            <label style="margin-right: 10px">ค้นหาพื้นที่หรือตึก </label>
+            <MaterialInput
+              class="input-group-dynamic w-30"
+              icon="search"
+              type="text"
+              placeholder="Search"
+            />
+            <MaterialButton
+              style="margin-left: 20px"
+              variant="gradient"
+              color="success"
+              data-bs-toggle="modal"
+              data-bs-target="#Addroomplan"
+              >สร้างผังห้อง</MaterialButton
+            >
+          </div>
           <div class="text-center pt-4">
             <table class="table table-hover border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
+                  <th scope="col">พื้นที่</th>
                   <th scope="col">ตึก</th>
                   <th scope="col">จำนวนชั้น</th>
                   <th scope="col">จำนวนห้อง</th>
+                  <th scope="col">ประเภทห้องพัก</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
+                  <td>พื้นที่</td>
                   <td>ตึก1</td>
                   <td>3</td>
                   <td>20</td>
+                  <td>ช๑</td>
                 </tr>
               </tbody>
             </table>
@@ -226,7 +236,16 @@ export default {
           </div>
           <div class="modal-body">
             <div>
-
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Area"
+                  @input="(event) => (Area = event.target.value)"
+                  class="input-group-static"
+                  label="พื้นที่"
+                  type="text"
+                  placeholder="พื้นที่"
+                />
+              </div>
               <div class="mb-3">
                 <MaterialInput
                   :value="Building"
@@ -257,6 +276,13 @@ export default {
                   type="text"
                   placeholder="จำนวนห้อง"
                 />
+              </div>
+              <div class="mb-3">
+                <label>ประเภทห้องพัก</label>
+                <v-select
+                  :options="optionsRoomtype"
+                  v-model="selectedRoomtype"
+                ></v-select>
               </div>
             </div>
           </div>

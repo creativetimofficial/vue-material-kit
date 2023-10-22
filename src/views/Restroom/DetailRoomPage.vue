@@ -67,6 +67,7 @@ export default {
       phone: "",
       old: "",
       birthday: "",
+      installments: "",
     };
   },
   created() {
@@ -105,7 +106,7 @@ export default {
     </div>
   </Header>
   <section>
-    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 pt-6">
       <div class="page-header min-vh-45">
         <div class="container">
           <div>
@@ -118,34 +119,34 @@ export default {
             />
           </div>
           <!-- d-flex justify-content-between -->
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-baseline">
             <h4>รายละเอียดห้องพัก</h4>
             <div v-if="mode == 'edit'">
               <MaterialButton variant="gradient" color="success" @click="gotoAction()"
-                >แก้ไขค่าใช้จ่ายประจำเดือน</MaterialButton
+                >แก้ไขรายละเอียดห้อง</MaterialButton
+              >
+              <MaterialButton
+                style="margin-left: 20px; margin-right: 10px"
+                variant="gradient"
+                color="warning"
+                data-bs-toggle="modal"
+                data-bs-target="#Returntheroom"
+                >คืนห้อง</MaterialButton
               >
             </div>
-            <!-- <div v-if="mode == 'add'">
-              <MaterialButton
-                variant="gradient"
-                color="success"
-                @click="gotoAction()"
-                >เพิ่มผู้เช่าห้องพัก</MaterialButton
-              >
-            </div> -->
           </div>
           <div class="row pt-4">
             <div class="card mb-3">
               <div class="row g-0">
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <img
                     width="300"
                     src="../../assets/img/team-4.jpg"
                     class="img-fluid rounded-start"
                     alt="..."
                   />
-                </div>
-                <div class="col-md-8">
+                </div> -->
+                <div class="col-md-10">
                   <div class="card-body">
                     <div class="row" v-if="statusedit == true">
                       <h5 class="card-title">รายละเอียดผู้เช่า</h5>
@@ -173,13 +174,6 @@ export default {
                         <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p>
                         <p class="card-text">สภาพห้อง : ปกติ</p>
                       </div>
-                      <div class="col-7" v-if="statusedit == true">
-                        <h5 class="card-title pt-2">รายละเอียดค่าสาธารณุปโภค</h5>
-                        <p class="card-text">ค่าน้ำประปา : 120</p>
-                        <p class="card-text">ค่าไฟฟ้า : 700</p>
-                        <p class="card-text">ค่าไฟฟ้าส่วนกลาง : 100</p>
-                        <p class="card-text">ค่าบำรุงลิฟท์ : 200</p>
-                      </div>
                     </div>
                     <!-- <p class="card-text">
                       <small class="text-muted">Last updated 3 mins ago</small>
@@ -189,16 +183,6 @@ export default {
               </div>
               <div class="row pt-4">
                 <div class="card mb-3" v-if="mode == 'add'">
-                  <h5>ลำดับคิว</h5>
-                  <div class="text-end">
-                    <MaterialButton
-                      variant="gradient"
-                      color="success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#seleteUserBackdrop"
-                      >เพิ่มผู้เช่าลงคิว</MaterialButton
-                    >
-                  </div>
                   <div class="text-center pt-4 table-responsive">
                     <table class="table border border-2 border-success">
                       <thead class="border border-2 border-success border-bottom">
@@ -238,50 +222,6 @@ export default {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- modal -->
-    <div
-      class="modal fade"
-      id="seleteUserBackdrop"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มผู้เช่าลงคิว</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div>
-              <div class="mb-3">
-                <label>ชื่อผู้เช่า</label>
-                <v-select :options="options" v-model="selectedColor"></v-select>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              ปิดหน้าต่าง
-            </button>
-            <MaterialButton
-              variant="gradient"
-              color="success"
-              @click="submitForm"
-              html-type="submit"
-              >บันทึก</MaterialButton
-            >
           </div>
         </div>
       </div>
@@ -332,12 +272,115 @@ export default {
               </div>
               <div class="mb-3">
                 <MaterialInput
+                  :value="Maintenance"
+                  @input="(event) => (Maintenance = event.target.value)"
+                  class="input-group-static"
+                  label="ค่าธรรมเนียม"
+                  type="text"
+                  placeholder="ค่าธรรมเนียม"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
                   :value="insurance"
-                  @input="(event) => (Affiliation = event.target.value)"
+                  @input="(event) => (insurance = event.target.value)"
                   class="input-group-static"
                   label="เงินค่าประกัน"
                   type="text"
                   placeholder="เงินค่าประกัน"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="จำนวนงวดเงินค่าประกัน"
+                  type="text"
+                  placeholder="จำนวนงวดเงินค่าประกัน"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm"
+              html-type="submit"
+              >บันทึก</MaterialButton
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="Returntheroom"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">การคืนห้อง</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">รอคืนห้อง</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">รอซ่อม</label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  name="contract"
+                  :value="contract"
+                  @input="(event) => (contract = event.target.value)"
+                  class="input-group-static"
+                  label="จำนวนเงินคงค้าง"
+                  type="text"
+                  placeholder="จำนวนเงินคงค้าง"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Checkintime"
+                  @input="(event) => (Checkintime = event.target.value)"
+                  class="input-group-static"
+                  label="จำนวนงวดที่จ่าย"
+                  type="text"
+                  placeholder="จำนวนงวดที่จ่าย"
                 />
               </div>
             </div>

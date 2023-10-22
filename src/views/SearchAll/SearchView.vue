@@ -132,13 +132,11 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-          <div class="d-flex justify-content-between">
             <div>
               <Breadcrumbs
                 :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบค้นหา' }]"
               />
             </div>
-          </div>
           <div class="d-flex justify-content-end">
                 <MaterialInput
                   class="input-group-dynamic w-30"
