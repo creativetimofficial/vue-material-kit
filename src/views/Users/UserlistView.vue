@@ -3,6 +3,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
+import masterData from "@/assets/dataJson/masterData.json";
 
 const listRoom = [
   { title: "ตึก 1" },
@@ -29,8 +30,8 @@ const userlist = [
     dataIndex: "1",
     firstName: "สมชาย",
     lastName: "แสงทอง",
-    Affiliation: "บก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.1", //สังกัด
+    rank: "ส.ต.ต.", //ยศ
     old: "32",
     birthday: "04/03/2534",
     idcard: "134044411441122",
@@ -40,8 +41,8 @@ const userlist = [
     dataIndex: "2",
     firstName: "สมชัย",
     lastName: "แสงสุข",
-    Affiliation: "กก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.2", //สังกัด
+    rank: "ส.ต.ต.", //ยศ
     old: "32",
     birthday: "14/07/2534",
     idcard: "134044411441178",
@@ -61,6 +62,7 @@ export default {
       NoRoom,
       userlist,
       vueMkHeader,
+      masterData
     };
   },
 
@@ -75,13 +77,19 @@ export default {
         { label: "Phoenix", value: "Elixir" },
       ],
       selectedColor: "",
-      firstName: "",
-      lastName: "",
+      firstName: "สมชัย",
+      lastName: "แสงสุข",
       Affiliation: "", //สังกัด
       rank: "", //ยศ
-      idcard: "",
-      phone: "",
+      idcard: "134044411441178",
+      phone: "0325647845",
+      selectedRanks: 'ส.ต.ต.',
+      selectedAffiliation: 'ฝอ.2',
+      birthday: "14/07/2534"
     };
+  },
+  created(){
+    console.log(this.masterData);
   },
   watch: {
     selectedColor: function (newValue) {
@@ -154,7 +162,7 @@ export default {
               >เพิ่มสมาชิก</MaterialButton
             >
           </div>
-          <div class="text-center pt-4">
+          <div class="text-center pt-4 table-responsive">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
@@ -254,25 +262,19 @@ export default {
                 />
               </div>
               <div class="mb-3">
-                <MaterialInput
-                  :value="Affiliation"
-                  @input="(event) => (Affiliation = event.target.value)"
-                  class="input-group-static"
-                  label="สังกัด"
-                  type="text"
-                  placeholder="สังกัด"
-                />
-              </div>
+                <label>สังกัด</label>
+                <v-select
+                  :options="masterData?.Affiliation"
+                  v-model="selectedAffiliation"
+                ></v-select>
+              </div> 
               <div class="mb-3">
-                <MaterialInput
-                  :value="rank"
-                  @input="(event) => (rank = event.target.value)"
-                  class="input-group-static"
-                  label="ยศ"
-                  type="text"
-                  placeholder="ยศ"
-                />
-              </div>
+                <label>ยศ</label>
+                <v-select
+                  :options="masterData?.ranks"
+                  v-model="selectedRanks"
+                ></v-select>
+              </div> 
               <div class="mb-3">
                 <MaterialInput
                   :value="idcard"
@@ -366,25 +368,19 @@ export default {
                 />
               </div>
               <div class="mb-3">
-                <MaterialInput
-                  :value="Affiliation"
-                  @input="(event) => (Affiliation = event.target.value)"
-                  class="input-group-static"
-                  label="สังกัด"
-                  type="text"
-                  placeholder="สังกัด"
-                />
-              </div>
+                <label>สังกัด</label>
+                <v-select
+                  :options="masterData?.Affiliation"
+                  v-model="selectedAffiliation"
+                ></v-select>
+              </div> 
               <div class="mb-3">
-                <MaterialInput
-                  :value="rank"
-                  @input="(event) => (rank = event.target.value)"
-                  class="input-group-static"
-                  label="ยศ"
-                  type="text"
-                  placeholder="ยศ"
-                />
-              </div>
+                <label>ยศ</label>
+                <v-select
+                  :options="masterData?.ranks"
+                  v-model="selectedRanks"
+                ></v-select>
+              </div> 
               <div class="mb-3">
                 <MaterialInput
                   :value="idcard"
@@ -426,16 +422,25 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
+
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

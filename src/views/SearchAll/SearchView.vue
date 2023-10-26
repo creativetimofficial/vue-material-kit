@@ -406,18 +406,7 @@ export default {
   </section>
 </template>
 <style>
-.bg-green {
-  background: #567b57 !important;
-  color: #fff;
-}
-.bg-red {
-  background: #d24c4a !important;
-  color: #fff;
-}
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
-}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

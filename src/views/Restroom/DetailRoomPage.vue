@@ -10,8 +10,8 @@ const userlist = [
     dataIndex: "1",
     firstName: "สมชาย",
     lastName: "แสงทอง",
-    Affiliation: "บก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.2", //สังกัด
+    rank: "ส.ต.ต.",
     idcard: "134044411441122",
     phone: "0325647846",
     ContractDate: "12/11/2566", //สังกัด
@@ -23,8 +23,8 @@ const userlist = [
     dataIndex: "2",
     firstName: "สมชัย",
     lastName: "แสงสุข",
-    Affiliation: "กก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.2", //สังกัด
+    rank: "ส.ต.ต.",
     idcard: "134044411441178",
     phone: "0325647845",
     ContractDate: "12/11/2566", //สังกัด
@@ -120,32 +120,24 @@ export default {
           </div>
           <!-- d-flex justify-content-between -->
           <div class="d-flex justify-content-between align-items-baseline">
-            <h4>รายละเอียดห้องพัก</h4>
+            <h4>รายละเอียดห้องพัก 101</h4>
             <div v-if="mode == 'edit'">
               <MaterialButton variant="gradient" color="success" @click="gotoAction()"
-                >แก้ไขรายละเอียดห้อง</MaterialButton
+                >จัดการห้องพัก</MaterialButton
               >
-              <MaterialButton
+              <!-- <MaterialButton
                 style="margin-left: 20px; margin-right: 10px"
                 variant="gradient"
                 color="warning"
                 data-bs-toggle="modal"
                 data-bs-target="#Returntheroom"
                 >คืนห้อง</MaterialButton
-              >
+              > -->
             </div>
           </div>
           <div class="row pt-4">
             <div class="card mb-3">
               <div class="row g-0">
-                <!-- <div class="col-md-4">
-                  <img
-                    width="300"
-                    src="../../assets/img/team-4.jpg"
-                    class="img-fluid rounded-start"
-                    alt="..."
-                  />
-                </div> -->
                 <div class="col-md-10">
                   <div class="card-body">
                     <div class="row" v-if="statusedit == true">
@@ -153,7 +145,7 @@ export default {
                       <div class="col-5">
                         <p class="card-text">ชือ : มานะ</p>
                         <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
-                        <p class="card-text">ยศ : ร้อยตรี</p>
+                        <p class="card-text">ยศ : ส.ต.ต.</p>
                         <p class="card-text">วันเกิด : 12/02/2514</p>
                         <p class="card-text">วันทำสัญญา : 12/02/2564</p>
                         <p class="card-text">อายุ : 33 ปี</p>
@@ -161,7 +153,7 @@ export default {
                       </div>
                       <div class="col-7">
                         <p class="card-text">นามสกุล : ถือดี</p>
-                        <p class="card-text">สังกัด : กก</p>
+                        <p class="card-text">สังกัด : ฝอ. 1</p>
                         <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
                         <p class="card-text">เบอร์โทร : 0972534887</p>
                         <p class="card-text">เงินค่าประกัน : 12,000</p>
@@ -173,6 +165,12 @@ export default {
                         <p class="card-text">ประเภทห้องพัก : ช๓</p>
                         <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p>
                         <p class="card-text">สภาพห้อง : ปกติ</p>
+                      </div>
+                      <div class="col-5">
+                        <h5 class="card-title pt-2"></h5>
+                        <p class="card-text">เลขที่เริ่มใช้ : 3012</p>
+                        <p class="card-text">เดื่อนที่เริ่มใช้ : มกราคม</p>
+                        <p class="card-text">ปีที่เริ่มใช้ : 2565</p>
                       </div>
                     </div>
                     <!-- <p class="card-text">
@@ -327,10 +325,10 @@ export default {
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 740px">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">การคืนห้อง</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">คืนห้อง</h5>
             <button
               type="button"
               class="btn-close"
@@ -340,8 +338,12 @@ export default {
           </div>
           <div class="modal-body">
             <div>
-              <div class="mb-3">
+              <div
+                class="mb-3"
+                style="display: flex; justify-content: space-between; align-items: center"
+              >
                 <div class="form-check form-check-inline">
+                  <label style="margin-right: 20px">กุญแจห้อง</label>
                   <input
                     class="form-check-input"
                     type="radio"
@@ -349,7 +351,7 @@ export default {
                     id="inlineRadio1"
                     value="option1"
                   />
-                  <label class="form-check-label" for="inlineRadio1">รอคืนห้อง</label>
+                  <label class="form-check-label" for="inlineRadio1">มี</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input
@@ -359,29 +361,103 @@ export default {
                     id="inlineRadio2"
                     value="option2"
                   />
-                  <label class="form-check-label" for="inlineRadio2">รอซ่อม</label>
+                  <label class="form-check-label" for="inlineRadio2">ไม่มี</label>
+                </div>
+                <div style="width: 360px; margin-bottom: 10px">
+                  <MaterialInput
+                    name="contract"
+                    :value="contract"
+                    @input="(event) => (contract = event.target.value)"
+                    class="input-group-static"
+                    type="text"
+                    placeholder="สาเหตุ"
+                  />
                 </div>
               </div>
-              <div class="mb-3">
-                <MaterialInput
-                  name="contract"
-                  :value="contract"
-                  @input="(event) => (contract = event.target.value)"
-                  class="input-group-static"
-                  label="จำนวนเงินคงค้าง"
-                  type="text"
-                  placeholder="จำนวนเงินคงค้าง"
-                />
+              <div
+                class="mb-3"
+                style="display: flex; justify-content: space-between; align-items: center"
+              >
+                <div class="form-check form-check-inline">
+                  <label style="margin-right: 20px">ทะเบียนบ้าน</label>
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">มี</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">ไม่มี</label>
+                </div>
+                <div style="width: 360px; margin-bottom: 10px">
+                  <MaterialInput
+                    name="contract"
+                    :value="contract"
+                    @input="(event) => (contract = event.target.value)"
+                    class="input-group-static"
+                    type="text"
+                    placeholder="สาเหตุ"
+                  />
+                </div>
               </div>
-              <div class="mb-3">
-                <MaterialInput
-                  :value="Checkintime"
-                  @input="(event) => (Checkintime = event.target.value)"
-                  class="input-group-static"
-                  label="จำนวนงวดที่จ่าย"
-                  type="text"
-                  placeholder="จำนวนงวดที่จ่าย"
-                />
+              <div>
+                <label style="padding-left: 30px;">หลักฐานแสดงการชําระค่าไฟเดือนล่าสุด</label>
+              </div>
+              <div
+                class="mb-3"
+                style="margin-left:10px; display: flex; justify-content: space-between; align-items: center"
+              >
+                <div class="form-check form-check-inline">
+                  
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">มี</label>
+                </div>
+                <div style="width: 250px; margin-bottom: 10px">
+                  <MaterialInput
+                    name="contract"
+                    :value="contract"
+                    @input="(event) => (contract = event.target.value)"
+                    class="input-group-static"
+                    type="text"
+                    placeholder="สาเหตุ"
+                  />
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">ไม่มี</label>
+                </div>
+                <div style="width: 250px; margin-bottom: 10px">
+                  <MaterialInput
+                    name="contract"
+                    :value="contract"
+                    @input="(event) => (contract = event.target.value)"
+                    class="input-group-static"
+                    type="text"
+                    placeholder="สาเหตุ"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -404,15 +480,23 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
 }
 </style>

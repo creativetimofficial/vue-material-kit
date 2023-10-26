@@ -110,11 +110,19 @@ export default {
     return {
       value: { name: "Vue.js", language: "JavaScript" },
       optionsBuilding: [
-        { label: "ตึก 1", value: "1" },
-        { label: "ตึก 2", value: "2" },
-        { label: "ตึก 3", value: "3" },
-        { label: "ตึก 4", value: "4" },
-        { label: "ตึก 5", value: "5" },
+        { label: "อาคารแฟลต 1/11", value: "1" },
+        { label: "อาคารแฟลต 1/12", value: "2" },
+        { label: "อาคารแฟลต 1/13", value: "3" },
+        { label: "อาคารแฟลต 1/14", value: "4" },
+        { label: "อาคารแฟลต 1/15", value: "5" },
+        { label: "อาคารแฟลต 1/16", value: "3" },
+        { label: "อาคารแฟลต 1/17", value: "4" },
+        { label: "อาคารแฟลต 1/18", value: "5" },
+        { label: "แฟลตลือชา 1", value: "5" },
+        { label: "แฟลตลือชา 2", value: "3" },
+        { label: "แฟลตลือชา 3", value: "4" },
+        { label: "แฟลตบางเขน 1", value: "5" },
+        { label: "แฟลตบางเขน 2", value: "5" },
       ],
       optionsFloor: [
         { label: "ชั้น 1", value: "1" },
@@ -124,15 +132,15 @@ export default {
         { label: "ชั้น 5", value: "5" },
       ],
       optionsRoom: [
-        { label: "ห้อง 1", value: "1" },
-        { label: "ห้อง 2", value: "2" },
-        { label: "ห้อง 3", value: "3" },
-        { label: "ห้อง 4", value: "4" },
-        { label: "ห้อง 5", value: "5" },
+        { label: "ห้อง 101", value: "1" },
+        { label: "ห้อง 202", value: "2" },
+        { label: "ห้อง 303", value: "3" },
+        { label: "ห้อง 404", value: "4" },
+        { label: "ห้อง 505", value: "5" },
       ],
-      selectedBuilding: "ตึก 1",
+      selectedBuilding: "อาคารแฟลต 1/11",
       selectedFloor: "ชั้น 1",
-      selectedRoom: "ห้อง 1",
+      selectedRoom: "ห้อง 101",
       fee: "",
       Waterbill: "",
       Electricitybill: "",
@@ -177,11 +185,11 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-            <div>
-              <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ค่าสาธารณุปโภค' }]"
-              />
-            </div>
+          <div>
+            <Breadcrumbs
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ค่าสาธารณุปโภค' }]"
+            />
+          </div>
           <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -254,14 +262,14 @@ export default {
                     >เพิ่มค่าใช้จ่ายบ้านพัก ตร.</MaterialButton
                   >
                 </div>
-                <div class="text-center pt-4">
+                <div class="text-center pt-4 table-responsive">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ตึก</th>
+                        <th scope="col">อาคาร</th>
                         <th scope="col">ชั้น</th>
-                        <th scope="col">ห้อง</th>
+                        <th scope="col">เลขที่ห้อง</th>
                         <th scope="col">ค่าธรรมเนียม</th>
                         <th scope="col">ค่าน้ำประปา</th>
                         <th scope="col">ค่าไฟฟ้า</th>
@@ -274,9 +282,9 @@ export default {
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>1</td>
+                        <td>อาคารแฟลต 1/11</td>
                         <td>2</td>
-                        <td>3</td>
+                        <td>202</td>
                         <td>20,000</td>
                         <td>8,000</td>
                         <td>20,000</td>
@@ -312,14 +320,14 @@ export default {
                     >เพิ่มค่าใช้จ่ายบ้านพัก บช.ตชด.</MaterialButton
                   >
                 </div>
-                <div class="text-center pt-4">
+                <div class="text-center pt-4 table-responsive">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ตึก</th>
+                        <th scope="col">อาคาร</th>
                         <th scope="col">ชั้น</th>
-                        <th scope="col">ห้อง</th>
+                        <th scope="col">เลขที่ห้อง</th>
                         <th scope="col">ค่าบำรุงฯ</th>
                         <th scope="col">ค่าประกัน</th>
                         <th scope="col">จำนวนงวดประกัน</th>
@@ -328,9 +336,9 @@ export default {
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>1</td>
+                        <td>อาคารแฟลต 1/14</td>
                         <td>2</td>
-                        <td>3</td>
+                        <td>202</td>
                         <td>20,000</td>
                         <td>8,000</td>
                         <td>8</td>
@@ -367,17 +375,110 @@ export default {
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">กก.</th>
-                        <th scope="col">บก.</th>
-                        <th scope="col">ข้อมูลระดับ บช.</th>
+                        <th scope="col">เดือน</th>
+                        <th scope="col">อาคารบ้านพัก</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพัก บช. ตชด.</td>
+                        <td>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพักส่วนกลาง</td>
+                        <td>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพัก ตร.</td>
+                        <td>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -415,7 +516,7 @@ export default {
           <div class="modal-body">
             <div>
               <div class="mb-3">
-                <label>ตึก</label>
+                <label>อาคาร</label>
                 <v-select
                   :options="optionsBuilding"
                   v-model="selectedBuilding"
@@ -426,7 +527,7 @@ export default {
                 <v-select :options="optionsFloor" v-model="selectedFloor"></v-select>
               </div>
               <div class="mb-3">
-                <label>ห้อง</label>
+                <label>เลขที่ห้อง</label>
                 <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
               </div>
               <div class="mb-3">
@@ -538,7 +639,7 @@ export default {
           <div class="modal-body">
             <div>
               <div class="mb-3">
-                <label>ตึก</label>
+                <label>อาคาร</label>
                 <v-select
                   :options="optionsBuilding"
                   v-model="selectedBuilding"
@@ -549,7 +650,7 @@ export default {
                 <v-select :options="optionsFloor" v-model="selectedFloor"></v-select>
               </div>
               <div class="mb-3">
-                <label>ห้อง</label>
+                <label>เลขที่ห้อง</label>
                 <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
               </div>
               <div class="mb-3">
@@ -686,15 +787,23 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
 }
 </style>

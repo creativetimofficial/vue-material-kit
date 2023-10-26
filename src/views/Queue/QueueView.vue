@@ -29,8 +29,8 @@ const userlist = [
     dataIndex: "1",
     firstName: "สมชาย",
     lastName: "แสงทอง",
-    Affiliation: "บก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.2", //สังกัด
+    rank: "ส.ต.ต.", //ยศ
     old: "32",
     birthday: "04/03/2534",
     idcard: "134044411441122",
@@ -40,8 +40,8 @@ const userlist = [
     dataIndex: "2",
     firstName: "สมชัย",
     lastName: "แสงสุข",
-    Affiliation: "กก", //สังกัด
-    rank: "ร้อยตรี", //ยศ
+    Affiliation: "ฝอ.2", //สังกัด
+    rank: "ส.ต.ต.", //ยศ
     old: "32",
     birthday: "14/07/2534",
     idcard: "134044411441178",
@@ -68,11 +68,10 @@ export default {
     return {
       value: { name: "Vue.js", language: "JavaScript" },
       options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
+        { label: "มานพ", value: "มานพ" },
+        { label: "วิชัย", value: "วิชัย" },
+        { label: "ธนาพร", value: "ธนาพร" },
+        { label: "มนตรี", value: "มนตรี" },
       ],
       selectedColor: "",
       firstName: "",
@@ -154,7 +153,7 @@ export default {
               >เพิ่มผู้เช่าลงคิว</MaterialButton
             >
           </div>
-          <div class="text-center pt-4">
+          <div class="text-center pt-4 table-responsive">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
@@ -237,16 +236,25 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
+
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

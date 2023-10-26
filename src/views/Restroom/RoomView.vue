@@ -36,20 +36,26 @@ export default {
         { label: "Phoenix", value: "Elixir" },
       ],
       listRoom: [
-        { label: "ตึก 1", value: "ตึก 1" },
-        { label: "ตึก 2", value: "ตึก 2" },
-        { label: "ตึก 3", value: "ตึก 3" },
-        { label: "ตึก 4", value: "ตึก 4" },
-        { label: "ตึก 5", value: "ตึก 5" },
-        { label: "ตึก 6", value: "ตึก 6" },
-        { label: "ตึก 7", value: "ตึก 7" },
+        { label: "อาคารแฟลต 1/11", value: "1" },
+        { label: "อาคารแฟลต 1/12", value: "2" },
+        { label: "อาคารแฟลต 1/13", value: "3" },
+        { label: "อาคารแฟลต 1/14", value: "4" },
+        { label: "อาคารแฟลต 1/15", value: "5" },
+        { label: "อาคารแฟลต 1/16", value: "3" },
+        { label: "อาคารแฟลต 1/17", value: "4" },
+        { label: "อาคารแฟลต 1/18", value: "5" },
+        { label: "แฟลตลือชา 1", value: "5" },
+        { label: "แฟลตลือชา 2", value: "3" },
+        { label: "แฟลตลือชา 3", value: "4" },
+        { label: "แฟลตบางเขน 1", value: "5" },
+        { label: "แฟลตบางเขน 2", value: "5" },
       ],
       selectedColor: "",
       statusfree: false,
       statusreturn: false,
       statuseunavailable: false,
       statusewaiting: false,
-      selectedlistRoom: "ตึก 1",
+      selectedlistRoom: "อาคารแฟลต 1/11 ",
     };
   },
   created() {
@@ -124,27 +130,26 @@ export default {
           </div>
           <div class="row pt-4 align-items-baseline">
             <div class="col-4">
-              <div class=" d-flex justify-content-start align-items-baseline">
-                <label class="w-30" >
+              <div class="d-flex justify-content-start align-items-baseline">
+                <label class="w-30">
                   <i class="material-icons opacity-6 me-2 text-md">home</i>
                   เลือกตึก</label
                 >
-                <v-select class="w-100" :options="listRoom" v-model="selectedlistRoom"></v-select>
+                <v-select
+                  class="w-100"
+                  :options="listRoom"
+                  v-model="selectedlistRoom"
+                ></v-select>
               </div>
-             
             </div>
             <div class="col-8">
               <div class="d-flex justify-content-end align-items-baseline">
                 <div class="d-flex">
                   <MaterialCheckbox id="terms5" checked>
-                    <a href="javascript:;" class=" font-weight-bolder">
-                      รายตึก</a
-                    >
+                    <a href="javascript:;" class="font-weight-bolder"> รายตึก</a>
                   </MaterialCheckbox>
                   <MaterialCheckbox id="terms6">
-                    <a href="javascript:;" class=" font-weight-bolder">
-                      ตึกทั้งหมด</a
-                    >
+                    <a href="javascript:;" class="font-weight-bolder"> ตึกทั้งหมด</a>
                   </MaterialCheckbox>
                 </div>
                 <label style="margin-right: 10px; margin-left: 20px"
@@ -162,15 +167,29 @@ export default {
 
           <div class="text-center pt-4">
             <div class="d-flex justify-content-between align-items-baseline p-2">
-              <h6>ตึก 1</h6>
+              <div class="text-start">
+                <h6>{{ selectedlistRoom }}</h6>
+                <p class="d-flex align-items-baseline p-2">
+                  <span>คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span>
+                  <a data-bs-toggle="modal" data-bs-target="#Edituser"
+                    ><i
+                      class="material-icons"
+                      style="cursor: pointer; margin-left: 10px"
+                      aria-hidden="true"
+                      >edit</i
+                    ></a
+                  >
+                </p>
+              </div>
+
               <div class="d-flex">
                 <MaterialCheckbox
                   id="terms"
-                  color="success"
+                  color="green"
                   :checked="statusfree"
                   @change="onChangeEvent('free')"
                 >
-                  <a href="javascript:;" class=" font-weight-bolder"> ว่าง</a>
+                  <a href="javascript:;" class="font-weight-bolder"> ว่าง</a>
                 </MaterialCheckbox>
                 <MaterialCheckbox
                   id="terms2"
@@ -178,22 +197,15 @@ export default {
                   :checked="statuseunavailable"
                   @change="onChangeEvent('unavailable')"
                 >
-                  <a href="javascript:;" class="font-weight-bolder">
-                    ไม่ว่าง</a
-                  >
+                  <a href="javascript:;" class="font-weight-bolder"> ไม่ว่าง</a>
                 </MaterialCheckbox>
                 <MaterialCheckbox
                   id="terms3"
-                  color="warning"
+                  color="warning2"
                   :checked="statusewaiting"
                   @change="onChangeEvent('waiting')"
                 >
-                  <a
-                    href="javascript:;"
-                    class="font-weight-bolder"
-                  >
-                    รอซ่อม</a
-                  >
+                  <a href="javascript:;" class="font-weight-bolder"> ชำรุด</a>
                 </MaterialCheckbox>
                 <MaterialCheckbox
                   id="terms4"
@@ -201,12 +213,7 @@ export default {
                   :checked="statusreturn"
                   @change="onChangeEvent('return')"
                 >
-                  <a
-                    href="javascript:;"
-                    class="font-weight-bolder"
-                  >
-                    รอคืนห้อง</a
-                  >
+                  <a href="javascript:;" class="font-weight-bolder"> รอคืนห้อง</a>
                 </MaterialCheckbox>
               </div>
             </div>
@@ -215,7 +222,7 @@ export default {
             <div v-for="(item, index) in NoRoom" :key="index">
               <div class="card mb-2">
                 <div class="card-body">
-                  <p class="text-start mt-4">
+                  <p class="text-start">
                     <MaterialButton
                       variant="outline"
                       color="success"
@@ -239,20 +246,78 @@ export default {
                             :class="{
                               'bg-red': item?.status == 'unavailable',
                               'bg-green': item?.status == 'free',
-                              'bg-warning': item?.status == 'waiting',
+                              'bg-warning2': item?.status == 'waiting',
                               'bg-return': item?.status == 'return',
+                              'bg-special': item?.status == 'special',
                             }"
-                            :style="{ width: `110px` }"
+                            :style="{ width: `115px`, height: `170px` }"
                           >
-                            <div class="card-body">
-                              <p class="card-title">
-                                <a
-                                  style="cursor: pointer"
-                                  @click="gotodetail(item?.dataIndex, item?.status)"
-                                  class="text-white"
-                                  >{{ item?.title }}</a
+                            <div class="card-body p-1">
+                              <a
+                                style="cursor: pointer"
+                                @click="gotodetail(item?.dataIndex, item?.status)"
+                                class="text-drck"
+                              >
+                                <p
+                                  class="card-title"
+                                  :class="{
+                                    'bg-red': item?.status == 'unavailable',
+                                    'bg-green': item?.status == 'free',
+                                    'bg-warning2': item?.status == 'waiting',
+                                    'bg-return': item?.status == 'return',
+                                    'bg-special': item?.status == 'special',
+                                  }"
                                 >
-                              </p>
+                                  <a>{{ item?.title }}</a>
+                                </p>
+                                <p
+                                  v-if="item?.status == 'free'"
+                                  class="card-title bgg-green"
+                                  style="font-size: 16px"
+                                >
+                                  {{ "ว่าง" }}
+                                </p>
+                                <p
+                                  v-if="item?.status == 'unavailable'"
+                                  class="card-title bgg-red"
+                                  style="font-size: 16px"
+                                >
+                                  {{ "ไม่ว่าง" }}
+                                </p>
+                                <p
+                                  v-if="item?.status == 'waiting'"
+                                  class="card-title bgg-warning2"
+                                  style="font-size: 16px"
+                                >
+                                  {{ "ชำรุด" }}
+                                </p>
+                                <p
+                                  v-if="item?.status == 'return'"
+                                  class="card-title bgg-return"
+                                  style="font-size: 16px"
+                                >
+                                  {{ "รอคืนห้อง" }}
+                                </p>
+                                <p class="card-title" style="font-size: 14px">
+                                  {{ item?.firstName }}
+                                </p>
+                                <p class="card-title" style="font-size: 14px">
+                                  {{ item?.laststName }}
+                                </p>
+                                <div>
+                                  <span
+                                    v-if="item?.status !== 'special'"
+                                    style="text-align: right; font-size: small"
+                                    >{{ item?.Affiliation }}</span
+                                  >
+                                  <span
+                                    v-if="item?.status == 'special'"
+                                    class="text-red"
+                                    style="text-align: right; font-size: small"
+                                    >{{ "กรณีพิเศษ" }}</span
+                                  >
+                                </div>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -299,24 +364,95 @@ export default {
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="Edituser"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">แก้ไขชื่อคณะกรรมการ</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >ชื่อคณะกรรมการ</label
+              >
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                placeholder="กรอกชื่อ"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-warning {
-  background: #fb8c00 !important;
-  color: #fff;
+.bg-warning2 {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
 }
 .bg-return {
-  background: #ffca28 !important;
-  color: #fff;
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
+}
+.bgg-green {
+  background-color: #567b57 !important;
+  color: #fff !important;
+}
+.bgg-red {
+  background-color: #d24c4a !important;
+  color: #fff !important;
+}
+.bgg-warning2 {
+  background-color: #fb8c00 !important;
+  color: #fff !important;
+}
+.bgg-return {
+  background-color: #ffca28 !important;
+  color: #fff !important;
+}
+.bgg-special {
+  background-color: #edc7c7 !important;
+  color: #fff !important;
+}
+.text-red {
+  color: #d24c4a !important;
 }
 ol.breadcrumb {
   padding: 1rem !important;

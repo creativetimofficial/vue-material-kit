@@ -132,14 +132,11 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-            <div>
-              <Breadcrumbs
-                :routes="[
-                  { label: 'หน้าหลัก', route: '/' },
-                  { label: 'ระบบเรียกรายงาน' },
-                ]"
-              />
-            </div>
+          <div>
+            <Breadcrumbs
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบเรียกรายงาน' }]"
+            />
+          </div>
           <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -195,56 +192,91 @@ export default {
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <div class="d-flex justify-content-end pt-4">
-                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/pdf.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
-                  <MaterialButton size="lg" class="btn-icon">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/excel.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div class="d-flex">
+                    <h5>ประจำเดือน ตุลาคม</h5>
+                  </div>
+                  <div class="d-flex pt-4">
+                    <MaterialButton
+                      size="lg"
+                      class="btn-icon"
+                      style="margin-right: -30px"
+                    >
+                      <div class="d-flex align-items-center">
+                        <span style="margin-right: 5px">บันทึก</span>
+                        <img
+                          src="../../assets/img/pdf.png"
+                          alt="title"
+                          loading="lazy"
+                          width="40"
+                        />
+                      </div>
+                    </MaterialButton>
+                    <MaterialButton size="lg" class="btn-icon">
+                      <div class="d-flex align-items-center">
+                        <span style="margin-right: 5px">บันทึก</span>
+                        <img
+                          src="../../assets/img/excel.png"
+                          alt="title"
+                          loading="lazy"
+                          width="40"
+                        />
+                      </div>
+                    </MaterialButton>
+                  </div>
                 </div>
-                <div class="text-center pt-4">
+
+                <div class="text-center pt-4 table-responsive">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ตึก</th>
+                        <th scope="col">อาคาร</th>
                         <th scope="col">ชั้น</th>
-                        <th scope="col">ห้อง</th>
+                        <th scope="col">เลขที่ห้อง</th>
+                        <th scope="col">ยศ</th>
+                        <th scope="col">ชื่อ-สกุล</th>
+                        <th scope="col">เลขก่อน</th>
+                        <th scope="col">เลขหลัง</th>
                         <th scope="col">ค่าธรรมเนียม</th>
                         <th scope="col">ค่าน้ำประปา</th>
-                        <th scope="col">ค่าไฟฟ้า</th>
                         <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
-                        <th scope="col">ค่าบำรุงลิฟท์</th>
+                        <th scope="col">รวม</th>
+                        <th scope="col">หักได้</th>
+                        <th scope="col">หักไม่ได้</th>
+                        <th scope="col">สาเหตุหักไม่ได้</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>1</td>
-                        <td>2</td>
+                        <td>แฟลตลือชา 2</td>
                         <td>3</td>
-                        <td>20,000</td>
-                        <td>8,000</td>
-                        <td>20,000</td>
-                        <td>8,000</td>
-                        <td>20,000</td>
+                        <td>303</td>
+                        <td>ส.ต.ต.</td>
+                        <td>มีนา บานเย็น</td>
+                        <td>325</td>
+                        <td>365</td>
+                        <td>200</td>
+                        <td>80</td>
+                        <td>200</td>
+                        <td>480</td>
+                        <td>/</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>แฟลตลือชา 2</td>
+                        <td>3</td>
+                        <td>303</td>
+                        <td>ส.ต.ต.</td>
+                        <td>มีนา บานเย็น</td>
+                        <td>325</td>
+                        <td>365</td>
+                        <td>200</td>
+                        <td>80</td>
+                        <td>200</td>
+                        <td>480</td>
+                        <td>/</td>
                       </tr>
                     </tbody>
                   </table>
@@ -256,50 +288,73 @@ export default {
                 role="tabpanel"
                 aria-labelledby="profile-tab"
               >
-              <div class="d-flex justify-content-end pt-4">
-                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/pdf.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
-                  <MaterialButton size="lg" class="btn-icon">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/excel.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <div class="d-flex">
+                    <h5>ประจำเดือน ตุลาคม</h5>
+                  </div>
+                  <div class="d-flex pt-4">
+                    <MaterialButton
+                      size="lg"
+                      class="btn-icon"
+                      style="margin-right: -30px"
+                    >
+                      <div class="d-flex align-items-center">
+                        <span style="margin-right: 5px">บันทึก</span>
+                        <img
+                          src="../../assets/img/pdf.png"
+                          alt="title"
+                          loading="lazy"
+                          width="40"
+                        />
+                      </div>
+                    </MaterialButton>
+                    <MaterialButton size="lg" class="btn-icon">
+                      <div class="d-flex align-items-center">
+                        <span style="margin-right: 5px">บันทึก</span>
+                        <img
+                          src="../../assets/img/excel.png"
+                          alt="title"
+                          loading="lazy"
+                          width="40"
+                        />
+                      </div>
+                    </MaterialButton>
+                  </div>
                 </div>
                 <div class="text-center pt-4">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">ตึก</th>
+                        <th scope="col">อาคาร</th>
                         <th scope="col">ชั้น</th>
-                        <th scope="col">ห้อง</th>
+                        <th scope="col">เลขที่ห้อง</th>
+                        <th scope="col">สังกัด</th>
                         <th scope="col">ค่าบำรุงฯ</th>
                         <th scope="col">ค่าประกัน</th>
+                        <th scope="col">รวม</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>1</td>
+                        <td>แฟลตลือชา 2</td>
                         <td>2</td>
-                        <td>3</td>
-                        <td>20,000</td>
-                        <td>8,000</td>
+                        <td>203</td>
+                        <td>ฝอ.2</td>
+                        <td>1,300</td>
+                        <td>300</td>
+                        <td>1,600</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>แฟลตลือชา 2</td>
+                        <td>1</td>
+                        <td>101</td>
+                        <td>ฝอ.1</td>
+                        <td>1,300</td>
+                        <td>300</td>
+                        <td>1,600</td>
                       </tr>
                     </tbody>
                   </table>
@@ -311,46 +366,115 @@ export default {
                 role="tabpanel"
                 aria-labelledby="contact-tab"
               >
-              <div class="d-flex justify-content-end pt-4">
-                  <MaterialButton size="lg" class="btn-icon" style="margin-right: -30px">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/pdf.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
-                  <MaterialButton size="lg" class="btn-icon">
-                    <div class="d-flex align-items-center">
-                      <span style="margin-right: 5px">บันทึก</span>
-                      <img
-                        src="../../assets/img/excel.png"
-                        alt="title"
-                        loading="lazy"
-                        width="40"
-                      />
-                    </div>
-                  </MaterialButton>
-                </div>
                 <div class="text-center pt-4">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">กก.</th>
-                        <th scope="col">บก.</th>
-                        <th scope="col">ข้อมูลระดับ บช.</th>
+                        <th scope="col">เดือน</th>
+                        <th scope="col">อาคารบ้านพัก</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพัก บช. ตชด.</td>
+                        <td>
+                            <MaterialButton
+                              size="lg"
+                              class="btn-icon"
+                              style="margin-right: -0px"
+                            >
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/pdf.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                            <MaterialButton size="lg" class="btn-icon">
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/excel.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพักส่วนกลาง</td>
+                        <td>
+                            <MaterialButton
+                              size="lg"
+                              class="btn-icon"
+                              style="margin-right: -0px"
+                            >
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/pdf.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                            <MaterialButton size="lg" class="btn-icon">
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/excel.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>ตุลาคม</td>
+                        <td>อาคารบ้านพัก ตร.</td>
+                        <td>
+                            <MaterialButton
+                              size="lg"
+                              class="btn-icon"
+                              style="margin-right: -0px"
+                            >
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/pdf.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                            <MaterialButton size="lg" class="btn-icon">
+                              <div class="d-flex align-items-center">
+                                <span style="margin-right: 5px">บันทึก</span>
+                                <img
+                                  src="../../assets/img/excel.png"
+                                  alt="title"
+                                  loading="lazy"
+                                  width="24"
+                                />
+                              </div>
+                            </MaterialButton>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -589,16 +713,24 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

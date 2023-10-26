@@ -2,66 +2,105 @@
     {
         "title": "ห้อง 1",
         "dataIndex": "1",
+        "firstName": "",
+        "laststName": "",
+        "Affiliation": "",
         "status": "free"
       },
       {
         "title": "ห้อง 2",
         "dataIndex": "2",
+        "firstName": "ปิติ2",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 2",
         "status": "unavailable"
       },
       {
         "title": "ห้อง 3",
         "dataIndex": "3",
+        "firstName": "",
+        "laststName": "",
+        "Affiliation": "",
         "status": "free"
       },
       {
         "title": "ห้อง 4",
         "dataIndex": "4",
+        "firstName": "ปิติ2",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 1",
         "status": "return"
       },
       {
         "title": "ห้อง 5",
         "dataIndex": "5",
+        "firstName": "ปิติ3",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 1",
         "status": "unavailable"
       },
       {
         "title": "ห้อง 6",
         "dataIndex": "6",
+        "firstName": "ปิติ4",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 1",
         "status": "waiting"
       },
       {
         "title": "ห้อง 7",
         "dataIndex": "7",
+        "firstName": "ปิติ3",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 1",
         "status": "return"
       },
       {
         "title": "ห้อง 8",
         "dataIndex": "8",
-        "status": "unavailable"
+        "firstName": "ปิติ9",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 1",
+        "status": "special"
       },
       {
         "title": "ห้อง 9",
         "dataIndex": "9",
+        "firstName": "ปิติ5",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 4",
         "status": "unavailable"
       },
       {
         "title": "ห้อง 10",
         "dataIndex": "10",
+        "firstName": "ปิติ6",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 7",
         "status": "waiting"
       },
       {
         "title": "ห้อง 11",
         "dataIndex": "11",
+        "firstName": "",
+        "laststName": "",
+        "Affiliation": "",
         "status": "free"
       },
       {
         "title": "ห้อง 12",
         "dataIndex": "12",
+        "firstName": "",
+        "laststName": "",
+        "Affiliation": "",
         "status": "free"
       },
       {
         "title": "ห้อง 13",
         "dataIndex": "13",
-        "status": "waiting"
+        "firstName": "ปิติ7",
+        "laststName": "มีดี",
+        "Affiliation": "ฝอ. 2",
+        "status": "special"
       }
 ]

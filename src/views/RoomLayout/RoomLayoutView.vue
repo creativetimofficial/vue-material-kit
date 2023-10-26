@@ -3,6 +3,8 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
+import masterData from "@/assets/dataJson/masterData.json";
+
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -103,6 +105,7 @@ export default {
       NoRoom,
       landingColumns,
       vueMkHeader,
+      masterData
     };
   },
 
@@ -185,26 +188,26 @@ export default {
               >สร้างผังห้อง</MaterialButton
             >
           </div>
-          <div class="text-center pt-4">
+          <div class="text-center pt-4 table-responsive">
             <table class="table table-hover border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <th scope="col">พื้นที่</th>
-                  <th scope="col">ตึก</th>
+                  <th scope="col">อาคารบ้านพัก</th>
+                  <th scope="col">ชื่ออาคาร</th>
                   <th scope="col">จำนวนชั้น</th>
                   <th scope="col">จำนวนห้อง</th>
                   <th scope="col">ประเภทห้องพัก</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>พื้นที่</td>
-                  <td>ตึก1</td>
-                  <td>3</td>
-                  <td>20</td>
-                  <td>ช๑</td>
+                <tr  v-for="(item, index) in masterData?.building" :key="index">
+                  <th scope="row">{{ index+1 }}</th>
+                  <td>{{item?.buil}}</td>
+                  <td>{{item?.name}}</td>
+                  <td>{{item?.floor}}</td>
+                  <td>{{item?.room}}</td>
+                  <td>{{item?.type}}</td>
                 </tr>
               </tbody>
             </table>
@@ -241,9 +244,9 @@ export default {
                   :value="Area"
                   @input="(event) => (Area = event.target.value)"
                   class="input-group-static"
-                  label="พื้นที่"
+                  label="อาคารบ้านพัก"
                   type="text"
-                  placeholder="พื้นที่"
+                  placeholder="อาคารบ้านพัก"
                 />
               </div>
               <div class="mb-3">
@@ -251,9 +254,9 @@ export default {
                   :value="Building"
                   @input="(event) => (Building = event.target.value)"
                   class="input-group-static"
-                  label="ตึก"
+                  label="ชื่ออาคาร"
                   type="text"
-                  placeholder="ตึก"
+                  placeholder="ชื่ออาคาร"
                 />
               </div>
               <div class="mb-3">
@@ -299,16 +302,25 @@ export default {
 </template>
 <style>
 .bg-green {
-  background: #567b57 !important;
-  color: #fff;
+  border: 2px solid #567b57 !important;
+  color: #000;
 }
 .bg-red {
-  background: #d24c4a !important;
-  color: #fff;
+  border: 2px solid #d24c4a !important;
+  color: #000;
 }
-.bg-waring {
-  background: #d1d3d5 !important;
-  color: #fff;
+.bg-warning {
+  border: 2px solid #fb8c00 !important;
+  color: #000;
+}
+.bg-return {
+  border: 2px solid #ffca28 !important;
+  color: #000;
+}
+.bg-special {
+  border: 2px solid #edc7c7 !important;
+  color: #000;
+
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
