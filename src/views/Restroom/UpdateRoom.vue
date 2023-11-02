@@ -212,7 +212,17 @@ export default {
       Roomtype: "ช๑",
       Roomconditions: "ปกติ",
       selectedRoomtype: "ช๑",
+      statusedit: false,
+      mode: "",
+      id: "",
     };
+  },
+  created() {
+    this.mode = this.$route.query.mode;
+    if (this.$route.params.id) {
+      this.id = this.$route.params.id;
+    }
+    // this.$route.query
   },
   watch: {
     selectedColor: function (newValue) {
@@ -295,18 +305,7 @@ export default {
                   แก้ไขรายละเอียดห้องพัก
                 </button>
                 <button
-                  class="nav-link"
-                  id="v-pills-profile-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#v-pills-profile"
-                  type="button"
-                  role="tab"
-                  aria-controls="v-pills-profile"
-                  aria-selected="false"
-                >
-                  จัดการคิว
-                </button>
-                <button
+                  v-if="this.mode !== 'add'"
                   class="nav-link"
                   id="v-pills-messages-tab"
                   data-bs-toggle="pill"
@@ -317,18 +316,6 @@ export default {
                   aria-selected="false"
                 >
                   คืนห้องพัก
-                </button>
-                <button
-                  class="nav-link"
-                  id="v-pills-settings-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#v-pills-settings"
-                  type="button"
-                  role="tab"
-                  aria-controls="v-pills-settings"
-                  aria-selected="false"
-                >
-                  ค่าสาธารณูปโภค
                 </button>
               </div>
             </div>
@@ -348,19 +335,9 @@ export default {
                           :value="lastName"
                           @input="(event) => (lastName = event.target.value)"
                           class="input-group-static"
-                          label="มิเตอร์น้ำ"
+                          label="เลขห้อง"
                           type="text"
-                          placeholder="มิเตอร์น้ำ"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <MaterialInput
-                          :value="Affiliation"
-                          @input="(event) => (Affiliation = event.target.value)"
-                          class="input-group-static"
-                          label="มิเตอร์ไฟ"
-                          type="text"
-                          placeholder="มิเตอร์ไฟ"
+                          placeholder="เลขห้อง"
                         />
                       </div>
                       <div class="mb-3">
@@ -434,12 +411,8 @@ export default {
                         <thead class="border border-2 border-success border-bottom">
                           <tr>
                             <th scope="col">ลำดับ</th>
-                            <th scope="col">ชื่อ</th>
-                            <th scope="col">สกุล</th>
-                            <th scope="col">วันเกิด</th>
-                            <th scope="col">อายุ</th>
+                            <th scope="col">ชื่อ-สกุล</th>
                             <th scope="col">สังกัด</th>
-                            <th scope="col">ยศ</th>
                             <th scope="col">เลขบัตรประชาชน</th>
                             <th scope="col">เบอร์ติดต่อ</th>
                           </tr>
@@ -447,12 +420,8 @@ export default {
                         <tbody>
                           <tr v-for="(item, index) in userlist" :key="index">
                             <th scope="row">{{ index + 1 }}</th>
-                            <td>{{ item.firstName }}</td>
-                            <td>{{ item.lastName }}</td>
-                            <td>{{ item.birthday }}</td>
-                            <td>{{ item.old }}</td>
+                            <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
                             <td>{{ item.Affiliation }}</td>
-                            <td>{{ item.rank }}</td>
                             <td>{{ item.idcard }}</td>
                             <td>{{ item.phone }}</td>
                           </tr>
@@ -706,7 +675,7 @@ export default {
                                 <td>8,000</td>
                                 <td>20,000</td>
                                 <td>10,000</td>
-                                <td>5</td>
+                                <td>5/10</td>
                               </tr>
                             </tbody>
                           </table>
@@ -756,7 +725,7 @@ export default {
                                 <td>202</td>
                                 <td>20,000</td>
                                 <td>8,000</td>
-                                <td>8</td>
+                                <td>8/10</td>
                               </tr>
                             </tbody>
                           </table>

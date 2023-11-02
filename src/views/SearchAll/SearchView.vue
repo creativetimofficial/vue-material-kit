@@ -150,12 +150,8 @@ export default {
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <th scope="col">ชื่อ</th>
-                  <th scope="col">สกุล</th>
-                  <th scope="col">วันเกิด</th>
-                  <th scope="col">อายุ</th>
+                  <th scope="col">ชื่อ-สกุล</th>
                   <th scope="col">สังกัด</th>
-                  <th scope="col">ยศ</th>
                   <th scope="col">เลขบัตรประชาชน</th>
                   <th scope="col">เบอร์ติดต่อ</th>
                 </tr>
@@ -163,12 +159,8 @@ export default {
               <tbody>
                 <tr v-for="(item, index) in userlist" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
-                  <td>{{ item.firstName }}</td>
-                  <td>{{ item.lastName }}</td>
-                  <td>{{ item.old }}</td>
-                  <td>{{ item.birthday }}</td>
+                  <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
                   <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.rank }}</td>
                   <td>{{ item.idcard }}</td>
                   <td>{{ item.phone }}</td>
 

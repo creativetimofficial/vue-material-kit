@@ -32,6 +32,7 @@ const userlist = [
     Affiliation: "ฝอ.2", //สังกัด
     rank: "ส.ต.ต.", //ยศ
     old: "32",
+    status: "สมรส",
     birthday: "04/03/2534",
     idcard: "134044411441122",
     phone: "0325647846",
@@ -43,6 +44,7 @@ const userlist = [
     Affiliation: "ฝอ.2", //สังกัด
     rank: "ส.ต.ต.", //ยศ
     old: "32",
+    status: "โสด",
     birthday: "14/07/2534",
     idcard: "134044411441178",
     phone: "0325647845",
@@ -131,39 +133,62 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-            <div>
-              <Breadcrumbs
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบคิว' }]"
-              />
-            </div>
-          <div class="d-flex justify-content-end align-items-baseline">
-            <label style="margin-right: 20px">ค้นหาชื่อ </label>
-            <MaterialInput
-             style="margin-right: 20px"
-              class="input-group-dynamic w-30"
-              icon="search"
-              type="text"
-              placeholder="Search"
+          <div>
+            <Breadcrumbs
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบคิว' }]"
             />
-            <MaterialButton
-              variant="gradient"
-              color="success"
-              data-bs-toggle="modal"
-              data-bs-target="#seleteUserBackdrop"
-              >เพิ่มผู้เช่าลงคิว</MaterialButton
-            >
+          </div>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <div class="mb-3">
+              <div class="form-check form-check-inline">
+                <label style="margin-right: 20px">สถานภาพ</label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="โสด"
+                />
+                <label class="form-check-label" for="inlineRadio1">โสด</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="สมรส"
+                />
+                <label class="form-check-label" for="inlineRadio2">สมรส</label>
+              </div>
+            </div>
+            <div class="d-flex align-items-baseline">
+              <label style="margin-right: 20px">ค้นหาชื่อ </label>
+              <MaterialInput
+                style="margin-right: 20px; width:300px"
+                class="input-group-dynamic "
+                icon="search"
+                type="text"
+                placeholder="Search"
+              />
+              <MaterialButton
+                variant="gradient"
+                color="success"
+                data-bs-toggle="modal"
+                data-bs-target="#seleteUserBackdrop"
+                >เพิ่มผู้เช่าลงคิว</MaterialButton
+              >
+            </div>
           </div>
           <div class="text-center pt-4 table-responsive">
             <table class="table border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <th scope="col">ชื่อ</th>
-                  <th scope="col">สกุล</th>
-                  <th scope="col">วันเกิด</th>
-                  <th scope="col">อายุ</th>
+                  <!-- <th scope="col">ยศ</th> -->
+                  <th scope="col">ชื่อ-สกุล</th>
                   <th scope="col">สังกัด</th>
-                  <th scope="col">ยศ</th>
+                  <th scope="col">สถานภาพ</th>
                   <th scope="col">เลขบัตรประชาชน</th>
                   <th scope="col">เบอร์ติดต่อ</th>
                 </tr>
@@ -171,15 +196,11 @@ export default {
               <tbody>
                 <tr v-for="(item, index) in userlist" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
-                  <td>{{ item.firstName }}</td>
-                  <td>{{ item.lastName }}</td>
-                  <td>{{ item.birthday }}</td>
-                  <td>{{ item.old }}</td>
+                  <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
                   <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.rank }}</td>
+                  <td>{{ item.status }}</td>
                   <td>{{ item.idcard }}</td>
                   <td>{{ item.phone }}</td>
-
                 </tr>
               </tbody>
             </table>
@@ -254,7 +275,6 @@ export default {
 .bg-special {
   border: 2px solid #edc7c7 !important;
   color: #000;
-
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

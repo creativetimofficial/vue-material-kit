@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
-import '@trevoreyre/autocomplete-vue/dist/style.css'
+// import '@trevoreyre/autocomplete-vue/dist/style.css'
 
 // Nucleo Icons
 import "./assets/css/nucleo-icons.css";

@@ -35,6 +35,12 @@ export default {
         { label: "Laravel", value: "PHP" },
         { label: "Phoenix", value: "Elixir" },
       ],
+      typeRoom: [
+        { label: "ช1", value: "ช1" },
+        { label: "ช2", value: "ช2" },
+        { label: "ช3", value: "ช3" },
+      ],
+
       listRoom: [
         { label: "อาคารแฟลต 1/11", value: "1" },
         { label: "อาคารแฟลต 1/12", value: "2" },
@@ -50,6 +56,7 @@ export default {
         { label: "แฟลตบางเขน 1", value: "5" },
         { label: "แฟลตบางเขน 2", value: "5" },
       ],
+      selectedtypeRoom: "ช1",
       selectedColor: "",
       statusfree: false,
       statusreturn: false,
@@ -68,6 +75,8 @@ export default {
       if (index == "unavailable") action = "edit";
       if (index == "waiting") action = "add";
       if (index == "free") action = "add";
+      if (index == "special") action = "special";
+      if (index == "return") action = "return";
       this.$router.push({ path: `/room/detail/${id}`, query: { mode: action } });
     },
     onChangeEvent(e) {
@@ -166,9 +175,17 @@ export default {
           </div>
 
           <div class="text-center pt-4">
+            <div class="d-flex justify-content-start align-items-baseline pt-1 w-35">
+              <label class="w-30" style="margin-right: 5px"> เลือกประเภทห้อง</label>
+              <v-select
+                class="w-50"
+                :options="typeRoom"
+                v-model="selectedtypeRoom"
+              ></v-select>
+            </div>
             <div class="d-flex justify-content-between align-items-baseline p-2">
               <div class="text-start">
-                <h6>{{ selectedlistRoom }}</h6>
+                <h6>{{ selectedlistRoom?.label }}</h6>
                 <p class="d-flex align-items-baseline p-2">
                   <span>คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span>
                   <a data-bs-toggle="modal" data-bs-target="#Edituser"
@@ -213,7 +230,7 @@ export default {
                   :checked="statusreturn"
                   @change="onChangeEvent('return')"
                 >
-                  <a href="javascript:;" class="font-weight-bolder"> รอคืนห้อง</a>
+                  <a href="javascript:;" class="font-weight-bolder"> ผ่อนผัน</a>
                 </MaterialCheckbox>
               </div>
             </div>
@@ -250,25 +267,23 @@ export default {
                               'bg-return': item?.status == 'return',
                               'bg-special': item?.status == 'special',
                             }"
-                            :style="{ width: `115px`, height: `170px` }"
+                            :style="{ width: `220px`, height: `170px` }"
                           >
                             <div class="card-body p-1">
                               <a
                                 style="cursor: pointer"
                                 @click="gotodetail(item?.dataIndex, item?.status)"
-                                class="text-drck"
                               >
                                 <p
                                   class="card-title"
-                                  :class="{
-                                    'bg-red': item?.status == 'unavailable',
-                                    'bg-green': item?.status == 'free',
-                                    'bg-warning2': item?.status == 'waiting',
-                                    'bg-return': item?.status == 'return',
-                                    'bg-special': item?.status == 'special',
-                                  }"
+                                  style="
+                                    color: #000;
+                                    border: 2px solid #f7f4f0 !important;
+                                    border-radius: 10px;
+                                    background: white;
+                                  "
                                 >
-                                  <a>{{ item?.title }}</a>
+                                  <a style="font-size: medium">{{ item?.title }}</a>
                                 </p>
                                 <p
                                   v-if="item?.status == 'free'"
@@ -296,12 +311,14 @@ export default {
                                   class="card-title bgg-return"
                                   style="font-size: 16px"
                                 >
-                                  {{ "รอคืนห้อง" }}
+                                  {{ "ผ่อนผัน" }}
                                 </p>
-                                <p class="card-title" style="font-size: 14px">
-                                  {{ item?.firstName }}
+                                <p v-if="item?.status !== 'special'" class="card-title" style="font-size: 14px">
+                                  {{ item?.ranks }} {{ item?.firstName }}
+                                  {{ item?.laststName }}
                                 </p>
-                                <p class="card-title" style="font-size: 14px">
+                                <p v-if="item?.status == 'special'" class="card-title text-red mt-1" style="font-size: 14px">
+                                  {{ item?.ranks }} {{ item?.firstName }}
                                   {{ item?.laststName }}
                                 </p>
                                 <div>
@@ -313,7 +330,7 @@ export default {
                                   <span
                                     v-if="item?.status == 'special'"
                                     class="text-red"
-                                    style="text-align: right; font-size: small"
+                                    style="text-align: right; font-size: 16px"
                                     >{{ "กรณีพิเศษ" }}</span
                                   >
                                 </div>
@@ -412,24 +429,24 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #567b57 !important;
-  color: #000;
+  background-color: #567b57 !important;
+  color: #fff;
 }
 .bg-red {
-  border: 2px solid #d24c4a !important;
-  color: #000;
+  background-color: #d24c4a !important;
+  color: #fff !important;
 }
 .bg-warning2 {
-  border: 2px solid #fb8c00 !important;
-  color: #000;
+  background-color: #fb8c00 !important;
+  color: #fff !important;
 }
 .bg-return {
-  border: 2px solid #ffca28 !important;
-  color: #000;
+  background-color: #816613 !important;
+  color: #fff !important;
 }
 .bg-special {
-  border: 2px solid #edc7c7 !important;
-  color: #000;
+  background-color: #edc7c7 !important;
+  color: #fff !important;
 }
 .bgg-green {
   background-color: #567b57 !important;
@@ -444,11 +461,11 @@ export default {
   color: #fff !important;
 }
 .bgg-return {
-  background-color: #ffca28 !important;
+  background-color: #816613 !important;
   color: #fff !important;
 }
 .bgg-special {
-  background-color: #edc7c7 !important;
+  background-color: #cbc0c0 !important;
   color: #fff !important;
 }
 .text-red {

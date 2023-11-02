@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <!-- <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ค่าสาธารณุปโภค</p>
@@ -48,8 +48,8 @@
                         </RouterLink>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3 mt-4">
+            </div> -->
+            <div class="col-sm-3 ">
                 <div class="card">
                     <div class="card-body text-center">
                         <p class="card-title" style="font-weight: bold; color: #000">ระบบคิว</p>
@@ -67,6 +67,17 @@
                         <img src="../../../assets/img/result.png" alt="title" loading="lazy" class="w-50" />
                         <RouterLink :to="{ name: 'reports' }" class="dropdown-item border-radius-md">
                           <a href="#" class="btn btn-success mt-4">ระบบเรียกรายงาน</a>
+                        </RouterLink>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mt-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <p class="card-title" style="font-weight: bold; color: #000">บันทึกค่าใช้จ่ายรายเดือน ตร</p>
+                        <img src="../../../assets/img/accounting.png" alt="title" loading="lazy" class="w-50" />
+                        <RouterLink :to="{ name: 'expenses' }" class="dropdown-item border-radius-md">
+                          <a href="#" class="btn btn-success mt-4">บันทึกค่าใช้จ่ายรายเดือน ตร</a>
                         </RouterLink>
                     </div>
                 </div>

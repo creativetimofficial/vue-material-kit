@@ -78,11 +78,38 @@ export default {
         { label: "Laravel", value: "PHP" },
         { label: "Phoenix", value: "Elixir" },
       ],
-      DataObtion: [
-        { label: "โสด", value: "โสด" },
-        { label: "สมรส", value: "สมรส" },
+      optionsBuilding: [
+        { label: "อาคารแฟลต 1/11", value: "1" },
+        { label: "อาคารแฟลต 1/12", value: "2" },
+        { label: "อาคารแฟลต 1/13", value: "3" },
+        { label: "อาคารแฟลต 1/14", value: "4" },
+        { label: "อาคารแฟลต 1/15", value: "5" },
+        { label: "อาคารแฟลต 1/16", value: "3" },
+        { label: "อาคารแฟลต 1/17", value: "4" },
+        { label: "อาคารแฟลต 1/18", value: "5" },
+        { label: "แฟลตลือชา 1", value: "5" },
+        { label: "แฟลตลือชา 2", value: "3" },
+        { label: "แฟลตลือชา 3", value: "4" },
+        { label: "แฟลตบางเขน 1", value: "5" },
+        { label: "แฟลตบางเขน 2", value: "5" },
       ],
-      selectedDataObtion: "โสด",
+      optionsFloor: [
+        { label: "ชั้น 1", value: "1" },
+        { label: "ชั้น 2", value: "2" },
+        { label: "ชั้น 3", value: "3" },
+        { label: "ชั้น 4", value: "4" },
+        { label: "ชั้น 5", value: "5" },
+      ],
+      optionsRoom: [
+        { label: "ห้อง 101", value: "1" },
+        { label: "ห้อง 202", value: "2" },
+        { label: "ห้อง 303", value: "3" },
+        { label: "ห้อง 404", value: "4" },
+        { label: "ห้อง 505", value: "5" },
+      ],
+      selectedBuilding: "อาคารแฟลต 1/11",
+      selectedFloor: "ชั้น 1",
+      selectedRoom: "ห้อง 101",
       selectedColor: "",
       firstName: "สมชัย",
       lastName: "แสงสุข",
@@ -137,7 +164,7 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ทะเบียน</h1>
+            <h1 class="pt-3 mt-n5 me-2 head-text">บันทึกค่าใช้จ่ายรายเดือน ตร</h1>
           </div>
         </div>
       </div>
@@ -149,108 +176,70 @@ export default {
         <div class="container">
           <div>
             <Breadcrumbs
-              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
+              :routes="[
+                { label: 'หน้าหลัก', route: '/' },
+                { label: 'บันทึกค่าใช้จ่ายรายเดือน ตร' },
+              ]"
             />
           </div>
-          <div class="d-flex justify-content-between align-items-baseline">
-            <div class="mb-3">
-              <div class="form-check form-check-inline">
-                <label style="margin-right: 20px">ประเภท</label>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio1"
-                  value="Radio1"
-                />
-                <label class="form-check-label" for="inlineRadio1">ตร.</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="Radio2"
-                />
-                <label class="form-check-label" for="inlineRadio2">บช.ตชด.</label>
-              </div>
-       
-            </div>
-            <div class="d-flex align-items-baseline">
-              <label style="margin-right: 10px">ค้นหาชื่อ </label>
-              <MaterialInput
-                style="width: 300px"
-                class="input-group-dynamic"
-                icon="search"
-                type="text"
-                placeholder="Search"
-              />
-              <MaterialButton
-                style="margin-left: 20px"
-                variant="gradient"
-                color="success"
-                data-bs-toggle="modal"
-                data-bs-target="#userBackdrop"
-                >เพิ่มสมาชิก</MaterialButton
-              >
-            </div>
-          </div>
-          <div>
-            <div class="form-check form-check-inline">
-                <label style="margin-right: 20px">ยศ</label>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions1"
-                  id="inlineRadio3"
-                  value="Radio3"
-                />
-                <label class="form-check-label" for="inlineRadio3">ประทวน</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions1"
-                  id="inlineRadio4"
-                  value="Radio4"
-                />
-                <label class="form-check-label" for="inlineRadio4">สัญญาบัตร</label>
-              </div>
+          <div class="d-flex justify-content-end align-items-baseline">
+            <label style="margin-right: 10px">ค้นหาเลขที่ห้อง </label>
+            <MaterialInput
+              class="input-group-dynamic w-30"
+              icon="search"
+              type="text"
+              placeholder="Search"
+            />
           </div>
           <div class="text-center pt-4 table-responsive">
-            <table class="table border border-2 border-success">
+            <table class="table table-hover border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <!-- <th scope="col">ยศ</th> -->
-                  <th scope="col">ชื่อ-สกุล</th>
-                  <!-- <th scope="col"></th> -->
-                  <th scope="col">สังกัด</th>
-                  <th scope="col">สถานภาพ</th>
-                  <!-- <th scope="col">เลขบัตรประชาชน</th> -->
-                  <th scope="col">เบอร์ติดต่อ</th>
-                  <th scope="col"></th>
+                  <th scope="col">อาคาร</th>
+                  <th scope="col">ชั้น</th>
+                  <th scope="col">เลขที่ห้อง</th>
+                  <th scope="col">เลขก่อน</th>
+                  <th scope="col">เลขหลัง</th>
+                  <th scope="col">ยอดใช้</th>
+                  <th scope="col">ค่าน้ำประปา</th>
+                  <th scope="col">ค่าไฟฟ้า</th>
+                  <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
+                  <th scope="col">ค่าบำรุงลิฟท์</th>
+                  <th scope="col">ค่าประกัน</th>
+                  <th scope="col">จำนวนงวดประกัน</th>
+                  <th scope="col">หักได้</th>
+                  <th scope="col">หักไม่ได้</th>
+                  <th scope="col">สาเหตุที่หัก</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in userlist" :key="index">
-                  <th scope="row">{{ index + 1 }}</th>
-
-                  <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
-                  <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.status }}</td>
-                  <!-- <td>{{ item.idcard }}</td> -->
-                  <td>{{ item.phone }}</td>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>อาคารแฟลต 1/11</td>
+                  <td>2</td>
+                  <td>202</td>
+                  <td>201</td>
+                  <td>205</td>
+                  <td>4</td>
+                  <td>8,000</td>
+                  <td>20,000</td>
+                  <td>8,000</td>
+                  <td>20,000</td>
+                  <td>10,000</td>
+                  <td>5/10</td>
+                  <td>/</td>
+                  <td></td>
+                  <td>5555</td>
                   <td>
-                    <a data-bs-toggle="modal" data-bs-target="#EdituserBackdrop"
-                      ><i
-                        class="material-icons me-2"
-                        style="cursor: pointer"
-                        aria-hidden="true"
-                        >edit</i
-                      ></a
+                    <MaterialButton
+                      style="margin-bottom: 0px"
+                      variant="gradient"
+                      color="success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop11"
+                      >บันทึกค่าใช้จ่ายรายเดือน</MaterialButton
                     >
                   </td>
                 </tr>
@@ -261,10 +250,10 @@ export default {
       </div>
     </div>
 
-    <!-- modal -->
+    <!-- Modal -->
     <div
       class="modal fade"
-      id="userBackdrop"
+      id="staticBackdrop11"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
@@ -274,7 +263,9 @@ export default {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มสมาชิก</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">
+              บันทึกค่าใช้จ่ายบ้านพัก ตร.
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -285,59 +276,89 @@ export default {
           <div class="modal-body">
             <div>
               <div class="mb-3">
-                <label>สังกัด</label>
+                <label>อาคาร</label>
                 <v-select
-                  :options="masterData?.Affiliation"
-                  v-model="selectedAffiliation"
+                  :options="optionsBuilding"
+                  v-model="selectedBuilding"
                 ></v-select>
               </div>
               <div class="mb-3">
-                <label>ยศ</label>
-                <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
+                <label>ชั้น</label>
+                <v-select :options="optionsFloor" v-model="selectedFloor"></v-select>
               </div>
               <div class="mb-3">
+                <label>เลขที่ห้อง</label>
+                <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
+              </div>
+              <!-- <div class="mb-3">
                 <MaterialInput
-                  name="firstName"
-                  :value="firstName"
-                  @input="(event) => (firstName = event.target.value)"
+                  name="fee"
+                  :value="fee"
+                  @input="(event) => (fee = event.target.value)"
                   class="input-group-static"
-                  label="ชื่อ"
+                  label="ค่าธรรมเนียม"
                   type="text"
-                  placeholder="ชื่อ"
+                  placeholder="ค่าธรรมเนียม"
                 />
-              </div>
+              </div> -->
               <div class="mb-3">
                 <MaterialInput
-                  :value="lastName"
-                  @input="(event) => (lastName = event.target.value)"
+                  :value="Waterbill"
+                  @input="(event) => (Waterbill = event.target.value)"
                   class="input-group-static"
-                  label="สกุล"
+                  label="ค่าน้ำประปา"
                   type="text"
-                  placeholder="สกุล"
-                />
-              </div>
-              <div class="mb-3">
-                <label>สถานภาพ</label>
-                <v-select :options="DataObtion" v-model="selectedDataObtion"></v-select>
-              </div>
-              <div class="mb-3">
-                <MaterialInput
-                  :value="idcard"
-                  @input="(event) => (idcard = event.target.value)"
-                  class="input-group-static"
-                  label="เลขบัตรประชาชน"
-                  type="number"
-                  placeholder="เลขบัตรประชาชน"
+                  placeholder="ค่าน้ำประปา"
                 />
               </div>
               <div class="mb-3">
                 <MaterialInput
-                  :value="phone"
-                  @input="(event) => (phone = event.target.value)"
+                  :value="Electricitybill"
+                  @input="(event) => (Electricitybill = event.target.value)"
                   class="input-group-static"
-                  label="เบอร์ติดต่อ"
-                  type="number"
-                  placeholder="เบอร์ติดต่อ"
+                  label="ค่าไฟฟ้า"
+                  type="text"
+                  placeholder="ค่าไฟฟ้า"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Central"
+                  @input="(event) => (Central = event.target.value)"
+                  class="input-group-static"
+                  label="ค่าไฟฟ้าส่วนกลาง"
+                  type="text"
+                  placeholder="ค่าไฟฟ้าส่วนกลาง"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Costs"
+                  @input="(event) => (Costs = event.target.value)"
+                  class="input-group-static"
+                  label="ค่าบำรุงลิฟท์"
+                  type="text"
+                  placeholder="ค่าบำรุงลิฟท์"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Insurancecost"
+                  @input="(event) => (Insurancecost = event.target.value)"
+                  class="input-group-static"
+                  label="เลขก่อน"
+                  type="text"
+                  placeholder="เลขก่อน"
+                />
+              </div>
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="เลขหลัง"
+                  type="text"
+                  placeholder="เลขหลัง"
                 />
               </div>
             </div>
@@ -346,13 +367,7 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <MaterialButton
-              variant="gradient"
-              color="success"
-              @click="submitForm"
-              html-type="submit"
-              >บันทึก</MaterialButton
-            >
+            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
           </div>
         </div>
       </div>
@@ -412,10 +427,6 @@ export default {
                   type="text"
                   placeholder="สกุล"
                 />
-              </div>
-              <div class="mb-3">
-                <label>สถานภาพ</label>
-                <v-select :options="DataObtion" v-model="selectedDataObtion"></v-select>
               </div>
               <div class="mb-3">
                 <MaterialInput

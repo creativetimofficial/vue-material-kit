@@ -291,7 +291,7 @@ export default {
                         <td>8,000</td>
                         <td>20,000</td>
                         <td>10,000</td>
-                        <td>5</td>
+                        <td>5/10</td>
                       </tr>
                     </tbody>
                   </table>
@@ -341,7 +341,7 @@ export default {
                         <td>202</td>
                         <td>20,000</td>
                         <td>8,000</td>
-                        <td>8</td>
+                        <td>8/10</td>
                       </tr>
                     </tbody>
                   </table>
@@ -664,7 +664,7 @@ export default {
                   placeholder="ค่าธรรมเนียม"
                 />
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <MaterialInput
                   :value="Insurance"
                   @input="(event) => (Insurance = event.target.value)"
@@ -673,7 +673,7 @@ export default {
                   type="text"
                   placeholder="ค่าน้ำประปา"
                 />
-              </div>
+              </div> -->
               <div class="mb-3">
                 <MaterialInput
                   :value="Insurancecost"
@@ -684,7 +684,7 @@ export default {
                   placeholder="เงินค่าประกัน"
                 />
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <MaterialInput
                   :value="installments"
                   @input="(event) => (installments = event.target.value)"
@@ -693,7 +693,7 @@ export default {
                   type="text"
                   placeholder="งวดเงินค่าประกัน"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="modal-footer">

@@ -105,7 +105,7 @@ export default {
       NoRoom,
       landingColumns,
       vueMkHeader,
-      masterData
+      masterData,
     };
   },
 
@@ -165,11 +165,11 @@ export default {
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
       <div class="page-header min-vh-45">
         <div class="container">
-            <div>
-              <Breadcrumbs
-                style="padding"
-                :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ผังห้องพัก' }]"
-              />
+          <div>
+            <Breadcrumbs
+              style="padding"
+              :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ผังห้องพัก' }]"
+            />
           </div>
           <div class="d-flex justify-content-end align-items-baseline">
             <label style="margin-right: 10px">ค้นหาพื้นที่หรือตึก </label>
@@ -195,19 +195,21 @@ export default {
                   <th scope="col">ลำดับ</th>
                   <th scope="col">อาคารบ้านพัก</th>
                   <th scope="col">ชื่ออาคาร</th>
-                  <th scope="col">จำนวนชั้น</th>
+                  <th scope="col">ชั้น</th>
                   <th scope="col">จำนวนห้อง</th>
-                  <th scope="col">ประเภทห้องพัก</th>
+                  <!-- <th scope="col">เลขห้อง</th> -->
+                  <!-- <th scope="col">ประเภทห้องพัก</th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr  v-for="(item, index) in masterData?.building" :key="index">
-                  <th scope="row">{{ index+1 }}</th>
-                  <td>{{item?.buil}}</td>
-                  <td>{{item?.name}}</td>
-                  <td>{{item?.floor}}</td>
-                  <td>{{item?.room}}</td>
-                  <td>{{item?.type}}</td>
+                <tr v-for="(item, index) in masterData?.building" :key="index">
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ item?.buil }}</td>
+                  <td>{{ item?.name }}</td>
+                  <td>{{ item?.floor }}</td>
+                  <td>{{ item?.room }}</td>
+                  <!-- <td>{{ item?.roomnumber }}</td> -->
+                  <!-- <td>{{ item?.type }}</td> -->
                 </tr>
               </tbody>
             </table>
@@ -259,14 +261,15 @@ export default {
                   placeholder="ชื่ออาคาร"
                 />
               </div>
+              <md-chips v-model="fruits" md-placeholder="Add fruit..."></md-chips>
               <div class="mb-3">
                 <MaterialInput
                   :value="Floors"
                   @input="(event) => (Floors = event.target.value)"
                   class="input-group-static"
-                  label="จำนวนชั้น"
+                  label="ชั้น"
                   type="number"
-                  placeholder="จำนวนชั้น"
+                  placeholder="ชั้น"
                 />
               </div>
               <div class="mb-3">
@@ -280,13 +283,24 @@ export default {
                   placeholder="จำนวนห้อง"
                 />
               </div>
+              <!-- <div class="mb-3">
+                <label>กรอกเลขห้อง</label>
+                <textarea
+                  :value="roomnumber"
+                  @input="(event) => (roomnumber = event.target.value)"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="ตัวอย่าง : 1,2,3"
+                ></textarea>
+              </div>
               <div class="mb-3">
                 <label>ประเภทห้องพัก</label>
                 <v-select
                   :options="optionsRoomtype"
                   v-model="selectedRoomtype"
                 ></v-select>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="modal-footer">
@@ -320,7 +334,6 @@ export default {
 .bg-special {
   border: 2px solid #edc7c7 !important;
   color: #000;
-
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

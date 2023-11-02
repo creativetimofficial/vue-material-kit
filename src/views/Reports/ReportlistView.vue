@@ -3,6 +3,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
+import masterData from "@/assets/dataJson/masterData.json";
 
 const listRoom = [
   { title: "ตึก 1" },
@@ -61,6 +62,7 @@ export default {
       NoRoom,
       userlist,
       vueMkHeader,
+      masterData,
     };
   },
 
@@ -74,6 +76,26 @@ export default {
         { label: "Laravel", value: "PHP" },
         { label: "Phoenix", value: "Elixir" },
       ],
+      optionYear:[ 
+        { label: "2023", value: "2023" },
+        { label: "2022", value: "2022" },
+        { label: "2021", value: "2021" },
+        { label: "2020", value: "2020" }
+      ],
+      optionMonth:[
+        { label: "มกราคม", value: "มกราคม" },
+        { label: "กุมภาพันธ์", value: "กุมภาพันธ์" },
+        { label: "มีนาคม", value: "มีนาคม" },
+        { label: "เมษายน", value: "เมษายน" },
+        { label: "พฤษภาคม", value: "พฤษภาคม" },
+        { label: "มิถุนายน", value: "มิถุนายน" },
+        { label: "กรกฎาคม", value: "กรกฎาคม" },
+        { label: "สิงหาคม", value: "สิงหาคม" },
+        { label: "กันยายน", value: "กันยายน" },
+        { label: "ตุลาคม", value: "ตุลาคม" },
+        { label: "พฤศจิกายน", value: "พฤศจิกายน" },
+        { label: "ธันวาคม", value: "ธันวาคม" },
+      ],
       selectedColor: "",
       firstName: "",
       lastName: "",
@@ -81,6 +103,10 @@ export default {
       rank: "", //ยศ
       idcard: "",
       phone: "",
+      selectedAffiliation: "ฝอ.2",
+      selectedYear:"2023",
+      selectedMonth:"พฤศจิกายน"
+
     };
   },
   watch: {
@@ -193,8 +219,10 @@ export default {
                 aria-labelledby="home-tab"
               >
                 <div class="d-flex justify-content-between align-items-baseline">
-                  <div class="d-flex">
-                    <h5>ประจำเดือน ตุลาคม</h5>
+                  <div>
+                    <h5>ประจำเดือน พฤศจิกายน</h5>
+                    <br />
+                    <h5>รวมค่าใช้จ่ายทั้งหมด : 18,111</h5>
                   </div>
                   <div class="d-flex pt-4">
                     <MaterialButton
@@ -225,7 +253,29 @@ export default {
                     </MaterialButton>
                   </div>
                 </div>
-
+                <div class="d-flex justify-content-end align-items-baseline">
+                    <div class="mb-3 w-15" style="margin-right: 5px">
+                      <label>เดือน</label>
+                      <v-select
+                        :options="optionMonth"
+                        v-model="selectedMonth"
+                      ></v-select>
+                    </div>
+                    <div class="mb-3 w-10 " style="margin-right: 5px">
+                      <label>พ.ศ.</label>
+                      <v-select
+                        :options="optionYear"
+                        v-model="selectedYear"
+                      ></v-select>
+                    </div>
+                    <div class="mb-3 w-15 ">
+                      <label>สังกัด</label>
+                      <v-select
+                        :options="masterData?.Affiliation"
+                        v-model="selectedAffiliation"
+                      ></v-select>
+                    </div>
+                  </div>
                 <div class="text-center pt-4 table-responsive">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
@@ -234,7 +284,6 @@ export default {
                         <th scope="col">อาคาร</th>
                         <th scope="col">ชั้น</th>
                         <th scope="col">เลขที่ห้อง</th>
-                        <th scope="col">ยศ</th>
                         <th scope="col">ชื่อ-สกุล</th>
                         <th scope="col">เลขก่อน</th>
                         <th scope="col">เลขหลัง</th>
@@ -253,8 +302,7 @@ export default {
                         <td>แฟลตลือชา 2</td>
                         <td>3</td>
                         <td>303</td>
-                        <td>ส.ต.ต.</td>
-                        <td>มีนา บานเย็น</td>
+                        <td>ส.ต.ต. มีนา บานเย็น</td>
                         <td>325</td>
                         <td>365</td>
                         <td>200</td>
@@ -268,8 +316,7 @@ export default {
                         <td>แฟลตลือชา 2</td>
                         <td>3</td>
                         <td>303</td>
-                        <td>ส.ต.ต.</td>
-                        <td>มีนา บานเย็น</td>
+                        <td>ส.ต.ต. มีนา บานเย็น</td>
                         <td>325</td>
                         <td>365</td>
                         <td>200</td>
@@ -289,8 +336,10 @@ export default {
                 aria-labelledby="profile-tab"
               >
                 <div class="d-flex justify-content-between align-items-baseline">
-                  <div class="d-flex">
-                    <h5>ประจำเดือน ตุลาคม</h5>
+                  <div>
+                    <h5>ประจำเดือน พฤศจิกายน</h5>
+                    <br />
+                    <h5>รวมค่าใช้จ่ายทั้งหมด : 18,111</h5>
                   </div>
                   <div class="d-flex pt-4">
                     <MaterialButton
@@ -379,101 +428,101 @@ export default {
                     <tbody>
                       <tr>
                         <th scope="row">1</th>
-                        <td>ตุลาคม</td>
+                        <td>พฤศจิกายน</td>
                         <td>อาคารบ้านพัก บช. ตชด.</td>
                         <td>
-                            <MaterialButton
-                              size="lg"
-                              class="btn-icon"
-                              style="margin-right: -0px"
-                            >
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/pdf.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
-                            <MaterialButton size="lg" class="btn-icon">
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/excel.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row">1</th>
-                        <td>ตุลาคม</td>
+                        <td>พฤศจิกายน</td>
                         <td>อาคารบ้านพักส่วนกลาง</td>
                         <td>
-                            <MaterialButton
-                              size="lg"
-                              class="btn-icon"
-                              style="margin-right: -0px"
-                            >
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/pdf.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
-                            <MaterialButton size="lg" class="btn-icon">
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/excel.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row">1</th>
-                        <td>ตุลาคม</td>
+                        <td>พฤศจิกายน</td>
                         <td>อาคารบ้านพัก ตร.</td>
                         <td>
-                            <MaterialButton
-                              size="lg"
-                              class="btn-icon"
-                              style="margin-right: -0px"
-                            >
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/pdf.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
-                            <MaterialButton size="lg" class="btn-icon">
-                              <div class="d-flex align-items-center">
-                                <span style="margin-right: 5px">บันทึก</span>
-                                <img
-                                  src="../../assets/img/excel.png"
-                                  alt="title"
-                                  loading="lazy"
-                                  width="24"
-                                />
-                              </div>
-                            </MaterialButton>
+                          <MaterialButton
+                            size="lg"
+                            class="btn-icon"
+                            style="margin-right: -0px"
+                          >
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/pdf.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
+                          <MaterialButton size="lg" class="btn-icon">
+                            <div class="d-flex align-items-center">
+                              <span style="margin-right: 5px">บันทึก</span>
+                              <img
+                                src="../../assets/img/excel.png"
+                                alt="title"
+                                loading="lazy"
+                                width="24"
+                              />
+                            </div>
+                          </MaterialButton>
                         </td>
                       </tr>
                     </tbody>

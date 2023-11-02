@@ -14,6 +14,7 @@ const userlist = [
     rank: "ส.ต.ต.",
     idcard: "134044411441122",
     phone: "0325647846",
+    bookNumber: "1234",
     ContractDate: "12/11/2566", //สังกัด
     Lengthofstay: "3 เดือน", //ยศ
     InsuranceMoney: "10,000",
@@ -27,6 +28,7 @@ const userlist = [
     rank: "ส.ต.ต.",
     idcard: "134044411441178",
     phone: "0325647845",
+    bookNumber: "1234",
     ContractDate: "12/11/2566", //สังกัด
     Lengthofstay: "3 เดือน", //ยศ
     InsuranceMoney: "10,000",
@@ -68,6 +70,7 @@ export default {
       old: "",
       birthday: "",
       installments: "",
+      booknumber:""
     };
   },
   created() {
@@ -75,16 +78,15 @@ export default {
     if (this.$route.params.id) {
       this.id = this.$route.params.id;
     }
-    this.mode == "add" ? (this.statusedit = false) : (this.statusedit = true);
     // this.$route.query
   },
   methods: {
     gotoAction() {
-      if (this.mode == "edit") {
-        this.$router.push({ path: `/room/update/${this.id}` });
-      } else {
-        this.$router.push({ path: `/addUserRoom` });
-      }
+      // if (this.mode == "edit") {
+      this.$router.push({ path: `/room/update/${this.id}`, query: { mode: this.mode } });
+      // } else {
+      //   this.$router.push({ path: `/addUserRoom` , query: { mode: this.mode } });
+      // }
     },
   },
 };
@@ -121,18 +123,10 @@ export default {
           <!-- d-flex justify-content-between -->
           <div class="d-flex justify-content-between align-items-baseline">
             <h4>รายละเอียดห้องพัก 101</h4>
-            <div v-if="mode == 'edit'">
+            <div>
               <MaterialButton variant="gradient" color="success" @click="gotoAction()"
                 >จัดการห้องพัก</MaterialButton
               >
-              <!-- <MaterialButton
-                style="margin-left: 20px; margin-right: 10px"
-                variant="gradient"
-                color="warning"
-                data-bs-toggle="modal"
-                data-bs-target="#Returntheroom"
-                >คืนห้อง</MaterialButton
-              > -->
             </div>
           </div>
           <div class="row pt-4">
@@ -140,30 +134,31 @@ export default {
               <div class="row g-0">
                 <div class="col-md-10">
                   <div class="card-body">
-                    <div class="row" v-if="statusedit == true">
+                    <div class="row" v-if="this.mode !== 'add'">
                       <h5 class="card-title">รายละเอียดผู้เช่า</h5>
                       <div class="col-5">
-                        <p class="card-text">ชือ : มานะ</p>
+                        <p class="card-text">ชือ : ส.ต.ต. มานะ</p>
                         <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
-                        <p class="card-text">ยศ : ส.ต.ต.</p>
-                        <p class="card-text">วันเกิด : 12/02/2514</p>
+                        <p class="card-text">สังกัด : ฝอ. 1</p>
+                        <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
                         <p class="card-text">วันทำสัญญา : 12/02/2564</p>
-                        <p class="card-text">อายุ : 33 ปี</p>
+                        
                         <p class="card-text">ระยะเวลาที่เข้าพัก : 3 เดือน</p>
                       </div>
                       <div class="col-7">
                         <p class="card-text">นามสกุล : ถือดี</p>
-                        <p class="card-text">สังกัด : ฝอ. 1</p>
-                        <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
                         <p class="card-text">เบอร์โทร : 0972534887</p>
                         <p class="card-text">เงินค่าประกัน : 12,000</p>
+                        <p class="card-text">งวดค่าประกัน : 5/10</p>
+                        <p class="card-text">จำนวนงวดค่าประกัน : 2,000</p>
+                        <p class="card-text">ยอดคงเหลือค่าประกัน : 6,000</p>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row" v-if="this.mode !== 'special'">
                       <div class="col-5">
                         <h5 class="card-title pt-2">รายละเอียดห้องพัก</h5>
                         <p class="card-text">ประเภทห้องพัก : ช๓</p>
-                        <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p>
+                        <!-- <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p> -->
                         <p class="card-text">สภาพห้อง : ปกติ</p>
                       </div>
                       <div class="col-5">
@@ -186,24 +181,25 @@ export default {
                       <thead class="border border-2 border-success border-bottom">
                         <tr>
                           <th scope="col">ลำดับ</th>
-                          <th scope="col">ชื่อ</th>
-                          <th scope="col">สกุล</th>
+                          <th scope="col">ชื่อ-สกุล</th>
                           <th scope="col">สังกัด</th>
-                          <th scope="col">ยศ</th>
                           <th scope="col">เลขบัตรประชาชน</th>
                           <th scope="col">เบอร์ติดต่อ</th>
+                          <th scope="col">เลขลงรับหนังสือ</th>
+                          <th scope="col"></th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="(item, index) in userlist" :key="index">
                           <th scope="row">{{ index + 1 }}</th>
-                          <td>{{ item.firstName }}</td>
-                          <td>{{ item.lastName }}</td>
+                          <td>
+                            {{ item.rank }} {{ item.firstName }} {{ item.lastName }}
+                          </td>
                           <td>{{ item.Affiliation }}</td>
-                          <td>{{ item.rank }}</td>
                           <td>{{ item.idcard }}</td>
                           <td>{{ item.phone }}</td>
+                          <td>{{ item.bookNumber }}</td>
                           <td>
                             <MaterialButton
                               variant="gradient"
@@ -213,6 +209,17 @@ export default {
                               >เพิ่มผู้เช่าห้องพัก</MaterialButton
                             >
                           </td>
+                          <td>
+                            <MaterialButton
+                            style="margin-left: 20px"
+                            variant="gradient"
+                            color="success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addBookBackdrop"
+                            >เพิ่มเลขลงรับหนังสือ</MaterialButton
+                          >
+                          </td>
+                          
                         </tr>
                       </tbody>
                     </table>
@@ -411,14 +418,20 @@ export default {
                 </div>
               </div>
               <div>
-                <label style="padding-left: 30px;">หลักฐานแสดงการชําระค่าไฟเดือนล่าสุด</label>
+                <label style="padding-left: 30px"
+                  >หลักฐานแสดงการชําระค่าไฟเดือนล่าสุด</label
+                >
               </div>
               <div
                 class="mb-3"
-                style="margin-left:10px; display: flex; justify-content: space-between; align-items: center"
+                style="
+                  margin-left: 10px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
               >
                 <div class="form-check form-check-inline">
-                  
                   <input
                     class="form-check-input"
                     type="radio"
@@ -458,6 +471,58 @@ export default {
                     placeholder="สาเหตุ"
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm"
+              html-type="submit"
+              >บันทึก</MaterialButton
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- modal -->
+        <div
+      class="modal fade"
+      id="addBookBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มเลขลงรับหนังสือ</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <label style="margin-left:-5px">กรอกเลขลงรับหนังสือ</label>
+                <textarea
+                  :value="booknumber"
+                  @input="(event) => (booknumber = event.target.value)"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="ตัวอย่าง : 11244"
+                ></textarea>
               </div>
             </div>
           </div>
