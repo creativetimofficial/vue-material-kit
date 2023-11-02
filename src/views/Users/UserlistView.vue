@@ -162,6 +162,7 @@ export default {
                   name="inlineRadioOptions"
                   id="inlineRadio1"
                   value="Radio1"
+                  checked
                 />
                 <label class="form-check-label" for="inlineRadio1">ตร.</label>
               </div>
@@ -205,6 +206,7 @@ export default {
                   name="inlineRadioOptions1"
                   id="inlineRadio3"
                   value="Radio3"
+                  checked
                 />
                 <label class="form-check-label" for="inlineRadio3">ประทวน</label>
               </div>

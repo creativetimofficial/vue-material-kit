@@ -148,6 +148,7 @@ export default {
                   name="inlineRadioOptions"
                   id="inlineRadio1"
                   value="โสด"
+                  checked
                 />
                 <label class="form-check-label" for="inlineRadio1">โสด</label>
               </div>
