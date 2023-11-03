@@ -36,6 +36,7 @@ export default {
         { label: "Phoenix", value: "Elixir" },
       ],
       typeRoom: [
+        { label: "ทั้งหมด", value: "ทั้งหมด" },
         { label: "ช1", value: "ช1" },
         { label: "ช2", value: "ช2" },
         { label: "ช3", value: "ช3" },
@@ -63,12 +64,42 @@ export default {
       statuseunavailable: false,
       statusewaiting: false,
       selectedlistRoom: "อาคารแฟลต 1/11 ",
+      selectedStatus: "",
     };
   },
   created() {
     // this.$route.query
+    this.oldData = this.roomData;
   },
-
+  watch: {
+    selectedtypeRoom: function (newValue) {
+      this.roomData = this.oldData;
+      if (newValue !== null) {
+        if (newValue.value !== "ทั้งหมด") {
+          const typeRoom = this.roomData.filter(
+            (tagreturn) => tagreturn.typeRoom === newValue.value
+          );
+          this.roomData = typeRoom;
+        } else {
+          this.roomData = this.oldData;
+        }
+      }
+    },
+    selectedStatus: function (newValue) {
+      console.log(newValue);
+      this.roomData = this.oldData;
+      // if (newValue !== null) {
+      //   if (newValue.value !== "ทั้งหมด") {
+      //     const typeRoom = this.roomData.filter(
+      //       (tagreturn) => tagreturn.typeRoom === newValue.value
+      //     );
+      //     this.roomData = typeRoom;
+      //   } else {
+      //     this.roomData = this.oldData;
+      //   }
+      // }
+    },
+  },
   methods: {
     gotodetail(id, index) {
       let action;
@@ -79,32 +110,41 @@ export default {
       if (index == "return") action = "return";
       this.$router.push({ path: `/room/detail/${id}`, query: { mode: action } });
     },
-    onChangeEvent(e) {
+    onChangeEvent(e, event) {
+      this.roomData = this.oldData;
       if (e == "free") {
-        if (statusfree) {
+        if (event.target.checked) {
           const free = this.roomData.filter((tagfree) => tagfree.status === "free");
-          console.log(free);
+          this.roomData = free;
+          console.log(this.roomData);
         }
       } else if (e == "unavailable") {
-        if (statuseunavailable) {
+        if (event.target.checked) {
           const statuseunavailable = this.roomData.filter(
             (tagun) => tagun.status === "unavailable"
           );
-          console.log(statuseunavailable);
+          this.roomData = statuseunavailable;
         }
       } else if (e == "waiting") {
-        if (statusrewaiting) {
+        if (event.target.checked) {
           const waiting = this.roomData.filter(
             (tagwaiting) => tagwaiting.status === "waiting"
           );
-          console.log(waiting);
+          this.roomData = waiting;
         }
       } else if (e == "return") {
-        if (statusrewaiting) {
+        if (event.target.checked) {
           const returns = this.roomData.filter(
             (tagreturn) => tagreturn.status === "return"
           );
-          console.log(returns);
+          this.roomData = returns;
+        }
+      } else if (e == "special") {
+        if (event.target.checked) {
+          const specials = this.roomData.filter(
+            (tagreturn) => tagreturn.status === "special"
+          );
+          this.roomData = specials;
         }
       }
     },
@@ -185,7 +225,6 @@ export default {
             </div>
             <div class="d-flex justify-content-between align-items-baseline p-2">
               <div class="text-start">
-                <h6>{{ selectedlistRoom?.label }}</h6>
                 <p class="d-flex align-items-baseline p-2">
                   <span>คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span>
                   <a data-bs-toggle="modal" data-bs-target="#Edituser"
@@ -197,6 +236,7 @@ export default {
                     ></a
                   >
                 </p>
+                <h6 class="pt-1">{{ selectedlistRoom?.label || "อาคารแฟลต 1/11" }}</h6>
               </div>
 
               <div class="d-flex">
@@ -204,7 +244,8 @@ export default {
                   id="terms"
                   color="green"
                   :checked="statusfree"
-                  @change="onChangeEvent('free')"
+                  v-model="selectedStatus"
+                  @change="onChangeEvent('free', $event)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ว่าง</a>
                 </MaterialCheckbox>
@@ -212,7 +253,7 @@ export default {
                   id="terms2"
                   color="red"
                   :checked="statuseunavailable"
-                  @change="onChangeEvent('unavailable')"
+                  @change="onChangeEvent('unavailable', $event)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ไม่ว่าง</a>
                 </MaterialCheckbox>
@@ -220,7 +261,7 @@ export default {
                   id="terms3"
                   color="warning2"
                   :checked="statusewaiting"
-                  @change="onChangeEvent('waiting')"
+                  @change="onChangeEvent('waiting', $event)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ชำรุด</a>
                 </MaterialCheckbox>
@@ -228,9 +269,16 @@ export default {
                   id="terms4"
                   color="return"
                   :checked="statusreturn"
-                  @change="onChangeEvent('return')"
+                  @change="onChangeEvent('return', $event)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ผ่อนผัน</a>
+                </MaterialCheckbox>
+                <MaterialCheckbox
+                  id="terms5"
+                  color="special"
+                  @change="onChangeEvent('special', $event)"
+                >
+                  <a href="javascript:;" class="font-weight-bolder"> กรณีพิเศษ</a>
                 </MaterialCheckbox>
               </div>
             </div>
@@ -313,11 +361,19 @@ export default {
                                 >
                                   {{ "ผ่อนผัน" }}
                                 </p>
-                                <p v-if="item?.status !== 'special'" class="card-title" style="font-size: 14px">
+                                <p
+                                  v-if="item?.status !== 'special'"
+                                  class="card-title"
+                                  style="font-size: 14px"
+                                >
                                   {{ item?.ranks }} {{ item?.firstName }}
                                   {{ item?.laststName }}
                                 </p>
-                                <p v-if="item?.status == 'special'" class="card-title text-red mt-1" style="font-size: 14px">
+                                <p
+                                  v-if="item?.status == 'special'"
+                                  class="card-title text-red mt-1"
+                                  style="font-size: 14px"
+                                >
                                   {{ item?.ranks }} {{ item?.firstName }}
                                   {{ item?.laststName }}
                                 </p>
