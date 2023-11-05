@@ -90,11 +90,11 @@ export default {
       rank: "", //ยศ
       idcard: "134044411441178",
       phone: "0325647845",
-      selectedRanks: "ส.ต.ต.",
-      selectedAffiliation: "ฝอ.2",
+      selectedRanks: "",
+      selectedAffiliation: "",
       birthday: "14/07/2534",
-      typeAffiliation: "ทั่วไป",
-      typeRanks: "ประทวน",
+      typeAffiliation: "",
+      typeRanks: "",
     };
   },
   created() {
@@ -323,10 +323,10 @@ export default {
                 ></v-select>
               </div>
               <div class="mb-1">
-                <label>ยศ</label>
+                <label>ลำดับยศ</label>
                 <v-select :options="masterData?.typeranks" v-model="typeRanks"></v-select>
               </div>
-              <div class="mb-3" v-if="typeRanks.label == 'ทั่วไป'">
+              <div class="mb-3" v-if="typeRanks.label == 'ลูกจ้าง'">
                 <label> {{ typeRanks.label }}</label>
                 <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
               </div>
