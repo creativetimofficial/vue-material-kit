@@ -187,7 +187,6 @@ export default {
                           <th scope="col">เบอร์ติดต่อ</th>
                           <th scope="col">เลขลงรับหนังสือ</th>
                           <th scope="col"></th>
-                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -209,17 +208,6 @@ export default {
                               >เพิ่มผู้เช่าห้องพัก</MaterialButton
                             >
                           </td>
-                          <td>
-                            <MaterialButton
-                            style="margin-left: 20px"
-                            variant="gradient"
-                            color="success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#addBookBackdrop"
-                            >เพิ่มเลขลงรับหนังสือ</MaterialButton
-                          >
-                          </td>
-                          
                         </tr>
                       </tbody>
                     </table>
@@ -304,6 +292,17 @@ export default {
                   type="text"
                   placeholder="จำนวนงวดเงินค่าประกัน"
                 />
+              </div>
+              <div class="mb-3">
+                <label style="margin-left:-5px">กรอกเลขลงรับหนังสือ</label>
+                <textarea
+                  :value="booknumber"
+                  @input="(event) => (booknumber = event.target.value)"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="ตัวอย่าง : 11244"
+                ></textarea>
               </div>
             </div>
           </div>
@@ -545,7 +544,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #567b57 !important;
+  border: 2px solid #86d388 !important;
   color: #000;
 }
 .bg-red {

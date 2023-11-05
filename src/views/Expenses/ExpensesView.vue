@@ -196,6 +196,7 @@ export default {
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
+                  <th>ชื่อ-สกุล</th>
                   <th scope="col">อาคาร</th>
                   <th scope="col">ชั้น</th>
                   <th scope="col">เลขที่ห้อง</th>
@@ -217,6 +218,7 @@ export default {
               <tbody>
                 <tr>
                   <th scope="row">1</th>
+                  <td>ส.ต.ต.โชคดี มีชัย</td>
                   <td>อาคารแฟลต 1/11</td>
                   <td>2</td>
                   <td>202</td>
@@ -275,6 +277,9 @@ export default {
           </div>
           <div class="modal-body">
             <div>
+              <div class="mb-1">
+                <label style="font-size:large">ส.ต.ต.โชคดี มีชัย</label>
+              </div>
               <div class="mb-3">
                 <label>อาคาร</label>
                 <v-select
@@ -290,17 +295,7 @@ export default {
                 <label>เลขที่ห้อง</label>
                 <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
               </div>
-              <!-- <div class="mb-3">
-                <MaterialInput
-                  name="fee"
-                  :value="fee"
-                  @input="(event) => (fee = event.target.value)"
-                  class="input-group-static"
-                  label="ค่าธรรมเนียม"
-                  type="text"
-                  placeholder="ค่าธรรมเนียม"
-                />
-              </div> -->
+
               <div class="mb-3">
                 <MaterialInput
                   :value="Waterbill"
@@ -361,6 +356,46 @@ export default {
                   placeholder="เลขหลัง"
                 />
               </div>
+              <div
+                class="mb-3"
+                style="
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                "
+              >
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">หักได้</label>
+                </div>             
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="option2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">หักไม่ได้</label>
+                </div>
+                
+              </div>
+              <div style=" margin-bottom: 10px">
+                  <MaterialInput
+                    name="contract"
+                    :value="contract"
+                    @input="(event) => (contract = event.target.value)"
+                    class="input-group-static"
+                    type="text"
+                    placeholder="สาเหตุ"
+                  />
+                </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -469,7 +504,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #567b57 !important;
+  border: 2px solid #86d388 !important;
   color: #000;
 }
 .bg-red {

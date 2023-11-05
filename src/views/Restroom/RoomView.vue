@@ -194,9 +194,9 @@ export default {
             <div class="col-8">
               <div class="d-flex justify-content-end align-items-baseline">
                 <div class="d-flex">
-                  <MaterialCheckbox id="terms5" checked>
+                  <!-- <MaterialCheckbox id="terms5" checked>
                     <a href="javascript:;" class="font-weight-bolder"> รายตึก</a>
-                  </MaterialCheckbox>
+                  </MaterialCheckbox> -->
                   <MaterialCheckbox id="terms6">
                     <a href="javascript:;" class="font-weight-bolder"> ตึกทั้งหมด</a>
                   </MaterialCheckbox>
@@ -226,7 +226,9 @@ export default {
             <div class="d-flex justify-content-between align-items-baseline p-2">
               <div class="text-start">
                 <p class="d-flex align-items-baseline p-2">
-                  <span>คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span>
+                  <span style="font-weight: bold; text-decoration: underline">
+                    คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span
+                  >
                   <a data-bs-toggle="modal" data-bs-target="#Edituser"
                     ><i
                       class="material-icons"
@@ -297,101 +299,84 @@ export default {
                       aria-controls="collapseExample"
                       >{{ item?.title }}</MaterialButton
                     >
-                    <!-- item?.title -->
                   </p>
                   <div class="collapse show" id="collapseExample" aria-expanded="true">
-                    <div>
-                      <div
-                        class="row row-cols-auto"
-                        :style="{ '--bs-gutter-x': '0.5rem' }"
-                      >
-                        <div class="col" v-for="(item, index) in roomData" :key="index">
-                          <div
-                            class="card mb-2"
-                            :class="{
-                              'bg-red': item?.status == 'unavailable',
-                              'bg-green': item?.status == 'free',
-                              'bg-warning2': item?.status == 'waiting',
-                              'bg-return': item?.status == 'return',
-                              'bg-special': item?.status == 'special',
-                            }"
-                            :style="{ width: `220px`, height: `170px` }"
-                          >
-                            <div class="card-body p-1">
-                              <a
-                                style="cursor: pointer"
-                                @click="gotodetail(item?.dataIndex, item?.status)"
+                    <div class="flex-container">
+                      <div v-for="(item, index) in roomData" :key="index">
+                        <div
+                          class="card mb-2"
+                          :class="{
+                            'bg-red': item?.status == 'unavailable',
+                            'bg-green': item?.status == 'free',
+                            'bg-warning2': item?.status == 'waiting',
+                            'bg-return': item?.status == 'return',
+                            'bgg-red': item?.status == 'special',
+                          }"
+                          :style="{ width: `220px`, height: `170px` }"
+                        >
+                          <div class="card-body p-1">
+                            <a
+                              style="cursor: pointer"
+                              @click="gotodetail(item?.dataIndex, item?.status)"
+                            >
+                              <p
+                                class="card-title"
+                                style="
+                                  color: #000;
+                                  border: 2px solid #f7f4f0 !important;
+                                  border-radius: 10px;
+                                  background: white;
+                                "
                               >
-                                <p
-                                  class="card-title"
-                                  style="
-                                    color: #000;
-                                    border: 2px solid #f7f4f0 !important;
-                                    border-radius: 10px;
-                                    background: white;
-                                  "
-                                >
-                                  <a style="font-size: medium">{{ item?.title }}</a>
-                                </p>
-                                <p
-                                  v-if="item?.status == 'free'"
-                                  class="card-title bgg-green"
-                                  style="font-size: 16px"
-                                >
-                                  {{ "ว่าง" }}
-                                </p>
-                                <p
-                                  v-if="item?.status == 'unavailable'"
-                                  class="card-title bgg-red"
-                                  style="font-size: 16px"
-                                >
-                                  {{ "ไม่ว่าง" }}
-                                </p>
-                                <p
-                                  v-if="item?.status == 'waiting'"
-                                  class="card-title bgg-warning2"
-                                  style="font-size: 16px"
-                                >
-                                  {{ "ชำรุด" }}
-                                </p>
-                                <p
-                                  v-if="item?.status == 'return'"
-                                  class="card-title bgg-return"
-                                  style="font-size: 16px"
-                                >
-                                  {{ "ผ่อนผัน" }}
-                                </p>
-                                <p
+                                <a style="font-size: medium">{{ item?.title }}</a>
+                              </p>
+                              <p
+                                v-if="item?.status == 'free'"
+                                class="card-title bgg-green"
+                                style="font-size: 16px"
+                              >
+                                {{ "ว่าง" }}
+                              </p>
+                              <p
+                                v-if="item?.status == 'unavailable'"
+                                class="card-title bgg-red"
+                                style="font-size: 16px"
+                              >
+                                {{ "ไม่ว่าง" }}
+                              </p>
+                              <p
+                                v-if="item?.status == 'waiting'"
+                                class="card-title bgg-warning2"
+                                style="font-size: 16px"
+                              >
+                                {{ "ชำรุด" }}
+                              </p>
+                              <p
+                                v-if="item?.status == 'return'"
+                                class="card-title bgg-return"
+                                style="font-size: 16px"
+                              >
+                                {{ "ผ่อนผัน" }}
+                              </p>
+                              <p class="card-title "
+                                style="font-size: 14px"
+                              >
+                                {{ item?.ranks }} {{ item?.firstName }}
+                                {{ item?.laststName }}
+                              </p>
+                              <div>
+                                <span
                                   v-if="item?.status !== 'special'"
-                                  class="card-title"
-                                  style="font-size: 14px"
+                                  style="text-align: right; font-size: small"
+                                  >{{ item?.Affiliation }}</span
                                 >
-                                  {{ item?.ranks }} {{ item?.firstName }}
-                                  {{ item?.laststName }}
-                                </p>
-                                <p
+                                <span
                                   v-if="item?.status == 'special'"
-                                  class="card-title text-red mt-1"
-                                  style="font-size: 14px"
+                                  style="text-align: right; font-size: 16px"
+                                  >{{ "กรณีพิเศษ" }}</span
                                 >
-                                  {{ item?.ranks }} {{ item?.firstName }}
-                                  {{ item?.laststName }}
-                                </p>
-                                <div>
-                                  <span
-                                    v-if="item?.status !== 'special'"
-                                    style="text-align: right; font-size: small"
-                                    >{{ item?.Affiliation }}</span
-                                  >
-                                  <span
-                                    v-if="item?.status == 'special'"
-                                    class="text-red"
-                                    style="text-align: right; font-size: 16px"
-                                    >{{ "กรณีพิเศษ" }}</span
-                                  >
-                                </div>
-                              </a>
-                            </div>
+                              </div>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -484,8 +469,22 @@ export default {
   </section>
 </template>
 <style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 220px;
+  height: 170px;
+  margin: 12px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
 .bg-green {
-  background-color: #567b57 !important;
+  background-color: #86d388 !important;
   color: #fff;
 }
 .bg-red {
@@ -505,7 +504,7 @@ export default {
   color: #fff !important;
 }
 .bgg-green {
-  background-color: #567b57 !important;
+  background-color: #86d388 !important;
   color: #fff !important;
 }
 .bgg-red {
