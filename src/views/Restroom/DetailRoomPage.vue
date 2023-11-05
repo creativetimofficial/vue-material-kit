@@ -293,17 +293,7 @@ export default {
                   placeholder="จำนวนงวดเงินค่าประกัน"
                 />
               </div>
-              <div class="mb-3">
-                <label style="margin-left:-5px">กรอกเลขลงรับหนังสือ</label>
-                <textarea
-                  :value="booknumber"
-                  @input="(event) => (booknumber = event.target.value)"
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="ตัวอย่าง : 11244"
-                ></textarea>
-              </div>
+             
             </div>
           </div>
           <div class="modal-footer">
@@ -489,57 +479,7 @@ export default {
       </div>
     </div>
 
-        <!-- modal -->
-        <div
-      class="modal fade"
-      id="addBookBackdrop"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">เพิ่มเลขลงรับหนังสือ</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div>
-              <div class="mb-3">
-                <label style="margin-left:-5px">กรอกเลขลงรับหนังสือ</label>
-                <textarea
-                  :value="booknumber"
-                  @input="(event) => (booknumber = event.target.value)"
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="ตัวอย่าง : 11244"
-                ></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              ปิดหน้าต่าง
-            </button>
-            <MaterialButton
-              variant="gradient"
-              color="success"
-              @click="submitForm"
-              html-type="submit"
-              >บันทึก</MaterialButton
-            >
-          </div>
-        </div>
-      </div>
-    </div>
+
   </section>
 </template>
 <style>

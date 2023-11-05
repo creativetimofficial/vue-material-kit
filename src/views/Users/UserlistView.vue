@@ -93,6 +93,8 @@ export default {
       selectedRanks: "ส.ต.ต.",
       selectedAffiliation: "ฝอ.2",
       birthday: "14/07/2534",
+      typeAffiliation: "ทั่วไป",
+      typeRanks: "ประทวน",
     };
   },
   created() {
@@ -102,6 +104,20 @@ export default {
     selectedColor: function (newValue) {
       // this.updateColor(newValue)
       console.log(newValue);
+    },
+    typeAffiliation: function (newValue) {
+      // this.updateColor(newValue)
+      console.log(newValue);
+      // if(newValue != undefined){
+      //   this.typeAffiliation = newValue.value
+      // }
+    },
+    typeRanks: function (newValue) {
+      // this.updateColor(newValue)
+      console.log(newValue);
+      // if(newValue != undefined){
+      //   this.typeRanks = newValue.value
+      // }
     },
   },
   methods: {
@@ -176,7 +192,6 @@ export default {
                 />
                 <label class="form-check-label" for="inlineRadio2">บช.ตชด.</label>
               </div>
-       
             </div>
             <div class="d-flex align-items-baseline">
               <label style="margin-right: 10px">ค้นหาชื่อ </label>
@@ -199,27 +214,27 @@ export default {
           </div>
           <div>
             <div class="form-check form-check-inline">
-                <label style="margin-right: 20px">ยศ</label>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions1"
-                  id="inlineRadio3"
-                  value="Radio3"
-                  checked
-                />
-                <label class="form-check-label" for="inlineRadio3">ประทวน</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions1"
-                  id="inlineRadio4"
-                  value="Radio4"
-                />
-                <label class="form-check-label" for="inlineRadio4">สัญญาบัตร</label>
-              </div>
+              <label style="margin-right: 20px">ยศ</label>
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions1"
+                id="inlineRadio3"
+                value="Radio3"
+                checked
+              />
+              <label class="form-check-label" for="inlineRadio3">ประทวน</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions1"
+                id="inlineRadio4"
+                value="Radio4"
+              />
+              <label class="form-check-label" for="inlineRadio4">สัญญาบัตร</label>
+            </div>
           </div>
           <div class="text-center pt-4 table-responsive">
             <table class="table border border-2 border-success">
@@ -286,18 +301,50 @@ export default {
           </div>
           <div class="modal-body">
             <div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label>สังกัด</label>
+                <v-select
+                  :options="masterData?.typeAffiliation"
+                  v-model="typeAffiliation"
+                ></v-select>
+              </div>
+              <div class="mb-3" v-if="typeAffiliation.label == 'บก.อก.'">
+                <label>สังกัด {{ typeAffiliation.label }}</label>
                 <v-select
                   :options="masterData?.Affiliation"
                   v-model="selectedAffiliation"
                 ></v-select>
               </div>
-              <div class="mb-3">
+              <div class="mb-3" v-if="typeAffiliation.label == 'บก.สนน.'">
+                <label>สังกัด {{ typeAffiliation.label }}</label>
+                <v-select
+                  :options="masterData?.Affiliation2"
+                  v-model="selectedAffiliation"
+                ></v-select>
+              </div>
+              <div class="mb-1">
                 <label>ยศ</label>
+                <v-select :options="masterData?.typeranks" v-model="typeRanks"></v-select>
+              </div>
+              <div class="mb-3" v-if="typeRanks.label == 'ทั่วไป'">
+                <label> {{ typeRanks.label }}</label>
                 <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
               </div>
-              <div class="mb-3">
+              <div class="mb-3" v-if="typeRanks.label == 'ประทวน'">
+                <label> {{ typeRanks.label }}</label>
+                <v-select
+                  :options="masterData?.ranks2"
+                  v-model="selectedRanks"
+                ></v-select>
+              </div>
+              <div class="mb-3" v-if="typeRanks.label == 'สัญญาบัตร'">
+                <label> {{ typeRanks.label }}</label>
+                <v-select
+                  :options="masterData?.ranks3"
+                  v-model="selectedRanks"
+                ></v-select>
+              </div>
+              <div class="mb-3 pt-1">
                 <MaterialInput
                   name="firstName"
                   :value="firstName"
@@ -383,16 +430,48 @@ export default {
           </div>
           <div class="modal-body">
             <div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label>สังกัด</label>
+                <v-select
+                  :options="masterData?.typeAffiliation"
+                  v-model="typeAffiliation"
+                ></v-select>
+              </div>
+              <div class="mb-3" v-if="typeAffiliation.label == 'บก.อก.'">
+                <label>สังกัด {{ typeAffiliation.label }}</label>
                 <v-select
                   :options="masterData?.Affiliation"
                   v-model="selectedAffiliation"
                 ></v-select>
               </div>
-              <div class="mb-3">
+              <div class="mb-3" v-if="typeAffiliation.label == 'บก.สนน.'">
+                <label>สังกัด {{ typeAffiliation.label }}</label>
+                <v-select
+                  :options="masterData?.Affiliation2"
+                  v-model="selectedAffiliation"
+                ></v-select>
+              </div>
+              <div class="mb-1">
                 <label>ยศ</label>
+                <v-select :options="masterData?.typeranks" v-model="typeRanks"></v-select>
+              </div>
+              <div class="mb-3" v-if="typeRanks.label == 'ทั่วไป'">
+                <label> {{ typeRanks.label }}</label>
                 <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
+              </div>
+              <div class="mb-3" v-if="typeRanks.label == 'ประทวน'">
+                <label> {{ typeRanks.label }}</label>
+                <v-select
+                  :options="masterData?.ranks2"
+                  v-model="selectedRanks"
+                ></v-select>
+              </div>
+              <div class="mb-3" v-if="typeRanks.label == 'สัญญาบัตร'">
+                <label> {{ typeRanks.label }}</label>
+                <v-select
+                  :options="masterData?.ranks3"
+                  v-model="selectedRanks"
+                ></v-select>
               </div>
               <div class="mb-3">
                 <MaterialInput

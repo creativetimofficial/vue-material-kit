@@ -82,6 +82,7 @@ export default {
       rank: "", //ยศ
       idcard: "",
       phone: "",
+      booknumber: ""
     };
   },
   watch: {
@@ -166,8 +167,8 @@ export default {
             <div class="d-flex align-items-baseline">
               <label style="margin-right: 20px">ค้นหาชื่อ </label>
               <MaterialInput
-                style="margin-right: 20px; width:300px"
-                class="input-group-dynamic "
+                style="margin-right: 20px; width: 300px"
+                class="input-group-dynamic"
                 icon="search"
                 type="text"
                 placeholder="Search"
@@ -236,6 +237,17 @@ export default {
               <div class="mb-3">
                 <label>ชื่อผู้เช่า</label>
                 <v-select :options="options" v-model="selectedColor"></v-select>
+              </div>
+              <div class="mb-3">
+                <label style="margin-left: -5px">กรอกเลขลงรับหนังสือ</label>
+                <textarea
+                  :value="booknumber"
+                  @input="(event) => (booknumber = event.target.value)"
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="ตัวอย่าง : 11244"
+                ></textarea>
               </div>
             </div>
           </div>
