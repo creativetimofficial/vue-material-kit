@@ -3,6 +3,7 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
+import userData from "@/assets/dataJson/users.json";
 
 const listRoom = [
   { title: "ตึก 1" },
@@ -63,6 +64,7 @@ export default {
       NoRoom,
       userlist,
       vueMkHeader,
+      userData,
     };
   },
 
@@ -82,7 +84,7 @@ export default {
       rank: "", //ยศ
       idcard: "",
       phone: "",
-      booknumber: ""
+      booknumber: "",
     };
   },
   watch: {
@@ -234,7 +236,7 @@ export default {
             <div>
               <div class="mb-3">
                 <label>ชื่อผู้เช่า</label>
-                <v-select :options="options" v-model="selectedColor"></v-select>
+                <v-select :options="userData?.users" v-model="selectedColor"></v-select>
               </div>
               <div class="mb-3">
                 <label style="margin-left: -5px">กรอกเลขลงรับหนังสือ</label>
