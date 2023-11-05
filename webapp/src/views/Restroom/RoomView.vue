@@ -6,7 +6,7 @@ import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import roomData from "@/assets/dataJson/rooms.json";
 // import posts from "../posts.json";
-// import axios from "axios";
+import axios from "axios";
 
 const NoRoom = [{ title: "ชั้น 1" }, { title: "ชั้น 2" }, { title: "ชั้น 3" }];
 
@@ -69,6 +69,11 @@ export default {
   },
   created() {
     // this.$route.query
+    try {
+      axios.get(`http://localhost:3001/users/`).then((res) => console.log(res.data));
+    } catch (e) {
+      console.error(e);
+    }
     this.oldData = this.roomData;
   },
   watch: {
@@ -358,9 +363,7 @@ export default {
                               >
                                 {{ "ผ่อนผัน" }}
                               </p>
-                              <p class="card-title "
-                                style="font-size: 14px"
-                              >
+                              <p class="card-title" style="font-size: 14px">
                                 {{ item?.ranks }} {{ item?.firstName }}
                                 {{ item?.laststName }}
                               </p>
