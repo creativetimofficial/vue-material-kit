@@ -210,8 +210,6 @@ export default {
         </div>
       </div>
     </div>
-
-    <!-- modal -->
     <div
       class="modal fade"
       id="seleteUserBackdrop"
