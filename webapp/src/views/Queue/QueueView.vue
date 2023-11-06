@@ -4,53 +4,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import userData from "@/assets/dataJson/users.json";
-
-const listRoom = [
-  { title: "ตึก 1" },
-  { title: "ตึก 2" },
-  { title: "ตึก 3" },
-  { title: "ตึก 4" },
-  { title: "ตึก 5" },
-  { title: "ตึก 6" },
-  { title: "ตึก 7" },
-];
-
-const NoRoom = [
-  { title: "ชั้น 1" },
-  { title: "ชั้น 2" },
-  { title: "ชั้น 3" },
-  { title: "ชั้น 4" },
-  { title: "ชั้น 5" },
-  { title: "ชั้น 6" },
-  { title: "ชั้น 7" },
-];
-
-const userlist = [
-  {
-    dataIndex: "1",
-    firstName: "สมชาย",
-    lastName: "แสงทอง",
-    Affiliation: "ฝอ.2", //สังกัด
-    rank: "ส.ต.ต.", //ยศ
-    old: "32",
-    status: "สมรส",
-    birthday: "04/03/2534",
-    idcard: "134044411441122",
-    phone: "0325647846",
-  },
-  {
-    dataIndex: "2",
-    firstName: "สมชัย",
-    lastName: "แสงสุข",
-    Affiliation: "ฝอ.2", //สังกัด
-    rank: "ส.ต.ต.", //ยศ
-    old: "32",
-    status: "โสด",
-    birthday: "14/07/2534",
-    idcard: "134044411441178",
-    phone: "0325647845",
-  },
-];
+import axios from "axios";
 
 export default {
   components: {
@@ -60,9 +14,6 @@ export default {
   },
   setup() {
     return {
-      listRoom,
-      NoRoom,
-      userlist,
       vueMkHeader,
       userData,
     };
@@ -77,20 +28,29 @@ export default {
         { label: "ธนาพร", value: "ธนาพร" },
         { label: "มนตรี", value: "มนตรี" },
       ],
-      selectedColor: "",
+      selectedUser: "",
       firstName: "",
       lastName: "",
       Affiliation: "", //สังกัด
       rank: "", //ยศ
       idcard: "",
       phone: "",
-      booknumber: "",
+      bookNumber: "",
+      queueList : [],
+      userList : [],
+      userByid: {}
     };
   },
+  created() {
+    // console.log(this.masterData);
+    this.getAllqueue();
+    this.getAllusers()
+  },
   watch: {
-    selectedColor: function (newValue) {
+    selectedUser: function (newValue) {
       // this.updateColor(newValue)
-      console.log(newValue);
+      console.log(newValue.value);
+      this.getAllusersByid(newValue.value)
     },
   },
   methods: {
@@ -99,19 +59,90 @@ export default {
       // this.selected = event;
     },
 
+    getAllqueue() {
+      try {
+        axios
+          .get("http://localhost:3001/queue")
+          .then((res) => {
+            this.queueList = res.data;
+            console.log(this.queueList);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    getAllusersByid(id) {
+      try {
+        axios
+          .get(`http://localhost:3001/users/${id}`)
+          .then((res) => {
+            let data =res.data
+            this.userByid = data
+            // console.log(this.userByid)
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    getAllusers() {
+      try {
+        axios
+          .get("http://localhost:3001/users")
+          .then((res) => {
+            this.userList = res.data.map(ele =>{
+              return {
+                label : ele.rank + " "+ ele.firstName + " " + ele.lastName,
+                value : ele.id,
+              }
+            })
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     submitForm() {
+      // firstName: this.firstName,
+        // lastName: this.lastName,
+        // Affiliation: this.Affiliation,
+        // rank: this.rank,
+        // idcard: this.idcard,
+        // phone: this.phone,
       let body = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        Affiliation: this.Affiliation,
-        rank: this.rank,
-        idcard: this.idcard,
-        phone: this.phone,
+        ...this.userByid,
+        bookNumber: this.bookNumber
       };
+      delete body.id
+      console.log(body);
+      axios
+        .post(`http://localhost:3001/queue`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAllqueue();
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
       // let b = []
       // b.push(body)
-      this.userlist.push(body);
-      console.log(this.userlist);
+      // this.userlist.push(body);
+      // console.log(this.userlist);
     },
   },
 };
@@ -195,16 +226,18 @@ export default {
                   <th scope="col">สถานภาพ</th>
                   <th scope="col">เลขบัตรประชาชน</th>
                   <th scope="col">เบอร์ติดต่อ</th>
+                  <th scope="col">เลขลงรับหนังสือ</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in userlist" :key="index">
+                <tr v-for="(item, index) in queueList" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
-                  <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
-                  <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.idcard }}</td>
-                  <td>{{ item.phone }}</td>
+                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                  <td>{{ item?.affiliation }}</td>
+                  <td>{{ item?.status }}</td>
+                  <td>{{ item?.idcard }}</td>
+                  <td>{{ item?.phone }}</td>
+                  <td>{{ item?.bookNumber }}</td>
                 </tr>
               </tbody>
             </table>
@@ -236,18 +269,30 @@ export default {
             <div>
               <div class="mb-3">
                 <label>ชื่อผู้เช่า</label>
-                <v-select :options="userData?.users" v-model="selectedColor"></v-select>
+                <v-select :options="userList" v-model="selectedUser"></v-select>
               </div>
               <div class="mb-3">
                 <label style="margin-left: -5px">กรอกเลขลงรับหนังสือ</label>
                 <textarea
-                  :value="booknumber"
-                  @input="(event) => (booknumber = event.target.value)"
+                  :value="bookNumber"
+                  @input="(event) => (bookNumber = event.target.value)"
                   class="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
                   placeholder="ตัวอย่าง : 11244"
                 ></textarea>
+              </div>
+              <div class="row g-0" v-if="selectedUser!== ''">
+                <div class="col-md-12">
+                    <div class="row" >
+                      <h5 class="card-title ">รายละเอียดผู้เช่า</h5>
+                        <p class="card-text pt-1">ชือ-สกุล : {{ userByid?.rank }} {{ userByid?.firstName }} {{ userByid?.lastName }}</p>
+                        <p class="card-text">สังกัด : {{ userByid?.affiliation }}</p>
+                        <p class="card-text">เลขบัตรประชาชน : {{ userByid?.idcard }}</p>
+                        <p class="card-text">สถานภาพ : {{ userByid?.status }}</p>
+                        <p class="card-text">เบอร์โทร : {{ userByid?.phone }}</p>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
@@ -260,6 +305,7 @@ export default {
               color="success"
               @click="submitForm"
               html-type="submit"
+              data-bs-dismiss="modal"
               >บันทึก</MaterialButton
             >
           </div>
@@ -270,7 +316,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #86d388 !important;
+  border: 2px solid #4CBB17 !important;
   color: #000;
 }
 .bg-red {

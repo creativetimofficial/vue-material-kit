@@ -4,53 +4,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import masterData from "@/assets/dataJson/masterData.json";
-
-const listRoom = [
-  { title: "ตึก 1" },
-  { title: "ตึก 2" },
-  { title: "ตึก 3" },
-  { title: "ตึก 4" },
-  { title: "ตึก 5" },
-  { title: "ตึก 6" },
-  { title: "ตึก 7" },
-];
-
-const NoRoom = [
-  { title: "ชั้น 1" },
-  { title: "ชั้น 2" },
-  { title: "ชั้น 3" },
-  { title: "ชั้น 4" },
-  { title: "ชั้น 5" },
-  { title: "ชั้น 6" },
-  { title: "ชั้น 7" },
-];
-
-const userlist = [
-  {
-    dataIndex: "1",
-    firstName: "สมชาย",
-    lastName: "แสงทอง",
-    Affiliation: "ฝอ.1", //สังกัด
-    rank: "ส.ต.ต.", //ยศ
-    old: "32",
-    status: "สมรส",
-    birthday: "04/03/2534",
-    idcard: "134044411441122",
-    phone: "0325647846",
-  },
-  {
-    dataIndex: "2",
-    firstName: "สมชัย",
-    lastName: "แสงสุข",
-    Affiliation: "ฝอ.2", //สังกัด
-    rank: "ส.ต.ต.", //ยศ
-    old: "32",
-    status: "โสด",
-    birthday: "14/07/2534",
-    idcard: "134044411441178",
-    phone: "0325647845",
-  },
-];
+import axios from "axios";
 
 export default {
   components: {
@@ -60,9 +14,6 @@ export default {
   },
   setup() {
     return {
-      listRoom,
-      NoRoom,
-      userlist,
       vueMkHeader,
       masterData,
     };
@@ -70,14 +21,6 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
       DataObtion: [
         { label: "โสด", value: "โสด" },
         { label: "สมรส", value: "สมรส" },
@@ -95,10 +38,15 @@ export default {
       birthday: "14/07/2534",
       typeAffiliation: "",
       typeRanks: "",
+      dataUser: [],
+      modalShow: false,
+      id: "",
+      searchName: "",
     };
   },
   created() {
-    console.log(this.masterData);
+    // console.log(this.masterData);
+    this.getAlluser();
   },
   watch: {
     selectedColor: function (newValue) {
@@ -120,25 +68,122 @@ export default {
       // }
     },
   },
+
   methods: {
-    changedLabel(event) {
-      console.log(event);
-      // this.selected = event;
+    filteredData() {
+      this.dataUser.filter((entry) =>
+        this.dataUser.length
+          ? Object.keys(this.dataUser[0]).some((key) =>
+              ("" + entry[key]).toLowerCase().includes(this.searchName.toLowerCase())
+            )
+          : true
+      );
     },
 
-    submitForm() {
+    async editUser(id) {
+      await axios
+        .get(`http://localhost:3001/users/${id}`)
+        .then((res) => {
+          let data = res.data;
+          this.id = id;
+          (this.firstName = data.firstName),
+            (this.lastName = data.lastName),
+            (this.selectedAffiliation = data.affiliation),
+            (this.selectedRanks = data.rank),
+            (this.idcard = data.idcard),
+            (this.phone = data.phone),
+            (this.selectedDataObtion = data.status);
+          (this.typeAffiliation = data.typeAffiliation),
+            (this.typeRanks = data.typeRanks);
+          this.modalShow = true;
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
+    async editForm() {
+      let typeA;
+      this.typeAffiliation.label == "ลูกจ้าง"
+        ? (typeA = "ลูกจ้าง")
+        : this.typeAffiliation.label == "บช.ตซด."
+        ? (typeA = "บช.ตซด.")
+        : (typeA = this.selectedAffiliation.label);
       let body = {
         firstName: this.firstName,
         lastName: this.lastName,
-        Affiliation: this.Affiliation,
-        rank: this.rank,
+        affiliation: typeA,
+        rank: this.selectedRanks.value,
         idcard: this.idcard,
         phone: this.phone,
+        status: this.selectedDataObtion.value || "โสด",
+        typeAffiliation: this.typeAffiliation.value,
+        typeRanks: this.typeRanks.value,
       };
-      // let b = []
-      // b.push(body)
-      this.userlist.push(body);
-      console.log(this.userlist);
+
+      axios
+        .put(`http://localhost:3001/users/${this.id}`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAlluser();
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+    async submitForm() {
+      let typeA;
+      this.typeAffiliation.label == "ลูกจ้าง"
+        ? (typeA = "ลูกจ้าง")
+        : this.typeAffiliation.label == "บช.ตซด."
+        ? (typeA = "บช.ตซด.")
+        : (typeA = this.selectedAffiliation.label);
+      let body = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        affiliation: typeA,
+        rank: this.selectedRanks.value,
+        idcard: this.idcard,
+        phone: this.phone,
+        status: this.selectedDataObtion.value || "โสด",
+        typeAffiliation: this.typeAffiliation.value,
+        typeRanks: this.typeRanks.value,
+      };
+
+      axios
+        .post(`http://localhost:3001/users`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAlluser();
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    },
+
+    getAlluser() {
+      try {
+        axios
+          .get("http://localhost:3001/users")
+          .then((res) => {
+            this.dataUser = res.data;
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
@@ -201,6 +246,9 @@ export default {
                 icon="search"
                 type="text"
                 placeholder="Search"
+                :value="searchName"
+                @change="filteredData()"
+                @input="(event) => (searchName = event.target.value)"
               />
               <MaterialButton
                 style="margin-left: 20px"
@@ -252,16 +300,20 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in userlist" :key="index">
+                <tr v-for="(item, index) in dataUser" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
 
-                  <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
-                  <td>{{ item.Affiliation }}</td>
-                  <td>{{ item.status }}</td>
+                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                  <td>{{ item?.affiliation }}</td>
+                  <td>{{ item?.status }}</td>
                   <!-- <td>{{ item.idcard }}</td> -->
-                  <td>{{ item.phone }}</td>
+                  <td>{{ item?.phone }}</td>
                   <td>
-                    <a data-bs-toggle="modal" data-bs-target="#EdituserBackdrop"
+                    <!-- data-bs-toggle="modal" data-bs-target="#EdituserBackdrop" -->
+                    <a
+                      @click="editUser(item?.id)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#EdituserBackdrop"
                       ><i
                         class="material-icons me-2"
                         style="cursor: pointer"
@@ -400,6 +452,7 @@ export default {
               color="success"
               @click="submitForm"
               html-type="submit"
+              data-bs-dismiss="modal"
               >บันทึก</MaterialButton
             >
           </div>
@@ -452,10 +505,10 @@ export default {
                 ></v-select>
               </div>
               <div class="mb-1">
-                <label>ยศ</label>
+                <label>ลำดับยศ</label>
                 <v-select :options="masterData?.typeranks" v-model="typeRanks"></v-select>
               </div>
-              <div class="mb-3" v-if="typeRanks.label == 'ทั่วไป'">
+              <div class="mb-3" v-if="typeRanks.label == 'ลูกจ้าง'">
                 <label> {{ typeRanks.label }}</label>
                 <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
               </div>
@@ -527,8 +580,9 @@ export default {
             <MaterialButton
               variant="gradient"
               color="success"
-              @click="submitForm"
+              @click="editForm"
               html-type="submit"
+              data-bs-dismiss="modal"
               >บันทึก</MaterialButton
             >
           </div>
@@ -539,7 +593,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #86d388 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {

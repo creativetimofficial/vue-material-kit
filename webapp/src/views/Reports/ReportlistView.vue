@@ -762,7 +762,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #86d388 !important;
+  border: 2px solid #4CBB17 !important;
   color: #000;
 }
 .bg-red {

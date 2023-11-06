@@ -487,7 +487,7 @@ export default {
   font-size: 30px;
 }
 .bg-green {
-  background-color: #86d388 !important;
+  background-color: #4cbb17 !important;
   color: #fff;
 }
 .bg-red {
@@ -507,7 +507,7 @@ export default {
   color: #fff !important;
 }
 .bgg-green {
-  background-color: #86d388 !important;
+  background-color: #4cbb17 !important;
   color: #fff !important;
 }
 .bgg-red {
