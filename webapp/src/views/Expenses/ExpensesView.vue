@@ -4,26 +4,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import masterData from "@/assets/dataJson/masterData.json";
-
-const listRoom = [
-  { title: "ตึก 1" },
-  { title: "ตึก 2" },
-  { title: "ตึก 3" },
-  { title: "ตึก 4" },
-  { title: "ตึก 5" },
-  { title: "ตึก 6" },
-  { title: "ตึก 7" },
-];
-
-const NoRoom = [
-  { title: "ชั้น 1" },
-  { title: "ชั้น 2" },
-  { title: "ชั้น 3" },
-  { title: "ชั้น 4" },
-  { title: "ชั้น 5" },
-  { title: "ชั้น 6" },
-  { title: "ชั้น 7" },
-];
+import axios from "axios";
 
 const userlist = [
   {
@@ -60,8 +41,6 @@ export default {
   },
   setup() {
     return {
-      listRoom,
-      NoRoom,
       userlist,
       vueMkHeader,
       masterData,
@@ -70,14 +49,6 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
       optionsBuilding: [
         { label: "อาคารแฟลต 1/11", value: "1" },
         { label: "อาคารแฟลต 1/12", value: "2" },
@@ -107,6 +78,26 @@ export default {
         { label: "ห้อง 404", value: "4" },
         { label: "ห้อง 505", value: "5" },
       ],
+      optionYear: [
+        { label: "2023", value: "2023" },
+        { label: "2022", value: "2022" },
+        { label: "2021", value: "2021" },
+        { label: "2020", value: "2020" },
+      ],
+      optionMonth: [
+        { label: "มกราคม", value: "มกราคม" },
+        { label: "กุมภาพันธ์", value: "กุมภาพันธ์" },
+        { label: "มีนาคม", value: "มีนาคม" },
+        { label: "เมษายน", value: "เมษายน" },
+        { label: "พฤษภาคม", value: "พฤษภาคม" },
+        { label: "มิถุนายน", value: "มิถุนายน" },
+        { label: "กรกฎาคม", value: "กรกฎาคม" },
+        { label: "สิงหาคม", value: "สิงหาคม" },
+        { label: "กันยายน", value: "กันยายน" },
+        { label: "ตุลาคม", value: "ตุลาคม" },
+        { label: "พฤศจิกายน", value: "พฤศจิกายน" },
+        { label: "ธันวาคม", value: "ธันวาคม" },
+      ],
       selectedBuilding: "อาคารแฟลต 1/11",
       selectedFloor: "ชั้น 1",
       selectedRoom: "ห้อง 101",
@@ -120,10 +111,17 @@ export default {
       selectedRanks: "ส.ต.ต.",
       selectedAffiliation: "ฝอ.2",
       birthday: "14/07/2534",
+      typeContract: "หักได้",
+      sumCost: 10000,
+      expensesList: [],
+      searchName: "",
+      selectedMonth: "พฤศจิกายน"
     };
   },
   created() {
-    console.log(this.masterData);
+    // console.log(this.masterData);
+    this.getBuildings();
+    this.getExpenses();
   },
   watch: {
     selectedColor: function (newValue) {
@@ -131,25 +129,87 @@ export default {
       console.log(newValue);
     },
   },
+  computed: {
+    expensesList() {
+      return this.expensesList.filter((item) =>
+        item.roomnumber.includes(this.searchName)
+      );
+    },
+  },
   methods: {
     changedLabel(event) {
       console.log(event);
       // this.selected = event;
     },
-
+    typeContractchange(e) {
+      this.typeContract = e.target.value;
+    },
+    async getExpenses() {
+      try {
+        await axios
+          .get("http://localhost:3001/expenses")
+          .then((res) => {
+            this.expensesList = res.data;
+            // console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getBuildings() {
+      try {
+        await axios
+          .get("http://localhost:3001/buildings")
+          .then((res) => {
+            // this.buildingList = res.data;
+            // console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getRooms() {
+      try {
+        await axios
+          .get("http://localhost:3001/rooms")
+          .then((res) => {
+            // this.buildingList = res.data;
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
     submitForm() {
       let body = {
         firstName: this.firstName,
         lastName: this.lastName,
-        Affiliation: this.Affiliation,
-        rank: this.rank,
-        idcard: this.idcard,
-        phone: this.phone,
+        building: this.selectedBuilding.label,
+        floor: this.selectedFloor.label,
+        roomnumber: this.selectedRoom.label,
+        insurancecost: this.Insurancecost,
+        installments: this.installments,
+        waterbill: this.Waterbill,
+        electricitybill: this.Electricitybill,
+        central: this.Central,
+        costs: this.Costs,
+        typeContract: this.typeContract,
+        contract: this.contract,
+        sumCost: this.sumCost,
       };
       // let b = []
       // b.push(body)
-      this.userlist.push(body);
-      console.log(this.userlist);
+      // this.userlist.push(body);
+      console.log(body);
     },
   },
 };
@@ -182,13 +242,27 @@ export default {
               ]"
             />
           </div>
+          <!-- <div class="d-flex justify-content-end align-items-baseline">
+              <div class="mb-3 w-15" style="margin-right: 20px">
+                <label>เดือน</label>
+                <v-select :options="optionMonth" v-model="selectedMonth"></v-select>
+              </div>
+            </div> -->
           <div class="d-flex justify-content-end align-items-baseline">
+            <div class="mb-3 w-15" style="margin-right: 20px;
+    display: flex;
+    align-items: baseline;">
+                <label style="margin-right: 5px;">เดือน</label>
+                <v-select :options="optionMonth" v-model="selectedMonth"></v-select>
+              </div>
             <label style="margin-right: 10px">ค้นหาเลขที่ห้อง </label>
             <MaterialInput
               class="input-group-dynamic w-30"
               icon="search"
               type="text"
               placeholder="Search"
+              :value="searchName"
+              @input="(event) => (searchName = event.target.value)"
             />
           </div>
           <div class="text-center pt-4 table-responsive">
@@ -216,24 +290,24 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>ส.ต.ต.โชคดี มีชัย</td>
-                  <td>อาคารแฟลต 1/11</td>
-                  <td>2</td>
-                  <td>202</td>
-                  <td>201</td>
-                  <td>205</td>
-                  <td>4</td>
-                  <td>8,000</td>
-                  <td>20,000</td>
-                  <td>8,000</td>
-                  <td>20,000</td>
-                  <td>10,000</td>
-                  <td>5/10</td>
-                  <td>/</td>
+                <tr v-for="(item, index) in expensesList" :key="index">
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                  <td>{{ item?.building }}</td>
+                  <td>{{ item?.floor }}</td>
+                  <td>{{ item?.roomnumber }}</td>
+                  <td>{{ item?.installments }}</td>
+                  <td>{{ item?.insurancecost }}</td>
+                  <td>{{ item?.sumCost }}</td>
+                  <td>{{ item?.waterbill }}</td>
+                  <td>{{ item?.electricitybill }}</td>
+                  <td>{{ item?.central }}</td>
+                  <td>{{ item?.costs }}</td>
+                  <td>{{ item?.roomnumber }}</td>
+                  <td>{{ item?.typeContract }}</td>
+                  <td>{{ item?.typeContract }}</td>
                   <td></td>
-                  <td>5555</td>
+                  <td>{{ item?.contract }}</td>
                   <td>
                     <MaterialButton
                       style="margin-bottom: 0px"
@@ -278,7 +352,7 @@ export default {
           <div class="modal-body">
             <div>
               <div class="mb-1">
-                <label style="font-size:large">ส.ต.ต.โชคดี มีชัย</label>
+                <label style="font-size: large">ส.ต.ต.โชคดี มีชัย</label>
               </div>
               <div class="mb-3">
                 <label>อาคาร</label>
@@ -358,11 +432,7 @@ export default {
               </div>
               <div
                 class="mb-3"
-                style="
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                "
+                style="display: flex; justify-content: flex-start; align-items: center"
               >
                 <div class="form-check form-check-inline">
                   <input
@@ -370,32 +440,33 @@ export default {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    value="option1"
+                    value="หักได้"
+                    @change="typeContractchange($event)"
                   />
                   <label class="form-check-label" for="inlineRadio1">หักได้</label>
-                </div>             
+                </div>
                 <div class="form-check form-check-inline">
                   <input
                     class="form-check-input"
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio2"
-                    value="option2"
+                    value="หักไม่ได้"
+                    @change="typeContractchange($event)"
                   />
                   <label class="form-check-label" for="inlineRadio2">หักไม่ได้</label>
                 </div>
-                
               </div>
-              <div style=" margin-bottom: 10px">
-                  <MaterialInput
-                    name="contract"
-                    :value="contract"
-                    @input="(event) => (contract = event.target.value)"
-                    class="input-group-static"
-                    type="text"
-                    placeholder="สาเหตุ"
-                  />
-                </div>
+              <div style="margin-bottom: 10px">
+                <MaterialInput
+                  name="contract"
+                  :value="contract"
+                  @input="(event) => (contract = event.target.value)"
+                  class="input-group-static"
+                  type="text"
+                  placeholder="สาเหตุ"
+                />
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -504,7 +575,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {

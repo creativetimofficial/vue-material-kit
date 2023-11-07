@@ -4,11 +4,9 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import MaterialCheckbox from "@/components/MaterialCheckbox.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
-import roomData from "@/assets/dataJson/rooms.json";
+// import roomData from "@/assets/dataJson/rooms.json";
 // import posts from "../posts.json";
 import axios from "axios";
-
-const NoRoom = [{ title: "ชั้น 1" }, { title: "ชั้น 2" }, { title: "ชั้น 3" }];
 
 export default {
   components: {
@@ -21,20 +19,12 @@ export default {
     return {
       NoRoom,
       vueMkHeader,
-      roomData,
+      // roomData,
     };
   },
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
       typeRoom: [
         { label: "ทั้งหมด", value: "ทั้งหมด" },
         { label: "ช1", value: "ช1" },
@@ -42,39 +32,34 @@ export default {
         { label: "ช3", value: "ช3" },
       ],
 
-      listRoom: [
-        { label: "อาคารแฟลต 1/11", value: "1" },
-        { label: "อาคารแฟลต 1/12", value: "2" },
-        { label: "อาคารแฟลต 1/13", value: "3" },
-        { label: "อาคารแฟลต 1/14", value: "4" },
-        { label: "อาคารแฟลต 1/15", value: "5" },
-        { label: "อาคารแฟลต 1/16", value: "3" },
-        { label: "อาคารแฟลต 1/17", value: "4" },
-        { label: "อาคารแฟลต 1/18", value: "5" },
-        { label: "แฟลตลือชา 1", value: "5" },
-        { label: "แฟลตลือชา 2", value: "3" },
-        { label: "แฟลตลือชา 3", value: "4" },
-        { label: "แฟลตบางเขน 1", value: "5" },
-        { label: "แฟลตบางเขน 2", value: "5" },
-      ],
+      listRoom: [],
       selectedtypeRoom: "ช1",
       selectedColor: "",
       statusfree: false,
       statusreturn: false,
       statuseunavailable: false,
       statusewaiting: false,
-      selectedlistRoom: "อาคารแฟลต 1/11 ",
+      selectedlistRoom: { label: "อาคารแฟลต 1/11", value: "อาคารแฟลต 1/11" },
+      committee: "",
       selectedStatus: "",
+      selectedReturn: "",
+      selectedUnavailable: "",
+      selectedWaiting: "",
+      selectedScaple: "",
+      roomData: [],
+      buildingList: [],
     };
   },
   created() {
     // this.$route.query
     try {
-      axios.get(`http://localhost:3001/users/`).then((res) => console.log(res.data));
+      axios.get(`http://localhost:3001/users/`).then();
     } catch (e) {
       console.error(e);
     }
-    this.oldData = this.roomData;
+
+    this.getRooms();
+    this.getBuildings();
   },
   watch: {
     selectedtypeRoom: function (newValue) {
@@ -90,20 +75,26 @@ export default {
         }
       }
     },
-    selectedStatus: function (newValue) {
-      console.log(newValue);
-      this.roomData = this.oldData;
-      // if (newValue !== null) {
-      //   if (newValue.value !== "ทั้งหมด") {
-      //     const typeRoom = this.roomData.filter(
-      //       (tagreturn) => tagreturn.typeRoom === newValue.value
-      //     );
-      //     this.roomData = typeRoom;
-      //   } else {
-      //     this.roomData = this.oldData;
-      //   }
-      // }
-    },
+
+    // selectedtypeRoom: async function (newValue) {
+    //   // this.dataBuilding["listRoom"] = [];
+    //   let buildingList = [];
+    //   buildingList = this.oldData
+    //   let datalist = []
+    //   if (newValue !== null) {
+    //     if (newValue.value !== "ทั้งหมด") {
+    //       datalist = buildingList["listRoom"].map((ele, i) => {
+    //         ele.rooms = ele.rooms.filter((c) => c.typeRoom == newValue.value);
+    //         return ele; // return ele;
+    //       });
+
+    //       this.dataBuilding["listRoom"] = datalist;
+    //       console.log(this.dataBuilding);
+    //     } else {
+    //       // this.roomData = this.oldData;
+    //     }
+    //   }
+    // },
   },
   methods: {
     gotodetail(id, index) {
@@ -115,13 +106,93 @@ export default {
       if (index == "return") action = "return";
       this.$router.push({ path: `/room/detail/${id}`, query: { mode: action } });
     },
-    onChangeEvent(e, event) {
+
+    async roomType() {
+      this.dataBuilding["listRoom"] = [];
+      let buildingList = [];
+      let datalist = await axios.get(`http://localhost:3001/buildings/`);
+      buildingList = await datalist.data.find(
+        (el) => el.name == this.selectedlistRoom.value
+      );
+      if (newValue !== null) {
+        if (newValue.value !== "ทั้งหมด") {
+          datalist = buildingList["listRoom"].map((ele, i) => {
+            ele.rooms = ele.rooms.filter((c) => c.typeRoom == newValue.value);
+            return ele; // return ele;
+          });
+
+          this.dataBuilding["listRoom"] = datalist;
+          console.log(this.dataBuilding);
+        } else {
+          // this.roomData = this.oldData;
+        }
+      }
+    },
+    async getRooms() {
+      try {
+        await axios
+          .get("http://localhost:3001/rooms")
+          .then((res) => {
+            this.roomData = res.data;
+            console.log(this.roomData);
+            this.oldData = this.roomData;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getBuildings() {
+      try {
+        axios.get(`http://localhost:3001/buildings/`).then((res) => {
+          this.buildingList = res.data;
+          // this.oldData = res.data
+          let roomValue = this.buildingList.find(
+            (el) => el.name == this.selectedlistRoom.value
+          );
+          this.committee = roomValue.committee;
+          this.dataBuilding = { ...roomValue };
+          // this.oldData = { ...roomValue };
+          // console.log(this.dataBuilding);
+          this.listRoom = this.buildingList.map((ele) => {
+            return {
+              label: ele.name,
+              value: ele.name,
+            };
+          });
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    async EdituserForm() {
+      let body = {
+        committee: this.committee,
+      };
+      axios
+        .put(`http://localhost:3001/buildings`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getBuildings();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    onChangeEvent(e, event, selectedStatus) {
       this.roomData = this.oldData;
       if (e == "free") {
         if (event.target.checked) {
           const free = this.roomData.filter((tagfree) => tagfree.status === "free");
           this.roomData = free;
-          console.log(this.roomData);
         }
       } else if (e == "unavailable") {
         if (event.target.checked) {
@@ -199,14 +270,11 @@ export default {
             <div class="col-8">
               <div class="d-flex justify-content-end align-items-baseline">
                 <div class="d-flex">
-                  <!-- <MaterialCheckbox id="terms5" checked>
-                    <a href="javascript:;" class="font-weight-bolder"> รายตึก</a>
-                  </MaterialCheckbox> -->
-                  <MaterialCheckbox id="terms6">
+                  <!-- <MaterialCheckbox id="terms6">
                     <a href="javascript:;" class="font-weight-bolder"> ตึกทั้งหมด</a>
-                  </MaterialCheckbox>
+                  </MaterialCheckbox> -->
                 </div>
-                <label style="margin-right: 10px; margin-left: 20px"
+                <!-- <label style="margin-right: 10px; margin-left: 20px"
                   >ค้นหาชื่อหรือเลขห้อง
                 </label>
                 <MaterialInput
@@ -214,7 +282,7 @@ export default {
                   icon="search"
                   type="text"
                   placeholder="Search"
-                />
+                /> -->
               </div>
             </div>
           </div>
@@ -231,11 +299,11 @@ export default {
             <div class="d-flex justify-content-between align-items-baseline p-2">
               <div class="text-start">
                 <p class="d-flex align-items-baseline p-2">
-                  <span style="font-weight: bold; text-decoration: underline">
-                    คณะกรรมการประจําตึก : มารุช ดีงาม , บารมี ดีงาม</span
-                  >
-                  <a data-bs-toggle="modal" data-bs-target="#Edituser"
-                    ><i
+                  <a data-bs-toggle="modal" data-bs-target="#Edituser">
+                    <span style="font-weight: bold; text-decoration: underline">
+                      คณะกรรมการประจําตึก : {{ committee || "เพิ่มชื่อ" }}</span
+                    >
+                    <i
                       class="material-icons"
                       style="cursor: pointer; margin-left: 10px"
                       aria-hidden="true"
@@ -252,7 +320,7 @@ export default {
                   color="green"
                   :checked="statusfree"
                   v-model="selectedStatus"
-                  @change="onChangeEvent('free', $event)"
+                  @click="onChangeEvent('free', $event, selectedStatus)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ว่าง</a>
                 </MaterialCheckbox>
@@ -260,7 +328,8 @@ export default {
                   id="terms2"
                   color="red"
                   :checked="statuseunavailable"
-                  @change="onChangeEvent('unavailable', $event)"
+                  v-model="selectedUnavailable"
+                  @click="onChangeEvent('unavailable', $event)"
                 >
                   <a href="javascript:;" class="font-weight-bolder"> ไม่ว่าง</a>
                 </MaterialCheckbox>
@@ -291,7 +360,7 @@ export default {
             </div>
 
             <!-- v-for="(item, index) in NoRoom" :key="index" -->
-            <div v-for="(item, index) in NoRoom" :key="index">
+            <div v-for="(item, index) in dataBuilding?.listRoom" :key="index">
               <div class="card mb-2">
                 <div class="card-body">
                   <p class="text-start">
@@ -302,27 +371,27 @@ export default {
                       href="#collapseExample"
                       aria-expanded="false"
                       aria-controls="collapseExample"
-                      >{{ item?.title }}</MaterialButton
+                      >ชั้น {{ item?.floor }}</MaterialButton
                     >
                   </p>
                   <div class="collapse show" id="collapseExample" aria-expanded="true">
                     <div class="flex-container">
-                      <div v-for="(item, index) in roomData" :key="index">
+                      <div v-for="(item2, index) in roomData" :key="index">
                         <div
                           class="card mb-2"
                           :class="{
-                            'bg-red': item?.status == 'unavailable',
-                            'bg-green': item?.status == 'free',
-                            'bg-warning2': item?.status == 'waiting',
-                            'bg-return': item?.status == 'return',
-                            'bgg-red': item?.status == 'special',
+                            'bg-red': item2?.status == 'unavailable',
+                            'bg-green': item2?.status == 'free',
+                            'bg-warning2': item2?.status == 'waiting',
+                            'bg-return': item2?.status == 'return',
+                            'bgg-red': item2?.status == 'special',
                           }"
                           :style="{ width: `220px`, height: `170px` }"
                         >
                           <div class="card-body p-1">
                             <a
                               style="cursor: pointer"
-                              @click="gotodetail(item?.dataIndex, item?.status)"
+                              @click="gotodetail(item2?.index, item2?.status)"
                             >
                               <p
                                 class="card-title"
@@ -333,48 +402,50 @@ export default {
                                   background: white;
                                 "
                               >
-                                <a style="font-size: medium">{{ item?.title }}</a>
+                                <a style="font-size: medium"
+                                  >ห้อง {{ item2?.numberRoom }}</a
+                                >
                               </p>
                               <p
-                                v-if="item?.status == 'free'"
+                                v-if="item2?.status == 'free'"
                                 class="card-title bgg-green"
                                 style="font-size: 16px"
                               >
                                 {{ "ว่าง" }}
                               </p>
                               <p
-                                v-if="item?.status == 'unavailable'"
+                                v-if="item2?.status == 'unavailable'"
                                 class="card-title bgg-red"
                                 style="font-size: 16px"
                               >
                                 {{ "ไม่ว่าง" }}
                               </p>
                               <p
-                                v-if="item?.status == 'waiting'"
+                                v-if="item2?.status == 'waiting'"
                                 class="card-title bgg-warning2"
                                 style="font-size: 16px"
                               >
                                 {{ "ชำรุด" }}
                               </p>
                               <p
-                                v-if="item?.status == 'return'"
+                                v-if="item2?.status == 'return'"
                                 class="card-title bgg-return"
                                 style="font-size: 16px"
                               >
                                 {{ "ผ่อนผัน" }}
                               </p>
                               <p class="card-title" style="font-size: 14px">
-                                {{ item?.ranks }} {{ item?.firstName }}
-                                {{ item?.laststName }}
+                                {{ item2?.ranks }} {{ item2?.firstName }}
+                                {{ item2?.laststName }}
                               </p>
                               <div>
                                 <span
-                                  v-if="item?.status !== 'special'"
+                                  v-if="item2?.status !== 'special'"
                                   style="text-align: right; font-size: small"
-                                  >{{ item?.Affiliation }}</span
+                                  >{{ item2?.Affiliation }}</span
                                 >
                                 <span
-                                  v-if="item?.status == 'special'"
+                                  v-if="item2?.status == 'special'"
                                   style="text-align: right; font-size: 16px"
                                   >{{ "กรณีพิเศษ" }}</span
                                 >
@@ -457,6 +528,8 @@ export default {
                 id="exampleFormControlTextarea1"
                 rows="3"
                 placeholder="กรอกชื่อ"
+                :value="committee"
+                @input="(event) => (committee = event.target.value)"
               ></textarea>
             </div>
           </div>
@@ -464,7 +537,14 @@ export default {
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="EdituserForm"
+              html-type="submit"
+              data-bs-dismiss="modal"
+              >บันทึก</MaterialButton
+            >
           </div>
         </div>
       </div>

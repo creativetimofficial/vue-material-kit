@@ -1,0 +1,27 @@
+[
+    {
+        "id": "3f7e1c45-a2e9-4b08-a56d-e687ea79ba61",
+        "firstName": "สมชัย14",
+        "lastName": "แสงสุข",
+        "affiliation": "ลูกจ้าง",
+        "rank": "นาง",
+        "idcard": "134044411441178",
+        "phone": "0325647845",
+        "status": "โสด",
+        "typeAffiliation": "ลูกจ้าง",
+        "typeRanks": "ลูกจ้าง",
+        "typeUser": "ตร.",
+        "building": "แฟลตบางเขน 1",
+        "floor": "2",
+        "roomnumber": "201",
+        "insurancecost": 254,
+        "installments": 266,
+        "waterbill": 150,
+        "electricitybill": 945,
+        "central": 500,
+        "costs": 200,
+        "sumCost":1000,
+        "typeContract": "หักได้",
+        "contract": "..."
+    }
+]

@@ -195,21 +195,6 @@ export default {
                   บันทึกค่าใช้จ่ายบ้านพัก บช.ตชด.
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  style="color: #57b05b"
-                  id="contact-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#contact"
-                  type="button"
-                  role="tab"
-                  aria-controls="contact"
-                  aria-selected="false"
-                >
-                  สรุปรายงานค่าใช้จ่าย
-                </button>
-              </li>
             </ul>
             <div class="tab-content" id="myTabContent">
               <div
@@ -261,13 +246,13 @@ export default {
                         v-model="selectedMonth"
                       ></v-select>
                     </div>
-                    <div class="mb-3 w-10 " style="margin-right: 5px">
+                    <!-- <div class="mb-3 w-10 " style="margin-right: 5px">
                       <label>พ.ศ.</label>
                       <v-select
                         :options="optionYear"
                         v-model="selectedYear"
                       ></v-select>
-                    </div>
+                    </div> -->
                     <div class="mb-3 w-15 ">
                       <label>สังกัด</label>
                       <v-select

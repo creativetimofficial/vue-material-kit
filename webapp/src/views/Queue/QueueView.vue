@@ -21,13 +21,6 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "มานพ", value: "มานพ" },
-        { label: "วิชัย", value: "วิชัย" },
-        { label: "ธนาพร", value: "ธนาพร" },
-        { label: "มนตรี", value: "มนตรี" },
-      ],
       selectedUser: "",
       firstName: "",
       lastName: "",
@@ -36,21 +29,31 @@ export default {
       idcard: "",
       phone: "",
       bookNumber: "",
-      queueList : [],
-      userList : [],
-      userByid: {}
+      queueList: [],
+      userList: [],
+      userByid: {},
+      searchName: "",
+      typeUserByqueue: "โสด",
+      olddatatypeQueue: [],
+      datatypeQueue: [],
+      no: 0,
+      userId: ''
     };
   },
   created() {
-    // console.log(this.masterData);
     this.getAllqueue();
-    this.getAllusers()
+    // this.getAllusers();
+    this.getAllNoqueue();
   },
   watch: {
     selectedUser: function (newValue) {
-      // this.updateColor(newValue)
       console.log(newValue.value);
-      this.getAllusersByid(newValue.value)
+      this.getAllusersByid(newValue.value);
+    },
+  },
+  computed: {
+    queueList() {
+      return this.queueList.filter((item) => item.firstName.includes(this.searchName));
     },
   },
   methods: {
@@ -59,13 +62,28 @@ export default {
       // this.selected = event;
     },
 
+    queuefilter(e) {
+      if (e.target) this.typeUserByqueue = e.target.value;
+      else this.typeUserByqueue = e;
+      this.datatypeQueue = this.olddatatypeQueue;
+      if(this.typeUserByqueue !== 'ทั้งหมด'){
+      let dataqueue = this.datatypeQueue.filter((e) => e.status == this.typeUserByqueue);
+      this.queueList = dataqueue;
+      }else if (this.typeUserByqueue == 'ทั้งหมด'){
+        this.queueList =  this.datatypeQueue;
+      }
+    
+    },
     getAllqueue() {
       try {
         axios
-          .get("http://localhost:3001/queue")
+          .get(`http://localhost:3001/queue/inqueue`)
           .then((res) => {
             this.queueList = res.data;
-            console.log(this.queueList);
+            this.olddatatypeQueue = this.queueList;
+            console.log(res.data);
+            this.no = this.queueList.length+1
+            this.queuefilter("โสด");
           })
           .catch((err) => {
             console.log(err.response);
@@ -76,13 +94,33 @@ export default {
     },
 
     getAllusersByid(id) {
+      this.userId = id
       try {
         axios
           .get(`http://localhost:3001/users/${id}`)
           .then((res) => {
-            let data =res.data
-            this.userByid = data
-            // console.log(this.userByid)
+            let data = res.data;
+            this.userByid = data;
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    getAllNoqueue() {
+      try {
+        axios
+          .get(`http://localhost:3001/queue/none`)
+          .then((res) => {
+            this.userList = res.data.map((ele) => {
+              return {
+                label: ele.rank + " " + ele.firstName + " " + ele.lastName,
+                value: ele.id,
+              };
+            });
           })
           .catch((err) => {
             console.log(err.response);
@@ -97,15 +135,15 @@ export default {
         axios
           .get("http://localhost:3001/users")
           .then((res) => {
-            this.userList = res.data.map(ele =>{
+            this.userList = res.data.map((ele) => {
               return {
-                label : ele.rank + " "+ ele.firstName + " " + ele.lastName,
-                value : ele.id,
-              }
-            })
+                label: ele.rank + " " + ele.firstName + " " + ele.lastName,
+                value: ele.id,
+              };
+            });
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
           });
       } catch (error) {
         console.error(error);
@@ -113,20 +151,15 @@ export default {
     },
 
     submitForm() {
-      // firstName: this.firstName,
-        // lastName: this.lastName,
-        // Affiliation: this.Affiliation,
-        // rank: this.rank,
-        // idcard: this.idcard,
-        // phone: this.phone,
       let body = {
         ...this.userByid,
-        bookNumber: this.bookNumber
+        no: this.no,
+        bookNumber: this.bookNumber,
+        queue: 'inqueue'
       };
-      delete body.id
-      console.log(body);
+      delete body.id;
       axios
-        .post(`http://localhost:3001/queue`, body, {
+        .put(`http://localhost:3001/queue/${this.userId}`, body, {
           headers: {
             // remove headers
             "Access-Control-Allow-Origin": "*",
@@ -137,12 +170,8 @@ export default {
           this.getAllqueue();
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err);
         });
-      // let b = []
-      // b.push(body)
-      // this.userlist.push(body);
-      // console.log(this.userlist);
     },
   },
 };
@@ -174,6 +203,7 @@ export default {
           </div>
           <div class="d-flex justify-content-between align-items-baseline">
             <div class="mb-3">
+              
               <div class="form-check form-check-inline">
                 <label style="margin-right: 20px">สถานภาพ</label>
                 <input
@@ -182,6 +212,7 @@ export default {
                   name="inlineRadioOptions"
                   id="inlineRadio1"
                   value="โสด"
+                  @change="queuefilter($event)"
                   checked
                 />
                 <label class="form-check-label" for="inlineRadio1">โสด</label>
@@ -193,8 +224,20 @@ export default {
                   name="inlineRadioOptions"
                   id="inlineRadio2"
                   value="สมรส"
+                  @change="queuefilter($event)"
                 />
                 <label class="form-check-label" for="inlineRadio2">สมรส</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio3"
+                  value="ทั้งหมด"
+                  @change="queuefilter($event)"
+                />
+                <label class="form-check-label" for="inlineRadio3">ทั้งหมด</label>
               </div>
             </div>
             <div class="d-flex align-items-baseline">
@@ -205,6 +248,8 @@ export default {
                 icon="search"
                 type="text"
                 placeholder="Search"
+                :value="searchName"
+                @input="(event) => (searchName = event.target.value)"
               />
               <MaterialButton
                 variant="gradient"
@@ -231,7 +276,7 @@ export default {
               </thead>
               <tbody>
                 <tr v-for="(item, index) in queueList" :key="index">
-                  <th scope="row">{{ index + 1 }}</th>
+                  <th scope="row">{{ item?.no  }}</th>
                   <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
                   <td>{{ item?.affiliation }}</td>
                   <td>{{ item?.status }}</td>
@@ -282,16 +327,19 @@ export default {
                   placeholder="ตัวอย่าง : 11244"
                 ></textarea>
               </div>
-              <div class="row g-0" v-if="selectedUser!== ''">
+              <div class="row g-0" v-if="selectedUser !== ''">
                 <div class="col-md-12">
-                    <div class="row" >
-                      <h5 class="card-title ">รายละเอียดผู้เช่า</h5>
-                        <p class="card-text pt-1">ชือ-สกุล : {{ userByid?.rank }} {{ userByid?.firstName }} {{ userByid?.lastName }}</p>
-                        <p class="card-text">สังกัด : {{ userByid?.affiliation }}</p>
-                        <p class="card-text">เลขบัตรประชาชน : {{ userByid?.idcard }}</p>
-                        <p class="card-text">สถานภาพ : {{ userByid?.status }}</p>
-                        <p class="card-text">เบอร์โทร : {{ userByid?.phone }}</p>
-                    </div>
+                  <div class="row">
+                    <h5 class="card-title">รายละเอียด</h5>
+                    <p class="card-text pt-1">
+                      ชือ-สกุล : {{ userByid?.rank }} {{ userByid?.firstName }}
+                      {{ userByid?.lastName }}
+                    </p>
+                    <p class="card-text">สังกัด : {{ userByid?.affiliation }}</p>
+                    <p class="card-text">เลขบัตรประชาชน : {{ userByid?.idcard }}</p>
+                    <p class="card-text">สถานภาพ : {{ userByid?.status }}</p>
+                    <p class="card-text">เบอร์โทร : {{ userByid?.phone }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -316,7 +364,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {

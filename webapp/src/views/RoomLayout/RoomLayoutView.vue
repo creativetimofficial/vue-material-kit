@@ -4,94 +4,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import masterData from "@/assets/dataJson/masterData.json";
-
-const listRoom = [
-  { title: "ตึก 1" },
-  { title: "ตึก 2" },
-  { title: "ตึก 3" },
-  { title: "ตึก 4" },
-  { title: "ตึก 5" },
-  { title: "ตึก 6" },
-  { title: "ตึก 7" },
-];
-
-const NoRoom = [
-  { title: "ชั้น 1" },
-  { title: "ชั้น 2" },
-  { title: "ชั้น 3" },
-  { title: "ชั้น 4" },
-  { title: "ชั้น 5" },
-  { title: "ชั้น 6" },
-  { title: "ชั้น 7" },
-];
-
-const landingColumns = [
-  {
-    title: "ห้อง 1",
-    dataIndex: "1",
-    status: true,
-  },
-  {
-    title: "ห้อง 2",
-    dataIndex: "2",
-    status: false,
-  },
-  {
-    title: "ห้อง 3",
-    dataIndex: "3",
-    status: true,
-  },
-  {
-    title: "ห้อง 4",
-    dataIndex: "4",
-    status: true,
-  },
-  {
-    title: "ห้อง 5",
-    dataIndex: "5",
-    status: false,
-  },
-  {
-    title: "ห้อง 6",
-    dataIndex: "6",
-    status: false,
-  },
-  {
-    title: "ห้อง 7",
-    dataIndex: "7",
-    status: true,
-  },
-  {
-    title: "ห้อง 8",
-    dataIndex: "8",
-    status: false,
-  },
-  {
-    title: "ห้อง 9",
-    dataIndex: "9",
-    status: false,
-  },
-  {
-    title: "ห้อง 10",
-    dataIndex: "10",
-    status: false,
-  },
-  {
-    title: "ห้อง 11",
-    dataIndex: "11",
-    status: true,
-  },
-  {
-    title: "ห้อง 12",
-    dataIndex: "12",
-    status: false,
-  },
-  {
-    title: "ห้อง 13",
-    dataIndex: "13",
-    status: false,
-  },
-];
+import axios from "axios";
 
 export default {
   components: {
@@ -101,9 +14,6 @@ export default {
   },
   setup() {
     return {
-      listRoom,
-      NoRoom,
-      landingColumns,
       vueMkHeader,
       masterData,
     };
@@ -111,25 +21,20 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
-      optionsRoomtype: [
-        { label: "ช๑", value: "ช๑" },
-        { label: "ช๒", value: "ช๒" },
-        { label: "ช๓", value: "ช๓" },
-      ],
       selectedColor: "",
       Edifice: "",
       Building: "",
       Floors: "",
       selectedRoomtype: "ช๑",
+      buildingList: [],
+      searchName: "",
+      FloorsList: [],
+      Area: "",
     };
+  },
+  created() {
+    // console.log(this.masterData);
+    this.getBuildings();
   },
   watch: {
     selectedColor: function (newValue) {
@@ -137,10 +42,100 @@ export default {
       console.log(newValue);
     },
   },
+  computed: {
+    buildingList() {
+      return this.buildingList.filter((item) => item.name.includes(this.searchName));
+    },
+  },
   methods: {
-    changedLabel(event) {
-      console.log(event);
-      // this.selected = event;
+    changedFloors() {
+      let array = [];
+      for (let index = 0; index < this.Floors; index++) {
+        array.push({
+          name: this.Building,
+          floor: index + 1,
+          rooms: [
+            {
+              index: 1,
+              numberRoom: 1,
+              ranks: "",
+              firstName: "",
+              laststName: "",
+              Affiliation: "",
+              typeRoom: "",
+              status: "free",
+            },
+          ],
+          sumroom: 1,
+        });
+      }
+      this.FloorsList = array;
+    },
+    addRoom(item) {
+      item.rooms.push({
+        index: item.sumroom + 1,
+        numberRoom: item.sumroom + 1,
+        ranks: "",
+        firstName: "",
+        laststName: "",
+        Affiliation: "",
+        typeRoom: "",
+        status: "free",
+      });
+      item.sumroom = item.sumroom + 1;
+    },
+
+    async submitForm() {
+      let sum = 0;
+      this.FloorsList.forEach((num) => {
+        sum += num.sumroom;
+      });
+      let body = {
+        buil: this.Area,
+        name: this.Building,
+        sumroom: sum,
+        floor: this.Floors,
+        roomnumber: "",
+        type: "",
+        listRoom: this.FloorsList,
+      };
+      await axios
+        .post(`http://localhost:3001/buildings`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getBuildings();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        await axios
+        .post(`http://localhost:3001/rooms`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+    },
+    // buildings
+    async getBuildings() {
+      try {
+        await axios
+          .get("http://localhost:3001/buildings")
+          .then((res) => {
+            this.buildingList = res.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
@@ -172,12 +167,14 @@ export default {
             />
           </div>
           <div class="d-flex justify-content-end align-items-baseline">
-            <label style="margin-right: 10px">ค้นหาพื้นที่หรือตึก </label>
+            <label style="margin-right: 10px">ค้นหาชื่ออาคาร </label>
             <MaterialInput
               class="input-group-dynamic w-30"
               icon="search"
               type="text"
               placeholder="Search"
+              :value="searchName"
+              @input="(event) => (searchName = event.target.value)"
             />
             <MaterialButton
               style="margin-left: 20px"
@@ -202,12 +199,12 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in masterData?.building" :key="index">
+                <tr v-for="(item, index) in buildingList" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
                   <td>{{ item?.buil }}</td>
                   <td>{{ item?.name }}</td>
                   <td>{{ item?.floor }}</td>
-                  <td>{{ item?.room }}</td>
+                  <td>{{ item?.sumroom }}</td>
                   <!-- <td>{{ item?.roomnumber }}</td> -->
                   <!-- <td>{{ item?.type }}</td> -->
                 </tr>
@@ -228,7 +225,7 @@ export default {
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">เพิ่มผังห้อง</h5>
@@ -261,53 +258,67 @@ export default {
                   placeholder="ชื่ออาคาร"
                 />
               </div>
-              <md-chips v-model="fruits" md-placeholder="Add fruit..."></md-chips>
               <div class="mb-3">
                 <MaterialInput
                   :value="Floors"
                   @input="(event) => (Floors = event.target.value)"
                   class="input-group-static"
-                  label="ชั้น"
+                  label="จำนวนชั้น"
                   type="number"
-                  placeholder="ชั้น"
+                  placeholder="จำนวนชั้น"
+                  @change="changedFloors()"
                 />
+                <div class="card pt-4" v-for="(item, index) in FloorsList" :key="index">
+                  <ul
+                    class="list-group list-group-flush"
+                    style="border: 2px solid #2b572d"
+                  >
+                    <li class="list-group-item">
+                      <span style="font-size: 16px; font-weight: bold"
+                        >ชั้นที่ {{ item.floor }}</span
+                      >
+                      <div>
+                        <label
+                          style="font-size: 16px; font-weight: bold; margin-left: 20px"
+                        >
+                          จำนวนห้อง {{ item.sumroom }}
+                        </label>
+                      </div>
+                      <div class="flex-container2">
+                        <div v-for="(item2, index) in item?.rooms" :key="index">
+                          ห้อง {{ item2.numberRoom }}
+                        </div>
+                        <div
+                          style="
+                            background: white;
+                            color: #000;
+                            border: 2px solid #4cbb17;
+                            cursor: pointer;
+                            text-decoration: underline;
+                            font-size: 18px;
+                          "
+                        >
+                          <a @click="addRoom(item)">เพิ่มห้อง</a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="mb-3">
-                <MaterialInput
-                  name="Edifice"
-                  :value="Edifice"
-                  @input="(event) => (Edifice = event.target.value)"
-                  class="input-group-static"
-                  label="จำนวนห้อง"
-                  type="text"
-                  placeholder="จำนวนห้อง"
-                />
-              </div>
-              <!-- <div class="mb-3">
-                <label>กรอกเลขห้อง</label>
-                <textarea
-                  :value="roomnumber"
-                  @input="(event) => (roomnumber = event.target.value)"
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  placeholder="ตัวอย่าง : 1,2,3"
-                ></textarea>
-              </div>
-              <div class="mb-3">
-                <label>ประเภทห้องพัก</label>
-                <v-select
-                  :options="optionsRoomtype"
-                  v-model="selectedRoomtype"
-                ></v-select>
-              </div> -->
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               ปิดหน้าต่าง
             </button>
-            <MaterialButton variant="gradient" color="success">บันทึก</MaterialButton>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm"
+              html-type="submit"
+              data-bs-dismiss="modal"
+              >บันทึก</MaterialButton
+            >
           </div>
         </div>
       </div>
@@ -316,7 +327,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {
@@ -343,5 +354,20 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+.flex-container2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container2 > div {
+  background-color: #4cbb17;
+  color: white;
+  width: 98px;
+  margin: 10px;
+  height: 80px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 80px;
 }
 </style>

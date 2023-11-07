@@ -2,6 +2,10 @@
 const users = require('./users.json')
 const rooms = require('./rooms.json')
 const queue = require('./queue.json')
+const building = require('./building.json')
+const Expenses = require('./Expenses.json')
+const history = require('./้history.json')
+const reports = require('./report.json')
 const masterData = require('./masterData.json')
 const express = require("express");
 const app = express();
@@ -21,6 +25,7 @@ app.get('/users', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.json(users)
 })
+
 app.get('/users/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.json(users.find(user => user.id === (req.params.id)))
@@ -70,34 +75,80 @@ app.delete('/users/:id', (req, res) => {
     res.send(`Delete user '${users[deletedIndex].username}' completed.`)
 })
 
-app.get('/room', (req, res) => {
+app.get('/buildings', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(users)
+    res.json(building)
 })
-app.get('/room/:id', (req, res) => {
+app.get('/buildings/:name', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(users.find(user => user.id === (req.params.id)))
+    res.json(building.find(user => user.name === (req.params.name)))
 })
-app.post('/room', (req, res) => {
+app.post('/buildings', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     let id = uuidv4();
     let body = req.body
     let data = { id: id, ...body }
-    users.push(data)
-    fs.writeFile('./users.json', JSON.stringify(users), err => {
+    building.push(data)
+    fs.writeFile('./building.json', JSON.stringify(building), err => {
         if (err) {
             console.log('Error writing file', err)
         } else {
-            console.log('Successfully wrote file', users)
+            console.log('Successfully wrote file', building)
         }
     })
-    res.json(users)
+    res.json(building)
 })
-app.put('/room/:id', (req, res) => {
+
+app.get('/expenses', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    const updateIndex = users.findIndex(user => user.id === (req.params.id))
-    let dataOld = users[updateIndex]
-    let filterdata = users.filter(user => user.id !== (req.params.id))
+    res.json(Expenses)
+})
+
+app.post('/expenses', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    let id = uuidv4();
+    let body = req.body
+    let data = { id: id, ...body }
+    Expenses.push(data)
+    fs.writeFile('./Expenses.json', JSON.stringify(Expenses), err => {
+        if (err) {
+            console.log('Error writing file', err)
+        } else {
+            console.log('Successfully wrote file', Expenses)
+        }
+    })
+    res.json(Expenses)
+})
+
+app.get('/rooms', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json(rooms)
+})
+app.get('/rooms/:id', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    console.log(req.params.id);
+    res.json(rooms.find(room => room.index == (req.params.id)))
+})
+app.post('/rooms', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    let id = uuidv4();
+    let body = req.body
+    let data = { id: id, ...body }
+    rooms.push(data)
+    fs.writeFile('./rooms.json', JSON.stringify(rooms), err => {
+        if (err) {
+            console.log('Error writing file', err)
+        } else {
+            console.log('Successfully wrote file', rooms)
+        }
+    })
+    res.json(rooms)
+})
+app.put('/rooms/:id', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const updateIndex = rooms.findIndex(user => user.id === (req.params.id))
+    let dataOld = rooms[updateIndex]
+    let filterdata = rooms.filter(user => user.id !== (req.params.id))
     const parsedData = dataOld;
     if (req.body.firstName) parsedData.firstName = req.body.firstName
     if (req.body.lastName) parsedData.lastName = req.body.lastName
@@ -109,7 +160,7 @@ app.put('/room/:id', (req, res) => {
     if (req.body.typeAffiliation) parsedData.typeAffiliation = req.body.typeAffiliation
     if (req.body.typeRanks) parsedData.typeRanks = req.body.typeRanks
     filterdata.push(parsedData)
-    fs.writeFile('./users.json', JSON.stringify(filterdata, null, 2), (err) => {
+    fs.writeFile('./rooms.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {
             console.log("Failed to write updated data to file");
             return;
@@ -119,15 +170,16 @@ app.put('/room/:id', (req, res) => {
     res.send(`Update user id: '${req.params.id}' completed.`)
 })
 
-app.get('/queue', (req, res) => {
+app.get('/queue/:name', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(queue)
+    let list = users.filter(user => user.queue === req.params.name)
+    res.json(list)
 })
 app.get('/queue/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.json(queue.find(queue => queue.id === (req.params.id)))
 })
-app.post('/queue', (req, res) => {
+app.put('/queue', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     let id = uuidv4();
     let body = req.body
@@ -148,6 +200,7 @@ app.put('/queue/:id', (req, res) => {
     let dataOld = users[updateIndex]
     let filterdata = users.filter(user => user.id !== (req.params.id))
     const parsedData = dataOld;
+    console.log(req.body);
     if (req.body.firstName) parsedData.firstName = req.body.firstName
     if (req.body.lastName) parsedData.lastName = req.body.lastName
     if (req.body.affiliation) parsedData.affiliation = req.body.affiliation
@@ -157,6 +210,9 @@ app.put('/queue/:id', (req, res) => {
     if (req.body.status) parsedData.status = req.body.status
     if (req.body.typeAffiliation) parsedData.typeAffiliation = req.body.typeAffiliation
     if (req.body.typeRanks) parsedData.typeRanks = req.body.typeRanks
+    if (req.body.queue) parsedData.queue = req.body.queue
+    if (req.body.no) parsedData.no = req.body.no
+    if (req.body.bookNumber) parsedData.bookNumber = req.body.bookNumber
     filterdata.push(parsedData)
     fs.writeFile('./users.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {
@@ -167,8 +223,61 @@ app.put('/queue/:id', (req, res) => {
     });
     res.send(`Update user id: '${req.params.id}' completed.`)
 })
-app.delete('/queue/:id', (req, res) => {
-    const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
+
+app.get('/history', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    let list = users.filter(history => history.queue === req.params.name)
+    res.json(list)
+})
+app.get('/history/:id', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json(history.find(history => history.id === (req.params.id)))
+})
+app.post('/history', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    let id = uuidv4();
+    let body = req.body
+    let data = { id: id, ...body }
+    history.push(data)
+    fs.writeFile('./history.json', JSON.stringify(history), err => {
+        if (err) {
+            console.log('Error writing file', err)
+        } else {
+            console.log('Successfully wrote file', history)
+        }
+    })
+    res.json(history)
+})
+app.put('/history/:id', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const updateIndex = history.findIndex(user => user.id === (req.params.id))
+    let dataOld = history[updateIndex]
+    let filterdata = history.filter(user => user.id !== (req.params.id))
+    const parsedData = dataOld;
+    if (req.body.firstName) parsedData.firstName = req.body.firstName
+    if (req.body.lastName) parsedData.lastName = req.body.lastName
+    if (req.body.affiliation) parsedData.affiliation = req.body.affiliation
+    if (req.body.rank) parsedData.rank = req.body.rank
+    if (req.body.idcard) parsedData.idcard = req.body.idcard
+    if (req.body.phone) parsedData.phone = req.body.phone
+    if (req.body.status) parsedData.status = req.body.status
+    if (req.body.typeAffiliation) parsedData.typeAffiliation = req.body.typeAffiliation
+    if (req.body.typeRanks) parsedData.typeRanks = req.body.typeRanks
+    if (req.body.queue) parsedData.queue = req.body.queue
+    if (req.body.no) parsedData.no = req.body.no
+    if (req.body.bookNumber) parsedData.bookNumber = req.body.bookNumber
+    filterdata.push(parsedData)
+    fs.writeFile('./history.json', JSON.stringify(filterdata, null, 2), (err) => {
+        if (err) {
+            console.log("Failed to write updated data to file");
+            return;
+        }
+        console.log("Updated file successfully");
+    });
+    res.send(`Update user id: '${req.params.id}' completed.`)
+})
+app.delete('/history/:id', (req, res) => {
+    const deletedIndex = history.findIndex(history => user.id === Number(req.params.id))
     res.send(`Delete user '${users[deletedIndex].username}' completed.`)
 })
 
@@ -228,11 +337,11 @@ app.delete('/layout/:id', (req, res) => {
 
 app.get('/report', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(users)
+    res.json(reports)
 })
 app.get('/report/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(users.find(user => user.id === (req.params.id)))
+    res.json(reports.find(user => user.id === (req.params.id)))
 })
 app.post('/report', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -240,20 +349,20 @@ app.post('/report', (req, res) => {
     let body = req.body
     let data = { id: id, ...body }
     users.push(data)
-    fs.writeFile('./users.json', JSON.stringify(users), err => {
+    fs.writeFile('./report.json', JSON.stringify(users), err => {
         if (err) {
             console.log('Error writing file', err)
         } else {
-            console.log('Successfully wrote file', users)
+            console.log('Successfully wrote file', reports)
         }
     })
-    res.json(users)
+    res.json(reports)
 })
 app.put('/report/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    const updateIndex = users.findIndex(user => user.id === (req.params.id))
-    let dataOld = users[updateIndex]
-    let filterdata = users.filter(user => user.id !== (req.params.id))
+    const updateIndex = reports.findIndex(user => user.id === (req.params.id))
+    let dataOld = reports[updateIndex]
+    let filterdata = reports.filter(user => user.id !== (req.params.id))
     const parsedData = dataOld;
     if (req.body.firstName) parsedData.firstName = req.body.firstName
     if (req.body.lastName) parsedData.lastName = req.body.lastName
@@ -275,7 +384,7 @@ app.put('/report/:id', (req, res) => {
     res.send(`Update user id: '${req.params.id}' completed.`)
 })
 app.delete('/report/:id', (req, res) => {
-    const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
+    const deletedIndex = reports.findIndex(user => user.id === Number(req.params.id))
     res.send(`Delete user '${users[deletedIndex].username}' completed.`)
 })
 

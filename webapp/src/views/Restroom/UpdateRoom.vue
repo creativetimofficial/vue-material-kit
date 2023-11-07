@@ -14,6 +14,7 @@ import setMaterialInput from "@/assets/js/material-input";
 // onMounted(() => {
 //   setMaterialInput();
 // });
+import axios from "axios";
 const listRoom = [
   { title: "ตึก 1" },
   { title: "ตึก 2" },
@@ -164,9 +165,9 @@ export default {
         { label: "มนตรี", value: "มนตรี" },
       ],
       optionsRoomtype: [
-        { label: "ช๑", value: "ช๑" },
-        { label: "ช๒", value: "ช๒" },
-        { label: "ช๓", value: "ช๓" },
+        { label: "ช1", value: "ช1" },
+        { label: "ช2", value: "ช2" },
+        { label: "ช3", value: "ช3" },
       ],
       optionsBuilding: [
         { label: "อาคารแฟลต 1/11", value: "1" },
@@ -209,18 +210,21 @@ export default {
       phone: "1200",
       old: "100",
       birthday: "200",
-      Roomtype: "ช๑",
+      Roomtype: "ช1",
       Roomconditions: "ปกติ",
-      selectedRoomtype: "ช๑",
+      selectedRoomtype: "ช1",
       statusedit: false,
       mode: "",
       id: "",
+      numberRoom: "",
+      roomData:[]
     };
   },
   created() {
     this.mode = this.$route.query.mode;
     if (this.$route.params.id) {
       this.id = this.$route.params.id;
+      this.getRooms(this.id)
     }
     // this.$route.query
   },
@@ -234,6 +238,22 @@ export default {
     changedLabel(event) {
       console.log(event);
       // this.selected = event;
+    },
+    async getRooms(id) {
+      try {
+        await axios
+          .get(`http://localhost:3001/rooms/${id}`)
+          .then((res) => {
+            this.roomData = res.data;
+            console.log(this.roomData);
+            // this.oldData = this.roomData;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     submitForm() {
@@ -332,8 +352,8 @@ export default {
                       <h5>แก้ไขรายละเอียด ห้อง 2</h5>
                       <div class="mb-3">
                         <MaterialInput
-                          :value="lastName"
-                          @input="(event) => (lastName = event.target.value)"
+                          :value="numberRoom"
+                          @input="(event) => (numberRoom = event.target.value)"
                           class="input-group-static"
                           label="เลขห้อง"
                           type="text"
@@ -369,7 +389,7 @@ export default {
                             value="option2"
                           />
                           <label class="form-check-label" for="inlineRadio2"
-                            >ไม่ชำรุด</label
+                            >ปกติ</label
                           >
                         </div>
                       </div>

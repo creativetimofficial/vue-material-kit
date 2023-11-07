@@ -39,45 +39,59 @@ export default {
       typeAffiliation: "",
       typeRanks: "",
       dataUser: [],
+      olddata: [],
+      datatypeUser: [],
+      olddatatypeUser: [],
       modalShow: false,
       id: "",
       searchName: "",
+      typeUser: "ตร.",
+      typeUserBytype: "",
+      typeUserByrankr: "",
     };
   },
   created() {
-    // console.log(this.masterData);
     this.getAlluser();
   },
   watch: {
     selectedColor: function (newValue) {
-      // this.updateColor(newValue)
       console.log(newValue);
     },
     typeAffiliation: function (newValue) {
-      // this.updateColor(newValue)
       console.log(newValue);
-      // if(newValue != undefined){
-      //   this.typeAffiliation = newValue.value
-      // }
-    },
-    typeRanks: function (newValue) {
-      // this.updateColor(newValue)
-      console.log(newValue);
-      // if(newValue != undefined){
-      //   this.typeRanks = newValue.value
-      // }
     },
   },
-
+  computed: {
+    dataUser() {
+      return this.dataUser.filter((item) => item.firstName.includes(this.searchName));
+    },
+  },
   methods: {
-    filteredData() {
-      this.dataUser.filter((entry) =>
-        this.dataUser.length
-          ? Object.keys(this.dataUser[0]).some((key) =>
-              ("" + entry[key]).toLowerCase().includes(this.searchName.toLowerCase())
-            )
-          : true
-      );
+    typeUserfilter(e) {
+      if (e.target) this.typeUserBytype = e.target.value;
+      else this.typeUserBytype = e;
+      this.dataUser = this.olddata;
+      if (this.typeUserBytype !== "ทั้งหมด") {
+        let dataFind = this.dataUser.filter((e) => e.typeUser === this.typeUserBytype);
+        this.datatypeUser = dataFind;
+        this.olddatatypeUser = dataFind;
+        this.dataUser = dataFind;
+        if (this.typeUserByrankr !== "") this.rankrfilter(this.typeUserByrankr);
+      } else if (this.typeUserBytype == "ทั้งหมด") {
+        this.dataUser = this.olddata;
+      }
+    },
+
+    rankrfilter(e) {
+      if (e.target) this.typeUserByrankr = e.target.value;
+      else this.typeUserByrankr = e;
+      this.datatypeUser = this.olddatatypeUser;
+      let dataRank = this.datatypeUser.filter((e) => e.typeRanks == this.typeUserByrankr);
+      this.dataUser = dataRank;
+    },
+
+    typeUserchange(e) {
+      this.typeUser = e.target.value;
     },
 
     async editUser(id) {
@@ -98,7 +112,7 @@ export default {
           this.modalShow = true;
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err);
         });
     },
 
@@ -133,7 +147,7 @@ export default {
           this.getAlluser();
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err);
         });
     },
     async submitForm() {
@@ -153,8 +167,8 @@ export default {
         status: this.selectedDataObtion.value || "โสด",
         typeAffiliation: this.typeAffiliation.value,
         typeRanks: this.typeRanks.value,
+        typeUser: this.typeUser,
       };
-
       axios
         .post(`http://localhost:3001/users`, body, {
           headers: {
@@ -167,19 +181,22 @@ export default {
           this.getAlluser();
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err);
         });
     },
 
-    getAlluser() {
+    async getAlluser() {
       try {
-        axios
+        await axios
           .get("http://localhost:3001/users")
           .then((res) => {
             this.dataUser = res.data;
+            this.olddata = res.data;
+            this.typeUserfilter("ทั้งหมด");
+            // this.rankrfilter("ประทวน");
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
           });
       } catch (error) {
         console.error(error);
@@ -213,6 +230,20 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
             />
           </div>
+          <div class="mb-1">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="inlineRadio33"
+                value="ทั้งหมด"
+                @change="typeUserfilter($event)"
+                checked
+              />
+              <label class="form-check-label" for="inlineRadio33">ทั้งหมด</label>
+            </div>
+          </div>
           <div class="d-flex justify-content-between align-items-baseline">
             <div class="mb-3">
               <div class="form-check form-check-inline">
@@ -222,8 +253,8 @@ export default {
                   type="radio"
                   name="inlineRadioOptions"
                   id="inlineRadio1"
-                  value="Radio1"
-                  checked
+                  value="ตร."
+                  @change="typeUserfilter($event)"
                 />
                 <label class="form-check-label" for="inlineRadio1">ตร.</label>
               </div>
@@ -233,7 +264,8 @@ export default {
                   type="radio"
                   name="inlineRadioOptions"
                   id="inlineRadio2"
-                  value="Radio2"
+                  value="บช.ตชด."
+                  @change="typeUserfilter($event)"
                 />
                 <label class="form-check-label" for="inlineRadio2">บช.ตชด.</label>
               </div>
@@ -247,7 +279,6 @@ export default {
                 type="text"
                 placeholder="Search"
                 :value="searchName"
-                @change="filteredData()"
                 @input="(event) => (searchName = event.target.value)"
               />
               <MaterialButton
@@ -268,8 +299,8 @@ export default {
                 type="radio"
                 name="inlineRadioOptions1"
                 id="inlineRadio3"
-                value="Radio3"
-                checked
+                value="ประทวน"
+                @change="rankrfilter($event)"
               />
               <label class="form-check-label" for="inlineRadio3">ประทวน</label>
             </div>
@@ -279,9 +310,21 @@ export default {
                 type="radio"
                 name="inlineRadioOptions1"
                 id="inlineRadio4"
-                value="Radio4"
+                value="สัญญาบัตร"
+                @change="rankrfilter($event)"
               />
               <label class="form-check-label" for="inlineRadio4">สัญญาบัตร</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions1"
+                id="inlineRadio5"
+                value="ลูกจ้าง"
+                @change="rankrfilter($event)"
+              />
+              <label class="form-check-label" for="inlineRadio5">ลูกจ้าง</label>
             </div>
           </div>
           <div class="text-center pt-4 table-responsive">
@@ -353,6 +396,32 @@ export default {
           </div>
           <div class="modal-body">
             <div>
+              <div class="mb-3">
+                <div class="form-check form-check-inline">
+                  <label style="margin-right: 20px">ประเภท</label>
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="typeUser"
+                    id="inlinetypeUser1"
+                    value="ตร."
+                    @change="typeUserchange($event)"
+                    checked
+                  />
+                  <label class="form-check-label" for="inlinetypeUser1">ตร.</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="typeUser"
+                    id="inlinetypeUser"
+                    value="บช.ตชด."
+                    @change="typeUserchange($event)"
+                  />
+                  <label class="form-check-label" for="inlinetypeUser">บช.ตชด.</label>
+                </div>
+              </div>
               <div class="mb-1">
                 <label>สังกัด</label>
                 <v-select
@@ -490,14 +559,24 @@ export default {
                   v-model="typeAffiliation"
                 ></v-select>
               </div>
-              <div class="mb-3" v-if="typeAffiliation.label == 'บก.อก.'">
+              <div
+                class="mb-3"
+                v-if="
+                  typeAffiliation.label == 'บก.อก.' || this.typeAffiliation == 'บก.อก.'
+                "
+              >
                 <label>สังกัด {{ typeAffiliation.label }}</label>
                 <v-select
                   :options="masterData?.Affiliation"
                   v-model="selectedAffiliation"
                 ></v-select>
               </div>
-              <div class="mb-3" v-if="typeAffiliation.label == 'บก.สนน.'">
+              <div
+                class="mb-3"
+                v-if="
+                  typeAffiliation.label == 'บก.สนน.' || this.typeAffiliation == 'บก.สนน.'
+                "
+              >
                 <label>สังกัด {{ typeAffiliation.label }}</label>
                 <v-select
                   :options="masterData?.Affiliation2"
@@ -508,18 +587,27 @@ export default {
                 <label>ลำดับยศ</label>
                 <v-select :options="masterData?.typeranks" v-model="typeRanks"></v-select>
               </div>
-              <div class="mb-3" v-if="typeRanks.label == 'ลูกจ้าง'">
+              <div
+                class="mb-3"
+                v-if="typeRanks.label == 'ลูกจ้าง' || this.typeRanks == 'ลูกจ้าง'"
+              >
                 <label> {{ typeRanks.label }}</label>
                 <v-select :options="masterData?.ranks" v-model="selectedRanks"></v-select>
               </div>
-              <div class="mb-3" v-if="typeRanks.label == 'ประทวน'">
+              <div
+                class="mb-3"
+                v-if="typeRanks.label == 'ประทวน' || this.typeRanks == 'ประทวน'"
+              >
                 <label> {{ typeRanks.label }}</label>
                 <v-select
                   :options="masterData?.ranks2"
                   v-model="selectedRanks"
                 ></v-select>
               </div>
-              <div class="mb-3" v-if="typeRanks.label == 'สัญญาบัตร'">
+              <div
+                class="mb-3"
+                v-if="typeRanks.label == 'สัญญาบัตร' || this.typeRanks == 'สัญญาบัตร'"
+              >
                 <label> {{ typeRanks.label }}</label>
                 <v-select
                   :options="masterData?.ranks3"

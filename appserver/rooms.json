@@ -1,132 +1,98 @@
 [
-    {
-        "title": "ห้อง 1",
-        "dataIndex": "1",
-        "ranks": "",
-        "firstName": "",
-        "laststName": "",
-        "Affiliation": "",
-        "typeRoom": "ช1",
-        "status": "free"
-      },
-      {
-        "title": "ห้อง 2",
-        "dataIndex": "2",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ2",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 2",
-        "typeRoom": "ช1",
-        "status": "unavailable"
-      },
-      {
-        "title": "ห้อง 3",
-        "dataIndex": "3",
-        "ranks": "",
-        "firstName": "",
-        "laststName": "",
-        "Affiliation": "",
-        "typeRoom": "ช1",
-        "status": "free"
-      },
-      {
-        "title": "ห้อง 4",
-        "dataIndex": "4",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ2",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 1",
-        "typeRoom": "ช2",
-        "status": "return"
-      },
-      {
-        "title": "ห้อง 5",
-        "dataIndex": "5",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ3",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 1",
-        "typeRoom": "ช2",
-        "status": "unavailable"
-      },
-      {
-        "title": "ห้อง 6",
-        "dataIndex": "6",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ4",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 1",
-        "typeRoom": "ช3",
-        "status": "waiting"
-      },
-      {
-        "title": "ห้อง 7",
-        "dataIndex": "7",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ3",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 1",
-        "typeRoom": "ช1",
-        "status": "return"
-      },
-      {
-        "title": "ห้อง 8",
-        "dataIndex": "8",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ9",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 1",
-        "typeRoom": "ช3",
-        "status": "special"
-      },
-      {
-        "title": "ห้อง 9",
-        "dataIndex": "9",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ5",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 4",
-        "typeRoom": "ช2",
-        "status": "unavailable"
-      },
-      {
-        "title": "ห้อง 10",
-        "dataIndex": "10",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ6",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 7",
-        "typeRoom": "ช2",
-        "status": "waiting"
-      },
-      {
-        "title": "ห้อง 11",
-        "dataIndex": "11",
-        "ranks": "",
-        "firstName": "",
-        "laststName": "",
-        "Affiliation": "",
-        "typeRoom": "ช1",
-        "status": "free"
-      },
-      {
-        "title": "ห้อง 12",
-        "dataIndex": "12",
-        "ranks": "",
-        "firstName": "",
-        "laststName": "",
-        "Affiliation": "",
-        "typeRoom": "ช2",
-        "status": "free"
-      },
-      {
-        "title": "ห้อง 13",
-        "dataIndex": "13",
-        "ranks": "ส.ต.ต.",
-        "firstName": "ปิติ7",
-        "laststName": "มีดี",
-        "Affiliation": "ฝอ. 2",
-        "typeRoom": "ช3",
-        "status": "special"
-      }
+  {
+    "index": 1,
+    "floor": 1,
+    "numberRoom": 1,
+    "ranks": "ส.ต.ต.",
+    "firstName": "ปิติ2",
+    "laststName": "มีดี",
+    "Affiliation": "ฝอ. 2",
+    "typeRoom": "ช1",
+    "Roomconditions": "ปกติ",
+    "status": "unavailable"
+  },
+  {
+    "index": 2,
+    "floor": 1,
+    "numberRoom": 2,
+    "ranks": "",
+    "firstName": "",
+    "laststName": "",
+    "Affiliation": "",
+    "typeRoom": "ช1",
+    "Roomconditions": "ชำรุด",
+    "status": "free"
+  },
+  {
+    "index": 3,
+    "floor": 1,
+    "numberRoom": 3,
+    "ranks": "ส.ต.ต.",
+    "firstName": "ปิติ2",
+    "laststName": "มีดี",
+    "Affiliation": "ฝอ. 1",
+    "typeRoom": "ช2",
+    "Roomconditions": "ปกติ",
+    "status": "return"
+  },
+  {
+    "index": 4,
+    "floor": 1,
+    "numberRoom": 4,
+    "ranks": "ส.ต.ต.",
+    "firstName": "ปิติ3",
+    "laststName": "มีดี",
+    "Affiliation": "ฝอ. 1",
+    "typeRoom": "ช2",
+    "Roomconditions": "ปกติ",
+    "status": "unavailable"
+  },
+  {
+    "index": 5,
+    "floor": 1,
+    "numberRoom": 5,
+    "ranks": "",
+    "firstName": "",
+    "laststName": "",
+    "Affiliation": "",
+    "typeRoom": "ช1",
+    "Roomconditions": "ปกติ",
+    "status": "free"
+  },
+  {
+    "index": 6,
+    "floor": 2,
+    "numberRoom": 1,
+    "ranks": "ส.ต.ต.",
+    "firstName": "ปิติ9",
+    "laststName": "มีดี",
+    "Affiliation": "ฝอ. 1",
+    "typeRoom": "ช3",
+    "Roomconditions": "ปกติ",
+    "status": "special"
+  },
+  {
+    "index": 7,
+    "floor": 2,
+    "numberRoom": 2,
+    "ranks": "ส.ต.ต.",
+    "firstName": "ปิติ6",
+    "laststName": "มีดี",
+    "Affiliation": "ฝอ. 7",
+    "typeRoom": "ช2",
+    "Roomconditions": "ชำรุด",
+    "status": "waiting"
+  },
+  {
+    "index": 8,
+    "floor": 2,
+    "numberRoom": 3,
+    "ranks": "",
+    "firstName": "",
+    "laststName": "",
+    "Affiliation": "",
+    "typeRoom": "ช2",
+    "Roomconditions": "ปกติ",
+    "status": "free"
+  }
 ]

@@ -5,6 +5,8 @@ import vueMkHeader from "@/assets/img/bg.jpg";
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
+import axios from "axios";
+
 const userlist = [
   {
     dataIndex: "1",
@@ -70,14 +72,20 @@ export default {
       old: "",
       birthday: "",
       installments: "",
-      booknumber:""
+      booknumber: "",
+      typeroom: "",
+      data: "",
+      queueList: [],
+      queuefilter: [],
     };
   },
   created() {
     this.mode = this.$route.query.mode;
     if (this.$route.params.id) {
       this.id = this.$route.params.id;
+      this.getroomByid(this.id);
     }
+    this.getAllqueue();
     // this.$route.query
   },
   methods: {
@@ -87,6 +95,134 @@ export default {
       // } else {
       //   this.$router.push({ path: `/addUserRoom` , query: { mode: this.mode } });
       // }
+    },
+    getAllqueue() {
+      try {
+        axios
+          .get(`http://localhost:3001/queue/inqueue`)
+          .then((res) => {
+            this.queueList = res.data;
+            this.queuefilter = this.queueList.filter((e) => e.status === this.typeroom);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getroomByid(id) {
+      try {
+        axios.get(`http://localhost:3001/rooms/${id}`).then((res) => {
+          this.data = res.data;
+          console.log(this.data);
+          if (this.data.typeRoom == "ช1") this.typeroom = "โสด";
+          if (this.data.typeRoom == "ช2") this.typeroom = "สมรส";
+          if (this.data.typeRoom == "ช3") this.typeroom = "ทั่วไป";
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    getAllusersByid(id) {
+      this.userId = id;
+      try {
+        axios
+          .get(`http://localhost:3001/users/${id}`)
+          .then((res) => {
+            let data = res.data;
+            this.userByid = data;
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    async submitForm() {
+      let body = {
+        ...this.userByid,
+        queue: "inroom",
+        contract: this.contract,
+        checkintime: this.Checkintime,
+        maintenance: this.Maintenance,
+        insurance: this.insurance,
+        installments: this.installments,
+      };
+      console.log(body);
+      await axios
+        .post(`http://localhost:3001/history`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.submitForm2()
+          this.submitForm3()
+          this.getAllqueue();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async submitForm2() {
+      let body = {
+        ...this.userByid,
+        queue: "inroom",
+        contract: this.contract,
+        checkintime: this.Checkintime,
+        maintenance: this.Maintenance,
+        insurance: this.insurance,
+        installments: this.installments,
+      };
+
+      await axios
+        .post(`http://localhost:3001/report`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAllqueue();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    async submitForm3() {
+      let body = {
+        ...this.userByid,
+        queue: "inroom",
+        contract: this.contract,
+        checkintime: this.Checkintime,
+        maintenance: this.Maintenance,
+        insurance: this.insurance,
+        installments: this.installments,
+      };
+
+      await axios
+        .put(`http://localhost:3001/queue/${this.id}`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAllqueue();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -122,7 +258,7 @@ export default {
           </div>
           <!-- d-flex justify-content-between -->
           <div class="d-flex justify-content-between align-items-baseline">
-            <h4>รายละเอียดห้องพัก 101</h4>
+            <h4>รายละเอียดห้องพัก {{ data?.numberRoom }}</h4>
             <div>
               <MaterialButton variant="gradient" color="success" @click="gotoAction()"
                 >จัดการห้องพัก</MaterialButton
@@ -142,7 +278,7 @@ export default {
                         <p class="card-text">สังกัด : ฝอ. 1</p>
                         <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
                         <p class="card-text">วันทำสัญญา : 12/02/2564</p>
-                        
+
                         <p class="card-text">ระยะเวลาที่เข้าพัก : 3 เดือน</p>
                       </div>
                       <div class="col-7">
@@ -157,20 +293,11 @@ export default {
                     <div class="row" v-if="this.mode !== 'special'">
                       <div class="col-5">
                         <h5 class="card-title pt-2">รายละเอียดห้องพัก</h5>
-                        <p class="card-text">ประเภทห้องพัก : ช๓</p>
+                        <p class="card-text">ประเภทห้องพัก : {{ data?.typeRoom }}</p>
                         <!-- <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p> -->
-                        <p class="card-text">สภาพห้อง : ปกติ</p>
-                      </div>
-                      <div class="col-5">
-                        <h5 class="card-title pt-2"></h5>
-                        <p class="card-text">เลขที่เริ่มใช้ : 3012</p>
-                        <p class="card-text">เดื่อนที่เริ่มใช้ : มกราคม</p>
-                        <p class="card-text">ปีที่เริ่มใช้ : 2565</p>
+                        <p class="card-text">สภาพห้อง : {{ data?.Roomconditions }}</p>
                       </div>
                     </div>
-                    <!-- <p class="card-text">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </p> -->
                   </div>
                 </div>
               </div>
@@ -190,8 +317,8 @@ export default {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(item, index) in userlist" :key="index">
-                          <th scope="row">{{ index + 1 }}</th>
+                        <tr v-for="(item, index) in queuefilter" :key="index">
+                          <th scope="row">{{ item.no }}</th>
                           <td>
                             {{ item.rank }} {{ item.firstName }} {{ item.lastName }}
                           </td>
@@ -205,6 +332,7 @@ export default {
                               color="success"
                               data-bs-toggle="modal"
                               data-bs-target="#contractBackdrop"
+                              @click="getAllusersByid(item.id)"
                               >เพิ่มผู้เช่าห้องพัก</MaterialButton
                             >
                           </td>
@@ -293,7 +421,6 @@ export default {
                   placeholder="จำนวนงวดเงินค่าประกัน"
                 />
               </div>
-             
             </div>
           </div>
           <div class="modal-footer">
@@ -305,6 +432,7 @@ export default {
               color="success"
               @click="submitForm"
               html-type="submit"
+              data-bs-dismiss="modal"
               >บันทึก</MaterialButton
             >
           </div>
@@ -478,13 +606,11 @@ export default {
         </div>
       </div>
     </div>
-
-
   </section>
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {
