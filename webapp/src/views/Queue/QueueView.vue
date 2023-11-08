@@ -69,9 +69,9 @@ export default {
       if (e.target) this.typeroomByqueue = e.target.value;
     },
 
-    editTypeRoom(event){
+    editTypeRoom(event) {
       console.log(event);
-      this.typeroomByqueue = event
+      this.typeroomByqueue = event;
     },
 
     queuefilter(e) {
@@ -401,7 +401,7 @@ export default {
               </div>
               <div class="mb-4">
                 <label style="margin-left: -5px">วันที่ลงรับหนังสือ</label>
-                <Datepicker style="text-align: center;" v-model="picked" />
+                <Datepicker style="text-align: center" v-model="picked" />
               </div>
               <div class="mb-3">
                 <label style="margin-right: 20px">ประเภทห้องพัก</label>
@@ -534,7 +534,6 @@ export default {
                   <label class="form-check-label" for="inlineRadio54">ช3</label>
                 </div>
               </div>
-
             </div>
           </div>
           <div class="modal-footer">

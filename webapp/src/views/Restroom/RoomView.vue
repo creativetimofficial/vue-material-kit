@@ -233,7 +233,7 @@ export default {
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
-      <div class="container">
+      <div class="container-fluid">
         <div class="text-center" style="margin-top: -120px">
           <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
         </div>
@@ -255,7 +255,7 @@ export default {
   <section>
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 pt-6">
       <div class="page-header min-vh-45">
-        <div class="container">
+        <div class="container-fluid">
           <!-- d-flex justify-content-between -->
           <div>
             <Breadcrumbs
@@ -393,7 +393,7 @@ export default {
                     >
                   </p>
                   <div class="collapse show" id="collapseExample" aria-expanded="true">
-                    <div class="flex-container">
+                    <div class="flex-container-fluid">
                       <div v-for="(item2, index) in roomData" :key="index">
                         <div
                           class="card mb-2"
@@ -404,7 +404,7 @@ export default {
                             'bg-return': item2?.status == 'return',
                             'bgg-red': item2?.status == 'special',
                           }"
-                          :style="{ width: `220px`, height: `170px` }"
+                          :style="{ height: `150px` }"
                         >
                           <div class="card-body p-1">
                             <a
@@ -456,7 +456,7 @@ export default {
                                 {{ item2?.ranks }} {{ item2?.firstName }}
                                 {{ item2?.laststName }}
                               </p>
-                              <div>
+                              <p>
                                 <span
                                   v-if="item2?.status !== 'special'"
                                   style="text-align: right; font-size: small"
@@ -467,7 +467,7 @@ export default {
                                   style="text-align: right; font-size: 16px"
                                   >{{ "กรณีพิเศษ" }}</span
                                 >
-                              </div>
+                              </p>
                             </a>
                           </div>
                         </div>
@@ -570,15 +570,15 @@ export default {
   </section>
 </template>
 <style>
-.flex-container {
+.flex-container-fluid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-.flex-container > div {
+.flex-container-fluid > div {
   background-color: #f1f1f1;
-  width: 220px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   margin: 12px;
   text-align: center;
   line-height: 75px;
