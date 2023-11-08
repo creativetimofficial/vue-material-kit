@@ -217,14 +217,15 @@ export default {
       mode: "",
       id: "",
       numberRoom: "",
-      roomData:[]
+      leniency: "",
+      roomData: [],
     };
   },
   created() {
     this.mode = this.$route.query.mode;
     if (this.$route.params.id) {
       this.id = this.$route.params.id;
-      this.getRooms(this.id)
+      this.getRooms(this.id);
     }
     // this.$route.query
   },
@@ -276,14 +277,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">สถานะห้องพัก</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -337,6 +348,19 @@ export default {
                 >
                   คืนห้องพัก
                 </button>
+                <button
+                  v-if="this.mode !== 'add'"
+                  class="nav-link"
+                  id="v-pills-settings-tab"
+                  data-bs-toggle="pill"
+                  data-bs-target="#v-pills-settings"
+                  type="button"
+                  role="tab"
+                  aria-controls="v-pills-settings"
+                  aria-selected="false"
+                >
+                  ผ่อนผัน
+                </button>
               </div>
             </div>
             <div class="col-lg-9">
@@ -388,9 +412,7 @@ export default {
                             id="inlineRadio2"
                             value="option2"
                           />
-                          <label class="form-check-label" for="inlineRadio2"
-                            >ปกติ</label
-                          >
+                          <label class="form-check-label" for="inlineRadio2">ปกติ</label>
                         </div>
                       </div>
                     </div>
@@ -440,7 +462,9 @@ export default {
                         <tbody>
                           <tr v-for="(item, index) in userlist" :key="index">
                             <th scope="row">{{ index + 1 }}</th>
-                            <td>{{ item.rank }} {{ item.firstName }} {{ item.lastName }}</td>
+                            <td>
+                              {{ item.rank }} {{ item.firstName }} {{ item.lastName }}
+                            </td>
                             <td>{{ item.Affiliation }}</td>
                             <td>{{ item.idcard }}</td>
                             <td>{{ item.phone }}</td>
@@ -537,6 +561,27 @@ export default {
                         />
                       </div>
                     </div>
+                    <div
+                      class="mb-3"
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          id="inlineRadio22"
+                          value="รอคืนเงินประกัน"
+                        />
+                        <label class="form-check-label" for="inlineRadio22"
+                          >รอคืนเงินประกัน</label
+                        >
+                      </div>
+                    </div>
                     <div>
                       <label style="padding-left: 30px"
                         >หลักฐานแสดงการชําระค่าไฟเดือนล่าสุด</label
@@ -610,147 +655,25 @@ export default {
                   aria-labelledby="v-pills-settings-tab"
                 >
                   <div>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item" role="presentation">
-                        <button
-                          class="nav-link active"
-                          style="color: #57b05b"
-                          id="home-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#home"
-                          type="button"
-                          role="tab"
-                          aria-controls="home"
-                          aria-selected="true"
-                        >
-                          บันทึกค่าใช้จ่ายบ้านพัก ตร.
-                        </button>
-                      </li>
-                      <li class="nav-item" role="presentation">
-                        <button
-                          class="nav-link"
-                          style="color: #57b05b"
-                          id="profile-tab"
-                          data-bs-toggle="tab"
-                          data-bs-target="#profile"
-                          type="button"
-                          role="tab"
-                          aria-controls="profile"
-                          aria-selected="false"
-                        >
-                          บันทึกค่าใช้จ่ายบ้านพัก บช.ตชด.
-                        </button>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="home"
-                        role="tabpanel"
-                        aria-labelledby="home-tab"
+                    <div class="mb-3">
+                      <label style="margin-left: -5px">ผ่อนผันถึง</label>
+                      <textarea
+                        :value="leniency"
+                        @input="(event) => (leniency = event.target.value)"
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="2"
+                        placeholder="ผ่อนผันถึง"
+                      ></textarea>
+                    </div>
+                    <div class="pt-4 text-end">
+                      <MaterialButton
+                        variant="gradient"
+                        color="success"
+                        @click="submitForm"
+                        html-type="submit"
+                        >บันทึก</MaterialButton
                       >
-                        <div class="d-flex justify-content-end align-items-baseline pt-4">
-                          <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
-                          <MaterialInput
-                            class="input-group-dynamic w-30"
-                            icon="search"
-                            type="text"
-                            placeholder="Search"
-                          />
-                          <MaterialButton
-                            style="margin-left: 20px"
-                            variant="gradient"
-                            color="success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop11"
-                            >เพิ่มค่าใช้จ่ายบ้านพัก ตร.</MaterialButton
-                          >
-                        </div>
-                        <div class="text-center pt-4 table-responsive">
-                          <table class="table table-hover border border-2 border-success">
-                            <thead class="border border-2 border-success border-bottom">
-                              <tr>
-                                <th scope="col">ลำดับ</th>
-                                <th scope="col">อาคาร</th>
-                                <th scope="col">ชั้น</th>
-                                <th scope="col">เลขที่ห้อง</th>
-                                <th scope="col">ค่าธรรมเนียม</th>
-                                <th scope="col">ค่าน้ำประปา</th>
-                                <th scope="col">ค่าไฟฟ้า</th>
-                                <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
-                                <th scope="col">ค่าบำรุงลิฟท์</th>
-                                <th scope="col">ค่าประกัน</th>
-                                <th scope="col">จำนวนงวดประกัน</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>อาคารแฟลต 1/11</td>
-                                <td>2</td>
-                                <td>202</td>
-                                <td>20,000</td>
-                                <td>8,000</td>
-                                <td>20,000</td>
-                                <td>8,000</td>
-                                <td>20,000</td>
-                                <td>10,000</td>
-                                <td>5/10</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div
-                        class="tab-pane fade"
-                        id="profile"
-                        role="tabpanel"
-                        aria-labelledby="profile-tab"
-                      >
-                        <div class="d-flex justify-content-end align-items-baseline pt-4">
-                          <label style="margin-right: 10px">ค้นหาชื่อหรือเลขห้อง </label>
-                          <MaterialInput
-                            class="input-group-dynamic w-30"
-                            icon="search"
-                            type="text"
-                            placeholder="Search"
-                          />
-                          <MaterialButton
-                            style="margin-left: 20px"
-                            variant="gradient"
-                            color="success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop12"
-                            >เพิ่มค่าใช้จ่ายบ้านพัก บช.ตชด.</MaterialButton
-                          >
-                        </div>
-                        <div class="text-center pt-4 table-responsive">
-                          <table class="table table-hover border border-2 border-success">
-                            <thead class="border border-2 border-success border-bottom">
-                              <tr>
-                                <th scope="col">ลำดับ</th>
-                                <th scope="col">อาคาร</th>
-                                <th scope="col">ชั้น</th>
-                                <th scope="col">เลขที่ห้อง</th>
-                                <th scope="col">ค่าบำรุงฯ</th>
-                                <th scope="col">ค่าประกัน</th>
-                                <th scope="col">จำนวนงวดประกัน</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>อาคารแฟลต 1/14</td>
-                                <td>2</td>
-                                <td>202</td>
-                                <td>20,000</td>
-                                <td>8,000</td>
-                                <td>8/10</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -1023,7 +946,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {

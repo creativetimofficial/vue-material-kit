@@ -33361,4 +33361,11 @@ image, text, .jvm-zoomin, .jvm-zoomout {
     stroke-dashoffset: 250;
   }
 }
+
+.input-required::after {
+  color: #dd756e;
+  content: "*";
+  font-size: 20px !important;
+  margin-left: 5px;
+}
 /*# sourceMappingURL=material-kit-pro.css.map */

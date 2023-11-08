@@ -115,7 +115,7 @@ export default {
       sumCost: 10000,
       expensesList: [],
       searchName: "",
-      selectedMonth: "พฤศจิกายน"
+      selectedMonth: "พฤศจิกายน",
     };
   },
   created() {
@@ -217,14 +217,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">บันทึกค่าใช้จ่ายรายเดือน ตร</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -242,6 +252,7 @@ export default {
               ]"
             />
           </div>
+          <h4>บันทึกค่าใช้จ่ายรายเดือน ตร</h4>
           <!-- <div class="d-flex justify-content-end align-items-baseline">
               <div class="mb-3 w-15" style="margin-right: 20px">
                 <label>เดือน</label>
@@ -249,13 +260,14 @@ export default {
               </div>
             </div> -->
           <div class="d-flex justify-content-end align-items-baseline">
-            <div class="mb-3 w-15" style="margin-right: 20px;
-    display: flex;
-    align-items: baseline;">
-                <label style="margin-right: 5px;">เดือน</label>
-                <v-select :options="optionMonth" v-model="selectedMonth"></v-select>
-              </div>
-            <label style="margin-right: 10px">ค้นหาเลขที่ห้อง </label>
+            <div
+              class="mb-3 w-15"
+              style="margin-right: 20px; display: flex; align-items: baseline"
+            >
+              <label style="margin-right: 5px">เดือน</label>
+              <v-select :options="optionMonth" v-model="selectedMonth"></v-select>
+            </div>
+            <!-- <label style="margin-right: 10px">ค้นหาเลขที่ห้อง </label>
             <MaterialInput
               class="input-group-dynamic w-30"
               icon="search"
@@ -263,17 +275,18 @@ export default {
               placeholder="Search"
               :value="searchName"
               @input="(event) => (searchName = event.target.value)"
-            />
+            /> -->
           </div>
           <div class="text-center pt-4 table-responsive">
             <table class="table table-hover border border-2 border-success">
               <thead class="border border-2 border-success border-bottom">
                 <tr>
-                  <th scope="col">ลำดับ</th>
+                  <th></th>
+                  <!-- <th scope="col">ลำดับ</th> -->
                   <th>ชื่อ-สกุล</th>
-                  <th scope="col">อาคาร</th>
+                  <!-- <th scope="col">อาคาร</th>
                   <th scope="col">ชั้น</th>
-                  <th scope="col">เลขที่ห้อง</th>
+                  <th scope="col">เลขที่ห้อง</th> -->
                   <th scope="col">เลขก่อน</th>
                   <th scope="col">เลขหลัง</th>
                   <th scope="col">ยอดใช้</th>
@@ -286,28 +299,11 @@ export default {
                   <th scope="col">หักได้</th>
                   <th scope="col">หักไม่ได้</th>
                   <th scope="col">สาเหตุที่หัก</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(item, index) in expensesList" :key="index">
-                  <th scope="row">{{ index + 1 }}</th>
-                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
-                  <td>{{ item?.building }}</td>
-                  <td>{{ item?.floor }}</td>
-                  <td>{{ item?.roomnumber }}</td>
-                  <td>{{ item?.installments }}</td>
-                  <td>{{ item?.insurancecost }}</td>
-                  <td>{{ item?.sumCost }}</td>
-                  <td>{{ item?.waterbill }}</td>
-                  <td>{{ item?.electricitybill }}</td>
-                  <td>{{ item?.central }}</td>
-                  <td>{{ item?.costs }}</td>
-                  <td>{{ item?.roomnumber }}</td>
-                  <td>{{ item?.typeContract }}</td>
-                  <td>{{ item?.typeContract }}</td>
-                  <td></td>
-                  <td>{{ item?.contract }}</td>
+                  <!-- <th scope="row">{{ index + 1 }}</th> -->
                   <td>
                     <MaterialButton
                       style="margin-bottom: 0px"
@@ -318,6 +314,23 @@ export default {
                       >บันทึกค่าใช้จ่ายรายเดือน</MaterialButton
                     >
                   </td>
+                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                  <!-- <td>{{ item?.building }}</td>
+                  <td>{{ item?.floor }}</td>
+                  <td>{{ item?.roomnumber }}</td> -->
+                  <td>{{ item?.installments }}</td>
+                  <td>{{ item?.insurancecost }}</td>
+                  <td>{{ item?.sumCost }}</td>
+                  <td>{{ item?.waterbill }}</td>
+                  <td>{{ item?.electricitybill }}</td>
+                  <td>{{ item?.central }}</td>
+                  <td>{{ item?.costs }}</td>
+                  <td>{{ item?.sumCost }}</td>
+                  <td>{{ item?.sumbill }}</td>
+                  <td>/</td>
+                  <td>-</td>
+                  <!-- {{ item?.typeContract }} -->
+                  <td>{{ item?.contract }}</td>
                 </tr>
               </tbody>
             </table>
@@ -352,9 +365,9 @@ export default {
           <div class="modal-body">
             <div>
               <div class="mb-1">
-                <label style="font-size: large">ส.ต.ต.โชคดี มีชัย</label>
+                <label style="font-size: large">พ.ต.อ.หญิง กนกวรรณ เจริญเจริญ</label>
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label>อาคาร</label>
                 <v-select
                   :options="optionsBuilding"
@@ -368,8 +381,27 @@ export default {
               <div class="mb-3">
                 <label>เลขที่ห้อง</label>
                 <v-select :options="optionsRoom" v-model="selectedRoom"></v-select>
+              </div> -->
+              <div class="mb-3">
+                <MaterialInput
+                  :value="Insurancecost"
+                  @input="(event) => (Insurancecost = event.target.value)"
+                  class="input-group-static"
+                  label="เลขก่อน"
+                  type="text"
+                  placeholder="เลขก่อน"
+                />
               </div>
-
+              <div class="mb-3">
+                <MaterialInput
+                  :value="installments"
+                  @input="(event) => (installments = event.target.value)"
+                  class="input-group-static"
+                  label="เลขหลัง"
+                  type="text"
+                  placeholder="เลขหลัง"
+                />
+              </div>
               <div class="mb-3">
                 <MaterialInput
                   :value="Waterbill"
@@ -410,26 +442,7 @@ export default {
                   placeholder="ค่าบำรุงลิฟท์"
                 />
               </div>
-              <div class="mb-3">
-                <MaterialInput
-                  :value="Insurancecost"
-                  @input="(event) => (Insurancecost = event.target.value)"
-                  class="input-group-static"
-                  label="เลขก่อน"
-                  type="text"
-                  placeholder="เลขก่อน"
-                />
-              </div>
-              <div class="mb-3">
-                <MaterialInput
-                  :value="installments"
-                  @input="(event) => (installments = event.target.value)"
-                  class="input-group-static"
-                  label="เลขหลัง"
-                  type="text"
-                  placeholder="เลขหลัง"
-                />
-              </div>
+
               <div
                 class="mb-3"
                 style="display: flex; justify-content: flex-start; align-items: center"

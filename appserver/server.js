@@ -213,6 +213,8 @@ app.put('/queue/:id', (req, res) => {
     if (req.body.queue) parsedData.queue = req.body.queue
     if (req.body.no) parsedData.no = req.body.no
     if (req.body.bookNumber) parsedData.bookNumber = req.body.bookNumber
+    if (req.body.pickedBook) parsedData.pickedBook = req.body.pickedBook
+    if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
     filterdata.push(parsedData)
     fs.writeFile('./users.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {

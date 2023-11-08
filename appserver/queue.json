@@ -8,9 +8,11 @@
         "idcard": "134044411441178",
         "phone": "0325647845",
         "status": "โสด",
+        "typeRoom": "ช1",
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
-        "bookNumber": "1234"
+        "bookNumber": "1234",
+        "pickedBook":""
     },
     {
         "id": "8e81c39a-d50c-42f5-85c0-f9f773c2a4aa",
@@ -20,10 +22,12 @@
         "rank": "ส.ต.อ.",
         "idcard": "134044411441178",
         "status": "โสด",
+        "typeRoom": "ช1",
         "phone": "0325647845",
         "typeAffiliation": "บช.ตซด.",
         "typeRanks": "ประทวน",
-        "bookNumber": "1234"
+        "bookNumber": "1234",
+        "pickedBook":""
     },
     {
         "id": "ebd367bf-396f-4bae-8130-1ce3fa130d38",
@@ -34,9 +38,11 @@
         "idcard": "134044411441178",
         "phone": "0325647845",
         "status": "โสด",
+        "typeRoom": "ช1",
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
-        "bookNumber": "1234"
+        "bookNumber": "1234",
+        "pickedBook":""
     },
     {
         "id": "46685cde-8ea0-4cd2-ba94-7d86e6e893bd",
@@ -47,9 +53,11 @@
         "idcard": "134044411441178",
         "phone": "0325647845",
         "status": "สมรส",
+        "typeRoom": "ช2",
         "typeAffiliation": "บช.ตซด.",
         "typeRanks": "ประทวน",
-        "bookNumber": "14578963"
+        "bookNumber": "14578963",
+        "pickedBook":""
     },
     {
         "id": "f5d0184e-3b79-4005-b873-543a45942c4c",
@@ -60,10 +68,12 @@
         "idcard": "134044411441178",
         "phone": "0325647845",
         "status": "โสด",
+        "typeRoom": "ช1",
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
         "typeUser": "ตร.",
-        "bookNumber": "กกกกกกกกกก"
+        "bookNumber": "กกกกกกกกกก",
+        "pickedBook":""
     },
     {
         "id": "5615b6ac-de82-4ec2-b370-e7ddc830924c",
@@ -72,12 +82,14 @@
         "lastName": "แสงสุข",
         "affiliation": "บช.ตซด.",
         "rank": "ส.ต.อ.",
+        "typeRoom": "ช3",
         "idcard": "134044411441178",
         "phone": "0325647845",
         "typeAffiliation": "บช.ตซด.",
         "typeRanks": "ประทวน",
         "typeUser": "บช.ตชด.",
         "bookNumber": "56544444",
-        "queue": "none"
+        "queue": "none",
+        "pickedBook":""
     }
 ]

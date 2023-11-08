@@ -4,6 +4,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import masterData from "@/assets/dataJson/masterData.json";
+import axios from "axios";
 
 const listRoom = [
   { title: "ตึก 1" },
@@ -68,21 +69,13 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
-      options: [
-        { label: "Vue.js", value: "JavaScript" },
-        { label: "Rails", value: "Ruby" },
-        { label: "Sinatra", value: "Ruby" },
-        { label: "Laravel", value: "PHP" },
-        { label: "Phoenix", value: "Elixir" },
-      ],
-      optionYear:[ 
+      optionYear: [
         { label: "2023", value: "2023" },
         { label: "2022", value: "2022" },
         { label: "2021", value: "2021" },
-        { label: "2020", value: "2020" }
+        { label: "2020", value: "2020" },
       ],
-      optionMonth:[
+      optionMonth: [
         { label: "มกราคม", value: "มกราคม" },
         { label: "กุมภาพันธ์", value: "กุมภาพันธ์" },
         { label: "มีนาคม", value: "มีนาคม" },
@@ -103,11 +96,15 @@ export default {
       rank: "", //ยศ
       idcard: "",
       phone: "",
-      selectedAffiliation: "ฝอ.2",
-      selectedYear:"2023",
-      selectedMonth:"พฤศจิกายน"
-
+      selectedAffiliation: "",
+      selectedYear: "2023",
+      selectedMonth: "พฤศจิกายน",
+      expensesList: []
     };
+  },
+  created() {
+    // this.getAllusers();
+    this.getExpenses();
   },
   watch: {
     selectedColor: function (newValue) {
@@ -119,6 +116,22 @@ export default {
     changedLabel(event) {
       console.log(event);
       // this.selected = event;
+    },
+
+    async getExpenses() {
+      try {
+        await axios
+          .get("http://localhost:3001/expenses")
+          .then((res) => {
+            this.expensesList = res.data;
+            // console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     submitForm() {
@@ -141,14 +154,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ระบบเรียกรายงาน</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -163,6 +186,7 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบเรียกรายงาน' }]"
             />
           </div>
+          <h4>ระบบเรียกรายงาน</h4>
           <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
@@ -195,6 +219,7 @@ export default {
                   บันทึกค่าใช้จ่ายบ้านพัก บช.ตชด.
                 </button>
               </li>
+              
             </ul>
             <div class="tab-content" id="myTabContent">
               <div
@@ -207,7 +232,7 @@ export default {
                   <div>
                     <h5>ประจำเดือน พฤศจิกายน</h5>
                     <br />
-                    <h5>รวมค่าใช้จ่ายทั้งหมด : 18,111</h5>
+                    <h5>รวมค่าใช้จ่ายทั้งหมด : 950</h5>
                   </div>
                   <div class="d-flex pt-4">
                     <MaterialButton
@@ -239,40 +264,35 @@ export default {
                   </div>
                 </div>
                 <div class="d-flex justify-content-end align-items-baseline">
-                    <div class="mb-3 w-15" style="margin-right: 5px">
-                      <label>เดือน</label>
-                      <v-select
-                        :options="optionMonth"
-                        v-model="selectedMonth"
-                      ></v-select>
-                    </div>
-                    <!-- <div class="mb-3 w-10 " style="margin-right: 5px">
+                  <div class="mb-3 w-15" style="margin-right: 5px">
+                    <label>เดือน</label>
+                    <v-select :options="optionMonth" v-model="selectedMonth"></v-select>
+                  </div>
+                  <!-- <div class="mb-3 w-10 " style="margin-right: 5px">
                       <label>พ.ศ.</label>
                       <v-select
                         :options="optionYear"
                         v-model="selectedYear"
                       ></v-select>
                     </div> -->
-                    <div class="mb-3 w-15 ">
-                      <label>สังกัด</label>
-                      <v-select
-                        :options="masterData?.Affiliation"
-                        v-model="selectedAffiliation"
-                      ></v-select>
-                    </div>
+                  <div class="mb-3 w-15">
+                    <label>สังกัด</label>
+                    <v-select
+                      :options="masterData?.Affiliation"
+                      v-model="selectedAffiliation"
+                    ></v-select>
                   </div>
+                </div>
                 <div class="text-center pt-4 table-responsive">
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
-                        <th scope="col">ลำดับ</th>
-                        <th scope="col">อาคาร</th>
-                        <th scope="col">ชั้น</th>
-                        <th scope="col">เลขที่ห้อง</th>
                         <th scope="col">ชื่อ-สกุล</th>
+                        <th scope="col">สังกัด</th>
                         <th scope="col">เลขก่อน</th>
                         <th scope="col">เลขหลัง</th>
                         <th scope="col">ค่าธรรมเนียม</th>
+                        <!-- <th scope="col">ค่าบำรุง</th> -->
                         <th scope="col">ค่าน้ำประปา</th>
                         <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
                         <th scope="col">รวม</th>
@@ -282,33 +302,27 @@ export default {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>แฟลตลือชา 2</td>
-                        <td>3</td>
-                        <td>303</td>
-                        <td>ส.ต.ต. มีนา บานเย็น</td>
-                        <td>325</td>
-                        <td>365</td>
-                        <td>200</td>
-                        <td>80</td>
-                        <td>200</td>
-                        <td>480</td>
+                      <tr v-for="(item, index) in expensesList" :key="index">
+                        <!-- <th scope="row">{{ index + 1 }}</th> -->
+                        <td>
+                          {{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}
+                        </td>
+                        
+                        <td>{{ item?.affiliation }}</td>
+                        <td>{{ item?.installments }}</td>
+                        <td>{{ item?.insurancecost }}</td>
+                        <td>{{ item?.sumCost }}</td>
+                        <!-- <td>{{ item?.Maintenancefee }}</td> -->
+                        <td>{{ item?.waterbill }}</td>
+                        <!-- <td>{{ item?.waterbill }}</td> -->
+                        <td>{{ item?.central }}</td>
+                        <td>{{ item?.costs }}</td>
+                        <!-- <td>{{ item?.sumCost }}</td>
+                        <td>{{ item?.sumbill }}</td> -->
                         <td>/</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>แฟลตลือชา 2</td>
-                        <td>3</td>
-                        <td>303</td>
-                        <td>ส.ต.ต. มีนา บานเย็น</td>
-                        <td>325</td>
-                        <td>365</td>
-                        <td>200</td>
-                        <td>80</td>
-                        <td>200</td>
-                        <td>480</td>
-                        <td>/</td>
+                        <td>-</td>
+                        <!-- {{ item?.typeContract }} -->
+                        <td>{{ item?.contract }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -324,7 +338,7 @@ export default {
                   <div>
                     <h5>ประจำเดือน พฤศจิกายน</h5>
                     <br />
-                    <h5>รวมค่าใช้จ่ายทั้งหมด : 18,111</h5>
+                    <h5>รวมค่าใช้จ่ายทั้งหมด : 950</h5>
                   </div>
                   <div class="d-flex pt-4">
                     <MaterialButton
@@ -359,36 +373,42 @@ export default {
                   <table class="table table-hover border border-2 border-success">
                     <thead class="border border-2 border-success border-bottom">
                       <tr>
-                        <th scope="col">ลำดับ</th>
-                        <th scope="col">อาคาร</th>
-                        <th scope="col">ชั้น</th>
-                        <th scope="col">เลขที่ห้อง</th>
+                        <th scope="col">ชื่อ-สกุล</th>
                         <th scope="col">สังกัด</th>
-                        <th scope="col">ค่าบำรุงฯ</th>
-                        <th scope="col">ค่าประกัน</th>
+                        <th scope="col">เลขก่อน</th>
+                        <th scope="col">เลขหลัง</th>
+                        <th scope="col">ค่าธรรมเนียม</th>
+                        <!-- <th scope="col">ค่าบำรุง</th> -->
+                        <th scope="col">ค่าน้ำประปา</th>
+                        <th scope="col">ค่าไฟฟ้าส่วนกลาง</th>
                         <th scope="col">รวม</th>
+                        <th scope="col">หักได้</th>
+                        <th scope="col">หักไม่ได้</th>
+                        <th scope="col">สาเหตุหักไม่ได้</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>แฟลตลือชา 2</td>
-                        <td>2</td>
-                        <td>203</td>
-                        <td>ฝอ.2</td>
-                        <td>1,300</td>
-                        <td>300</td>
-                        <td>1,600</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>แฟลตลือชา 2</td>
-                        <td>1</td>
-                        <td>101</td>
-                        <td>ฝอ.1</td>
-                        <td>1,300</td>
-                        <td>300</td>
-                        <td>1,600</td>
+                      <tr v-for="(item, index) in expensesList" :key="index">
+                        <!-- <th scope="row">{{ index + 1 }}</th> -->
+                        <td>
+                          {{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}
+                        </td>
+                        
+                        <td>{{ item?.affiliation }}</td>
+                        <td>{{ item?.installments }}</td>
+                        <td>{{ item?.insurancecost }}</td>
+                        <td>{{ item?.sumCost }}</td>
+                        <!-- <td>{{ item?.Maintenancefee }}</td> -->
+                        <td>{{ item?.waterbill }}</td>
+                        <!-- <td>{{ item?.waterbill }}</td> -->
+                        <td>{{ item?.central }}</td>
+                        <td>{{ item?.costs }}</td>
+                        <!-- <td>{{ item?.sumCost }}</td>
+                        <td>{{ item?.sumbill }}</td> -->
+                        <td>/</td>
+                        <td>-</td>
+                        <!-- {{ item?.typeContract }} -->
+                        <td>{{ item?.contract }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -747,7 +767,7 @@ export default {
 </template>
 <style>
 .bg-green {
-  border: 2px solid #4CBB17 !important;
+  border: 2px solid #4cbb17 !important;
   color: #000;
 }
 .bg-red {

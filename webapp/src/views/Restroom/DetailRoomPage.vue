@@ -230,14 +230,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">สถานะห้องพัก</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -277,7 +287,7 @@ export default {
                         <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
                         <p class="card-text">สังกัด : ฝอ. 1</p>
                         <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
-                        <p class="card-text">วันทำสัญญา : 12/02/2564</p>
+                        <p class="card-text">วันที่ได้รับอนุมัติ : 12/02/2564</p>
 
                         <p class="card-text">ระยะเวลาที่เข้าพัก : 3 เดือน</p>
                       </div>
@@ -376,9 +386,9 @@ export default {
                   :value="contract"
                   @input="(event) => (contract = event.target.value)"
                   class="input-group-static"
-                  label="วันทำสัญญา"
+                  label="วันที่ได้รับอนุมัติ"
                   type="text"
-                  placeholder="วันทำสัญญา"
+                  placeholder="วันที่ได้รับอนุมัติ"
                 />
               </div>
               <div class="mb-3">

@@ -226,7 +226,7 @@ export default {
                       <th scope="col">ยศ</th>
                       <th scope="col">เลขบัตรประชาชน</th>
                       <th scope="col">เบอร์ติดต่อ</th>
-                      <th scope="col">วันทำสัญญา</th>
+                      <th scope="col">วันที่ได้รับอนุมัติ</th>
                       <th scope="col">ระยะเวลาที่เข้าพัก</th>
                       <th scope="col">เงินค่าประกัน</th>
                       <th scope="col">สถานะ</th>
@@ -294,9 +294,9 @@ export default {
                   :value="contract"
                   @input="(event) => (contract = event.target.value)"
                   class="input-group-static"
-                  label="วันทำสัญญา"
+                  label="วันที่ได้รับอนุมัติ"
                   type="text"
-                  placeholder="วันทำสัญญา"
+                  placeholder="วันที่ได้รับอนุมัติ"
                 />
               </div>
               <div class="mb-3">

@@ -5,12 +5,14 @@ import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import vueMkHeader from "@/assets/img/bg.jpg";
 import userData from "@/assets/dataJson/users.json";
 import axios from "axios";
+import Datepicker from "vue3-datepicker";
 
 export default {
   components: {
     MaterialInput,
     MaterialButton,
     Breadcrumbs,
+    Datepicker,
   },
   setup() {
     return {
@@ -33,11 +35,13 @@ export default {
       userList: [],
       userByid: {},
       searchName: "",
-      typeUserByqueue: "โสด",
+      typeUserByqueue: "ทั้งหมด",
+      typeroomByqueue: "",
       olddatatypeQueue: [],
       datatypeQueue: [],
       no: 0,
-      userId: ''
+      userId: "",
+      picked: new Date(),
     };
   },
   created() {
@@ -47,7 +51,6 @@ export default {
   },
   watch: {
     selectedUser: function (newValue) {
-      console.log(newValue.value);
       this.getAllusersByid(newValue.value);
     },
   },
@@ -62,17 +65,27 @@ export default {
       // this.selected = event;
     },
 
+    queuetypefilter(e) {
+      if (e.target) this.typeroomByqueue = e.target.value;
+    },
+
+    editTypeRoom(event){
+      console.log(event);
+      this.typeroomByqueue = event
+    },
+
     queuefilter(e) {
       if (e.target) this.typeUserByqueue = e.target.value;
       else this.typeUserByqueue = e;
       this.datatypeQueue = this.olddatatypeQueue;
-      if(this.typeUserByqueue !== 'ทั้งหมด'){
-      let dataqueue = this.datatypeQueue.filter((e) => e.status == this.typeUserByqueue);
-      this.queueList = dataqueue;
-      }else if (this.typeUserByqueue == 'ทั้งหมด'){
-        this.queueList =  this.datatypeQueue;
+      if (this.typeUserByqueue !== "ทั้งหมด") {
+        let dataqueue = this.datatypeQueue.filter(
+          (e) => e.typeRoom == this.typeUserByqueue
+        );
+        this.queueList = dataqueue;
+      } else if (this.typeUserByqueue == "ทั้งหมด") {
+        this.queueList = this.datatypeQueue;
       }
-    
     },
     getAllqueue() {
       try {
@@ -81,9 +94,9 @@ export default {
           .then((res) => {
             this.queueList = res.data;
             this.olddatatypeQueue = this.queueList;
-            console.log(res.data);
-            this.no = this.queueList.length+1
-            this.queuefilter("โสด");
+            this.queueList.sort((a, b) => a.pickedBook - b.pickedBook);
+            this.no = this.queueList.length + 1;
+            this.queuefilter("ทั้งหมด");
           })
           .catch((err) => {
             console.log(err.response);
@@ -94,7 +107,7 @@ export default {
     },
 
     getAllusersByid(id) {
-      this.userId = id
+      this.userId = id;
       try {
         axios
           .get(`http://localhost:3001/users/${id}`)
@@ -123,7 +136,7 @@ export default {
             });
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
           });
       } catch (error) {
         console.error(error);
@@ -155,7 +168,29 @@ export default {
         ...this.userByid,
         no: this.no,
         bookNumber: this.bookNumber,
-        queue: 'inqueue'
+        pickedBook: this.picked.toISOString(),
+        typeRoom: this.typeroomByqueue,
+        queue: "inqueue",
+      };
+      delete body.id;
+      axios
+        .put(`http://localhost:3001/queue/${this.userId}`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAllqueue();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    EditsubmitForm() {
+      let body = {
+        typeRoom: this.typeroomByqueue,
       };
       delete body.id;
       axios
@@ -179,14 +214,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ระบบคิว</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -201,21 +246,21 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ระบบคิว' }]"
             />
           </div>
+          <h4>ระบบคิว</h4>
           <div class="d-flex justify-content-between align-items-baseline">
             <div class="mb-3">
-              
               <div class="form-check form-check-inline">
-                <label style="margin-right: 20px">สถานภาพ</label>
+                <label style="margin-right: 20px">ประเภทห้องพัก</label>
                 <input
                   class="form-check-input"
                   type="radio"
                   name="inlineRadioOptions"
                   id="inlineRadio1"
-                  value="โสด"
+                  value="ช1"
                   @change="queuefilter($event)"
-                  checked
+                  :checked="typeUserByqueue == 'ช1'"
                 />
-                <label class="form-check-label" for="inlineRadio1">โสด</label>
+                <label class="form-check-label" for="inlineRadio1">ช1</label>
               </div>
               <div class="form-check form-check-inline">
                 <input
@@ -223,10 +268,11 @@ export default {
                   type="radio"
                   name="inlineRadioOptions"
                   id="inlineRadio2"
-                  value="สมรส"
+                  value="ช2"
                   @change="queuefilter($event)"
+                  :checked="typeUserByqueue == 'ช2'"
                 />
-                <label class="form-check-label" for="inlineRadio2">สมรส</label>
+                <label class="form-check-label" for="inlineRadio2">ช2</label>
               </div>
               <div class="form-check form-check-inline">
                 <input
@@ -234,10 +280,23 @@ export default {
                   type="radio"
                   name="inlineRadioOptions"
                   id="inlineRadio3"
+                  value="ช3"
+                  @change="queuefilter($event)"
+                  :checked="typeUserByqueue == 'ช3'"
+                />
+                <label class="form-check-label" for="inlineRadio3">ช3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio4"
                   value="ทั้งหมด"
                   @change="queuefilter($event)"
+                  :checked="typeUserByqueue == 'ทั้งหมด'"
                 />
-                <label class="form-check-label" for="inlineRadio3">ทั้งหมด</label>
+                <label class="form-check-label" for="inlineRadio4">ทั้งหมด</label>
               </div>
             </div>
             <div class="d-flex align-items-baseline">
@@ -276,13 +335,26 @@ export default {
               </thead>
               <tbody>
                 <tr v-for="(item, index) in queueList" :key="index">
-                  <th scope="row">{{ item?.no  }}</th>
+                  <th scope="row">{{ item?.no }}</th>
                   <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
                   <td>{{ item?.affiliation }}</td>
                   <td>{{ item?.status }}</td>
                   <td>{{ item?.idcard }}</td>
                   <td>{{ item?.phone }}</td>
                   <td>{{ item?.bookNumber }}</td>
+                  <td>
+                    <a
+                      @click="editTypeRoom(item?.typeRoom)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editTypeBackdrop"
+                      ><i
+                        class="material-icons me-2"
+                        style="cursor: pointer"
+                        aria-hidden="true"
+                        >edit</i
+                      ></a
+                    >
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -327,6 +399,47 @@ export default {
                   placeholder="ตัวอย่าง : 11244"
                 ></textarea>
               </div>
+              <div class="mb-4">
+                <label style="margin-left: -5px">วันที่ลงรับหนังสือ</label>
+                <Datepicker style="text-align: center;" v-model="picked" />
+              </div>
+              <div class="mb-3">
+                <label style="margin-right: 20px">ประเภทห้องพัก</label>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio5"
+                    value="ช1"
+                    @change="queuetypefilter($event)"
+                    checked
+                  />
+                  <label class="form-check-label" for="inlineRadio5">ช1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio6"
+                    value="ช2"
+                    @change="queuetypefilter($event)"
+                  />
+                  <label class="form-check-label" for="inlineRadio6">ช2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio7"
+                    value="ช3"
+                    @change="queuetypefilter($event)"
+                  />
+                  <label class="form-check-label" for="inlineRadio7">ช3</label>
+                </div>
+              </div>
               <div class="row g-0" v-if="selectedUser !== ''">
                 <div class="col-md-12">
                   <div class="row">
@@ -352,6 +465,86 @@ export default {
               variant="gradient"
               color="success"
               @click="submitForm"
+              html-type="submit"
+              data-bs-dismiss="modal"
+              >บันทึก</MaterialButton
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="editTypeBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">แก้ไขประเภทห้องพัก</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="mb-3">
+                <label style="margin-right: 20px">ประเภทห้องพัก</label>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio52"
+                    value="ช1"
+                    @change="queuetypefilter($event)"
+                    :checked="typeroomByqueue == 'ช1'"
+                  />
+                  <label class="form-check-label" for="inlineRadio52">ช1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio53"
+                    value="ช2"
+                    :checked="typeroomByqueue == 'ช2'"
+                    @change="queuetypefilter($event)"
+                  />
+                  <label class="form-check-label" for="inlineRadio53">ช2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio54"
+                    value="ช3"
+                    :checked="typeroomByqueue == 'ช3'"
+                    @change="queuetypefilter($event)"
+                  />
+                  <label class="form-check-label" for="inlineRadio54">ช3</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="EditsubmitForm"
               html-type="submit"
               data-bs-dismiss="modal"
               >บันทึก</MaterialButton

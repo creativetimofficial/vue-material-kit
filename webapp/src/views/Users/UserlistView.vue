@@ -208,14 +208,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ทะเบียน</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -230,6 +240,7 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ทะเบียน' }]"
             />
           </div>
+          <h4>ทะเบียน</h4>
           <div class="mb-1">
             <div class="form-check form-check-inline">
               <input
@@ -332,7 +343,7 @@ export default {
               <thead class="border border-2 border-success border-bottom">
                 <tr>
                   <th scope="col">ลำดับ</th>
-                  <!-- <th scope="col">ยศ</th> -->
+                  <th scope="col">ยศ</th>
                   <th scope="col">ชื่อ-สกุล</th>
                   <!-- <th scope="col"></th> -->
                   <th scope="col">สังกัด</th>
@@ -345,8 +356,8 @@ export default {
               <tbody>
                 <tr v-for="(item, index) in dataUser" :key="index">
                   <th scope="row">{{ index + 1 }}</th>
-
-                  <td>{{ item?.rank }} {{ item?.firstName }} {{ item?.lastName }}</td>
+                  <td>{{ item?.rank }} </td>
+                  <td>{{ item?.firstName }} {{ item?.lastName }}</td>
                   <td>{{ item?.affiliation }}</td>
                   <td>{{ item?.status }}</td>
                   <!-- <td>{{ item.idcard }}</td> -->
@@ -474,6 +485,7 @@ export default {
                   label="ชื่อ"
                   type="text"
                   placeholder="ชื่อ"
+                  isRequired
                 />
               </div>
               <div class="mb-3">
@@ -615,14 +627,14 @@ export default {
                 ></v-select>
               </div>
               <div class="mb-3">
+                <h6 class="input-required">ชื่อ</h6>
                 <MaterialInput
                   name="firstName"
                   :value="firstName"
                   @input="(event) => (firstName = event.target.value)"
                   class="input-group-static"
-                  label="ชื่อ"
+                 
                   type="text"
-                  placeholder="ชื่อ"
                 />
               </div>
               <div class="mb-3">
@@ -712,4 +724,6 @@ input[type="number"] {
 .breadcrumb-item a:hover {
   color: #4caf50 !important;
 }
+
+
 </style>

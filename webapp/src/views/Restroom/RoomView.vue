@@ -17,7 +17,6 @@ export default {
   },
   setup() {
     return {
-      NoRoom,
       vueMkHeader,
       // roomData,
     };
@@ -230,14 +229,24 @@ export default {
 <template>
   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">สถานะห้องพัก</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -253,6 +262,7 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'สถานะห้องพัก' }]"
             />
           </div>
+          <h4>สถานะห้องพัก</h4>
           <div class="row pt-4 align-items-baseline">
             <div class="col-4">
               <div class="d-flex justify-content-start align-items-baseline">
@@ -351,6 +361,14 @@ export default {
                 </MaterialCheckbox>
                 <MaterialCheckbox
                   id="terms5"
+                  color="warning3"
+                  :checked="statusreturn"
+                  @change="onChangeEvent('return', $event)"
+                >
+                  <a href="javascript:;" class="font-weight-bolder"> รอคืนเงินประกัน</a>
+                </MaterialCheckbox>
+                <MaterialCheckbox
+                  id="terms6"
                   color="special"
                   @change="onChangeEvent('special', $event)"
                 >
@@ -578,6 +596,10 @@ export default {
   background-color: #fb8c00 !important;
   color: #fff !important;
 }
+.bg-warning3 {
+  background-color: #eada29 !important;
+  color: #fff !important;
+}
 .bg-return {
   background-color: #816613 !important;
   color: #fff !important;
@@ -596,6 +618,10 @@ export default {
 }
 .bgg-warning2 {
   background-color: #fb8c00 !important;
+  color: #fff !important;
+}
+.bgg-warning3 {
+  background-color: #eada29 !important;
   color: #fff !important;
 }
 .bgg-return {

@@ -141,16 +141,26 @@ export default {
 };
 </script>
 <template>
-  <Header>
+   <Header>
     <div
-      class="page-header min-vh-45"
+      class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
       <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1 class="pt-3 mt-n5 me-2 head-text">ผังห้องพัก</h1>
+        <div class="text-center" style="margin-top: -120px">
+          <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
+        </div>
+        <div class="row pt-6">
+          <div class="col-lg-12 text-center mx-auto position-relative">
+            <h1 class="pt-3 mt-n5 me-2 head-text">
+              โปรแกรมทะเบียนบ้านพัก
+              <br />
+              <span
+                style="font-size: 24px; border-top: 4px solid #000; font-weight: normal"
+                >กองบัญชาการตำรวจตระเวนชายแดน</span
+              >
+            </h1>
           </div>
         </div>
       </div>
@@ -166,6 +176,7 @@ export default {
               :routes="[{ label: 'หน้าหลัก', route: '/' }, { label: 'ผังห้องพัก' }]"
             />
           </div>
+          <h4>ผังห้องพัก</h4>
           <div class="d-flex justify-content-end align-items-baseline">
             <label style="margin-right: 10px">ค้นหาชื่ออาคาร </label>
             <MaterialInput
