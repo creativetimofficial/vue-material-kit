@@ -70,7 +70,7 @@ export default {
     },
 
     editTypeRoom(event) {
-      console.log(event);
+      // console.log(event);
       this.typeroomByqueue = event;
     },
 
@@ -116,7 +116,7 @@ export default {
             this.userByid = data;
           })
           .catch((err) => {
-            console.log(err.response);
+            console.log(err);
           });
       } catch (error) {
         console.error(error);

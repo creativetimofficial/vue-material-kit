@@ -11,97 +11,9 @@ import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
-// onMounted(() => {
-//   setMaterialInput();
-// });
+
 import axios from "axios";
-const listRoom = [
-  { title: "ตึก 1" },
-  { title: "ตึก 2" },
-  { title: "ตึก 3" },
-  { title: "ตึก 4" },
-  { title: "ตึก 5" },
-  { title: "ตึก 6" },
-  { title: "ตึก 7" },
-];
 
-const NoRoom = [
-  { title: "ชั้น 1" },
-  { title: "ชั้น 2" },
-  { title: "ชั้น 3" },
-  { title: "ชั้น 4" },
-  { title: "ชั้น 5" },
-  { title: "ชั้น 6" },
-  { title: "ชั้น 7" },
-];
-
-const landingColumns = [
-  {
-    title: "ห้อง 1",
-    dataIndex: "1",
-    status: true,
-  },
-  {
-    title: "ห้อง 2",
-    dataIndex: "2",
-    status: false,
-  },
-  {
-    title: "ห้อง 3",
-    dataIndex: "3",
-    status: true,
-  },
-  {
-    title: "ห้อง 4",
-    dataIndex: "4",
-    status: true,
-  },
-  {
-    title: "ห้อง 5",
-    dataIndex: "5",
-    status: false,
-  },
-  {
-    title: "ห้อง 6",
-    dataIndex: "6",
-    status: false,
-  },
-  {
-    title: "ห้อง 7",
-    dataIndex: "7",
-    status: true,
-  },
-  {
-    title: "ห้อง 8",
-    dataIndex: "8",
-    status: false,
-  },
-  {
-    title: "ห้อง 9",
-    dataIndex: "9",
-    status: false,
-  },
-  {
-    title: "ห้อง 10",
-    dataIndex: "10",
-    status: false,
-  },
-  {
-    title: "ห้อง 11",
-    dataIndex: "11",
-    status: true,
-  },
-  {
-    title: "ห้อง 12",
-    dataIndex: "12",
-    status: false,
-  },
-  {
-    title: "ห้อง 13",
-    dataIndex: "13",
-    status: false,
-  },
-];
 const userlist = [
   {
     dataIndex: "1",
@@ -134,8 +46,6 @@ export default {
   },
   setup() {
     return {
-      listRoom,
-      NoRoom,
       vueMkHeader,
       userlist,
     };
@@ -143,7 +53,6 @@ export default {
 
   data() {
     return {
-      value: { name: "Vue.js", language: "JavaScript" },
       options: [
         { label: "มกราคม", value: "01" },
         { label: "กุมภาพันธ์", value: "02" },
@@ -240,6 +149,10 @@ export default {
       console.log(event);
       // this.selected = event;
     },
+    queuetypefilter(e) {
+      if (e.target) this.Roomconditions = e.target.value;
+    },
+
     async getRooms(id) {
       try {
         await axios
@@ -247,6 +160,9 @@ export default {
           .then((res) => {
             this.roomData = res.data;
             console.log(this.roomData);
+            this.numberRoom = this.roomData.numberRoom;
+            this.selectedRoomtype = this.roomData.typeRoom
+            
             // this.oldData = this.roomData;
           })
           .catch((err) => {
@@ -259,17 +175,24 @@ export default {
 
     submitForm() {
       let body = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        Affiliation: this.Affiliation,
-        rank: this.rank,
-        idcard: this.idcard,
-        phone: this.phone,
+        numberRoom: this.numberRoom,
+        typeRoom: this.selectedRoomtype.label,
+        roomconditions: this.Roomconditions,
       };
-      // let b = []
-      // b.push(body)
-      // this.userlist.push(body)
-      // console.log(this.userlist);
+      axios
+        .put(`http://localhost:3001/rooms/${this.id}`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getRooms(this.id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -373,7 +296,7 @@ export default {
                 >
                   <div class="p-4">
                     <div>
-                      <h5>แก้ไขรายละเอียด ห้อง 2</h5>
+                      <h5>แก้ไขรายละเอียด ห้อง {{ numberRoom }}</h5>
                       <div class="mb-3">
                         <MaterialInput
                           :value="numberRoom"
@@ -400,9 +323,11 @@ export default {
                             type="radio"
                             name="inlineRadioOptions"
                             id="inlineRadio1"
-                            value="option1"
+                            value="ปกติ"
+                            @change="queuetypefilter($event)"
+                            :checked="Roomconditions == 'ปกติ'"
                           />
-                          <label class="form-check-label" for="inlineRadio1">ชำรุด</label>
+                          <label class="form-check-label" for="inlineRadio1">ปกติ</label>
                         </div>
                         <div class="form-check form-check-inline">
                           <input
@@ -410,15 +335,21 @@ export default {
                             type="radio"
                             name="inlineRadioOptions"
                             id="inlineRadio2"
-                            value="option2"
+                            value="ชำรุด"
+                            @change="queuetypefilter($event)"
+                            :checked="Roomconditions == 'ชำรุด'"
                           />
-                          <label class="form-check-label" for="inlineRadio2">ปกติ</label>
+                          <label class="form-check-label" for="inlineRadio2">ชำรุด</label>
                         </div>
                       </div>
                     </div>
 
                     <div class="text-center">
-                      <MaterialButton variant="gradient" color="success"
+                      <MaterialButton
+                        variant="gradient"
+                        color="success"
+                        @click="submitForm"
+                        html-type="submit"
                         >บันทึก</MaterialButton
                       >
                     </div>
@@ -559,27 +490,6 @@ export default {
                           type="text"
                           placeholder="สาเหตุ"
                         />
-                      </div>
-                    </div>
-                    <div
-                      class="mb-3"
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                      "
-                    >
-                      <div class="form-check form-check-inline">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio22"
-                          value="รอคืนเงินประกัน"
-                        />
-                        <label class="form-check-label" for="inlineRadio22"
-                          >รอคืนเงินประกัน</label
-                        >
                       </div>
                     </div>
                     <div>

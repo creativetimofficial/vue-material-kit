@@ -1,0 +1,348 @@
+[
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/11",
+        "sumroom": "24",
+        "committee": " มารุช ดีงาม , บารมี ดีงาม",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": [
+            {
+                "floor": 1,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1,
+                        "ranks": "ส.ต.ต.",
+                        "firstName": "ปิติ2",
+                        "laststName": "มีดี",
+                        "Affiliation": "ฝอ. 2",
+                        "typeRoom": "ช1",
+                        "roomStatus": "unavailable"
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "ช1",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3,
+                        "ranks": "ส.ต.ต.",
+                        "firstName": "ปิติ2",
+                        "laststName": "มีดี",
+                        "Affiliation": "ฝอ. 1",
+                        "typeRoom": "ช2",
+                        "roomStatus": "return"
+                    },
+                    {
+                        "index": 4,
+                        "numberRoom": 4,
+                        "ranks": "ส.ต.ต.",
+                        "firstName": "ปิติ3",
+                        "laststName": "มีดี",
+                        "Affiliation": "ฝอ. 1",
+                        "typeRoom": "ช2",
+                        "roomStatus": "unavailable"
+                    },
+                    {
+                        "index": 5,
+                        "numberRoom": 5,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "ช1",
+                        "roomStatus": "free"
+                    }
+                ],
+                "sumroom": 5
+            },
+            {
+                "floor": 2,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1,
+                        "ranks": "ส.ต.ต.",
+                        "firstName": "ปิติ9",
+                        "laststName": "มีดี",
+                        "Affiliation": "ฝอ. 1",
+                        "typeRoom": "ช3",
+                        "roomStatus": "special"
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2,
+                        "ranks": "ส.ต.ต.",
+                        "firstName": "ปิติ6",
+                        "laststName": "มีดี",
+                        "Affiliation": "ฝอ. 7",
+                        "typeRoom": "ช2",
+                        "roomStatus": "waiting"
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "ช2",
+                        "roomStatus": "free"
+                    }
+                ],
+                "sumroom": 3
+            }
+        ]
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/12",
+        "sumroom": "20",
+        "committee": "",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/13",
+        "sumroom": "24",
+        "committee": "",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/14",
+        "committee": "",
+        "sumroom": "18",
+        "floor": "3",
+        "roomnumber": "",
+        "type": "ช.3",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/15",
+        "committee": "",
+        "sumroom": "32",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/16",
+        "committee": "",
+        "sumroom": "24",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/17",
+        "committee": "",
+        "sumroom": "32",
+        "floor": "4",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "อาคารแฟลต 1/18",
+        "sumroom": "60",
+        "committee": "",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "-",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "แฟลตลือชา 1",
+        "committee": "",
+        "sumroom": "50",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "-",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "แฟลตลือชา 2",
+        "committee": "",
+        "sumroom": "50",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "-",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "แฟลตลือชา 3",
+        "sumroom": "40",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "แฟลตบางเขน 1",
+        "committee": "",
+        "sumroom": "50",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "-",
+        "listRoom": []
+    },
+    {
+        "buil": "อาคารบ้านพัก บช. ตชด.",
+        "name": "แฟลตบางเขน 2",
+        "committee": "",
+        "sumroom": "50",
+        "floor": "5",
+        "roomnumber": "",
+        "type": "ช.2",
+        "listRoom": []
+    },
+    {
+        "id": "745a7d08-5333-40ef-8c2c-5bcdf1e2a392",
+        "buil": "บช",
+        "name": "ลือชา15",
+        "committee": " มารุช ดีงาม , บารมี ดีงาม",
+        "sumroom": 8,
+        "floor": "2",
+        "roomnumber": "",
+        "type": "",
+        "listRoom": [
+            {
+                "floor": 1,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3
+                    },
+                    {
+                        "index": 4,
+                        "numberRoom": 4
+                    },
+                    {
+                        "index": 5,
+                        "numberRoom": 5
+                    }
+                ],
+                "sumroom": 5
+            },
+            {
+                "floor": 2,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3
+                    }
+                ],
+                "sumroom": 3
+            }
+        ]
+    },
+    {
+        "id": "4f82fe70-ac26-473d-b9ec-e8724e9fa5a9",
+        "buil": "test",
+        "name": "ลือชา 4/5",
+        "committee": " มารุช ดีงาม , บารมี ดีงาม",
+        "sumroom": 11,
+        "floor": "2",
+        "roomnumber": "",
+        "type": "",
+        "listRoom": [
+            {
+                "floor": 1,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3
+                    },
+                    {
+                        "index": 4,
+                        "numberRoom": 4
+                    },
+                    {
+                        "index": 5,
+                        "numberRoom": 5
+                    },
+                    {
+                        "index": 6,
+                        "numberRoom": 6
+                    },
+                    {
+                        "index": 7,
+                        "numberRoom": 7
+                    }
+                ],
+                "sumroom": 7
+            },
+            {
+                "floor": 2,
+                "rooms": [
+                    {
+                        "index": 1,
+                        "numberRoom": 1
+                    },
+                    {
+                        "index": 2,
+                        "numberRoom": 2
+                    },
+                    {
+                        "index": 3,
+                        "numberRoom": 3
+                    },
+                    {
+                        "index": 4,
+                        "numberRoom": 4
+                    }
+                ],
+                "sumroom": 4
+            }
+        ]
+    }
+]

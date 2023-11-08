@@ -32,13 +32,13 @@ export default {
       ],
 
       listRoom: [],
-      selectedtypeRoom: "ช1",
+      selectedtypeRoom: "ทั้งหมด",
       selectedColor: "",
       statusfree: false,
       statusreturn: false,
       statuseunavailable: false,
       statusewaiting: false,
-      selectedlistRoom: { label: "อาคารแฟลต 1/11", value: "อาคารแฟลต 1/11" },
+      selectedlistRoom: "",
       committee: "",
       selectedStatus: "",
       selectedReturn: "",
@@ -47,6 +47,9 @@ export default {
       selectedScaple: "",
       roomData: [],
       buildingList: [],
+      roomList: [],
+      roomListOld: [],
+      buidingId: "",
     };
   },
   created() {
@@ -57,43 +60,37 @@ export default {
       console.error(e);
     }
 
-    this.getRooms();
+    // this.getRooms();
     this.getBuildings();
   },
   watch: {
     selectedtypeRoom: function (newValue) {
-      this.roomData = this.oldData;
+      this.roomList = this.roomListOld;
+      let filldata = [];
       if (newValue !== null) {
         if (newValue.value !== "ทั้งหมด") {
-          const typeRoom = this.roomData.filter(
-            (tagreturn) => tagreturn.typeRoom === newValue.value
-          );
-          this.roomData = typeRoom;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.typeRoom == newValue.value);
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         } else {
-          this.roomData = this.oldData;
+          this.roomList = this.roomListOld;
         }
       }
     },
 
-    // selectedtypeRoom: async function (newValue) {
-    //   // this.dataBuilding["listRoom"] = [];
-    //   let buildingList = [];
-    //   buildingList = this.oldData
-    //   let datalist = []
-    //   if (newValue !== null) {
-    //     if (newValue.value !== "ทั้งหมด") {
-    //       datalist = buildingList["listRoom"].map((ele, i) => {
-    //         ele.rooms = ele.rooms.filter((c) => c.typeRoom == newValue.value);
-    //         return ele; // return ele;
-    //       });
-
-    //       this.dataBuilding["listRoom"] = datalist;
-    //       console.log(this.dataBuilding);
-    //     } else {
-    //       // this.roomData = this.oldData;
-    //     }
-    //   }
-    // },
+    selectedlistRoom: async function (newValue) {
+      let arr = []
+      arr = this.buildingList.find(e => e.buil == newValue.value )
+      this.buidingId = arr.listRoom[0].buildingId
+      this.buildById(this.buidingId);
+    },
   },
   methods: {
     gotodetail(id, index) {
@@ -133,8 +130,8 @@ export default {
           .get("http://localhost:3001/rooms")
           .then((res) => {
             this.roomData = res.data;
-            console.log(this.roomData);
             this.oldData = this.roomData;
+            this.buildById(this.buidingId);
           })
           .catch((err) => {
             console.log(err);
@@ -143,24 +140,44 @@ export default {
         console.error(error);
       }
     },
+    async buildById(id) {
+      try {
+        axios.get(`http://localhost:3001/rooms/`).then((res) => {
+          let broom = [];
+          let buidingRoom = res.data;
+          // let buidingRoomOld = buidingRoom;
+          broom = buidingRoom.filter((e) => e.buildingId == id);
+          const groupByCategory = Object.groupBy(broom, (product) => {
+            return product.floor;
+          });
+          this.roomList = Object.keys(groupByCategory).map((ele) => {
+            return {
+              floor: parseInt(ele),
+              data: groupByCategory[ele].sort((a, b) => a.index - b.index),
+            };
+          });
+          this.roomListOld = this.roomList;
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
     async getBuildings() {
       try {
         axios.get(`http://localhost:3001/buildings/`).then((res) => {
           this.buildingList = res.data;
-          // this.oldData = res.data
-          let roomValue = this.buildingList.find(
-            (el) => el.name == this.selectedlistRoom.value
-          );
-          this.committee = roomValue.committee;
-          this.dataBuilding = { ...roomValue };
-          // this.oldData = { ...roomValue };
-          // console.log(this.dataBuilding);
-          this.listRoom = this.buildingList.map((ele) => {
+          this.listRoom = this.buildingList.map(e => {
             return {
-              label: ele.name,
-              value: ele.name,
-            };
-          });
+              label: e.buil,
+              value: e.buil
+            }
+          })
+          let roomValue = this.buildingList[0];
+          this.committee = roomValue.committee;
+          this.selectedlistRoom = { label: roomValue.buil, value: roomValue.buil };
+          this.buidingId = roomValue.listRoom[0].buildingId;
+          this.dataBuilding = { ...roomValue };
+          this.getRooms();
         });
       } catch (e) {
         console.error(e);
@@ -187,39 +204,72 @@ export default {
         });
     },
     onChangeEvent(e, event, selectedStatus) {
-      this.roomData = this.oldData;
+      this.roomList = this.roomListOld;
+      let filldata = [];
       if (e == "free") {
         if (event.target.checked) {
-          const free = this.roomData.filter((tagfree) => tagfree.status === "free");
-          this.roomData = free;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.roomStatus == "free");
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         }
       } else if (e == "unavailable") {
         if (event.target.checked) {
-          const statuseunavailable = this.roomData.filter(
-            (tagun) => tagun.status === "unavailable"
-          );
-          this.roomData = statuseunavailable;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.roomStatus == "unavailable");
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         }
       } else if (e == "waiting") {
         if (event.target.checked) {
-          const waiting = this.roomData.filter(
-            (tagwaiting) => tagwaiting.status === "waiting"
-          );
-          this.roomData = waiting;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.roomconditions == "ชำรุด");
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         }
       } else if (e == "return") {
         if (event.target.checked) {
-          const returns = this.roomData.filter(
-            (tagreturn) => tagreturn.status === "return"
-          );
-          this.roomData = returns;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.roomStatus == "return");
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         }
       } else if (e == "special") {
         if (event.target.checked) {
-          const specials = this.roomData.filter(
-            (tagreturn) => tagreturn.status === "special"
-          );
-          this.roomData = specials;
+          filldata = this.roomList.map((ele, i) => {
+            return ele.data.filter((c) => c.roomStatus == "special");
+          });
+          let t = Object.keys(filldata).map((ele) => {
+            return {
+              floor: parseInt(ele) + 1,
+              data: filldata[ele] || [],
+            };
+          });
+          this.roomList = t;
         }
       }
     },
@@ -233,7 +283,7 @@ export default {
       :style="`background-image: url(${vueMkHeader})`"
       loading="lazy"
     >
-      <div class="container-fluid">
+      <div class="container">
         <div class="text-center" style="margin-top: -120px">
           <img src="../../assets/img/logo.png" alt="title" loading="lazy" class="w-35" />
         </div>
@@ -299,7 +349,7 @@ export default {
 
           <div class="text-center pt-4">
             <div class="d-flex justify-content-start align-items-baseline pt-1 w-35">
-              <label class="w-30" style="margin-right: 5px"> เลือกประเภทห้อง</label>
+              <label class="w-30" style="margin-right: 5px; margin-left: -20px"> เลือกประเภทห้อง</label>
               <v-select
                 class="w-50"
                 :options="typeRoom"
@@ -360,14 +410,6 @@ export default {
                   <a href="javascript:;" class="font-weight-bolder"> ผ่อนผัน</a>
                 </MaterialCheckbox>
                 <MaterialCheckbox
-                  id="terms5"
-                  color="warning3"
-                  :checked="statusreturn"
-                  @change="onChangeEvent('return', $event)"
-                >
-                  <a href="javascript:;" class="font-weight-bolder"> รอคืนเงินประกัน</a>
-                </MaterialCheckbox>
-                <MaterialCheckbox
                   id="terms6"
                   color="special"
                   @change="onChangeEvent('special', $event)"
@@ -378,7 +420,7 @@ export default {
             </div>
 
             <!-- v-for="(item, index) in NoRoom" :key="index" -->
-            <div v-for="(item, index) in dataBuilding?.listRoom" :key="index">
+            <div v-for="(item, index) in roomList" :key="index">
               <div class="card mb-2">
                 <div class="card-body">
                   <p class="text-start">
@@ -394,22 +436,24 @@ export default {
                   </p>
                   <div class="collapse show" id="collapseExample" aria-expanded="true">
                     <div class="flex-container-fluid">
-                      <div v-for="(item2, index) in roomData" :key="index">
+                      <div v-for="(item2, index) in item.data" :key="index">
                         <div
                           class="card mb-2"
                           :class="{
-                            'bg-red': item2?.status == 'unavailable',
-                            'bg-green': item2?.status == 'free',
-                            'bg-warning2': item2?.status == 'waiting',
-                            'bg-return': item2?.status == 'return',
-                            'bgg-red': item2?.status == 'special',
+                            'bg-red': item2?.roomStatus == 'unavailable',
+                            'bg-green':
+                              item2?.roomStatus == 'free' &&
+                              item2?.roomconditions !== 'ชำรุด',
+                            'bg-warning2': item2?.roomconditions == 'ชำรุด',
+                            'bg-return': item2?.roomStatus == 'return',
+                            'bgg-red': item2?.roomStatus == 'special',
                           }"
                           :style="{ height: `150px` }"
                         >
                           <div class="card-body p-1">
                             <a
                               style="cursor: pointer"
-                              @click="gotodetail(item2?.index, item2?.status)"
+                              @click="gotodetail(item2?.id, item2?.roomStatus)"
                             >
                               <p
                                 class="card-title"
@@ -425,28 +469,31 @@ export default {
                                 >
                               </p>
                               <p
-                                v-if="item2?.status == 'free'"
+                                v-if="
+                                  item2?.roomStatus == 'free' &&
+                                  item2?.roomconditions !== 'ชำรุด'
+                                "
                                 class="card-title bgg-green"
                                 style="font-size: 16px"
                               >
                                 {{ "ว่าง" }}
                               </p>
                               <p
-                                v-if="item2?.status == 'unavailable'"
+                                v-if="item2?.roomStatus == 'unavailable'"
                                 class="card-title bgg-red"
                                 style="font-size: 16px"
                               >
                                 {{ "ไม่ว่าง" }}
                               </p>
                               <p
-                                v-if="item2?.status == 'waiting'"
+                                v-if="item2?.roomconditions == 'ชำรุด'"
                                 class="card-title bgg-warning2"
                                 style="font-size: 16px"
                               >
                                 {{ "ชำรุด" }}
                               </p>
                               <p
-                                v-if="item2?.status == 'return'"
+                                v-if="item2?.roomStatus == 'return'"
                                 class="card-title bgg-return"
                                 style="font-size: 16px"
                               >
@@ -458,13 +505,23 @@ export default {
                               </p>
                               <p>
                                 <span
-                                  v-if="item2?.status !== 'special'"
+                                  v-if="item2?.roomStatus !== 'special'"
                                   style="text-align: right; font-size: small"
                                   >{{ item2?.Affiliation }}</span
                                 >
                                 <span
-                                  v-if="item2?.status == 'special'"
-                                  style="text-align: right; font-size: 16px"
+                                  v-if="item2?.roomStatus == 'special'"
+                                  style="
+                                    font-size: 16px;
+                                    display: flex;
+                                    align-items: center;
+                                    margin-left: 5px;
+                                  "
+                                  ><i
+                                    class="material-icons me-2"
+                                    style="cursor: pointer"
+                                    aria-hidden="true"
+                                    >star</i
                                   >{{ "กรณีพิเศษ" }}</span
                                 >
                               </p>

@@ -65,6 +65,7 @@ app.put('/users/:id', (req, res) => {
     if (req.body.bookNumber) parsedData.bookNumber = req.body.bookNumber
     if (req.body.pickedBook) parsedData.pickedBook = req.body.pickedBook
     if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
+    if (req.body.roomconditions) parsedData.roomconditions = req.body.roomconditions
     filterdata.push(parsedData)
     fs.writeFile('./users.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {
@@ -84,16 +85,14 @@ app.get('/buildings', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.json(building)
 })
-app.get('/buildings/:name', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json(building.find(user => user.name === (req.params.name)))
-})
+// app.get('/buildings/:buildingId', (req, res) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.json(building.find(buildings => buildings.buildingId === (req.params.buildingId)))
+// })
 app.post('/buildings', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    let id = uuidv4();
     let body = req.body
-    let data = { id: id, ...body }
-    building.push(data)
+    building.push(body)
     fs.writeFile('./building.json', JSON.stringify(building), err => {
         if (err) {
             console.log('Error writing file', err)
@@ -131,15 +130,18 @@ app.get('/rooms', (req, res) => {
 })
 app.get('/rooms/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    console.log(req.params.id);
-    res.json(rooms.find(room => room.index == (req.params.id)))
+    res.json(rooms.find(room => room.id == (req.params.id)))
 })
+
+app.get('/buildings/:buildingId', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json(rooms.find(room => room.buildingId === (req.params.buildingId)))
+})
+
 app.post('/rooms', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    let id = uuidv4();
     let body = req.body
-    let data = { id: id, ...body }
-    rooms.push(data)
+    rooms.push(body)
     fs.writeFile('./rooms.json', JSON.stringify(rooms), err => {
         if (err) {
             console.log('Error writing file', err)
@@ -155,15 +157,20 @@ app.put('/rooms/:id', (req, res) => {
     let dataOld = rooms[updateIndex]
     let filterdata = rooms.filter(user => user.id !== (req.params.id))
     const parsedData = dataOld;
+    if (req.body.floor) parsedData.floor = req.body.floor
     if (req.body.firstName) parsedData.firstName = req.body.firstName
     if (req.body.lastName) parsedData.lastName = req.body.lastName
+    if (req.body.numberRoom) parsedData.numberRoom = req.body.numberRoom
     if (req.body.affiliation) parsedData.affiliation = req.body.affiliation
-    if (req.body.rank) parsedData.rank = req.body.rank
+    if (req.body.ranks) parsedData.ranks = req.body.ranks
     if (req.body.idcard) parsedData.idcard = req.body.idcard
     if (req.body.phone) parsedData.phone = req.body.phone
     if (req.body.status) parsedData.status = req.body.status
+    if (req.body.roomStatus) parsedData.roomStatus = req.body.roomStatus
     if (req.body.typeAffiliation) parsedData.typeAffiliation = req.body.typeAffiliation
     if (req.body.typeRanks) parsedData.typeRanks = req.body.typeRanks
+    if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
+    if (req.body.roomconditions) parsedData.roomconditions = req.body.roomconditions
     filterdata.push(parsedData)
     fs.writeFile('./rooms.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {

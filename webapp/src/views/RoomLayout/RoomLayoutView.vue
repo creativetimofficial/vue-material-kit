@@ -5,6 +5,7 @@ import vueMkHeader from "@/assets/img/bg.jpg";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import masterData from "@/assets/dataJson/masterData.json";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: {
@@ -50,12 +51,19 @@ export default {
   methods: {
     changedFloors() {
       let array = [];
+      let idbuilding = uuidv4();
       for (let index = 0; index < this.Floors; index++) {
         array.push({
+          buildingId: idbuilding,
           name: this.Building,
           floor: index + 1,
+          committee: "",
           rooms: [
             {
+              buildingId: idbuilding,
+              id: uuidv4(),
+              name: this.Building,
+              floor: index + 1,
               index: 1,
               numberRoom: 1,
               ranks: "",
@@ -63,7 +71,8 @@ export default {
               laststName: "",
               Affiliation: "",
               typeRoom: "",
-              status: "free",
+              roomconditions: "ปกติ",
+              roomStatus: "free",
             },
           ],
           sumroom: 1,
@@ -73,6 +82,10 @@ export default {
     },
     addRoom(item) {
       item.rooms.push({
+        buildingId: item.buildingId,
+        id: uuidv4(),
+        name: item.name,
+        floor: item.floor,
         index: item.sumroom + 1,
         numberRoom: item.sumroom + 1,
         ranks: "",
@@ -80,7 +93,8 @@ export default {
         laststName: "",
         Affiliation: "",
         typeRoom: "",
-        status: "free",
+        roomconditions: "ปกติ",
+        roomStatus: "free",
       });
       item.sumroom = item.sumroom + 1;
     },
@@ -108,20 +122,35 @@ export default {
           },
         })
         .then((res) => {
+          this.submitRoom();
           this.getBuildings();
         })
         .catch((err) => {
           console.log(err);
         });
-        await axios
-        .post(`http://localhost:3001/rooms`, body, {
+    },
+
+    async submitRoom() {
+      let floorsList = [];
+      await this.FloorsList.forEach((e) => {
+        e.rooms.forEach((ele) => {
+          floorsList.push(ele);
+        });
+      });
+      // let body = floorsList
+      console.log(floorsList);
+      await floorsList.forEach(x => {
+         axios
+        .post(`http://localhost:3001/rooms`, x, {
           headers: {
             // remove headers
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
         })
+      }) 
     },
+
     // buildings
     async getBuildings() {
       try {
@@ -141,7 +170,7 @@ export default {
 };
 </script>
 <template>
-   <Header>
+  <Header>
     <div
       class="page-header min-vh-70"
       :style="`background-image: url(${vueMkHeader})`"

@@ -1,347 +1,243 @@
 [
     {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/11",
-        "sumroom": "24",
-        "committee": " มารุช ดีงาม , บารมี ดีงาม",
-        "floor": "4",
+        "buil": "test023",
+        "name": "023",
+        "sumroom": 7,
+        "floor": "2",
         "roomnumber": "",
-        "type": "ช.2",
+        "type": "",
+        "committee":"",
         "listRoom": [
             {
+                "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                "name": "023",
                 "floor": 1,
                 "rooms": [
                     {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "f5c54b45-9f9f-459d-891f-838c3a7ff41c",
+                        "name": "023",
+                        "floor": 1,
                         "index": 1,
                         "numberRoom": 1,
-                        "ranks": "ส.ต.ต.",
-                        "firstName": "ปิติ2",
-                        "laststName": "มีดี",
-                        "Affiliation": "ฝอ. 2",
-                        "typeRoom": "ช1",
-                        "status": "unavailable"
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomStatus": "free"
                     },
                     {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "a10eff34-cbe2-4a71-a44e-0d95bfe33410",
+                        "name": "023",
+                        "floor": 1,
                         "index": 2,
                         "numberRoom": 2,
                         "ranks": "",
                         "firstName": "",
                         "laststName": "",
                         "Affiliation": "",
-                        "typeRoom": "ช1",
-                        "status": "free"
+                        "typeRoom": "",
+                        "roomStatus": "free"
                     },
                     {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "03dc297e-ea5e-4852-8e49-6c9f3d2d47d4",
+                        "name": "023",
+                        "floor": 1,
                         "index": 3,
                         "numberRoom": 3,
-                        "ranks": "ส.ต.ต.",
-                        "firstName": "ปิติ2",
-                        "laststName": "มีดี",
-                        "Affiliation": "ฝอ. 1",
-                        "typeRoom": "ช2",
-                        "status": "return"
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomStatus": "free"
                     },
                     {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "76f80b9e-a31e-4e7a-92d2-6d857c90fc81",
+                        "name": "023",
+                        "floor": 1,
                         "index": 4,
                         "numberRoom": 4,
-                        "ranks": "ส.ต.ต.",
-                        "firstName": "ปิติ3",
-                        "laststName": "มีดี",
-                        "Affiliation": "ฝอ. 1",
-                        "typeRoom": "ช2",
-                        "status": "unavailable"
-                    },
-                    {
-                        "index": 5,
-                        "numberRoom": 5,
                         "ranks": "",
                         "firstName": "",
                         "laststName": "",
                         "Affiliation": "",
-                        "typeRoom": "ช1",
-                        "status": "free"
-                    }
-                ],
-                "sumroom": 5
-            },
-            {
-                "floor": 2,
-                "rooms": [
-                    {
-                        "index": 1,
-                        "numberRoom": 1,
-                        "ranks": "ส.ต.ต.",
-                        "firstName": "ปิติ9",
-                        "laststName": "มีดี",
-                        "Affiliation": "ฝอ. 1",
-                        "typeRoom": "ช3",
-                        "status": "special"
-                    },
-                    {
-                        "index": 2,
-                        "numberRoom": 2,
-                        "ranks": "ส.ต.ต.",
-                        "firstName": "ปิติ6",
-                        "laststName": "มีดี",
-                        "Affiliation": "ฝอ. 7",
-                        "typeRoom": "ช2",
-                        "status": "waiting"
-                    },
-                    {
-                        "index": 3,
-                        "numberRoom": 3,
-                        "ranks": "",
-                        "firstName": "",
-                        "laststName": "",
-                        "Affiliation": "",
-                        "typeRoom": "ช2",
-                        "status": "free"
-                    }
-                ],
-                "sumroom": 3
-            }
-        ]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/12",
-        "sumroom": "20",
-        "committee": "",
-        "floor": "4",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/13",
-        "sumroom": "24",
-        "committee": "",
-        "floor": "4",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/14",
-        "committee": "",
-        "sumroom": "18",
-        "floor": "3",
-        "roomnumber": "",
-        "type": "ช.3",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/15",
-        "committee": "",
-        "sumroom": "32",
-        "floor": "4",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/16",
-        "committee": "",
-        "sumroom": "24",
-        "floor": "4",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/17",
-        "committee": "",
-        "sumroom": "32",
-        "floor": "4",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "อาคารแฟลต 1/18",
-        "sumroom": "60",
-        "committee": "",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "-",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "แฟลตลือชา 1",
-        "committee": "",
-        "sumroom": "50",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "-",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "แฟลตลือชา 2",
-        "committee": "",
-        "sumroom": "50",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "-",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "แฟลตลือชา 3",
-        "sumroom": "40",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "แฟลตบางเขน 1",
-        "committee": "",
-        "sumroom": "50",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "-",
-        "listRoom":[]
-    },
-    {
-        "buil": "อาคารบ้านพัก บช. ตชด.",
-        "name": "แฟลตบางเขน 2",
-        "committee": "",
-        "sumroom": "50",
-        "floor": "5",
-        "roomnumber": "",
-        "type": "ช.2",
-        "listRoom":[]
-    },
-    {
-        "id": "745a7d08-5333-40ef-8c2c-5bcdf1e2a392",
-        "buil": "บช",
-        "name": "ลือชา15",
-        "committee": " มารุช ดีงาม , บารมี ดีงาม",
-        "sumroom": 8,
-        "floor": "2",
-        "roomnumber": "",
-        "type": "",
-        "listRoom": [
-            {
-                "floor": 1,
-                "rooms": [
-                    {
-                        "index": 1,
-                        "numberRoom": 1
-                    },
-                    {
-                        "index": 2,
-                        "numberRoom": 2
-                    },
-                    {
-                        "index": 3,
-                        "numberRoom": 3
-                    },
-                    {
-                        "index": 4,
-                        "numberRoom": 4
-                    },
-                    {
-                        "index": 5,
-                        "numberRoom": 5
-                    }
-                ],
-                "sumroom": 5
-            },
-            {
-                "floor": 2,
-                "rooms": [
-                    {
-                        "index": 1,
-                        "numberRoom": 1
-                    },
-                    {
-                        "index": 2,
-                        "numberRoom": 2
-                    },
-                    {
-                        "index": 3,
-                        "numberRoom": 3
-                    }
-                ],
-                "sumroom": 3
-            }
-        ]
-    },
-    {
-        "id": "4f82fe70-ac26-473d-b9ec-e8724e9fa5a9",
-        "buil": "test",
-        "name": "ลือชา 4/5",
-        "committee": " มารุช ดีงาม , บารมี ดีงาม",
-        "sumroom": 11,
-        "floor": "2",
-        "roomnumber": "",
-        "type": "",
-        "listRoom": [
-            {
-                "floor": 1,
-                "rooms": [
-                    {
-                        "index": 1,
-                        "numberRoom": 1
-                    },
-                    {
-                        "index": 2,
-                        "numberRoom": 2
-                    },
-                    {
-                        "index": 3,
-                        "numberRoom": 3
-                    },
-                    {
-                        "index": 4,
-                        "numberRoom": 4
-                    },
-                    {
-                        "index": 5,
-                        "numberRoom": 5
-                    },
-                    {
-                        "index": 6,
-                        "numberRoom": 6
-                    },
-                    {
-                        "index": 7,
-                        "numberRoom": 7
-                    }
-                ],
-                "sumroom": 7
-            },
-            {
-                "floor": 2,
-                "rooms": [
-                    {
-                        "index": 1,
-                        "numberRoom": 1
-                    },
-                    {
-                        "index": 2,
-                        "numberRoom": 2
-                    },
-                    {
-                        "index": 3,
-                        "numberRoom": 3
-                    },
-                    {
-                        "index": 4,
-                        "numberRoom": 4
+                        "typeRoom": "",
+                        "roomStatus": "free"
                     }
                 ],
                 "sumroom": 4
+            },
+            {
+                "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                "name": "023",
+                "floor": 2,
+                "rooms": [
+                    {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "ffe28ac7-d4e3-4ad3-bec4-7d4744660027",
+                        "name": "023",
+                        "floor": 2,
+                        "index": 1,
+                        "numberRoom": 1,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "ee69339f-529d-443a-b387-cf67102b4a23",
+                        "name": "023",
+                        "floor": 2,
+                        "index": 2,
+                        "numberRoom": 2,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+                        "id": "728100ee-a335-4c77-a226-a63c4de6088a",
+                        "name": "023",
+                        "floor": 2,
+                        "index": 3,
+                        "numberRoom": 3,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomStatus": "free"
+                    }
+                ],
+                "sumroom": 3
+            }
+        ]
+    },
+    {
+        "buil": "test02",
+        "name": "01",
+        "sumroom": 6,
+        "floor": "2",
+        "roomnumber": "",
+        "type": "",
+        "committee":"",
+        "listRoom": [
+            {
+                "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                "name": "01",
+                "floor": 1,
+                "rooms": [
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "bcfb5f40-8b1e-4b69-b64e-4d8ca15db8bb",
+                        "name": "01",
+                        "floor": 1,
+                        "index": 1,
+                        "numberRoom": 1,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "3e8b5594-f735-46cf-b71f-14ba3b955c27",
+                        "name": "01",
+                        "floor": 1,
+                        "index": 2,
+                        "numberRoom": 2,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "cb5942ce-8ba9-4084-9e6a-cd202c238cbe",
+                        "name": "01",
+                        "floor": 1,
+                        "index": 3,
+                        "numberRoom": 3,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "f0ed9596-ee93-4781-a2aa-14d76472d314",
+                        "name": "01",
+                        "floor": 1,
+                        "index": 4,
+                        "numberRoom": 4,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    }
+                ],
+                "sumroom": 4
+            },
+            {
+                "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                "name": "01",
+                "floor": 2,
+                "rooms": [
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "67473bca-fd63-40e5-ad21-87598a77471d",
+                        "name": "01",
+                        "floor": 2,
+                        "index": 1,
+                        "numberRoom": 1,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    },
+                    {
+                        "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
+                        "id": "932d8efa-e1f7-4529-ad3f-54c109d9f69e",
+                        "name": "01",
+                        "floor": 2,
+                        "index": 2,
+                        "numberRoom": 2,
+                        "ranks": "",
+                        "firstName": "",
+                        "laststName": "",
+                        "Affiliation": "",
+                        "typeRoom": "",
+                        "roomconditions": "ปกติ",
+                        "roomStatus": "free"
+                    }
+                ],
+                "sumroom": 2
             }
         ]
     }

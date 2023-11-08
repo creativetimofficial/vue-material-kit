@@ -7,36 +7,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import axios from "axios";
 
-const userlist = [
-  {
-    dataIndex: "1",
-    firstName: "สมชาย",
-    lastName: "แสงทอง",
-    Affiliation: "ฝอ.2", //สังกัด
-    rank: "ส.ต.ต.",
-    idcard: "134044411441122",
-    phone: "0325647846",
-    bookNumber: "1234",
-    ContractDate: "12/11/2566", //สังกัด
-    Lengthofstay: "3 เดือน", //ยศ
-    InsuranceMoney: "10,000",
-    Status: "รอคิว",
-  },
-  {
-    dataIndex: "2",
-    firstName: "สมชัย",
-    lastName: "แสงสุข",
-    Affiliation: "ฝอ.2", //สังกัด
-    rank: "ส.ต.ต.",
-    idcard: "134044411441178",
-    phone: "0325647845",
-    bookNumber: "1234",
-    ContractDate: "12/11/2566", //สังกัด
-    Lengthofstay: "3 เดือน", //ยศ
-    InsuranceMoney: "10,000",
-    Status: "รอคิว",
-  },
-];
+
 export default {
   components: {
     MaterialInput,
@@ -45,8 +16,7 @@ export default {
   },
   setup() {
     return {
-      vueMkHeader,
-      userlist,
+      vueMkHeader
     };
   },
 
@@ -85,16 +55,10 @@ export default {
       this.id = this.$route.params.id;
       this.getroomByid(this.id);
     }
-    this.getAllqueue();
-    // this.$route.query
   },
   methods: {
     gotoAction() {
-      // if (this.mode == "edit") {
       this.$router.push({ path: `/room/update/${this.id}`, query: { mode: this.mode } });
-      // } else {
-      //   this.$router.push({ path: `/addUserRoom` , query: { mode: this.mode } });
-      // }
     },
     getAllqueue() {
       try {
@@ -102,7 +66,8 @@ export default {
           .get(`http://localhost:3001/queue/inqueue`)
           .then((res) => {
             this.queueList = res.data;
-            this.queuefilter = this.queueList.filter((e) => e.status === this.typeroom);
+            console.log(this.queueList);
+            this.queuefilter = this.queueList.filter((e) => e.typeRoom === this.typeroom);
           })
           .catch((err) => {
             console.log(err.response);
@@ -115,10 +80,12 @@ export default {
       try {
         axios.get(`http://localhost:3001/rooms/${id}`).then((res) => {
           this.data = res.data;
-          console.log(this.data);
-          if (this.data.typeRoom == "ช1") this.typeroom = "โสด";
-          if (this.data.typeRoom == "ช2") this.typeroom = "สมรส";
-          if (this.data.typeRoom == "ช3") this.typeroom = "ทั่วไป";
+          // console.log(this.data);
+          // if (this.data.typeRoom == "ช1") this.typeroom = "โสด";
+          // if (this.data.typeRoom == "ช2") this.typeroom = "สมรส";
+          // if (this.data.typeRoom == "ช3") this.typeroom = "ทั่วไป";
+          this.typeroom = this.data.typeRoom
+          this.getAllqueue()
         });
       } catch (e) {
         console.error(e);
@@ -156,7 +123,6 @@ export default {
       await axios
         .post(`http://localhost:3001/history`, body, {
           headers: {
-            // remove headers
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
@@ -164,7 +130,7 @@ export default {
         .then((res) => {
           this.submitForm2()
           this.submitForm3()
-          this.getAllqueue();
+          this.submitFormRoom()
         })
         .catch((err) => {
           console.log(err);
@@ -185,17 +151,10 @@ export default {
       await axios
         .post(`http://localhost:3001/report`, body, {
           headers: {
-            // remove headers
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
         })
-        .then((res) => {
-          this.getAllqueue();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
 
     async submitForm3() {
@@ -210,15 +169,35 @@ export default {
       };
 
       await axios
-        .put(`http://localhost:3001/queue/${this.id}`, body, {
+        .put(`http://localhost:3001/queue/${this.userId}`, body, {
           headers: {
-            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+    },
+    async submitFormRoom() {
+      let body = {
+        ...this.userByid,
+        queue: "inroom",
+        roomStatus: 'unavailable',
+        contract: this.contract,
+        checkintime: this.Checkintime,
+        maintenance: this.Maintenance,
+        insurance: this.insurance,
+        installments: this.installments,
+      };
+
+      await axios
+        .put(`http://localhost:3001/rooms/${this.id}`, body, {
+          headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
         })
         .then((res) => {
           this.getAllqueue();
+          this.$router.push({ path: `/room` });
         })
         .catch((err) => {
           console.log(err);
