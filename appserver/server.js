@@ -66,6 +66,7 @@ app.put('/users/:id', (req, res) => {
     if (req.body.pickedBook) parsedData.pickedBook = req.body.pickedBook
     if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
     if (req.body.roomconditions) parsedData.roomconditions = req.body.roomconditions
+    if (req.body.Checkintime) parsedData.Checkintime = req.body.Checkintime
     filterdata.push(parsedData)
     fs.writeFile('./users.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {
@@ -172,6 +173,7 @@ app.put('/rooms/:id', (req, res) => {
     if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
     if (req.body.pickedBook) parsedData.pickedBook = req.body.pickedBook
     if (req.body.roomconditions) parsedData.roomconditions = req.body.roomconditions
+    if (req.body.Checkintime) parsedData.Checkintime = req.body.Checkintime
     filterdata.push(parsedData)
     fs.writeFile('./rooms.json', JSON.stringify(filterdata, null, 2), (err) => {
         if (err) {

@@ -127,6 +127,7 @@ export default {
       let body = {
         ...this.userByid,
         queue: "inroom",
+        Affiliation: this.Affiliation,
         contract: this.contract,
         checkintime: this.Checkintime,
         maintenance: this.Maintenance,

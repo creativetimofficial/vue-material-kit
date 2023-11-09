@@ -194,6 +194,31 @@ export default {
           console.log(err);
         });
     },
+
+    returnsubmitForm() {
+      let body = {
+        roomStatus: 'free',
+        firstName: " ",
+        laststName: " ",
+        ranks: " ",
+        Affiliation: " "
+      };
+      axios
+        .put(`http://localhost:3001/rooms/${this.id}`, body, {
+          headers: {
+            // remove headers
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getRooms(this.id);
+          this.$router.push({ path: `/room/`});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
@@ -551,7 +576,7 @@ export default {
                       <MaterialButton
                         variant="gradient"
                         color="success"
-                        @click="submitForm"
+                        @click="returnsubmitForm"
                         html-type="submit"
                         >บันทึก</MaterialButton
                       >
