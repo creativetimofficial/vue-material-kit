@@ -172,7 +172,6 @@ export default {
       axios
         .post(`http://localhost:3001/users`, body, {
           headers: {
-            // remove headers
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
