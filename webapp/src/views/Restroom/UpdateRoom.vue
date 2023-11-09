@@ -159,7 +159,6 @@ export default {
           .get(`http://localhost:3001/rooms/${id}`)
           .then((res) => {
             this.roomData = res.data;
-            console.log(this.roomData);
             this.numberRoom = this.roomData.numberRoom;
             this.selectedRoomtype = this.roomData.typeRoom
             
@@ -201,7 +200,8 @@ export default {
         firstName: " ",
         laststName: " ",
         ranks: " ",
-        Affiliation: " "
+        Affiliation: " ",
+        queue: "none"
       };
       axios
         .put(`http://localhost:3001/rooms/${this.id}`, body, {

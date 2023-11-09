@@ -199,22 +199,6 @@
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
-    "id": "a10eff34-cbe2-4a71-a44e-0d95bfe33410",
-    "name": "023",
-    "floor": 1,
-    "index": 2,
-    "numberRoom": 2,
-    "ranks": "",
-    "firstName": "",
-    "laststName": "",
-    "Affiliation": "",
-    "roomconditions": "ปกติ",
-    "typeRoom": "ช1",
-    "roomStatus": "free",
-    "pickedBook": "2023-11-02T14:10:26.374Z"
-  },
-  {
-    "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
     "id": "03dc297e-ea5e-4852-8e49-6c9f3d2d47d4",
     "name": "023",
     "floor": 1,
@@ -395,5 +379,28 @@
     "typeAffiliation": "ลูกจ้าง",
     "typeRanks": "ประทวน",
     "pickedBook": "2023-11-02T14:10:26.374Z"
+  },
+  {
+    "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
+    "id": "a10eff34-cbe2-4a71-a44e-0d95bfe33410",
+    "name": "023",
+    "floor": 1,
+    "index": 2,
+    "numberRoom": 2,
+    "ranks": " ",
+    "firstName": "มานพ",
+    "laststName": "",
+    "Affiliation": "",
+    "roomconditions": "ปกติ",
+    "typeRoom": "ช2",
+    "roomStatus": "special",
+    "pickedBook": "2023-11-07T14:10:26.374Z",
+    "lastName": "มานี",
+    "affiliation": "ฝอ.2",
+    "idcard": "13404441144555",
+    "phone": "0325647845",
+    "status": "สมรส",
+    "typeAffiliation": "บก.อก.",
+    "typeRanks": "สัญญาบัตร"
   }
 ]

@@ -12,6 +12,7 @@
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
         "bookNumber": "1234",
+        "queue": "none",
         "pickedBook":""
     },
     {
@@ -26,6 +27,7 @@
         "phone": "0325647845",
         "typeAffiliation": "บช.ตซด.",
         "typeRanks": "ประทวน",
+        "queue": "none",
         "bookNumber": "1234",
         "pickedBook":""
     },
@@ -42,6 +44,7 @@
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
         "bookNumber": "1234",
+        "queue": "none",
         "pickedBook":""
     },
     {
@@ -56,6 +59,7 @@
         "typeRoom": "ช2",
         "typeAffiliation": "บช.ตซด.",
         "typeRanks": "ประทวน",
+        "queue": "none",
         "bookNumber": "14578963",
         "pickedBook":""
     },
@@ -72,6 +76,7 @@
         "typeAffiliation": "ลูกจ้าง",
         "typeRanks": "ลูกจ้าง",
         "typeUser": "ตร.",
+        "queue": "none",
         "bookNumber": "กกกกกกกกกก",
         "pickedBook":""
     },

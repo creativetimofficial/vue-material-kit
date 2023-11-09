@@ -47,7 +47,9 @@ export default {
       queueList: [],
       queuefilter: [],
       statusRoom: "",
-      dateApproved: ""
+      dateApproved: "",
+      userList: [],
+      selectedUser: "",
     };
   },
   created() {
@@ -56,6 +58,12 @@ export default {
       this.id = this.$route.params.id;
       this.getroomByid(this.id);
     }
+    this.getAllinqueue();
+  },
+  watch: {
+    selectedUser: function (newValue) {
+      this.getAllusersByid(newValue.value);
+    },
   },
   methods: {
     gotoAction() {
@@ -67,7 +75,6 @@ export default {
           .get(`http://localhost:3001/queue/inqueue`)
           .then((res) => {
             this.queueList = res.data;
-            console.log(this.queueList);
             this.queuefilter = this.queueList.filter((e) => e.typeRoom === this.typeroom);
           })
           .catch((err) => {
@@ -77,21 +84,58 @@ export default {
         console.error(error);
       }
     },
+
+    getAllinqueue() {
+      try {
+        axios
+          .get(`http://localhost:3001/queue/inqueue`)
+          .then((res) => {
+            this.userList = res.data.map((ele) => {
+              return {
+                label: ele.rank + " " + ele.firstName + " " + ele.lastName,
+                value: ele.id,
+              };
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    getAllusersByid(id) {
+      this.userId = id;
+      try {
+        axios
+          .get(`http://localhost:3001/users/${id}`)
+          .then((res) => {
+            let data = res.data;
+            this.userByid = data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     async getroomByid(id) {
       try {
         axios.get(`http://localhost:3001/rooms/${id}`).then((res) => {
           this.data = res.data;
           console.log(this.data);
-          this.dateApproved = this.convertDateTolocal(this.data.pickedBook)
+          this.dateApproved = this.convertDateTolocal(this.data.pickedBook);
           this.typeroom = this.data.typeRoom;
-          if(this.data.affiliation) this.Affiliation = this.data.affiliation 
+          if (this.data.affiliation) this.Affiliation = this.data.affiliation;
           if (this.data.roomStatus == "return") this.statusRoom = "ผ่อนผัน";
           if (this.data.roomStatus == "special") this.statusRoom = "กรณีพิเศษ";
           if (this.data.roomStatus == "waiting") this.statusRoom = "ชำรุด";
           if (this.data.roomStatus == "unavailable") this.statusRoom = "ไม่ว่าง";
           if (this.data.roomStatus == "free") this.statusRoom = "ว่าง";
-         
-          
+
           this.getAllqueue();
         });
       } catch (e) {
@@ -99,11 +143,15 @@ export default {
       }
     },
 
-    convertDateTolocal(index){
+    convertDateTolocal(index) {
       const date = new Date(index);
-      const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      const formattedDate = formatter.format(date)
-      return formattedDate
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+      const formattedDate = formatter.format(date);
+      return formattedDate;
     },
 
     getAllusersByid(id) {
@@ -123,7 +171,7 @@ export default {
       }
     },
 
-    async submitForm() {
+    async submitForm(index) {
       let body = {
         ...this.userByid,
         queue: "inroom",
@@ -144,7 +192,11 @@ export default {
         .then((res) => {
           this.submitForm2();
           this.submitForm3();
-          this.submitFormRoom();
+          if (index == "spacia") {
+            this.submitRoomScapia();
+          } else if (index == "normal") {
+            this.submitFormRoom();
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -215,6 +267,35 @@ export default {
           console.log(err);
         });
     },
+
+    async submitRoomScapia() {
+      // this.data.roomStatus == "special"
+      let body = {
+        ...this.userByid,
+        queue: "inroom",
+        roomStatus: "special",
+        contract: this.contract,
+        checkintime: this.Checkintime,
+        maintenance: this.Maintenance,
+        insurance: this.insurance,
+        installments: this.installments,
+      };
+
+      await axios
+        .put(`http://localhost:3001/rooms/${this.id}`, body, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          this.getAllqueue();
+          this.$router.push({ path: `/room` });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
@@ -261,6 +342,15 @@ export default {
           <div class="d-flex justify-content-between align-items-baseline">
             <h4>รายละเอียดห้องพัก {{ data?.numberRoom }}</h4>
             <div>
+              <MaterialButton
+                v-if="this.mode == 'add'"
+                style="margin-right: 20px"
+                variant="gradient"
+                color="danger"
+                data-bs-toggle="modal"
+                data-bs-target="#addSpaciaBackdrop"
+                >กรณีพิเศษ</MaterialButton
+              >
               <MaterialButton variant="gradient" color="success" @click="gotoAction()"
                 >จัดการห้องพัก</MaterialButton
               >
@@ -275,14 +365,16 @@ export default {
                       <h5 class="card-title">รายละเอียดผู้เช่า</h5>
                       <div class="col-5">
                         <p class="card-text">
-                          ชือ : {{ data?.rank }} {{ data?.firstName }}   
+                          ชือ : {{ data?.rank }} {{ data?.firstName }}
                         </p>
                         <p class="card-text">สถานะห้อง : {{ statusRoom }}</p>
-                        <p class="card-text">สังกัด : {{ Affiliation }} </p>
-                        <p class="card-text">เลขบัตรประชาชน :  {{ data?.idcard }} </p>
-                        <p class="card-text">วันที่ได้รับอนุมัติ :  {{ dateApproved  }} </p>
+                        <p class="card-text">สังกัด : {{ Affiliation }}</p>
+                        <p class="card-text">เลขบัตรประชาชน : {{ data?.idcard }}</p>
+                        <p class="card-text">วันที่ได้รับอนุมัติ : {{ dateApproved }}</p>
 
-                        <p class="card-text">ระยะเวลาที่เข้าพัก : {{ data?.Checkintime || 0 }} เดือน</p>
+                        <p class="card-text">
+                          ระยะเวลาที่เข้าพัก : {{ data?.Checkintime || 0 }} เดือน
+                        </p>
                       </div>
                       <div class="col-7">
                         <p class="card-text">นามสกุล : {{ data?.lastName }}</p>
@@ -433,7 +525,7 @@ export default {
             <MaterialButton
               variant="gradient"
               color="success"
-              @click="submitForm"
+              @click="submitForm('normal')"
               html-type="submit"
               data-bs-dismiss="modal"
               >บันทึก</MaterialButton
@@ -602,6 +694,49 @@ export default {
               variant="gradient"
               color="success"
               @click="submitForm"
+              html-type="submit"
+              >บันทึก</MaterialButton
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="addSpaciaBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">เลือกผู้เช่าเข้าห้องพัก</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>ชื่อผู้เช่า</label>
+              <v-select :options="userList" v-model="selectedUser"></v-select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              ปิดหน้าต่าง
+            </button>
+            <MaterialButton
+              variant="gradient"
+              color="success"
+              @click="submitForm('spacia')"
+              data-bs-dismiss="modal"
               html-type="submit"
               >บันทึก</MaterialButton
             >
