@@ -10,7 +10,8 @@
     "Affiliation": "ฝอ. 2",
     "typeRoom": "ช1",
     "roomconditions": "ปกติ",
-    "roomStatus": "unavailable"
+    "roomStatus": "unavailable",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c389c78-b2a3-4ea2-bca5-48521eb7e5db",
@@ -23,7 +24,8 @@
     "Affiliation": "ฝอ. 1",
     "typeRoom": "ช2",
     "roomconditions": "ปกติ",
-    "roomStatus": "return"
+    "roomStatus": "return",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c78-b2a3-4ea2-bca5-57521eb7e5db",
@@ -36,7 +38,8 @@
     "Affiliation": "ฝอ. 1",
     "typeRoom": "ช2",
     "roomconditions": "ปกติ",
-    "roomStatus": "unavailable"
+    "roomStatus": "unavailable",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c78-b2v3-4ea2-bca5-48521eb7e5db",
@@ -49,7 +52,8 @@
     "Affiliation": "ฝอ. 1",
     "typeRoom": "ช3",
     "roomconditions": "ปกติ",
-    "roomStatus": "special"
+    "roomStatus": "special",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c787c78-b2a3-4ea2-bca5-48521eb7e5db",
@@ -62,7 +66,8 @@
     "Affiliation": "ฝอ. 7",
     "typeRoom": "ช2",
     "roomconditions": "ชำรุด",
-    "roomStatus": "waiting"
+    "roomStatus": "waiting",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c78-q2a3-4ea2-bca5-48521eb7e5db",
@@ -75,7 +80,8 @@
     "Affiliation": "",
     "typeRoom": "ช2",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c36-b2a3-4ea2-bca5-48521eb7e5db",
@@ -88,7 +94,8 @@
     "Affiliation": "",
     "typeRoom": "ช1",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c41-b2a3-4ea2-bca5-48521eb7e5db",
@@ -101,7 +108,8 @@
     "Affiliation": "ฝอ. 1",
     "typeRoom": "ช3",
     "roomconditions": "ปกติ",
-    "roomStatus": "special"
+    "roomStatus": "special",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c99-b2a3-4ea2-bca5-48521eb7e5db",
@@ -114,7 +122,8 @@
     "Affiliation": "ฝอ. 7",
     "typeRoom": "ช2",
     "roomconditions": "ชำรุด",
-    "roomStatus": "waiting"
+    "roomStatus": "waiting",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c988c78-b2a3-4ea2-bca5-48521eb7e5db",
@@ -127,7 +136,8 @@
     "Affiliation": "",
     "typeRoom": "ช2",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c78-b2a3-4ea2-bca5-47821eb7e5db",
@@ -147,7 +157,8 @@
     "phone": "0325647845",
     "status": "โสด",
     "typeAffiliation": "ลูกจ้าง",
-    "typeRanks": "ลูกจ้าง"
+    "typeRanks": "ลูกจ้าง",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "id": "2c388c78-b2a3-4ea2-bca5-48981eb7e5db",
@@ -167,7 +178,8 @@
     "phone": "0325647845",
     "status": "โสด",
     "typeAffiliation": "บก.สนน.",
-    "typeRanks": "ประทวน"
+    "typeRanks": "ประทวน",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -182,7 +194,8 @@
     "Affiliation": "",
     "roomconditions": "ปกติ",
     "typeRoom": "ช1",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -197,7 +210,8 @@
     "Affiliation": "",
     "roomconditions": "ปกติ",
     "typeRoom": "ช1",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -212,7 +226,8 @@
     "Affiliation": "",
     "typeRoom": "ช2",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -227,7 +242,8 @@
     "Affiliation": "",
     "typeRoom": "ช1",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -242,7 +258,8 @@
     "Affiliation": "",
     "roomconditions": "ชำรุด",
     "typeRoom": "ช2",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -264,7 +281,8 @@
     "phone": "0325647845",
     "status": "สมรส",
     "typeAffiliation": "ลูกจ้าง",
-    "typeRanks": "ประทวน"
+    "typeRanks": "ประทวน",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "8bc8b393-8ae2-4e65-9a35-32c0e76545b3",
@@ -279,7 +297,8 @@
     "Affiliation": "",
     "typeRoom": "ช1",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -294,7 +313,8 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -309,7 +329,8 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -324,7 +345,8 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -339,7 +361,8 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -354,7 +377,8 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   },
   {
     "buildingId": "3ac5e496-89f8-44da-a666-4d910f9ba61c",
@@ -369,6 +393,7 @@
     "Affiliation": "",
     "typeRoom": "",
     "roomconditions": "ปกติ",
-    "roomStatus": "free"
+    "roomStatus": "free",
+    "pickedBook": "2023-11-02T14:10:26.374Z"
   }
 ]

@@ -170,6 +170,7 @@ app.put('/rooms/:id', (req, res) => {
     if (req.body.typeAffiliation) parsedData.typeAffiliation = req.body.typeAffiliation
     if (req.body.typeRanks) parsedData.typeRanks = req.body.typeRanks
     if (req.body.typeRoom) parsedData.typeRoom = req.body.typeRoom
+    if (req.body.pickedBook) parsedData.pickedBook = req.body.pickedBook
     if (req.body.roomconditions) parsedData.roomconditions = req.body.roomconditions
     filterdata.push(parsedData)
     fs.writeFile('./rooms.json', JSON.stringify(filterdata, null, 2), (err) => {

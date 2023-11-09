@@ -7,7 +7,6 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Breadcrumbs from "@/examples/Breadcrumbs.vue";
 import axios from "axios";
 
-
 export default {
   components: {
     MaterialInput,
@@ -16,7 +15,7 @@ export default {
   },
   setup() {
     return {
-      vueMkHeader
+      vueMkHeader,
     };
   },
 
@@ -47,6 +46,8 @@ export default {
       data: "",
       queueList: [],
       queuefilter: [],
+      statusRoom: "",
+      dateApproved: ""
     };
   },
   created() {
@@ -80,16 +81,29 @@ export default {
       try {
         axios.get(`http://localhost:3001/rooms/${id}`).then((res) => {
           this.data = res.data;
-          // console.log(this.data);
-          // if (this.data.typeRoom == "ช1") this.typeroom = "โสด";
-          // if (this.data.typeRoom == "ช2") this.typeroom = "สมรส";
-          // if (this.data.typeRoom == "ช3") this.typeroom = "ทั่วไป";
-          this.typeroom = this.data.typeRoom
-          this.getAllqueue()
+          console.log(this.data);
+          this.dateApproved = this.convertDateTolocal(this.data.pickedBook)
+          this.typeroom = this.data.typeRoom;
+          if(this.data.affiliation) this.Affiliation = this.data.affiliation 
+          if (this.data.roomStatus == "return") this.statusRoom = "ผ่อนผัน";
+          if (this.data.roomStatus == "special") this.statusRoom = "กรณีพิเศษ";
+          if (this.data.roomStatus == "waiting") this.statusRoom = "ชำรุด";
+          if (this.data.roomStatus == "unavailable") this.statusRoom = "ไม่ว่าง";
+          if (this.data.roomStatus == "free") this.statusRoom = "ว่าง";
+         
+          
+          this.getAllqueue();
         });
       } catch (e) {
         console.error(e);
       }
+    },
+
+    convertDateTolocal(index){
+      const date = new Date(index);
+      const formatter = new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const formattedDate = formatter.format(date)
+      return formattedDate
     },
 
     getAllusersByid(id) {
@@ -119,7 +133,6 @@ export default {
         insurance: this.insurance,
         installments: this.installments,
       };
-      console.log(body);
       await axios
         .post(`http://localhost:3001/history`, body, {
           headers: {
@@ -128,9 +141,9 @@ export default {
           },
         })
         .then((res) => {
-          this.submitForm2()
-          this.submitForm3()
-          this.submitFormRoom()
+          this.submitForm2();
+          this.submitForm3();
+          this.submitFormRoom();
         })
         .catch((err) => {
           console.log(err);
@@ -148,13 +161,12 @@ export default {
         installments: this.installments,
       };
 
-      await axios
-        .post(`http://localhost:3001/report`, body, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
+      await axios.post(`http://localhost:3001/report`, body, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     async submitForm3() {
@@ -168,19 +180,18 @@ export default {
         installments: this.installments,
       };
 
-      await axios
-        .put(`http://localhost:3001/queue/${this.userId}`, body, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
+      await axios.put(`http://localhost:3001/queue/${this.userId}`, body, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
     },
     async submitFormRoom() {
       let body = {
         ...this.userByid,
         queue: "inroom",
-        roomStatus: 'unavailable',
+        roomStatus: "unavailable",
         contract: this.contract,
         checkintime: this.Checkintime,
         maintenance: this.Maintenance,
@@ -262,21 +273,23 @@ export default {
                     <div class="row" v-if="this.mode !== 'add'">
                       <h5 class="card-title">รายละเอียดผู้เช่า</h5>
                       <div class="col-5">
-                        <p class="card-text">ชือ : ส.ต.ต. มานะ</p>
-                        <p class="card-text">สถานะห้อง : ไม่ว่าง</p>
-                        <p class="card-text">สังกัด : ฝอ. 1</p>
-                        <p class="card-text">เลขบัตรประชาชน : 123456123456</p>
-                        <p class="card-text">วันที่ได้รับอนุมัติ : 12/02/2564</p>
+                        <p class="card-text">
+                          ชือ : {{ data?.rank }} {{ data?.firstName }}   
+                        </p>
+                        <p class="card-text">สถานะห้อง : {{ statusRoom }}</p>
+                        <p class="card-text">สังกัด : {{ Affiliation }} </p>
+                        <p class="card-text">เลขบัตรประชาชน :  {{ data?.idcard }} </p>
+                        <p class="card-text">วันที่ได้รับอนุมัติ :  {{ dateApproved  }} </p>
 
-                        <p class="card-text">ระยะเวลาที่เข้าพัก : 3 เดือน</p>
+                        <p class="card-text">ระยะเวลาที่เข้าพัก : {{ data?.Checkintime || 0 }} เดือน</p>
                       </div>
                       <div class="col-7">
-                        <p class="card-text">นามสกุล : ถือดี</p>
-                        <p class="card-text">เบอร์โทร : 0972534887</p>
-                        <p class="card-text">เงินค่าประกัน : 12,000</p>
-                        <p class="card-text">งวดค่าประกัน : 5/10</p>
-                        <p class="card-text">จำนวนงวดค่าประกัน : 2,000</p>
-                        <p class="card-text">ยอดคงเหลือค่าประกัน : 6,000</p>
+                        <p class="card-text">นามสกุล : {{ data?.lastName }}</p>
+                        <p class="card-text">เบอร์โทร : {{ data?.phone }}</p>
+                        <p class="card-text">เงินค่าประกัน : {{ data?.Insurancecost }}</p>
+                        <p class="card-text">งวดค่าประกัน : {{ data?.installments }}</p>
+                        <!-- <p class="card-text">จำนวนงวดค่าประกัน : {{ data?.phone }}</p> -->
+                        <!-- <p class="card-text">ยอดคงเหลือค่าประกัน : {{ data?.phone }}</p> -->
                       </div>
                     </div>
                     <div class="row" v-if="this.mode !== 'special'">
@@ -284,7 +297,7 @@ export default {
                         <h5 class="card-title pt-2">รายละเอียดห้องพัก</h5>
                         <p class="card-text">ประเภทห้องพัก : {{ data?.typeRoom }}</p>
                         <!-- <p class="card-text">มิเตอร์น้ำ/ไฟ : 745/546</p> -->
-                        <p class="card-text">สภาพห้อง : {{ data?.Roomconditions }}</p>
+                        <p class="card-text">สภาพห้อง : {{ data?.roomconditions }}</p>
                       </div>
                     </div>
                   </div>
