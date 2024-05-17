@@ -28,6 +28,9 @@ import ElTypography from "../layouts/sections/elements/typography/TypographyView
  import UserLoginView from "../views/Auth/UserLogin.vue";
 // import AdminView from "../views/LandingPages/Author/AuthorView.vue";
 import { Role } from './constants';
+import { useStore } from '@/stores'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -172,45 +175,60 @@ const router = createRouter({
        
       ],
     });
-    
-    
-    function isAuthenticated() {
-      // Check if the user is authenticated, e.g., by verifying the presence of a valid token or logged-in state
-      // Return true if authenticated, false otherwise
-      // Example: return localStorage.getItem('token') !== null;
-    
-      return true;
-    }
-    
-    function getCurrentUserRole() {
-      // Retrieve the current user's role from your authentication system or state management
-      // Return the role of the current user
-      // Example: return localStorage.getItem('userRole');
-      return "guest";
-    }
-    
-    // Route guard
+
+
     router.beforeEach((to, from, next) => {
-      if (to.meta.requiresAuth) {
-        // Check if the user is authenticated, e.g., by checking the presence of a valid token or logged-in state
-        if (isAuthenticated()) {
-          // Check if the user has the required role
-          if (to.meta.requiredRole && getCurrentUserRole() !== to.meta.requiredRole) {
-            // Redirect to a different route or show an error message
-            next({ path: '/unauthorized' });
-          } else {
-            // Proceed to the requested route
-            next();
-          }
-        } else {
-          // Redirect to the login page or a suitable route for unauthenticated users
-          next({ path: '/logout' });
-        }
+      const store = useStore()
+      console.log(store.isAuthenticated,store.user,"store")
+      //console.log(store.isAuthenticated,"store")
+      if (to.meta.requiresAuth && !store.isAuthenticated) {
+        next('/admin/auth')
+      } else if (to.meta.requiresVisitor && store.isAuthenticated) {
+        next('/sections/elements/progress-bars')
       } else {
-        // No authentication required for the route
-        next();
+        next()
       }
-    });
+    })
+    
+    
+    
+    // function isAuthenticated() {
+    //   // Check if the user is authenticated, e.g., by verifying the presence of a valid token or logged-in state
+    //   // Return true if authenticated, false otherwise
+    //   // Example: return localStorage.getItem('token') !== null;
+    
+    //   return true;
+    // }
+    
+    // function getCurrentUserRole() {
+    //   // Retrieve the current user's role from your authentication system or state management
+    //   // Return the role of the current user
+    //   // Example: return localStorage.getItem('userRole');
+    //   return "guest";
+    // }
+    
+    // // Route guard
+    // router.beforeEach((to, from, next) => {
+    //   if (to.meta.requiresAuth) {
+    //     // Check if the user is authenticated, e.g., by checking the presence of a valid token or logged-in state
+    //     if (isAuthenticated()) {
+    //       // Check if the user has the required role
+    //       if (to.meta.requiredRole && getCurrentUserRole() !== to.meta.requiredRole) {
+    //         // Redirect to a different route or show an error message
+    //         next({ path: '/unauthorized' });
+    //       } else {
+    //         // Proceed to the requested route
+    //         next();
+    //       }
+    //     } else {
+    //       // Redirect to the login page or a suitable route for unauthenticated users
+    //       next({ path: '/logout' });
+    //     }
+    //   } else {
+    //     // No authentication required for the route
+    //     next();
+    //   }
+    // });
     
     export default router;
     

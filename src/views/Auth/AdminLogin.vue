@@ -5,22 +5,47 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import setMaterialInput from "@/assets/js/material-input";
 import axios from "axios";
+import { ref } from 'vue'
+import { useStore } from '@/stores'
+import router from '@/router'
 onMounted(() => {
   setMaterialInput();
 });
 
+const store = useStore()
+    const email = ref('')
+    const password = ref('')
+
+
 const handleLogin = async () => {
-  try {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts?userId=1');
-    console.log(response.data);
-    
-    // Redirect the user to the admin dashboard
-   // router.push('/admin/dashboard');
-  } catch (err) {
-    console.log('Error:', err);
-  }
-};
+      try {
+        // Send a POST request to the login endpoint
+        const response = await axios.get('https://dummyjson.com/products/1', {
+          email: email.value,
+          password: password.value
+        })
+
+        // Check if the login was successful
+        console.log(response && response.status===200);
+        if (response && response.status===200) {
+          // Save the user to the store
+          store.login({
+            name: response.data.name,
+            email: response.data.email
+          })
+
+          // Navigate the user to the admin dashboard
+          router.push('/')
+        } else {
+          // Display an error message if the login failed
+          alert('Invalid email or password')
+        }
+      } catch (err) {
+        console.log('Error:', err);
+      }
+    };
 </script>
+
 <template>
   <Header>
     <div
@@ -51,28 +76,32 @@ const handleLogin = async () => {
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start"  @submit.prevent="handleLogin">
+                <form role="form" class="text-start" @submit.prevent="handleLogin">
                   <MaterialInput
                     id="email"
                     class="input-group-outline my-3"
                     :label="{ text: 'Email', class: 'form-label' }"
                     type="email"
+                    v-model="email"
                   />
                   <MaterialInput
                     id="password"
                     class="input-group-outline mb-3"
                     :label="{ text: 'Password', class: 'form-label' }"
                     type="password"
+                    v-model="password"
                   />
-                  <button type="submit">login</button>
+                 
                   <div class="text-center">
                     <MaterialButton
                       class="my-4 mb-2"
                       variant="gradient"
                       color="info"
                       fullWidth
-                      >Sign in</MaterialButton
+                      @click="handleLogin"
                     >
+                      Sign in
+                    </MaterialButton>
                   </div>
                 </form>
               </div>
