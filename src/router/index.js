@@ -26,6 +26,10 @@ import ElTypography from "../layouts/sections/elements/typography/TypographyView
 
  import AdminLoginView from "../views/Auth/AdminLogin.vue";
  import UserLoginView from "../views/Auth/UserLogin.vue";
+ import AdminDashboardView from "../views/Admin/dashboard.vue";
+ import AdminSettingsView from "../views/Admin/Settings.vue"
+ import AdminUsersView from "../views/Admin/Users.vue"
+
 // import AdminView from "../views/LandingPages/Author/AuthorView.vue";
 import { Role } from './constants';
 import { useStore } from '@/stores'
@@ -162,6 +166,11 @@ const router = createRouter({
           component: AdminLoginView,
           name: "admin-login",
         },
+        {
+          path: '/admin/dashboard',
+          component: AdminDashboardView,
+          name: "admin-dashboard",
+        },
         // {
         //   path: "/unauthorized",
         //   name: "unauthorized",
@@ -171,6 +180,16 @@ const router = createRouter({
           path: "/user/login",
           name: "user-login",
           component: UserLoginView,
+        },
+        {
+          path: '/admin/users',
+          component: AdminUsersView,
+          name: "admin-users",
+        },  
+        {
+          path: '/admin/settings',
+          component: AdminSettingsView,
+          name: "admin-settings",
         },
        
       ],
