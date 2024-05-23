@@ -170,6 +170,21 @@ const router = createRouter({
           path: '/admin/dashboard',
           component: AdminDashboardView,
           name: "admin-dashboard",
+
+          children: [
+            {
+              path: '/admin/users',
+              component: AdminUsersView,
+              name: "admin-users",
+            },  
+            {
+              path: '/admin/settings',
+              component: AdminSettingsView,
+              name: "admin-settings",
+            },
+            // Other child routes for the dashboard
+          ]
+      
         },
         // {
         //   path: "/unauthorized",
@@ -181,16 +196,7 @@ const router = createRouter({
           name: "user-login",
           component: UserLoginView,
         },
-        {
-          path: '/admin/users',
-          component: AdminUsersView,
-          name: "admin-users",
-        },  
-        {
-          path: '/admin/settings',
-          component: AdminSettingsView,
-          name: "admin-settings",
-        },
+
        
       ],
     });

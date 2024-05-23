@@ -1,16 +1,23 @@
 <template>
-    <div class="layout">
-      <Sidebar />
-      <div class="content">
+
+
+  <div class="dashboard-page">
+    <div class="row">
+      <div class="col-3">
+        <Sidebar />
+      </div>
+      <div class="col-9">
         <router-view />
       </div>
     </div>
-  </template>
-  
-  <script>
-  import Sidebar from './SideNavAdmin.vue';
-  
-  export default {
-    components: { Sidebar }
-  }
-  </script>
+  </div>
+
+</template>
+
+<script>
+import Sidebar from './SideNavAdmin.vue';
+
+export default {
+  components: { Sidebar }
+}
+</script>
