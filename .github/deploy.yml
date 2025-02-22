@@ -1,0 +1,49 @@
+name: Deploy to ECR
+
+on:
+ 
+  push:
+    branches: [ main ]
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
+jobs:
+  
+  build:
+    
+    name: Build Image
+    runs-on: ubuntu-latest
+
+   
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::658817016946:role/GijiDeploy-Role-HuJyYropIfWb
+        aws-region: af-south-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: dfs
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f buildScripts/Dockerfile .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Deploy to AWS ECS
+      env:
+        ECS_CLUSTER: DailyFitnessCluster
+        ECS_SERVICE: DFS-01
+      run: |
+        aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
